@@ -1,0 +1,31 @@
+name: raylib_dart
+description: Dart bindings for raylib.
+version: 0.0.1
+# homepage: https://www.example.com
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  ffi: ^1.0.0
+  path: ^1.8.0
+
+dev_dependencies:
+  ffigen: ^3.0.0
+  pedantic: ^1.10.0
+  test: ^1.16.0
+
+ffigen:
+  name: "DartRaylib"
+  description: "Holds auto-generated Raylib bindings"
+  output: "lib/src/modules/generated_bindings.dart"
+  headers:
+    entry-points:
+      - "lib/src/raylib/include/raylib.h"
+  llvm-path:
+    - C:/Program Files/LLVM
+  dart-bool: true
+  typedef-map:
+    "Color": Uint32
+  comments:
+    style: any
