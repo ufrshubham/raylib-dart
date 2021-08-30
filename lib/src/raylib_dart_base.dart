@@ -19,8 +19,8 @@ class Raylib {
   Raylib() {
     var raylibDllPath = Directory.current.path;
     if (Platform.isWindows) {
-      raylibDllPath =
-          path.join(Directory.current.path, 'lib/src/raylib/lib/windows/raylib.dll');
+      raylibDllPath = path.join(
+          Directory.current.path, 'lib/src/raylib/lib/windows/raylib.dll');
     } else {
       throw UnsupportedError('Current platform is not supported yet.');
     }

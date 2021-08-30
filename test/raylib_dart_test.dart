@@ -1,13 +1,26 @@
+import 'package:raylib_dart/raylib_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('A group of tests', () {
+  group('Library loading tests', () {
+    test('Raylib load test', () {
+      expect(() {
+        Raylib();
+      }, returnsNormally);
+    });
+  });
+
+  group('Module init tests', () {
+    late Raylib raylib;
+
     setUp(() {
-      // Additional setup goes here.
+      raylib = Raylib();
     });
 
-    test('First Test', () {
-      // expect(awesome.isAwesome, isTrue);
+    test('Core module init test', () {
+      expect(() {
+        raylib.core;
+      }, returnsNormally);
     });
   });
 }
