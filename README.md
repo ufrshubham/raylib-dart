@@ -30,3 +30,19 @@ int main() {
   core.CloseWindow();
 }
 ```
+
+## Todo
+
+- [ ] Add idiomatic wrappers for all the auto-generated dart bindings.
+
+- [ ] Add APIs to create native raylib structs (like Vector2, Color, Vector3) from dart. See [structs example](https://github.com/dart-lang/samples/tree/master/ffi/structs) from dart ffi.
+
+- [ ] Figure out best way to distribute platform specific raylib binaries with this package. See [sqflite](https://github.com/tekartik/sqflite/tree/master/sqflite_common_ffi) for reference.
+
+- [ ] Get all the examples from raylib working with this package.
+
+## For discussions
+
+- Use the [Discussions](https://github.com/ufrshubham/raylib-dart/discussions) tab
+
+- Or join my [Discord](https://discord.gg/6xZ4ycWSYB)
