@@ -8,12 +8,12 @@ import 'package:ffi/ffi.dart';
 void main() {
   final raylib = Raylib();
   final core = raylib.core;
-  const WIDTH = 1280 ~/ 2;
-  const HEIGHT = 720 ~/ 2;
-  const FONT_SIZE_MIN = 20;
-  const FONT_SIZE_MAX = 25;
+  const screenWidth = 1280 ~/ 2;
+  const screenHeight = 720 ~/ 2;
+  const minFontSize = 20;
+  const maxFontSize = 25;
 
-  core.InitWindow(WIDTH, HEIGHT, 'Hello Raylib!');
+  core.initWindow(screenWidth, screenHeight, 'Hello Raylib!');
   core.targetFPS = 60;
 
   const text = 'Welcome to Raylib-Dart!';
@@ -21,14 +21,14 @@ void main() {
   final utf8Text = text.toNativeUtf8();
   final int8Text = utf8Text.cast<Int8>();
 
-  var fontSize = FONT_SIZE_MIN;
+  var fontSize = minFontSize;
   var reverse = false;
   var time = 0.0;
 
   while (!core.shouldWindowClose) {
-    if (fontSize > FONT_SIZE_MAX) {
+    if (fontSize > maxFontSize) {
       reverse = true;
-    } else if (fontSize < FONT_SIZE_MIN) {
+    } else if (fontSize < minFontSize) {
       reverse = false;
     }
 
@@ -38,22 +38,22 @@ void main() {
       time -= 0.06;
     }
 
-    core.BeginDrawing();
-    core.ClearBackground(RaylibColor.BLACK);
+    core.beginDrawing();
+    core.clearBackground(RaylibColor.black);
 
     raylib.raylib.DrawFPS(32, 32);
     raylib.raylib.DrawText(
       int8Text,
-      (WIDTH - raylib.raylib.MeasureText(int8Text, fontSize)) ~/ 2,
-      HEIGHT ~/ 2,
+      (screenWidth - raylib.raylib.MeasureText(int8Text, fontSize)) ~/ 2,
+      screenHeight ~/ 2,
       fontSize,
-      RaylibColor.WHITE.toInt32(),
+      RaylibColor.white.toInt32(),
     );
 
-    core.EndDrawing();
+    core.endDrawing();
   }
 
   // Because we are no longer in managed-memory relm.
   malloc.free(utf8Text);
-  core.CloseWindow();
+  core.closeWindow();
 }

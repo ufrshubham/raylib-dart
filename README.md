@@ -18,16 +18,16 @@ int main() {
   final raylib = Raylib();
   final core = raylib.core;
 
-  core.InitWindow(1280, 720, 'Hello Raylib!');
+  core.initWindow(1280, 720, 'Hello Raylib!');
   core.targetFPS = 60;
 
   while (!core.shouldWindowClose) {
-    core.BeginDrawing();
-    core.ClearBackground(RaylibColor.RAYWHITE);
-    core.EndDrawing();
+    core.beginDrawing();
+    core.clearBackground(RaylibColor.RAYWHITE);
+    core.endDrawing();
   }
 
-  core.CloseWindow();
+  core.closeWindow();
 }
 ```
 

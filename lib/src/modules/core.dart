@@ -18,8 +18,11 @@ class Core extends RaylibModule {
   ffi.Pointer<Utf8> _clipboardContent = ffi.nullptr;
 
   // Constants for native boolean values.
-  static const TRUE = raylib_bind.bool.true_1;
-  static const FALSE = raylib_bind.bool.false_1;
+  static const _true = raylib_bind.bool.true_1;
+
+  // Might need this in future.
+  // ignore: unused_field
+  static const _false = raylib_bind.bool.false_1;
 
   // Converts given strings to native utf-8 strings
   // and exposes it as a int8 pointer.
@@ -30,47 +33,47 @@ class Core extends RaylibModule {
   // **************** Window related APIs. ****************
 
   // Initialize window and OpenGL context
-  void InitWindow(int width, int height, String title) {
+  void initWindow(int width, int height, String title) {
     malloc.free(_windowTitle);
     _windowTitle = _toInt8(title);
     raylib.InitWindow(width, height, _windowTitle.cast<ffi.Int8>());
   }
 
   // Check if KEY_ESCAPE pressed or Close icon pressed
-  bool get shouldWindowClose => (raylib.WindowShouldClose() == TRUE);
+  bool get shouldWindowClose => (raylib.WindowShouldClose() == _true);
 
   // Close window and unload OpenGL context
-  void CloseWindow() {
+  void closeWindow() {
     malloc.free(_windowTitle);
     raylib.CloseWindow();
   }
 
   // Check if window has been initialized successfully
-  bool get isWindowReady => (raylib.IsWindowReady() == TRUE);
+  bool get isWindowReady => (raylib.IsWindowReady() == _true);
 
   // Check if window is currently fullscreen
-  bool get isWindowFullScreen => (raylib.IsWindowFullscreen() == TRUE);
+  bool get isWindowFullScreen => (raylib.IsWindowFullscreen() == _true);
 
   // Check if window is currently hidden (only PLATFORM_DESKTOP)
-  bool get isWindowHidden => (raylib.IsWindowHidden() == TRUE);
+  bool get isWindowHidden => (raylib.IsWindowHidden() == _true);
 
   // Check if window is currently minimized (only PLATFORM_DESKTOP)
-  bool get isWindowMinimized => (raylib.IsWindowMinimized() == TRUE);
+  bool get isWindowMinimized => (raylib.IsWindowMinimized() == _true);
 
   // Check if window is currently maximized (only PLATFORM_DESKTOP)
-  bool get isWindowMaximized => (raylib.IsWindowMaximized() == TRUE);
+  bool get isWindowMaximized => (raylib.IsWindowMaximized() == _true);
 
   // Check if window is currently focused (only PLATFORM_DESKTOP)
-  bool get isWindowFocused => (raylib.IsWindowFocused() == TRUE);
+  bool get isWindowFocused => (raylib.IsWindowFocused() == _true);
 
   // Check if window has been resized last frame
-  bool get isWindowResized => (raylib.IsWindowResized() == TRUE);
+  bool get isWindowResized => (raylib.IsWindowResized() == _true);
 
   // Check if one specific window flag is enabled
-  bool IsWindowState(WindowConfigFlag flag) {
+  bool isWindowState(WindowConfigFlag flag) {
     var isSet = false;
     if (_configFlags[flag] != null) {
-      isSet = (raylib.IsWindowState(_configFlags[flag]!) == TRUE);
+      isSet = (raylib.IsWindowState(_configFlags[flag]!) == _true);
     } else {
       throw ArgumentError.value(
           flag, 'flag', 'Does not map to any native window config flag.');
@@ -79,7 +82,7 @@ class Core extends RaylibModule {
   }
 
   // Set window configuration state using flags
-  void SetWindowState(List<WindowConfigFlag> flags) {
+  void setWindowState(List<WindowConfigFlag> flags) {
     var bitMaskedFlag = 0;
 
     for (final flag in flags) {
@@ -96,7 +99,7 @@ class Core extends RaylibModule {
   }
 
   // Clear window configuration state flags
-  void ClearWindowState(List<WindowConfigFlag> flags) {
+  void clearWindowState(List<WindowConfigFlag> flags) {
     var bitMaskedFlag = 0;
 
     for (final flag in flags) {
@@ -113,22 +116,22 @@ class Core extends RaylibModule {
   }
 
   // Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
-  void ToggleFullscreen() {
+  void toggleFullscreen() {
     raylib.ToggleFullscreen();
   }
 
   // Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
-  void MaximizeWindow() {
+  void maximizeWindow() {
     raylib.MaximizeWindow();
   }
 
   // Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
-  void MinimizeWindow() {
+  void minimizeWindow() {
     raylib.MinimizeWindow();
   }
 
   // Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
-  void RestoreWindow() {
+  void restoreWindow() {
     raylib.RestoreWindow();
   }
 
@@ -143,7 +146,7 @@ class Core extends RaylibModule {
   }
 
   // Set window position on screen (only PLATFORM_DESKTOP)
-  void SetWindowPosition(int x, int y) {
+  void setWindowPosition(int x, int y) {
     raylib.SetWindowPosition(x, y);
   }
 
@@ -151,12 +154,12 @@ class Core extends RaylibModule {
   set windowMonitor(int monitor) => raylib.SetWindowMonitor(monitor);
 
   // Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
-  void SetWindowMinSize(int width, int height) {
+  void setWindowMinSize(int width, int height) {
     raylib.SetWindowMinSize(width, height);
   }
 
   // Set window dimensions
-  void SetWindowSize(int width, int height) {
+  void setWindowSize(int width, int height) {
     raylib.SetWindowMinSize(width, height);
   }
 
@@ -176,32 +179,32 @@ class Core extends RaylibModule {
   int get currentMonitor => raylib.GetCurrentMonitor();
 
   // Get specified monitor position
-  raylib_bind.Vector2 GetMonitorPosition(int monitor) {
+  raylib_bind.Vector2 getMonitorPosition(int monitor) {
     return raylib.GetMonitorPosition(monitor);
   }
 
   // Get specified monitor width (max available by monitor)
-  int GetMonitorWidth(int monitor) {
+  int getMonitorWidth(int monitor) {
     return raylib.GetMonitorWidth(monitor);
   }
 
   // Get specified monitor height (max available by monitor)
-  int GetMonitorHeight(int monitor) {
+  int getMonitorHeight(int monitor) {
     return raylib.GetMonitorHeight(monitor);
   }
 
   // Get specified monitor physical width in millimetres
-  int GetMonitorPhysicalWidth(int monitor) {
+  int getMonitorPhysicalWidth(int monitor) {
     return raylib.GetMonitorPhysicalWidth(monitor);
   }
 
   // Get specified monitor physical height in millimetres
-  int GetMonitorPhysicalHeight(int monitor) {
+  int getMonitorPhysicalHeight(int monitor) {
     return raylib.GetMonitorPhysicalHeight(monitor);
   }
 
   // Get specified monitor refresh rate
-  int GetMonitorRefreshRate(int monitor) {
+  int getMonitorRefreshRate(int monitor) {
     return raylib.GetMonitorRefreshRate(monitor);
   }
 
@@ -212,7 +215,7 @@ class Core extends RaylibModule {
   raylib_bind.Vector2 get windowScaleDPI => raylib.GetWindowScaleDPI();
 
   // Get the human-readable, UTF-8 encoded name of the primary monitor
-  String GetMonitorName(int monitor) {
+  String getMonitorName(int monitor) {
     return raylib.GetMonitorName(monitor).cast<Utf8>().toDartString();
   }
 
@@ -229,146 +232,142 @@ class Core extends RaylibModule {
 
   /// Maps user facing [WindowConfigFlag] to native [ConfigFlags]
   static const Map<WindowConfigFlag, int> _configFlags = {
-    WindowConfigFlag.FLAG_VSYNC_HINT: raylib_bind.ConfigFlags.FLAG_VSYNC_HINT,
-    WindowConfigFlag.FLAG_FULLSCREEN_MODE:
+    WindowConfigFlag.vsyncHint: raylib_bind.ConfigFlags.FLAG_VSYNC_HINT,
+    WindowConfigFlag.fullScreenMode:
         raylib_bind.ConfigFlags.FLAG_FULLSCREEN_MODE,
-    WindowConfigFlag.FLAG_WINDOW_RESIZABLE:
+    WindowConfigFlag.windowResizable:
         raylib_bind.ConfigFlags.FLAG_WINDOW_RESIZABLE,
-    WindowConfigFlag.FLAG_WINDOW_UNDECORATED:
+    WindowConfigFlag.windowUndecorated:
         raylib_bind.ConfigFlags.FLAG_WINDOW_UNDECORATED,
-    WindowConfigFlag.FLAG_WINDOW_HIDDEN:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_HIDDEN,
-    WindowConfigFlag.FLAG_WINDOW_MINIMIZED:
+    WindowConfigFlag.windowHidden: raylib_bind.ConfigFlags.FLAG_WINDOW_HIDDEN,
+    WindowConfigFlag.windowMinimized:
         raylib_bind.ConfigFlags.FLAG_WINDOW_MINIMIZED,
-    WindowConfigFlag.FLAG_WINDOW_MAXIMIZED:
+    WindowConfigFlag.windowMaximized:
         raylib_bind.ConfigFlags.FLAG_WINDOW_MAXIMIZED,
-    WindowConfigFlag.FLAG_WINDOW_UNFOCUSED:
+    WindowConfigFlag.windowUnfocused:
         raylib_bind.ConfigFlags.FLAG_WINDOW_UNFOCUSED,
-    WindowConfigFlag.FLAG_WINDOW_TOPMOST:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_TOPMOST,
-    WindowConfigFlag.FLAG_WINDOW_ALWAYS_RUN:
+    WindowConfigFlag.windowTopmost: raylib_bind.ConfigFlags.FLAG_WINDOW_TOPMOST,
+    WindowConfigFlag.windowAlwaysRun:
         raylib_bind.ConfigFlags.FLAG_WINDOW_ALWAYS_RUN,
-    WindowConfigFlag.FLAG_WINDOW_TRANSPARENT:
+    WindowConfigFlag.windowTransparent:
         raylib_bind.ConfigFlags.FLAG_WINDOW_TRANSPARENT,
-    WindowConfigFlag.FLAG_WINDOW_HIGHDPI:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_HIGHDPI,
-    WindowConfigFlag.FLAG_MSAA_4X_HINT:
-        raylib_bind.ConfigFlags.FLAG_MSAA_4X_HINT,
-    WindowConfigFlag.FLAG_INTERLACED_HINT:
+    WindowConfigFlag.windowHighdpi: raylib_bind.ConfigFlags.FLAG_WINDOW_HIGHDPI,
+    WindowConfigFlag.msaa_4XHint: raylib_bind.ConfigFlags.FLAG_MSAA_4X_HINT,
+    WindowConfigFlag.interlacedHint:
         raylib_bind.ConfigFlags.FLAG_INTERLACED_HINT,
   };
 
   // **************** Cursor related APIs. ****************
 
-  void ShowCursor() {
+  void showCursor() {
     raylib.ShowCursor();
   }
 
   // Hides cursor
-  void HideCursor() {
+  void hideCursor() {
     raylib.HideCursor();
   }
 
   // Check if cursor is not visible
-  bool get isCursorHidden => (raylib.IsCursorHidden() == TRUE);
+  bool get isCursorHidden => (raylib.IsCursorHidden() == _true);
 
   // Enables cursor (unlock cursor)
-  void EnableCursor() {
+  void enableCursor() {
     raylib.EnableCursor();
   }
 
   // Disables cursor (lock cursor)
-  void DisableCursor() {
+  void disableCursor() {
     raylib.DisableCursor();
   }
 
   // Check if cursor is on the current screen.
-  bool get isCursorOnScreen => (raylib.IsCursorOnScreen() == TRUE);
+  bool get isCursorOnScreen => (raylib.IsCursorOnScreen() == _true);
 
   // **************** Drawing related APIs. ****************
 
   // Set background color (framebuffer clear color)
-  void ClearBackground(RaylibColor color) {
+  void clearBackground(RaylibColor color) {
     raylib.ClearBackground(color.toInt32());
   }
 
   // Setup canvas (framebuffer) to start drawing
-  void BeginDrawing() {
+  void beginDrawing() {
     raylib.BeginDrawing();
   }
 
   // End canvas drawing and swap buffers (double buffering)
-  void EndDrawing() {
+  void endDrawing() {
     raylib.EndDrawing();
   }
 
   // Initialize 2D mode with custom camera (2D)
-  void BeginMode2D(raylib_bind.Camera2D camera) {
+  void beginMode2D(raylib_bind.Camera2D camera) {
     raylib.BeginMode2D(camera);
   }
 
   // Ends 2D mode with custom camera
-  void EndMode2D() {
+  void endMode2D() {
     raylib.EndMode2D();
   }
 
   // Initializes 3D mode with custom camera (3D)
-  void BeginMode3D(raylib_bind.Camera3D camera) {
+  void beginMode3D(raylib_bind.Camera3D camera) {
     raylib.BeginMode3D(camera);
   }
 
   // Ends 3D mode and returns to default 2D orthographic mode
-  void EndMode3D() {
+  void endMode3D() {
     raylib.EndMode3D();
   }
 
   // Initializes render texture for drawing
-  void BeginTextureMode(raylib_bind.RenderTexture target) {
+  void beginTextureMode(raylib_bind.RenderTexture target) {
     raylib.BeginTextureMode(target);
   }
 
   // Ends drawing to render texture
-  void EndTextureMode() {
+  void endTextureMode() {
     raylib.EndTextureMode();
   }
 
   // Begin custom shader drawing
-  void BeginShaderMode(raylib_bind.Shader shader) {
+  void beginShaderMode(raylib_bind.Shader shader) {
     raylib.BeginShaderMode(shader);
   }
 
   // End custom shader drawing (use default shader)
-  void EndShaderMode() {
+  void endShaderMode() {
     raylib.EndShaderMode();
   }
 
   // Begin blending mode (alpha, additive, multiplied)
-  void BeginBlendMode(int mode) {
+  void beginBlendMode(int mode) {
     raylib.BeginBlendMode(mode);
   }
 
   // End blending mode (reset to default: alpha blending)
-  void EndBlendMode() {
+  void endBlendMode() {
     raylib.EndBlendMode();
   }
 
   // Begin scissor mode (define screen area for following drawing)
-  void BeginScissorMode(int x, int y, int width, int height) {
+  void beginScissorMode(int x, int y, int width, int height) {
     raylib.BeginScissorMode(x, y, width, height);
   }
 
   // End scissor mode
-  void EndScissorMode() {
+  void endScissorMode() {
     raylib.EndScissorMode();
   }
 
   // Begin stereo rendering (requires VR simulator)
-  void BeginVrStereoMode(raylib_bind.VrStereoConfig config) {
+  void beginVrStereoMode(raylib_bind.VrStereoConfig config) {
     raylib.BeginVrStereoMode(config);
   }
 
   // End stereo rendering (requires VR simulator)
-  void EndVrStereoMode() {
+  void endVrStereoMode() {
     raylib.EndVrStereoMode();
   }
 
@@ -391,13 +390,13 @@ class Core extends RaylibModule {
   // **************** VR stereo config functions for VR simulator. ****************
 
   // Load VR stereo config for VR simulator device parameters
-  raylib_bind.VrStereoConfig LoadVrStereoConfig(
+  raylib_bind.VrStereoConfig loadVrStereoConfig(
       raylib_bind.VrDeviceInfo device) {
     return raylib.LoadVrStereoConfig(device);
   }
 
   // Unload VR stereo config
-  void UnloadVrStereoConfig(raylib_bind.VrStereoConfig config) {
+  void unloadVrStereoConfig(raylib_bind.VrStereoConfig config) {
     raylib.UnloadVrStereoConfig(config);
   }
 }
