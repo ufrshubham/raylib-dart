@@ -15,7 +15,11 @@ A simple usage example:
 import 'package:raylib_dart/raylib_dart.dart';
 
 int main() {
-  final raylib = Raylib();
+  // Might be a different path depending on your platform.
+  final raylibPath = path.join(
+    Directory.current.path, 'vendors/raylib/build/raylib/Release/raylib.dll');
+
+  final raylib = Raylib(raylibPath);
   final core = raylib.core;
 
   core.initWindow(1280, 720, 'Hello Raylib!');

@@ -25,8 +25,8 @@ jobs:
 
       - name: Configure CMake
         shell: bash
-        working-directory: ${{github.workspace}}/vendors/raylib
-        run: cmake . -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        working-directory: ${{github.workspace}}/vendors/raylib/build
+        run: cmake ../ -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
       - name: Build
         working-directory: ${{github.workspace}}/vendors/raylib/build
