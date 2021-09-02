@@ -6,13 +6,32 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  BUILD_TYPE: Release
+
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
+      # Checkout with submodules.
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: dart-lang/setup-dart@v1
+
+      - name: Create build environment
+        run: cmake -E make_directory ${{github.workspace}}/vendors/raylib/build
+
+      - name: Configure CMake
+        shell: bash
+        working-directory: ${{github.workspace}}/vendors/raylib/build
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
+      - name: Build
+        working-directory: ${{github.workspace}}/vendors/raylib/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
 
       - name: Install dependencies
         run: dart pub get

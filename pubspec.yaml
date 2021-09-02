@@ -21,8 +21,8 @@ ffigen:
   output: "lib/src/modules/generated_bindings.dart"
   headers:
     entry-points:
-      - "lib/src/raylib/include/raylib.h"
-    # Makes sure that ffigen looks only into raylib.h
+      - "vendors/raylib/build/raylib/include/raylib.h"
+    # Makes sure that ffigen looks only into raylib.h for now.
     include-directives:
       - "**raylib.h"
   llvm-path:
@@ -35,5 +35,4 @@ ffigen:
   preamble: |
     // ignore_for_file: camel_case_types
     // ignore_for_file: constant_identifier_names
-    // ignore_for_file: non_constant_identifier_names
     // ignore_for_file: non_constant_identifier_names

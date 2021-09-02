@@ -399,4 +399,9 @@ class Core extends RaylibModule {
   void unloadVrStereoConfig(raylib_bind.VrStereoConfig config) {
     raylib.UnloadVrStereoConfig(config);
   }
+
+  // **************** Struct constructors. ****************
+  // Creates an object of Vector2
+  raylib_bind.Vector2 createVector2(double x, double y) =>
+      raylib.CreateVector2(x, y);
 }

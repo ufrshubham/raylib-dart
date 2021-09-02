@@ -24,7 +24,6 @@ class DartRaylib {
       : _lookup = lookup;
 
   /// Window-related functions
-  /// Initialize window and OpenGL context
   void InitWindow(
     int width,
     int height,
@@ -42,7 +41,6 @@ class DartRaylib {
   late final _dart_InitWindow _InitWindow =
       _InitWindow_ptr.asFunction<_dart_InitWindow>();
 
-  /// Check if KEY_ESCAPE pressed or Close icon pressed
   int WindowShouldClose() {
     return _WindowShouldClose();
   }
@@ -52,7 +50,6 @@ class DartRaylib {
   late final _dart_WindowShouldClose _WindowShouldClose =
       _WindowShouldClose_ptr.asFunction<_dart_WindowShouldClose>();
 
-  /// Close window and unload OpenGL context
   void CloseWindow() {
     return _CloseWindow();
   }
@@ -62,7 +59,6 @@ class DartRaylib {
   late final _dart_CloseWindow _CloseWindow =
       _CloseWindow_ptr.asFunction<_dart_CloseWindow>();
 
-  /// Check if window has been initialized successfully
   int IsWindowReady() {
     return _IsWindowReady();
   }
@@ -72,7 +68,6 @@ class DartRaylib {
   late final _dart_IsWindowReady _IsWindowReady =
       _IsWindowReady_ptr.asFunction<_dart_IsWindowReady>();
 
-  /// Check if window is currently fullscreen
   int IsWindowFullscreen() {
     return _IsWindowFullscreen();
   }
@@ -82,7 +77,6 @@ class DartRaylib {
   late final _dart_IsWindowFullscreen _IsWindowFullscreen =
       _IsWindowFullscreen_ptr.asFunction<_dart_IsWindowFullscreen>();
 
-  /// Check if window is currently hidden (only PLATFORM_DESKTOP)
   int IsWindowHidden() {
     return _IsWindowHidden();
   }
@@ -92,7 +86,6 @@ class DartRaylib {
   late final _dart_IsWindowHidden _IsWindowHidden =
       _IsWindowHidden_ptr.asFunction<_dart_IsWindowHidden>();
 
-  /// Check if window is currently minimized (only PLATFORM_DESKTOP)
   int IsWindowMinimized() {
     return _IsWindowMinimized();
   }
@@ -102,7 +95,6 @@ class DartRaylib {
   late final _dart_IsWindowMinimized _IsWindowMinimized =
       _IsWindowMinimized_ptr.asFunction<_dart_IsWindowMinimized>();
 
-  /// Check if window is currently maximized (only PLATFORM_DESKTOP)
   int IsWindowMaximized() {
     return _IsWindowMaximized();
   }
@@ -112,7 +104,6 @@ class DartRaylib {
   late final _dart_IsWindowMaximized _IsWindowMaximized =
       _IsWindowMaximized_ptr.asFunction<_dart_IsWindowMaximized>();
 
-  /// Check if window is currently focused (only PLATFORM_DESKTOP)
   int IsWindowFocused() {
     return _IsWindowFocused();
   }
@@ -122,7 +113,6 @@ class DartRaylib {
   late final _dart_IsWindowFocused _IsWindowFocused =
       _IsWindowFocused_ptr.asFunction<_dart_IsWindowFocused>();
 
-  /// Check if window has been resized last frame
   int IsWindowResized() {
     return _IsWindowResized();
   }
@@ -132,7 +122,6 @@ class DartRaylib {
   late final _dart_IsWindowResized _IsWindowResized =
       _IsWindowResized_ptr.asFunction<_dart_IsWindowResized>();
 
-  /// Check if one specific window flag is enabled
   int IsWindowState(
     int flag,
   ) {
@@ -146,7 +135,6 @@ class DartRaylib {
   late final _dart_IsWindowState _IsWindowState =
       _IsWindowState_ptr.asFunction<_dart_IsWindowState>();
 
-  /// Set window configuration state using flags
   void SetWindowState(
     int flags,
   ) {
@@ -160,7 +148,6 @@ class DartRaylib {
   late final _dart_SetWindowState _SetWindowState =
       _SetWindowState_ptr.asFunction<_dart_SetWindowState>();
 
-  /// Clear window configuration state flags
   void ClearWindowState(
     int flags,
   ) {
@@ -174,7 +161,6 @@ class DartRaylib {
   late final _dart_ClearWindowState _ClearWindowState =
       _ClearWindowState_ptr.asFunction<_dart_ClearWindowState>();
 
-  /// Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
   void ToggleFullscreen() {
     return _ToggleFullscreen();
   }
@@ -184,7 +170,6 @@ class DartRaylib {
   late final _dart_ToggleFullscreen _ToggleFullscreen =
       _ToggleFullscreen_ptr.asFunction<_dart_ToggleFullscreen>();
 
-  /// Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
   void MaximizeWindow() {
     return _MaximizeWindow();
   }
@@ -194,7 +179,6 @@ class DartRaylib {
   late final _dart_MaximizeWindow _MaximizeWindow =
       _MaximizeWindow_ptr.asFunction<_dart_MaximizeWindow>();
 
-  /// Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
   void MinimizeWindow() {
     return _MinimizeWindow();
   }
@@ -204,7 +188,6 @@ class DartRaylib {
   late final _dart_MinimizeWindow _MinimizeWindow =
       _MinimizeWindow_ptr.asFunction<_dart_MinimizeWindow>();
 
-  /// Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
   void RestoreWindow() {
     return _RestoreWindow();
   }
@@ -214,7 +197,6 @@ class DartRaylib {
   late final _dart_RestoreWindow _RestoreWindow =
       _RestoreWindow_ptr.asFunction<_dart_RestoreWindow>();
 
-  /// Set icon for window (only PLATFORM_DESKTOP)
   void SetWindowIcon(
     Image image,
   ) {
@@ -228,7 +210,6 @@ class DartRaylib {
   late final _dart_SetWindowIcon _SetWindowIcon =
       _SetWindowIcon_ptr.asFunction<_dart_SetWindowIcon>();
 
-  /// Set title for window (only PLATFORM_DESKTOP)
   void SetWindowTitle(
     ffi.Pointer<ffi.Int8> title,
   ) {
@@ -242,7 +223,6 @@ class DartRaylib {
   late final _dart_SetWindowTitle _SetWindowTitle =
       _SetWindowTitle_ptr.asFunction<_dart_SetWindowTitle>();
 
-  /// Set window position on screen (only PLATFORM_DESKTOP)
   void SetWindowPosition(
     int x,
     int y,
@@ -258,7 +238,6 @@ class DartRaylib {
   late final _dart_SetWindowPosition _SetWindowPosition =
       _SetWindowPosition_ptr.asFunction<_dart_SetWindowPosition>();
 
-  /// Set monitor for the current window (fullscreen mode)
   void SetWindowMonitor(
     int monitor,
   ) {
@@ -272,7 +251,6 @@ class DartRaylib {
   late final _dart_SetWindowMonitor _SetWindowMonitor =
       _SetWindowMonitor_ptr.asFunction<_dart_SetWindowMonitor>();
 
-  /// Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
   void SetWindowMinSize(
     int width,
     int height,
@@ -288,7 +266,6 @@ class DartRaylib {
   late final _dart_SetWindowMinSize _SetWindowMinSize =
       _SetWindowMinSize_ptr.asFunction<_dart_SetWindowMinSize>();
 
-  /// Set window dimensions
   void SetWindowSize(
     int width,
     int height,
@@ -304,7 +281,6 @@ class DartRaylib {
   late final _dart_SetWindowSize _SetWindowSize =
       _SetWindowSize_ptr.asFunction<_dart_SetWindowSize>();
 
-  /// Get native window handle
   ffi.Pointer<ffi.Void> GetWindowHandle() {
     return _GetWindowHandle();
   }
@@ -314,7 +290,6 @@ class DartRaylib {
   late final _dart_GetWindowHandle _GetWindowHandle =
       _GetWindowHandle_ptr.asFunction<_dart_GetWindowHandle>();
 
-  /// Get current screen width
   int GetScreenWidth() {
     return _GetScreenWidth();
   }
@@ -324,7 +299,6 @@ class DartRaylib {
   late final _dart_GetScreenWidth _GetScreenWidth =
       _GetScreenWidth_ptr.asFunction<_dart_GetScreenWidth>();
 
-  /// Get current screen height
   int GetScreenHeight() {
     return _GetScreenHeight();
   }
@@ -334,7 +308,6 @@ class DartRaylib {
   late final _dart_GetScreenHeight _GetScreenHeight =
       _GetScreenHeight_ptr.asFunction<_dart_GetScreenHeight>();
 
-  /// Get number of connected monitors
   int GetMonitorCount() {
     return _GetMonitorCount();
   }
@@ -344,7 +317,6 @@ class DartRaylib {
   late final _dart_GetMonitorCount _GetMonitorCount =
       _GetMonitorCount_ptr.asFunction<_dart_GetMonitorCount>();
 
-  /// Get current connected monitor
   int GetCurrentMonitor() {
     return _GetCurrentMonitor();
   }
@@ -354,7 +326,6 @@ class DartRaylib {
   late final _dart_GetCurrentMonitor _GetCurrentMonitor =
       _GetCurrentMonitor_ptr.asFunction<_dart_GetCurrentMonitor>();
 
-  /// Get specified monitor position
   Vector2 GetMonitorPosition(
     int monitor,
   ) {
@@ -368,7 +339,6 @@ class DartRaylib {
   late final _dart_GetMonitorPosition _GetMonitorPosition =
       _GetMonitorPosition_ptr.asFunction<_dart_GetMonitorPosition>();
 
-  /// Get specified monitor width (max available by monitor)
   int GetMonitorWidth(
     int monitor,
   ) {
@@ -382,7 +352,6 @@ class DartRaylib {
   late final _dart_GetMonitorWidth _GetMonitorWidth =
       _GetMonitorWidth_ptr.asFunction<_dart_GetMonitorWidth>();
 
-  /// Get specified monitor height (max available by monitor)
   int GetMonitorHeight(
     int monitor,
   ) {
@@ -396,7 +365,6 @@ class DartRaylib {
   late final _dart_GetMonitorHeight _GetMonitorHeight =
       _GetMonitorHeight_ptr.asFunction<_dart_GetMonitorHeight>();
 
-  /// Get specified monitor physical width in millimetres
   int GetMonitorPhysicalWidth(
     int monitor,
   ) {
@@ -411,7 +379,6 @@ class DartRaylib {
   late final _dart_GetMonitorPhysicalWidth _GetMonitorPhysicalWidth =
       _GetMonitorPhysicalWidth_ptr.asFunction<_dart_GetMonitorPhysicalWidth>();
 
-  /// Get specified monitor physical height in millimetres
   int GetMonitorPhysicalHeight(
     int monitor,
   ) {
@@ -427,7 +394,6 @@ class DartRaylib {
       _GetMonitorPhysicalHeight_ptr.asFunction<
           _dart_GetMonitorPhysicalHeight>();
 
-  /// Get specified monitor refresh rate
   int GetMonitorRefreshRate(
     int monitor,
   ) {
@@ -442,7 +408,6 @@ class DartRaylib {
   late final _dart_GetMonitorRefreshRate _GetMonitorRefreshRate =
       _GetMonitorRefreshRate_ptr.asFunction<_dart_GetMonitorRefreshRate>();
 
-  /// Get window position XY on monitor
   Vector2 GetWindowPosition() {
     return _GetWindowPosition();
   }
@@ -452,7 +417,6 @@ class DartRaylib {
   late final _dart_GetWindowPosition _GetWindowPosition =
       _GetWindowPosition_ptr.asFunction<_dart_GetWindowPosition>();
 
-  /// Get window scale DPI factor
   Vector2 GetWindowScaleDPI() {
     return _GetWindowScaleDPI();
   }
@@ -462,7 +426,6 @@ class DartRaylib {
   late final _dart_GetWindowScaleDPI _GetWindowScaleDPI =
       _GetWindowScaleDPI_ptr.asFunction<_dart_GetWindowScaleDPI>();
 
-  /// Get the human-readable, UTF-8 encoded name of the primary monitor
   ffi.Pointer<ffi.Int8> GetMonitorName(
     int monitor,
   ) {
@@ -476,7 +439,6 @@ class DartRaylib {
   late final _dart_GetMonitorName _GetMonitorName =
       _GetMonitorName_ptr.asFunction<_dart_GetMonitorName>();
 
-  /// Set clipboard text content
   void SetClipboardText(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -490,7 +452,6 @@ class DartRaylib {
   late final _dart_SetClipboardText _SetClipboardText =
       _SetClipboardText_ptr.asFunction<_dart_SetClipboardText>();
 
-  /// Get clipboard text content
   ffi.Pointer<ffi.Int8> GetClipboardText() {
     return _GetClipboardText();
   }
@@ -501,7 +462,6 @@ class DartRaylib {
       _GetClipboardText_ptr.asFunction<_dart_GetClipboardText>();
 
   /// Cursor-related functions
-  /// Shows cursor
   void ShowCursor() {
     return _ShowCursor();
   }
@@ -511,7 +471,6 @@ class DartRaylib {
   late final _dart_ShowCursor _ShowCursor =
       _ShowCursor_ptr.asFunction<_dart_ShowCursor>();
 
-  /// Hides cursor
   void HideCursor() {
     return _HideCursor();
   }
@@ -521,7 +480,6 @@ class DartRaylib {
   late final _dart_HideCursor _HideCursor =
       _HideCursor_ptr.asFunction<_dart_HideCursor>();
 
-  /// Check if cursor is not visible
   int IsCursorHidden() {
     return _IsCursorHidden();
   }
@@ -531,7 +489,6 @@ class DartRaylib {
   late final _dart_IsCursorHidden _IsCursorHidden =
       _IsCursorHidden_ptr.asFunction<_dart_IsCursorHidden>();
 
-  /// Enables cursor (unlock cursor)
   void EnableCursor() {
     return _EnableCursor();
   }
@@ -541,7 +498,6 @@ class DartRaylib {
   late final _dart_EnableCursor _EnableCursor =
       _EnableCursor_ptr.asFunction<_dart_EnableCursor>();
 
-  /// Disables cursor (lock cursor)
   void DisableCursor() {
     return _DisableCursor();
   }
@@ -551,7 +507,6 @@ class DartRaylib {
   late final _dart_DisableCursor _DisableCursor =
       _DisableCursor_ptr.asFunction<_dart_DisableCursor>();
 
-  /// Check if cursor is on the current screen.
   int IsCursorOnScreen() {
     return _IsCursorOnScreen();
   }
@@ -562,7 +517,6 @@ class DartRaylib {
       _IsCursorOnScreen_ptr.asFunction<_dart_IsCursorOnScreen>();
 
   /// Drawing-related functions
-  /// Set background color (framebuffer clear color)
   void ClearBackground(
     int color,
   ) {
@@ -576,7 +530,6 @@ class DartRaylib {
   late final _dart_ClearBackground _ClearBackground =
       _ClearBackground_ptr.asFunction<_dart_ClearBackground>();
 
-  /// Setup canvas (framebuffer) to start drawing
   void BeginDrawing() {
     return _BeginDrawing();
   }
@@ -586,7 +539,6 @@ class DartRaylib {
   late final _dart_BeginDrawing _BeginDrawing =
       _BeginDrawing_ptr.asFunction<_dart_BeginDrawing>();
 
-  /// End canvas drawing and swap buffers (double buffering)
   void EndDrawing() {
     return _EndDrawing();
   }
@@ -596,7 +548,6 @@ class DartRaylib {
   late final _dart_EndDrawing _EndDrawing =
       _EndDrawing_ptr.asFunction<_dart_EndDrawing>();
 
-  /// Initialize 2D mode with custom camera (2D)
   void BeginMode2D(
     Camera2D camera,
   ) {
@@ -610,7 +561,6 @@ class DartRaylib {
   late final _dart_BeginMode2D _BeginMode2D =
       _BeginMode2D_ptr.asFunction<_dart_BeginMode2D>();
 
-  /// Ends 2D mode with custom camera
   void EndMode2D() {
     return _EndMode2D();
   }
@@ -620,7 +570,6 @@ class DartRaylib {
   late final _dart_EndMode2D _EndMode2D =
       _EndMode2D_ptr.asFunction<_dart_EndMode2D>();
 
-  /// Initializes 3D mode with custom camera (3D)
   void BeginMode3D(
     Camera3D camera,
   ) {
@@ -634,7 +583,6 @@ class DartRaylib {
   late final _dart_BeginMode3D _BeginMode3D =
       _BeginMode3D_ptr.asFunction<_dart_BeginMode3D>();
 
-  /// Ends 3D mode and returns to default 2D orthographic mode
   void EndMode3D() {
     return _EndMode3D();
   }
@@ -644,7 +592,6 @@ class DartRaylib {
   late final _dart_EndMode3D _EndMode3D =
       _EndMode3D_ptr.asFunction<_dart_EndMode3D>();
 
-  /// Initializes render texture for drawing
   void BeginTextureMode(
     RenderTexture target,
   ) {
@@ -658,7 +605,6 @@ class DartRaylib {
   late final _dart_BeginTextureMode _BeginTextureMode =
       _BeginTextureMode_ptr.asFunction<_dart_BeginTextureMode>();
 
-  /// Ends drawing to render texture
   void EndTextureMode() {
     return _EndTextureMode();
   }
@@ -668,7 +614,6 @@ class DartRaylib {
   late final _dart_EndTextureMode _EndTextureMode =
       _EndTextureMode_ptr.asFunction<_dart_EndTextureMode>();
 
-  /// Begin custom shader drawing
   void BeginShaderMode(
     Shader shader,
   ) {
@@ -682,7 +627,6 @@ class DartRaylib {
   late final _dart_BeginShaderMode _BeginShaderMode =
       _BeginShaderMode_ptr.asFunction<_dart_BeginShaderMode>();
 
-  /// End custom shader drawing (use default shader)
   void EndShaderMode() {
     return _EndShaderMode();
   }
@@ -692,7 +636,6 @@ class DartRaylib {
   late final _dart_EndShaderMode _EndShaderMode =
       _EndShaderMode_ptr.asFunction<_dart_EndShaderMode>();
 
-  /// Begin blending mode (alpha, additive, multiplied)
   void BeginBlendMode(
     int mode,
   ) {
@@ -706,7 +649,6 @@ class DartRaylib {
   late final _dart_BeginBlendMode _BeginBlendMode =
       _BeginBlendMode_ptr.asFunction<_dart_BeginBlendMode>();
 
-  /// End blending mode (reset to default: alpha blending)
   void EndBlendMode() {
     return _EndBlendMode();
   }
@@ -716,7 +658,6 @@ class DartRaylib {
   late final _dart_EndBlendMode _EndBlendMode =
       _EndBlendMode_ptr.asFunction<_dart_EndBlendMode>();
 
-  /// Begin scissor mode (define screen area for following drawing)
   void BeginScissorMode(
     int x,
     int y,
@@ -736,7 +677,6 @@ class DartRaylib {
   late final _dart_BeginScissorMode _BeginScissorMode =
       _BeginScissorMode_ptr.asFunction<_dart_BeginScissorMode>();
 
-  /// End scissor mode
   void EndScissorMode() {
     return _EndScissorMode();
   }
@@ -746,7 +686,6 @@ class DartRaylib {
   late final _dart_EndScissorMode _EndScissorMode =
       _EndScissorMode_ptr.asFunction<_dart_EndScissorMode>();
 
-  /// Begin stereo rendering (requires VR simulator)
   void BeginVrStereoMode(
     VrStereoConfig config,
   ) {
@@ -760,7 +699,6 @@ class DartRaylib {
   late final _dart_BeginVrStereoMode _BeginVrStereoMode =
       _BeginVrStereoMode_ptr.asFunction<_dart_BeginVrStereoMode>();
 
-  /// End stereo rendering (requires VR simulator)
   void EndVrStereoMode() {
     return _EndVrStereoMode();
   }
@@ -771,7 +709,6 @@ class DartRaylib {
       _EndVrStereoMode_ptr.asFunction<_dart_EndVrStereoMode>();
 
   /// VR stereo config functions for VR simulator
-  /// Load VR stereo config for VR simulator device parameters
   VrStereoConfig LoadVrStereoConfig(
     VrDeviceInfo device,
   ) {
@@ -785,7 +722,6 @@ class DartRaylib {
   late final _dart_LoadVrStereoConfig _LoadVrStereoConfig =
       _LoadVrStereoConfig_ptr.asFunction<_dart_LoadVrStereoConfig>();
 
-  /// Unload VR stereo config
   void UnloadVrStereoConfig(
     VrStereoConfig config,
   ) {
@@ -802,7 +738,6 @@ class DartRaylib {
 
   /// Shader management functions
   /// NOTE: Shader functionality is not available on OpenGL 1.1
-  /// Load shader from files and bind default locations
   Shader LoadShader(
     ffi.Pointer<ffi.Int8> vsFileName,
     ffi.Pointer<ffi.Int8> fsFileName,
@@ -818,7 +753,6 @@ class DartRaylib {
   late final _dart_LoadShader _LoadShader =
       _LoadShader_ptr.asFunction<_dart_LoadShader>();
 
-  /// Load shader from code strings and bind default locations
   Shader LoadShaderFromMemory(
     ffi.Pointer<ffi.Int8> vsCode,
     ffi.Pointer<ffi.Int8> fsCode,
@@ -835,7 +769,6 @@ class DartRaylib {
   late final _dart_LoadShaderFromMemory _LoadShaderFromMemory =
       _LoadShaderFromMemory_ptr.asFunction<_dart_LoadShaderFromMemory>();
 
-  /// Get shader uniform location
   int GetShaderLocation(
     Shader shader,
     ffi.Pointer<ffi.Int8> uniformName,
@@ -851,7 +784,6 @@ class DartRaylib {
   late final _dart_GetShaderLocation _GetShaderLocation =
       _GetShaderLocation_ptr.asFunction<_dart_GetShaderLocation>();
 
-  /// Get shader attribute location
   int GetShaderLocationAttrib(
     Shader shader,
     ffi.Pointer<ffi.Int8> attribName,
@@ -868,7 +800,6 @@ class DartRaylib {
   late final _dart_GetShaderLocationAttrib _GetShaderLocationAttrib =
       _GetShaderLocationAttrib_ptr.asFunction<_dart_GetShaderLocationAttrib>();
 
-  /// Set shader uniform value
   void SetShaderValue(
     Shader shader,
     int locIndex,
@@ -888,7 +819,6 @@ class DartRaylib {
   late final _dart_SetShaderValue _SetShaderValue =
       _SetShaderValue_ptr.asFunction<_dart_SetShaderValue>();
 
-  /// Set shader uniform value vector
   void SetShaderValueV(
     Shader shader,
     int locIndex,
@@ -910,7 +840,6 @@ class DartRaylib {
   late final _dart_SetShaderValueV _SetShaderValueV =
       _SetShaderValueV_ptr.asFunction<_dart_SetShaderValueV>();
 
-  /// Set shader uniform value (matrix 4x4)
   void SetShaderValueMatrix(
     Shader shader,
     int locIndex,
@@ -929,7 +858,6 @@ class DartRaylib {
   late final _dart_SetShaderValueMatrix _SetShaderValueMatrix =
       _SetShaderValueMatrix_ptr.asFunction<_dart_SetShaderValueMatrix>();
 
-  /// Set shader uniform value for texture (sampler2d)
   void SetShaderValueTexture(
     Shader shader,
     int locIndex,
@@ -948,7 +876,6 @@ class DartRaylib {
   late final _dart_SetShaderValueTexture _SetShaderValueTexture =
       _SetShaderValueTexture_ptr.asFunction<_dart_SetShaderValueTexture>();
 
-  /// Unload shader from GPU memory (VRAM)
   void UnloadShader(
     Shader shader,
   ) {
@@ -963,7 +890,6 @@ class DartRaylib {
       _UnloadShader_ptr.asFunction<_dart_UnloadShader>();
 
   /// Screen-space-related functions
-  /// Returns a ray trace from mouse position
   Ray GetMouseRay(
     Vector2 mousePosition,
     Camera3D camera,
@@ -979,7 +905,6 @@ class DartRaylib {
   late final _dart_GetMouseRay _GetMouseRay =
       _GetMouseRay_ptr.asFunction<_dart_GetMouseRay>();
 
-  /// Returns camera transform matrix (view matrix)
   Matrix GetCameraMatrix(
     Camera3D camera,
   ) {
@@ -993,7 +918,6 @@ class DartRaylib {
   late final _dart_GetCameraMatrix _GetCameraMatrix =
       _GetCameraMatrix_ptr.asFunction<_dart_GetCameraMatrix>();
 
-  /// Returns camera 2d transform matrix
   Matrix GetCameraMatrix2D(
     Camera2D camera,
   ) {
@@ -1007,7 +931,6 @@ class DartRaylib {
   late final _dart_GetCameraMatrix2D _GetCameraMatrix2D =
       _GetCameraMatrix2D_ptr.asFunction<_dart_GetCameraMatrix2D>();
 
-  /// Returns the screen space position for a 3d world space position
   Vector2 GetWorldToScreen(
     Vector3 position,
     Camera3D camera,
@@ -1023,7 +946,6 @@ class DartRaylib {
   late final _dart_GetWorldToScreen _GetWorldToScreen =
       _GetWorldToScreen_ptr.asFunction<_dart_GetWorldToScreen>();
 
-  /// Returns size position for a 3d world space position
   Vector2 GetWorldToScreenEx(
     Vector3 position,
     Camera3D camera,
@@ -1043,7 +965,6 @@ class DartRaylib {
   late final _dart_GetWorldToScreenEx _GetWorldToScreenEx =
       _GetWorldToScreenEx_ptr.asFunction<_dart_GetWorldToScreenEx>();
 
-  /// Returns the screen space position for a 2d camera world space position
   Vector2 GetWorldToScreen2D(
     Vector2 position,
     Camera2D camera,
@@ -1059,7 +980,6 @@ class DartRaylib {
   late final _dart_GetWorldToScreen2D _GetWorldToScreen2D =
       _GetWorldToScreen2D_ptr.asFunction<_dart_GetWorldToScreen2D>();
 
-  /// Returns the world space position for a 2d camera screen space position
   Vector2 GetScreenToWorld2D(
     Vector2 position,
     Camera2D camera,
@@ -1076,7 +996,6 @@ class DartRaylib {
       _GetScreenToWorld2D_ptr.asFunction<_dart_GetScreenToWorld2D>();
 
   /// Timing-related functions
-  /// Set target FPS (maximum)
   void SetTargetFPS(
     int fps,
   ) {
@@ -1090,7 +1009,6 @@ class DartRaylib {
   late final _dart_SetTargetFPS _SetTargetFPS =
       _SetTargetFPS_ptr.asFunction<_dart_SetTargetFPS>();
 
-  /// Returns current FPS
   int GetFPS() {
     return _GetFPS();
   }
@@ -1098,7 +1016,6 @@ class DartRaylib {
   late final _GetFPS_ptr = _lookup<ffi.NativeFunction<_c_GetFPS>>('GetFPS');
   late final _dart_GetFPS _GetFPS = _GetFPS_ptr.asFunction<_dart_GetFPS>();
 
-  /// Returns time in seconds for last frame drawn (delta time)
   double GetFrameTime() {
     return _GetFrameTime();
   }
@@ -1108,7 +1025,6 @@ class DartRaylib {
   late final _dart_GetFrameTime _GetFrameTime =
       _GetFrameTime_ptr.asFunction<_dart_GetFrameTime>();
 
-  /// Returns elapsed time in seconds since InitWindow()
   double GetTime() {
     return _GetTime();
   }
@@ -1117,7 +1033,6 @@ class DartRaylib {
   late final _dart_GetTime _GetTime = _GetTime_ptr.asFunction<_dart_GetTime>();
 
   /// Misc. functions
-  /// Returns a random value between min and max (both included)
   int GetRandomValue(
     int min,
     int max,
@@ -1133,7 +1048,6 @@ class DartRaylib {
   late final _dart_GetRandomValue _GetRandomValue =
       _GetRandomValue_ptr.asFunction<_dart_GetRandomValue>();
 
-  /// Takes a screenshot of current screen (filename extension defines format)
   void TakeScreenshot(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -1147,7 +1061,6 @@ class DartRaylib {
   late final _dart_TakeScreenshot _TakeScreenshot =
       _TakeScreenshot_ptr.asFunction<_dart_TakeScreenshot>();
 
-  /// Setup init configuration flags (view FLAGS)
   void SetConfigFlags(
     int flags,
   ) {
@@ -1161,7 +1074,6 @@ class DartRaylib {
   late final _dart_SetConfigFlags _SetConfigFlags =
       _SetConfigFlags_ptr.asFunction<_dart_SetConfigFlags>();
 
-  /// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR)
   void TraceLog(
     int logLevel,
     ffi.Pointer<ffi.Int8> text,
@@ -1177,7 +1089,6 @@ class DartRaylib {
   late final _dart_TraceLog _TraceLog =
       _TraceLog_ptr.asFunction<_dart_TraceLog>();
 
-  /// Set the current threshold (minimum) log level
   void SetTraceLogLevel(
     int logLevel,
   ) {
@@ -1191,7 +1102,6 @@ class DartRaylib {
   late final _dart_SetTraceLogLevel _SetTraceLogLevel =
       _SetTraceLogLevel_ptr.asFunction<_dart_SetTraceLogLevel>();
 
-  /// Internal memory allocator
   ffi.Pointer<ffi.Void> MemAlloc(
     int size,
   ) {
@@ -1205,7 +1115,6 @@ class DartRaylib {
   late final _dart_MemAlloc _MemAlloc =
       _MemAlloc_ptr.asFunction<_dart_MemAlloc>();
 
-  /// Internal memory reallocator
   ffi.Pointer<ffi.Void> MemRealloc(
     ffi.Pointer<ffi.Void> ptr,
     int size,
@@ -1221,7 +1130,6 @@ class DartRaylib {
   late final _dart_MemRealloc _MemRealloc =
       _MemRealloc_ptr.asFunction<_dart_MemRealloc>();
 
-  /// Internal memory free
   void MemFree(
     ffi.Pointer<ffi.Void> ptr,
   ) {
@@ -1235,7 +1143,6 @@ class DartRaylib {
 
   /// Set custom callbacks
   /// WARNING: Callbacks setup is intended for advance users
-  /// Set custom trace log
   void SetTraceLogCallback(
     ffi.Pointer<ffi.NativeFunction<TraceLogCallback>> callback,
   ) {
@@ -1250,7 +1157,6 @@ class DartRaylib {
   late final _dart_SetTraceLogCallback _SetTraceLogCallback =
       _SetTraceLogCallback_ptr.asFunction<_dart_SetTraceLogCallback>();
 
-  /// Set custom file binary data loader
   void SetLoadFileDataCallback(
     ffi.Pointer<ffi.NativeFunction<LoadFileDataCallback>> callback,
   ) {
@@ -1265,7 +1171,6 @@ class DartRaylib {
   late final _dart_SetLoadFileDataCallback _SetLoadFileDataCallback =
       _SetLoadFileDataCallback_ptr.asFunction<_dart_SetLoadFileDataCallback>();
 
-  /// Set custom file binary data saver
   void SetSaveFileDataCallback(
     ffi.Pointer<ffi.NativeFunction<SaveFileDataCallback>> callback,
   ) {
@@ -1280,7 +1185,6 @@ class DartRaylib {
   late final _dart_SetSaveFileDataCallback _SetSaveFileDataCallback =
       _SetSaveFileDataCallback_ptr.asFunction<_dart_SetSaveFileDataCallback>();
 
-  /// Set custom file text data loader
   void SetLoadFileTextCallback(
     ffi.Pointer<ffi.NativeFunction<LoadFileTextCallback>> callback,
   ) {
@@ -1295,7 +1199,6 @@ class DartRaylib {
   late final _dart_SetLoadFileTextCallback _SetLoadFileTextCallback =
       _SetLoadFileTextCallback_ptr.asFunction<_dart_SetLoadFileTextCallback>();
 
-  /// Set custom file text data saver
   void SetSaveFileTextCallback(
     ffi.Pointer<ffi.NativeFunction<SaveFileTextCallback>> callback,
   ) {
@@ -1311,7 +1214,6 @@ class DartRaylib {
       _SetSaveFileTextCallback_ptr.asFunction<_dart_SetSaveFileTextCallback>();
 
   /// Files management functions
-  /// Load file data as byte array (read)
   ffi.Pointer<ffi.Uint8> LoadFileData(
     ffi.Pointer<ffi.Int8> fileName,
     ffi.Pointer<ffi.Uint32> bytesRead,
@@ -1327,7 +1229,6 @@ class DartRaylib {
   late final _dart_LoadFileData _LoadFileData =
       _LoadFileData_ptr.asFunction<_dart_LoadFileData>();
 
-  /// Unload file data allocated by LoadFileData()
   void UnloadFileData(
     ffi.Pointer<ffi.Uint8> data,
   ) {
@@ -1341,7 +1242,6 @@ class DartRaylib {
   late final _dart_UnloadFileData _UnloadFileData =
       _UnloadFileData_ptr.asFunction<_dart_UnloadFileData>();
 
-  /// Save data to file from byte array (write), returns true on success
   int SaveFileData(
     ffi.Pointer<ffi.Int8> fileName,
     ffi.Pointer<ffi.Void> data,
@@ -1359,7 +1259,6 @@ class DartRaylib {
   late final _dart_SaveFileData _SaveFileData =
       _SaveFileData_ptr.asFunction<_dart_SaveFileData>();
 
-  /// Load text data from file (read), returns a '\0' terminated string
   ffi.Pointer<ffi.Int8> LoadFileText(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -1373,7 +1272,6 @@ class DartRaylib {
   late final _dart_LoadFileText _LoadFileText =
       _LoadFileText_ptr.asFunction<_dart_LoadFileText>();
 
-  /// Unload file text data allocated by LoadFileText()
   void UnloadFileText(
     ffi.Pointer<ffi.Uint8> text,
   ) {
@@ -1387,7 +1285,6 @@ class DartRaylib {
   late final _dart_UnloadFileText _UnloadFileText =
       _UnloadFileText_ptr.asFunction<_dart_UnloadFileText>();
 
-  /// Save text data to file (write), string must be '\0' terminated, returns true on success
   int SaveFileText(
     ffi.Pointer<ffi.Int8> fileName,
     ffi.Pointer<ffi.Int8> text,
@@ -1403,7 +1300,6 @@ class DartRaylib {
   late final _dart_SaveFileText _SaveFileText =
       _SaveFileText_ptr.asFunction<_dart_SaveFileText>();
 
-  /// Check if file exists
   int FileExists(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -1417,7 +1313,6 @@ class DartRaylib {
   late final _dart_FileExists _FileExists =
       _FileExists_ptr.asFunction<_dart_FileExists>();
 
-  /// Check if a directory path exists
   int DirectoryExists(
     ffi.Pointer<ffi.Int8> dirPath,
   ) {
@@ -1431,7 +1326,6 @@ class DartRaylib {
   late final _dart_DirectoryExists _DirectoryExists =
       _DirectoryExists_ptr.asFunction<_dart_DirectoryExists>();
 
-  /// Check file extension (including point: .png, .wav)
   int IsFileExtension(
     ffi.Pointer<ffi.Int8> fileName,
     ffi.Pointer<ffi.Int8> ext,
@@ -1447,7 +1341,6 @@ class DartRaylib {
   late final _dart_IsFileExtension _IsFileExtension =
       _IsFileExtension_ptr.asFunction<_dart_IsFileExtension>();
 
-  /// Get pointer to extension for a filename string (includes dot: ".png")
   ffi.Pointer<ffi.Int8> GetFileExtension(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -1461,7 +1354,6 @@ class DartRaylib {
   late final _dart_GetFileExtension _GetFileExtension =
       _GetFileExtension_ptr.asFunction<_dart_GetFileExtension>();
 
-  /// Get pointer to filename for a path string
   ffi.Pointer<ffi.Int8> GetFileName(
     ffi.Pointer<ffi.Int8> filePath,
   ) {
@@ -1475,7 +1367,6 @@ class DartRaylib {
   late final _dart_GetFileName _GetFileName =
       _GetFileName_ptr.asFunction<_dart_GetFileName>();
 
-  /// Get filename string without extension (uses static string)
   ffi.Pointer<ffi.Int8> GetFileNameWithoutExt(
     ffi.Pointer<ffi.Int8> filePath,
   ) {
@@ -1490,7 +1381,6 @@ class DartRaylib {
   late final _dart_GetFileNameWithoutExt _GetFileNameWithoutExt =
       _GetFileNameWithoutExt_ptr.asFunction<_dart_GetFileNameWithoutExt>();
 
-  /// Get full path for a given fileName with path (uses static string)
   ffi.Pointer<ffi.Int8> GetDirectoryPath(
     ffi.Pointer<ffi.Int8> filePath,
   ) {
@@ -1504,7 +1394,6 @@ class DartRaylib {
   late final _dart_GetDirectoryPath _GetDirectoryPath =
       _GetDirectoryPath_ptr.asFunction<_dart_GetDirectoryPath>();
 
-  /// Get previous directory path for a given path (uses static string)
   ffi.Pointer<ffi.Int8> GetPrevDirectoryPath(
     ffi.Pointer<ffi.Int8> dirPath,
   ) {
@@ -1519,7 +1408,6 @@ class DartRaylib {
   late final _dart_GetPrevDirectoryPath _GetPrevDirectoryPath =
       _GetPrevDirectoryPath_ptr.asFunction<_dart_GetPrevDirectoryPath>();
 
-  /// Get current working directory (uses static string)
   ffi.Pointer<ffi.Int8> GetWorkingDirectory() {
     return _GetWorkingDirectory();
   }
@@ -1530,7 +1418,6 @@ class DartRaylib {
   late final _dart_GetWorkingDirectory _GetWorkingDirectory =
       _GetWorkingDirectory_ptr.asFunction<_dart_GetWorkingDirectory>();
 
-  /// Get filenames in a directory path (memory should be freed)
   ffi.Pointer<ffi.Pointer<ffi.Int8>> GetDirectoryFiles(
     ffi.Pointer<ffi.Int8> dirPath,
     ffi.Pointer<ffi.Int32> count,
@@ -1546,7 +1433,6 @@ class DartRaylib {
   late final _dart_GetDirectoryFiles _GetDirectoryFiles =
       _GetDirectoryFiles_ptr.asFunction<_dart_GetDirectoryFiles>();
 
-  /// Clear directory files paths buffers (free memory)
   void ClearDirectoryFiles() {
     return _ClearDirectoryFiles();
   }
@@ -1557,7 +1443,6 @@ class DartRaylib {
   late final _dart_ClearDirectoryFiles _ClearDirectoryFiles =
       _ClearDirectoryFiles_ptr.asFunction<_dart_ClearDirectoryFiles>();
 
-  /// Change working directory, return true on success
   int ChangeDirectory(
     ffi.Pointer<ffi.Int8> dir,
   ) {
@@ -1571,7 +1456,6 @@ class DartRaylib {
   late final _dart_ChangeDirectory _ChangeDirectory =
       _ChangeDirectory_ptr.asFunction<_dart_ChangeDirectory>();
 
-  /// Check if a file has been dropped into window
   int IsFileDropped() {
     return _IsFileDropped();
   }
@@ -1581,7 +1465,6 @@ class DartRaylib {
   late final _dart_IsFileDropped _IsFileDropped =
       _IsFileDropped_ptr.asFunction<_dart_IsFileDropped>();
 
-  /// Get dropped files names (memory should be freed)
   ffi.Pointer<ffi.Pointer<ffi.Int8>> GetDroppedFiles(
     ffi.Pointer<ffi.Int32> count,
   ) {
@@ -1595,7 +1478,6 @@ class DartRaylib {
   late final _dart_GetDroppedFiles _GetDroppedFiles =
       _GetDroppedFiles_ptr.asFunction<_dart_GetDroppedFiles>();
 
-  /// Clear dropped files paths buffer (free memory)
   void ClearDroppedFiles() {
     return _ClearDroppedFiles();
   }
@@ -1605,7 +1487,6 @@ class DartRaylib {
   late final _dart_ClearDroppedFiles _ClearDroppedFiles =
       _ClearDroppedFiles_ptr.asFunction<_dart_ClearDroppedFiles>();
 
-  /// Get file modification time (last write time)
   int GetFileModTime(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -1619,7 +1500,6 @@ class DartRaylib {
   late final _dart_GetFileModTime _GetFileModTime =
       _GetFileModTime_ptr.asFunction<_dart_GetFileModTime>();
 
-  /// Compress data (DEFLATE algorithm)
   ffi.Pointer<ffi.Uint8> CompressData(
     ffi.Pointer<ffi.Uint8> data,
     int dataLength,
@@ -1637,7 +1517,6 @@ class DartRaylib {
   late final _dart_CompressData _CompressData =
       _CompressData_ptr.asFunction<_dart_CompressData>();
 
-  /// Decompress data (DEFLATE algorithm)
   ffi.Pointer<ffi.Uint8> DecompressData(
     ffi.Pointer<ffi.Uint8> compData,
     int compDataLength,
@@ -1656,7 +1535,6 @@ class DartRaylib {
       _DecompressData_ptr.asFunction<_dart_DecompressData>();
 
   /// Persistent storage management
-  /// Save integer value to storage file (to defined position), returns true on success
   int SaveStorageValue(
     int position,
     int value,
@@ -1672,7 +1550,6 @@ class DartRaylib {
   late final _dart_SaveStorageValue _SaveStorageValue =
       _SaveStorageValue_ptr.asFunction<_dart_SaveStorageValue>();
 
-  /// Load integer value from storage file (from defined position)
   int LoadStorageValue(
     int position,
   ) {
@@ -1686,7 +1563,6 @@ class DartRaylib {
   late final _dart_LoadStorageValue _LoadStorageValue =
       _LoadStorageValue_ptr.asFunction<_dart_LoadStorageValue>();
 
-  /// Open URL with default system browser (if available)
   void OpenURL(
     ffi.Pointer<ffi.Int8> url,
   ) {
@@ -1699,7 +1575,6 @@ class DartRaylib {
   late final _dart_OpenURL _OpenURL = _OpenURL_ptr.asFunction<_dart_OpenURL>();
 
   /// Input-related functions: keyboard
-  /// Detect if a key has been pressed once
   int IsKeyPressed(
     int key,
   ) {
@@ -1713,7 +1588,6 @@ class DartRaylib {
   late final _dart_IsKeyPressed _IsKeyPressed =
       _IsKeyPressed_ptr.asFunction<_dart_IsKeyPressed>();
 
-  /// Detect if a key is being pressed
   int IsKeyDown(
     int key,
   ) {
@@ -1727,7 +1601,6 @@ class DartRaylib {
   late final _dart_IsKeyDown _IsKeyDown =
       _IsKeyDown_ptr.asFunction<_dart_IsKeyDown>();
 
-  /// Detect if a key has been released once
   int IsKeyReleased(
     int key,
   ) {
@@ -1741,7 +1614,6 @@ class DartRaylib {
   late final _dart_IsKeyReleased _IsKeyReleased =
       _IsKeyReleased_ptr.asFunction<_dart_IsKeyReleased>();
 
-  /// Detect if a key is NOT being pressed
   int IsKeyUp(
     int key,
   ) {
@@ -1753,7 +1625,6 @@ class DartRaylib {
   late final _IsKeyUp_ptr = _lookup<ffi.NativeFunction<_c_IsKeyUp>>('IsKeyUp');
   late final _dart_IsKeyUp _IsKeyUp = _IsKeyUp_ptr.asFunction<_dart_IsKeyUp>();
 
-  /// Set a custom key to exit program (default is ESC)
   void SetExitKey(
     int key,
   ) {
@@ -1767,7 +1638,6 @@ class DartRaylib {
   late final _dart_SetExitKey _SetExitKey =
       _SetExitKey_ptr.asFunction<_dart_SetExitKey>();
 
-  /// Get key pressed (keycode), call it multiple times for keys queued
   int GetKeyPressed() {
     return _GetKeyPressed();
   }
@@ -1777,7 +1647,6 @@ class DartRaylib {
   late final _dart_GetKeyPressed _GetKeyPressed =
       _GetKeyPressed_ptr.asFunction<_dart_GetKeyPressed>();
 
-  /// Get char pressed (unicode), call it multiple times for chars queued
   int GetCharPressed() {
     return _GetCharPressed();
   }
@@ -1788,7 +1657,6 @@ class DartRaylib {
       _GetCharPressed_ptr.asFunction<_dart_GetCharPressed>();
 
   /// Input-related functions: gamepads
-  /// Detect if a gamepad is available
   int IsGamepadAvailable(
     int gamepad,
   ) {
@@ -1802,7 +1670,6 @@ class DartRaylib {
   late final _dart_IsGamepadAvailable _IsGamepadAvailable =
       _IsGamepadAvailable_ptr.asFunction<_dart_IsGamepadAvailable>();
 
-  /// Check gamepad name (if available)
   int IsGamepadName(
     int gamepad,
     ffi.Pointer<ffi.Int8> name,
@@ -1818,7 +1685,6 @@ class DartRaylib {
   late final _dart_IsGamepadName _IsGamepadName =
       _IsGamepadName_ptr.asFunction<_dart_IsGamepadName>();
 
-  /// Return gamepad internal name id
   ffi.Pointer<ffi.Int8> GetGamepadName(
     int gamepad,
   ) {
@@ -1832,7 +1698,6 @@ class DartRaylib {
   late final _dart_GetGamepadName _GetGamepadName =
       _GetGamepadName_ptr.asFunction<_dart_GetGamepadName>();
 
-  /// Detect if a gamepad button has been pressed once
   int IsGamepadButtonPressed(
     int gamepad,
     int button,
@@ -1849,7 +1714,6 @@ class DartRaylib {
   late final _dart_IsGamepadButtonPressed _IsGamepadButtonPressed =
       _IsGamepadButtonPressed_ptr.asFunction<_dart_IsGamepadButtonPressed>();
 
-  /// Detect if a gamepad button is being pressed
   int IsGamepadButtonDown(
     int gamepad,
     int button,
@@ -1866,7 +1730,6 @@ class DartRaylib {
   late final _dart_IsGamepadButtonDown _IsGamepadButtonDown =
       _IsGamepadButtonDown_ptr.asFunction<_dart_IsGamepadButtonDown>();
 
-  /// Detect if a gamepad button has been released once
   int IsGamepadButtonReleased(
     int gamepad,
     int button,
@@ -1883,7 +1746,6 @@ class DartRaylib {
   late final _dart_IsGamepadButtonReleased _IsGamepadButtonReleased =
       _IsGamepadButtonReleased_ptr.asFunction<_dart_IsGamepadButtonReleased>();
 
-  /// Detect if a gamepad button is NOT being pressed
   int IsGamepadButtonUp(
     int gamepad,
     int button,
@@ -1899,7 +1761,6 @@ class DartRaylib {
   late final _dart_IsGamepadButtonUp _IsGamepadButtonUp =
       _IsGamepadButtonUp_ptr.asFunction<_dart_IsGamepadButtonUp>();
 
-  /// Get the last gamepad button pressed
   int GetGamepadButtonPressed() {
     return _GetGamepadButtonPressed();
   }
@@ -1910,7 +1771,6 @@ class DartRaylib {
   late final _dart_GetGamepadButtonPressed _GetGamepadButtonPressed =
       _GetGamepadButtonPressed_ptr.asFunction<_dart_GetGamepadButtonPressed>();
 
-  /// Return gamepad axis count for a gamepad
   int GetGamepadAxisCount(
     int gamepad,
   ) {
@@ -1925,7 +1785,6 @@ class DartRaylib {
   late final _dart_GetGamepadAxisCount _GetGamepadAxisCount =
       _GetGamepadAxisCount_ptr.asFunction<_dart_GetGamepadAxisCount>();
 
-  /// Return axis movement value for a gamepad axis
   double GetGamepadAxisMovement(
     int gamepad,
     int axis,
@@ -1942,7 +1801,6 @@ class DartRaylib {
   late final _dart_GetGamepadAxisMovement _GetGamepadAxisMovement =
       _GetGamepadAxisMovement_ptr.asFunction<_dart_GetGamepadAxisMovement>();
 
-  /// Set internal gamepad mappings (SDL_GameControllerDB)
   int SetGamepadMappings(
     ffi.Pointer<ffi.Int8> mappings,
   ) {
@@ -1957,7 +1815,6 @@ class DartRaylib {
       _SetGamepadMappings_ptr.asFunction<_dart_SetGamepadMappings>();
 
   /// Input-related functions: mouse
-  /// Detect if a mouse button has been pressed once
   int IsMouseButtonPressed(
     int button,
   ) {
@@ -1972,7 +1829,6 @@ class DartRaylib {
   late final _dart_IsMouseButtonPressed _IsMouseButtonPressed =
       _IsMouseButtonPressed_ptr.asFunction<_dart_IsMouseButtonPressed>();
 
-  /// Detect if a mouse button is being pressed
   int IsMouseButtonDown(
     int button,
   ) {
@@ -1986,7 +1842,6 @@ class DartRaylib {
   late final _dart_IsMouseButtonDown _IsMouseButtonDown =
       _IsMouseButtonDown_ptr.asFunction<_dart_IsMouseButtonDown>();
 
-  /// Detect if a mouse button has been released once
   int IsMouseButtonReleased(
     int button,
   ) {
@@ -2001,7 +1856,6 @@ class DartRaylib {
   late final _dart_IsMouseButtonReleased _IsMouseButtonReleased =
       _IsMouseButtonReleased_ptr.asFunction<_dart_IsMouseButtonReleased>();
 
-  /// Detect if a mouse button is NOT being pressed
   int IsMouseButtonUp(
     int button,
   ) {
@@ -2015,7 +1869,6 @@ class DartRaylib {
   late final _dart_IsMouseButtonUp _IsMouseButtonUp =
       _IsMouseButtonUp_ptr.asFunction<_dart_IsMouseButtonUp>();
 
-  /// Returns mouse position X
   int GetMouseX() {
     return _GetMouseX();
   }
@@ -2025,7 +1878,6 @@ class DartRaylib {
   late final _dart_GetMouseX _GetMouseX =
       _GetMouseX_ptr.asFunction<_dart_GetMouseX>();
 
-  /// Returns mouse position Y
   int GetMouseY() {
     return _GetMouseY();
   }
@@ -2035,7 +1887,6 @@ class DartRaylib {
   late final _dart_GetMouseY _GetMouseY =
       _GetMouseY_ptr.asFunction<_dart_GetMouseY>();
 
-  /// Returns mouse position XY
   Vector2 GetMousePosition() {
     return _GetMousePosition();
   }
@@ -2045,7 +1896,6 @@ class DartRaylib {
   late final _dart_GetMousePosition _GetMousePosition =
       _GetMousePosition_ptr.asFunction<_dart_GetMousePosition>();
 
-  /// Set mouse position XY
   void SetMousePosition(
     int x,
     int y,
@@ -2061,7 +1911,6 @@ class DartRaylib {
   late final _dart_SetMousePosition _SetMousePosition =
       _SetMousePosition_ptr.asFunction<_dart_SetMousePosition>();
 
-  /// Set mouse offset
   void SetMouseOffset(
     int offsetX,
     int offsetY,
@@ -2077,7 +1926,6 @@ class DartRaylib {
   late final _dart_SetMouseOffset _SetMouseOffset =
       _SetMouseOffset_ptr.asFunction<_dart_SetMouseOffset>();
 
-  /// Set mouse scaling
   void SetMouseScale(
     double scaleX,
     double scaleY,
@@ -2093,7 +1941,6 @@ class DartRaylib {
   late final _dart_SetMouseScale _SetMouseScale =
       _SetMouseScale_ptr.asFunction<_dart_SetMouseScale>();
 
-  /// Returns mouse wheel movement Y
   double GetMouseWheelMove() {
     return _GetMouseWheelMove();
   }
@@ -2103,7 +1950,6 @@ class DartRaylib {
   late final _dart_GetMouseWheelMove _GetMouseWheelMove =
       _GetMouseWheelMove_ptr.asFunction<_dart_GetMouseWheelMove>();
 
-  /// Set mouse cursor
   void SetMouseCursor(
     int cursor,
   ) {
@@ -2118,7 +1964,6 @@ class DartRaylib {
       _SetMouseCursor_ptr.asFunction<_dart_SetMouseCursor>();
 
   /// Input-related functions: touch
-  /// Returns touch position X for touch point 0 (relative to screen size)
   int GetTouchX() {
     return _GetTouchX();
   }
@@ -2128,7 +1973,6 @@ class DartRaylib {
   late final _dart_GetTouchX _GetTouchX =
       _GetTouchX_ptr.asFunction<_dart_GetTouchX>();
 
-  /// Returns touch position Y for touch point 0 (relative to screen size)
   int GetTouchY() {
     return _GetTouchY();
   }
@@ -2138,7 +1982,6 @@ class DartRaylib {
   late final _dart_GetTouchY _GetTouchY =
       _GetTouchY_ptr.asFunction<_dart_GetTouchY>();
 
-  /// Returns touch position XY for a touch point index (relative to screen size)
   Vector2 GetTouchPosition(
     int index,
   ) {
@@ -2155,7 +1998,6 @@ class DartRaylib {
   /// ------------------------------------------------------------------------------------
   /// Gestures and Touch Handling Functions (Module: gestures)
   /// ------------------------------------------------------------------------------------
-  /// Enable a set of gestures using flags
   void SetGesturesEnabled(
     int flags,
   ) {
@@ -2169,7 +2011,6 @@ class DartRaylib {
   late final _dart_SetGesturesEnabled _SetGesturesEnabled =
       _SetGesturesEnabled_ptr.asFunction<_dart_SetGesturesEnabled>();
 
-  /// Check if a gesture have been detected
   int IsGestureDetected(
     int gesture,
   ) {
@@ -2183,7 +2024,6 @@ class DartRaylib {
   late final _dart_IsGestureDetected _IsGestureDetected =
       _IsGestureDetected_ptr.asFunction<_dart_IsGestureDetected>();
 
-  /// Get latest detected gesture
   int GetGestureDetected() {
     return _GetGestureDetected();
   }
@@ -2193,7 +2033,6 @@ class DartRaylib {
   late final _dart_GetGestureDetected _GetGestureDetected =
       _GetGestureDetected_ptr.asFunction<_dart_GetGestureDetected>();
 
-  /// Get touch points count
   int GetTouchPointsCount() {
     return _GetTouchPointsCount();
   }
@@ -2204,7 +2043,6 @@ class DartRaylib {
   late final _dart_GetTouchPointsCount _GetTouchPointsCount =
       _GetTouchPointsCount_ptr.asFunction<_dart_GetTouchPointsCount>();
 
-  /// Get gesture hold time in milliseconds
   double GetGestureHoldDuration() {
     return _GetGestureHoldDuration();
   }
@@ -2215,7 +2053,6 @@ class DartRaylib {
   late final _dart_GetGestureHoldDuration _GetGestureHoldDuration =
       _GetGestureHoldDuration_ptr.asFunction<_dart_GetGestureHoldDuration>();
 
-  /// Get gesture drag vector
   Vector2 GetGestureDragVector() {
     return _GetGestureDragVector();
   }
@@ -2226,7 +2063,6 @@ class DartRaylib {
   late final _dart_GetGestureDragVector _GetGestureDragVector =
       _GetGestureDragVector_ptr.asFunction<_dart_GetGestureDragVector>();
 
-  /// Get gesture drag angle
   double GetGestureDragAngle() {
     return _GetGestureDragAngle();
   }
@@ -2237,7 +2073,6 @@ class DartRaylib {
   late final _dart_GetGestureDragAngle _GetGestureDragAngle =
       _GetGestureDragAngle_ptr.asFunction<_dart_GetGestureDragAngle>();
 
-  /// Get gesture pinch delta
   Vector2 GetGesturePinchVector() {
     return _GetGesturePinchVector();
   }
@@ -2248,7 +2083,6 @@ class DartRaylib {
   late final _dart_GetGesturePinchVector _GetGesturePinchVector =
       _GetGesturePinchVector_ptr.asFunction<_dart_GetGesturePinchVector>();
 
-  /// Get gesture pinch angle
   double GetGesturePinchAngle() {
     return _GetGesturePinchAngle();
   }
@@ -2262,7 +2096,6 @@ class DartRaylib {
   /// ------------------------------------------------------------------------------------
   /// Camera System Functions (Module: camera)
   /// ------------------------------------------------------------------------------------
-  /// Set camera mode (multiple camera modes available)
   void SetCameraMode(
     Camera3D camera,
     int mode,
@@ -2278,7 +2111,6 @@ class DartRaylib {
   late final _dart_SetCameraMode _SetCameraMode =
       _SetCameraMode_ptr.asFunction<_dart_SetCameraMode>();
 
-  /// Update camera position for selected mode
   void UpdateCamera(
     ffi.Pointer<Camera3D> camera,
   ) {
@@ -2292,7 +2124,6 @@ class DartRaylib {
   late final _dart_UpdateCamera _UpdateCamera =
       _UpdateCamera_ptr.asFunction<_dart_UpdateCamera>();
 
-  /// Set camera pan key to combine with mouse movement (free camera)
   void SetCameraPanControl(
     int keyPan,
   ) {
@@ -2307,7 +2138,6 @@ class DartRaylib {
   late final _dart_SetCameraPanControl _SetCameraPanControl =
       _SetCameraPanControl_ptr.asFunction<_dart_SetCameraPanControl>();
 
-  /// Set camera alt key to combine with mouse movement (free camera)
   void SetCameraAltControl(
     int keyAlt,
   ) {
@@ -2322,7 +2152,6 @@ class DartRaylib {
   late final _dart_SetCameraAltControl _SetCameraAltControl =
       _SetCameraAltControl_ptr.asFunction<_dart_SetCameraAltControl>();
 
-  /// Set camera smooth zoom key to combine with mouse (free camera)
   void SetCameraSmoothZoomControl(
     int keySmoothZoom,
   ) {
@@ -2338,7 +2167,6 @@ class DartRaylib {
       _SetCameraSmoothZoomControl_ptr.asFunction<
           _dart_SetCameraSmoothZoomControl>();
 
-  /// Set camera move controls (1st person and 3rd person cameras)
   void SetCameraMoveControls(
     int keyFront,
     int keyBack,
@@ -2385,7 +2213,6 @@ class DartRaylib {
       _SetShapesTexture_ptr.asFunction<_dart_SetShapesTexture>();
 
   /// Basic shapes drawing functions
-  /// Draw a pixel
   void DrawPixel(
     int posX,
     int posY,
@@ -2403,7 +2230,6 @@ class DartRaylib {
   late final _dart_DrawPixel _DrawPixel =
       _DrawPixel_ptr.asFunction<_dart_DrawPixel>();
 
-  /// Draw a pixel (Vector version)
   void DrawPixelV(
     Vector2 position,
     int color,
@@ -2419,7 +2245,6 @@ class DartRaylib {
   late final _dart_DrawPixelV _DrawPixelV =
       _DrawPixelV_ptr.asFunction<_dart_DrawPixelV>();
 
-  /// Draw a line
   void DrawLine(
     int startPosX,
     int startPosY,
@@ -2441,7 +2266,6 @@ class DartRaylib {
   late final _dart_DrawLine _DrawLine =
       _DrawLine_ptr.asFunction<_dart_DrawLine>();
 
-  /// Draw a line (Vector version)
   void DrawLineV(
     Vector2 startPos,
     Vector2 endPos,
@@ -2459,7 +2283,6 @@ class DartRaylib {
   late final _dart_DrawLineV _DrawLineV =
       _DrawLineV_ptr.asFunction<_dart_DrawLineV>();
 
-  /// Draw a line defining thickness
   void DrawLineEx(
     Vector2 startPos,
     Vector2 endPos,
@@ -2479,7 +2302,6 @@ class DartRaylib {
   late final _dart_DrawLineEx _DrawLineEx =
       _DrawLineEx_ptr.asFunction<_dart_DrawLineEx>();
 
-  /// Draw a line using cubic-bezier curves in-out
   void DrawLineBezier(
     Vector2 startPos,
     Vector2 endPos,
@@ -2499,7 +2321,6 @@ class DartRaylib {
   late final _dart_DrawLineBezier _DrawLineBezier =
       _DrawLineBezier_ptr.asFunction<_dart_DrawLineBezier>();
 
-  /// Draw line using quadratic bezier curves with a control point
   void DrawLineBezierQuad(
     Vector2 startPos,
     Vector2 endPos,
@@ -2521,7 +2342,6 @@ class DartRaylib {
   late final _dart_DrawLineBezierQuad _DrawLineBezierQuad =
       _DrawLineBezierQuad_ptr.asFunction<_dart_DrawLineBezierQuad>();
 
-  /// Draw lines sequence
   void DrawLineStrip(
     ffi.Pointer<Vector2> points,
     int pointsCount,
@@ -2539,7 +2359,6 @@ class DartRaylib {
   late final _dart_DrawLineStrip _DrawLineStrip =
       _DrawLineStrip_ptr.asFunction<_dart_DrawLineStrip>();
 
-  /// Draw a color-filled circle
   void DrawCircle(
     int centerX,
     int centerY,
@@ -2559,7 +2378,6 @@ class DartRaylib {
   late final _dart_DrawCircle _DrawCircle =
       _DrawCircle_ptr.asFunction<_dart_DrawCircle>();
 
-  /// Draw a piece of a circle
   void DrawCircleSector(
     Vector2 center,
     double radius,
@@ -2583,7 +2401,6 @@ class DartRaylib {
   late final _dart_DrawCircleSector _DrawCircleSector =
       _DrawCircleSector_ptr.asFunction<_dart_DrawCircleSector>();
 
-  /// Draw circle sector outline
   void DrawCircleSectorLines(
     Vector2 center,
     double radius,
@@ -2608,7 +2425,6 @@ class DartRaylib {
   late final _dart_DrawCircleSectorLines _DrawCircleSectorLines =
       _DrawCircleSectorLines_ptr.asFunction<_dart_DrawCircleSectorLines>();
 
-  /// Draw a gradient-filled circle
   void DrawCircleGradient(
     int centerX,
     int centerY,
@@ -2630,7 +2446,6 @@ class DartRaylib {
   late final _dart_DrawCircleGradient _DrawCircleGradient =
       _DrawCircleGradient_ptr.asFunction<_dart_DrawCircleGradient>();
 
-  /// Draw a color-filled circle (Vector version)
   void DrawCircleV(
     Vector2 center,
     double radius,
@@ -2648,7 +2463,6 @@ class DartRaylib {
   late final _dart_DrawCircleV _DrawCircleV =
       _DrawCircleV_ptr.asFunction<_dart_DrawCircleV>();
 
-  /// Draw circle outline
   void DrawCircleLines(
     int centerX,
     int centerY,
@@ -2668,7 +2482,6 @@ class DartRaylib {
   late final _dart_DrawCircleLines _DrawCircleLines =
       _DrawCircleLines_ptr.asFunction<_dart_DrawCircleLines>();
 
-  /// Draw ellipse
   void DrawEllipse(
     int centerX,
     int centerY,
@@ -2690,7 +2503,6 @@ class DartRaylib {
   late final _dart_DrawEllipse _DrawEllipse =
       _DrawEllipse_ptr.asFunction<_dart_DrawEllipse>();
 
-  /// Draw ellipse outline
   void DrawEllipseLines(
     int centerX,
     int centerY,
@@ -2712,7 +2524,6 @@ class DartRaylib {
   late final _dart_DrawEllipseLines _DrawEllipseLines =
       _DrawEllipseLines_ptr.asFunction<_dart_DrawEllipseLines>();
 
-  /// Draw ring
   void DrawRing(
     Vector2 center,
     double innerRadius,
@@ -2738,7 +2549,6 @@ class DartRaylib {
   late final _dart_DrawRing _DrawRing =
       _DrawRing_ptr.asFunction<_dart_DrawRing>();
 
-  /// Draw ring outline
   void DrawRingLines(
     Vector2 center,
     double innerRadius,
@@ -2764,7 +2574,6 @@ class DartRaylib {
   late final _dart_DrawRingLines _DrawRingLines =
       _DrawRingLines_ptr.asFunction<_dart_DrawRingLines>();
 
-  /// Draw a color-filled rectangle
   void DrawRectangle(
     int posX,
     int posY,
@@ -2786,7 +2595,6 @@ class DartRaylib {
   late final _dart_DrawRectangle _DrawRectangle =
       _DrawRectangle_ptr.asFunction<_dart_DrawRectangle>();
 
-  /// Draw a color-filled rectangle (Vector version)
   void DrawRectangleV(
     Vector2 position,
     Vector2 size,
@@ -2804,7 +2612,6 @@ class DartRaylib {
   late final _dart_DrawRectangleV _DrawRectangleV =
       _DrawRectangleV_ptr.asFunction<_dart_DrawRectangleV>();
 
-  /// Draw a color-filled rectangle
   void DrawRectangleRec(
     Rectangle rec,
     int color,
@@ -2820,7 +2627,6 @@ class DartRaylib {
   late final _dart_DrawRectangleRec _DrawRectangleRec =
       _DrawRectangleRec_ptr.asFunction<_dart_DrawRectangleRec>();
 
-  /// Draw a color-filled rectangle with pro parameters
   void DrawRectanglePro(
     Rectangle rec,
     Vector2 origin,
@@ -2840,7 +2646,6 @@ class DartRaylib {
   late final _dart_DrawRectanglePro _DrawRectanglePro =
       _DrawRectanglePro_ptr.asFunction<_dart_DrawRectanglePro>();
 
-  /// Draw a vertical-gradient-filled rectangle
   void DrawRectangleGradientV(
     int posX,
     int posY,
@@ -2865,7 +2670,6 @@ class DartRaylib {
   late final _dart_DrawRectangleGradientV _DrawRectangleGradientV =
       _DrawRectangleGradientV_ptr.asFunction<_dart_DrawRectangleGradientV>();
 
-  /// Draw a horizontal-gradient-filled rectangle
   void DrawRectangleGradientH(
     int posX,
     int posY,
@@ -2890,7 +2694,6 @@ class DartRaylib {
   late final _dart_DrawRectangleGradientH _DrawRectangleGradientH =
       _DrawRectangleGradientH_ptr.asFunction<_dart_DrawRectangleGradientH>();
 
-  /// Draw a gradient-filled rectangle with custom vertex colors
   void DrawRectangleGradientEx(
     Rectangle rec,
     int col1,
@@ -2913,7 +2716,6 @@ class DartRaylib {
   late final _dart_DrawRectangleGradientEx _DrawRectangleGradientEx =
       _DrawRectangleGradientEx_ptr.asFunction<_dart_DrawRectangleGradientEx>();
 
-  /// Draw rectangle outline
   void DrawRectangleLines(
     int posX,
     int posY,
@@ -2935,7 +2737,6 @@ class DartRaylib {
   late final _dart_DrawRectangleLines _DrawRectangleLines =
       _DrawRectangleLines_ptr.asFunction<_dart_DrawRectangleLines>();
 
-  /// Draw rectangle outline with extended parameters
   void DrawRectangleLinesEx(
     Rectangle rec,
     int lineThick,
@@ -2954,7 +2755,6 @@ class DartRaylib {
   late final _dart_DrawRectangleLinesEx _DrawRectangleLinesEx =
       _DrawRectangleLinesEx_ptr.asFunction<_dart_DrawRectangleLinesEx>();
 
-  /// Draw rectangle with rounded edges
   void DrawRectangleRounded(
     Rectangle rec,
     double roundness,
@@ -2975,7 +2775,6 @@ class DartRaylib {
   late final _dart_DrawRectangleRounded _DrawRectangleRounded =
       _DrawRectangleRounded_ptr.asFunction<_dart_DrawRectangleRounded>();
 
-  /// Draw rectangle with rounded edges outline
   void DrawRectangleRoundedLines(
     Rectangle rec,
     double roundness,
@@ -2999,7 +2798,6 @@ class DartRaylib {
       _DrawRectangleRoundedLines_ptr.asFunction<
           _dart_DrawRectangleRoundedLines>();
 
-  /// Draw a color-filled triangle (vertex in counter-clockwise order!)
   void DrawTriangle(
     Vector2 v1,
     Vector2 v2,
@@ -3019,7 +2817,6 @@ class DartRaylib {
   late final _dart_DrawTriangle _DrawTriangle =
       _DrawTriangle_ptr.asFunction<_dart_DrawTriangle>();
 
-  /// Draw triangle outline (vertex in counter-clockwise order!)
   void DrawTriangleLines(
     Vector2 v1,
     Vector2 v2,
@@ -3039,7 +2836,6 @@ class DartRaylib {
   late final _dart_DrawTriangleLines _DrawTriangleLines =
       _DrawTriangleLines_ptr.asFunction<_dart_DrawTriangleLines>();
 
-  /// Draw a triangle fan defined by points (first vertex is the center)
   void DrawTriangleFan(
     ffi.Pointer<Vector2> points,
     int pointsCount,
@@ -3057,7 +2853,6 @@ class DartRaylib {
   late final _dart_DrawTriangleFan _DrawTriangleFan =
       _DrawTriangleFan_ptr.asFunction<_dart_DrawTriangleFan>();
 
-  /// Draw a triangle strip defined by points
   void DrawTriangleStrip(
     ffi.Pointer<Vector2> points,
     int pointsCount,
@@ -3075,7 +2870,6 @@ class DartRaylib {
   late final _dart_DrawTriangleStrip _DrawTriangleStrip =
       _DrawTriangleStrip_ptr.asFunction<_dart_DrawTriangleStrip>();
 
-  /// Draw a regular polygon (Vector version)
   void DrawPoly(
     Vector2 center,
     int sides,
@@ -3097,7 +2891,6 @@ class DartRaylib {
   late final _dart_DrawPoly _DrawPoly =
       _DrawPoly_ptr.asFunction<_dart_DrawPoly>();
 
-  /// Draw a polygon outline of n sides
   void DrawPolyLines(
     Vector2 center,
     int sides,
@@ -3120,7 +2913,6 @@ class DartRaylib {
       _DrawPolyLines_ptr.asFunction<_dart_DrawPolyLines>();
 
   /// Basic shapes collision detection functions
-  /// Check collision between two rectangles
   int CheckCollisionRecs(
     Rectangle rec1,
     Rectangle rec2,
@@ -3136,7 +2928,6 @@ class DartRaylib {
   late final _dart_CheckCollisionRecs _CheckCollisionRecs =
       _CheckCollisionRecs_ptr.asFunction<_dart_CheckCollisionRecs>();
 
-  /// Check collision between two circles
   int CheckCollisionCircles(
     Vector2 center1,
     double radius1,
@@ -3157,7 +2948,6 @@ class DartRaylib {
   late final _dart_CheckCollisionCircles _CheckCollisionCircles =
       _CheckCollisionCircles_ptr.asFunction<_dart_CheckCollisionCircles>();
 
-  /// Check collision between circle and rectangle
   int CheckCollisionCircleRec(
     Vector2 center,
     double radius,
@@ -3176,7 +2966,6 @@ class DartRaylib {
   late final _dart_CheckCollisionCircleRec _CheckCollisionCircleRec =
       _CheckCollisionCircleRec_ptr.asFunction<_dart_CheckCollisionCircleRec>();
 
-  /// Check if point is inside rectangle
   int CheckCollisionPointRec(
     Vector2 point,
     Rectangle rec,
@@ -3193,7 +2982,6 @@ class DartRaylib {
   late final _dart_CheckCollisionPointRec _CheckCollisionPointRec =
       _CheckCollisionPointRec_ptr.asFunction<_dart_CheckCollisionPointRec>();
 
-  /// Check if point is inside circle
   int CheckCollisionPointCircle(
     Vector2 point,
     Vector2 center,
@@ -3213,7 +3001,6 @@ class DartRaylib {
       _CheckCollisionPointCircle_ptr.asFunction<
           _dart_CheckCollisionPointCircle>();
 
-  /// Check if point is inside a triangle
   int CheckCollisionPointTriangle(
     Vector2 point,
     Vector2 p1,
@@ -3235,7 +3022,6 @@ class DartRaylib {
       _CheckCollisionPointTriangle_ptr.asFunction<
           _dart_CheckCollisionPointTriangle>();
 
-  /// Check the collision between two lines defined by two points each, returns collision point by reference
   int CheckCollisionLines(
     Vector2 startPos1,
     Vector2 endPos1,
@@ -3258,7 +3044,6 @@ class DartRaylib {
   late final _dart_CheckCollisionLines _CheckCollisionLines =
       _CheckCollisionLines_ptr.asFunction<_dart_CheckCollisionLines>();
 
-  /// Get collision rectangle for two rectangles collision
   Rectangle GetCollisionRec(
     Rectangle rec1,
     Rectangle rec2,
@@ -3276,7 +3061,6 @@ class DartRaylib {
 
   /// Image loading functions
   /// NOTE: This functions do not require GPU access
-  /// Load image from file into CPU memory (RAM)
   Image LoadImage(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -3290,7 +3074,6 @@ class DartRaylib {
   late final _dart_LoadImage _LoadImage =
       _LoadImage_ptr.asFunction<_dart_LoadImage>();
 
-  /// Load image from RAW file data
   Image LoadImageRaw(
     ffi.Pointer<ffi.Int8> fileName,
     int width,
@@ -3312,7 +3095,6 @@ class DartRaylib {
   late final _dart_LoadImageRaw _LoadImageRaw =
       _LoadImageRaw_ptr.asFunction<_dart_LoadImageRaw>();
 
-  /// Load image sequence from file (frames appended to image.data)
   Image LoadImageAnim(
     ffi.Pointer<ffi.Int8> fileName,
     ffi.Pointer<ffi.Int32> frames,
@@ -3328,7 +3110,6 @@ class DartRaylib {
   late final _dart_LoadImageAnim _LoadImageAnim =
       _LoadImageAnim_ptr.asFunction<_dart_LoadImageAnim>();
 
-  /// Load image from memory buffer, fileType refers to extension: i.e. ".png"
   Image LoadImageFromMemory(
     ffi.Pointer<ffi.Int8> fileType,
     ffi.Pointer<ffi.Uint8> fileData,
@@ -3347,7 +3128,6 @@ class DartRaylib {
   late final _dart_LoadImageFromMemory _LoadImageFromMemory =
       _LoadImageFromMemory_ptr.asFunction<_dart_LoadImageFromMemory>();
 
-  /// Unload image from CPU memory (RAM)
   void UnloadImage(
     Image image,
   ) {
@@ -3361,7 +3141,6 @@ class DartRaylib {
   late final _dart_UnloadImage _UnloadImage =
       _UnloadImage_ptr.asFunction<_dart_UnloadImage>();
 
-  /// Export image data to file, returns true on success
   int ExportImage(
     Image image,
     ffi.Pointer<ffi.Int8> fileName,
@@ -3377,7 +3156,6 @@ class DartRaylib {
   late final _dart_ExportImage _ExportImage =
       _ExportImage_ptr.asFunction<_dart_ExportImage>();
 
-  /// Export image as code file defining an array of bytes, returns true on success
   int ExportImageAsCode(
     Image image,
     ffi.Pointer<ffi.Int8> fileName,
@@ -3394,7 +3172,6 @@ class DartRaylib {
       _ExportImageAsCode_ptr.asFunction<_dart_ExportImageAsCode>();
 
   /// Image generation functions
-  /// Generate image: plain color
   Image GenImageColor(
     int width,
     int height,
@@ -3412,7 +3189,6 @@ class DartRaylib {
   late final _dart_GenImageColor _GenImageColor =
       _GenImageColor_ptr.asFunction<_dart_GenImageColor>();
 
-  /// Generate image: vertical gradient
   Image GenImageGradientV(
     int width,
     int height,
@@ -3432,7 +3208,6 @@ class DartRaylib {
   late final _dart_GenImageGradientV _GenImageGradientV =
       _GenImageGradientV_ptr.asFunction<_dart_GenImageGradientV>();
 
-  /// Generate image: horizontal gradient
   Image GenImageGradientH(
     int width,
     int height,
@@ -3452,7 +3227,6 @@ class DartRaylib {
   late final _dart_GenImageGradientH _GenImageGradientH =
       _GenImageGradientH_ptr.asFunction<_dart_GenImageGradientH>();
 
-  /// Generate image: radial gradient
   Image GenImageGradientRadial(
     int width,
     int height,
@@ -3475,7 +3249,6 @@ class DartRaylib {
   late final _dart_GenImageGradientRadial _GenImageGradientRadial =
       _GenImageGradientRadial_ptr.asFunction<_dart_GenImageGradientRadial>();
 
-  /// Generate image: checked
   Image GenImageChecked(
     int width,
     int height,
@@ -3499,7 +3272,6 @@ class DartRaylib {
   late final _dart_GenImageChecked _GenImageChecked =
       _GenImageChecked_ptr.asFunction<_dart_GenImageChecked>();
 
-  /// Generate image: white noise
   Image GenImageWhiteNoise(
     int width,
     int height,
@@ -3517,7 +3289,6 @@ class DartRaylib {
   late final _dart_GenImageWhiteNoise _GenImageWhiteNoise =
       _GenImageWhiteNoise_ptr.asFunction<_dart_GenImageWhiteNoise>();
 
-  /// Generate image: perlin noise
   Image GenImagePerlinNoise(
     int width,
     int height,
@@ -3540,7 +3311,6 @@ class DartRaylib {
   late final _dart_GenImagePerlinNoise _GenImagePerlinNoise =
       _GenImagePerlinNoise_ptr.asFunction<_dart_GenImagePerlinNoise>();
 
-  /// Generate image: cellular algorithm. Bigger tileSize means bigger cells
   Image GenImageCellular(
     int width,
     int height,
@@ -3559,7 +3329,6 @@ class DartRaylib {
       _GenImageCellular_ptr.asFunction<_dart_GenImageCellular>();
 
   /// Image manipulation functions
-  /// Create an image duplicate (useful for transformations)
   Image ImageCopy(
     Image image,
   ) {
@@ -3573,7 +3342,6 @@ class DartRaylib {
   late final _dart_ImageCopy _ImageCopy =
       _ImageCopy_ptr.asFunction<_dart_ImageCopy>();
 
-  /// Create an image from another image piece
   Image ImageFromImage(
     Image image,
     Rectangle rec,
@@ -3589,7 +3357,6 @@ class DartRaylib {
   late final _dart_ImageFromImage _ImageFromImage =
       _ImageFromImage_ptr.asFunction<_dart_ImageFromImage>();
 
-  /// Create an image from text (default font)
   Image ImageText(
     ffi.Pointer<ffi.Int8> text,
     int fontSize,
@@ -3607,7 +3374,6 @@ class DartRaylib {
   late final _dart_ImageText _ImageText =
       _ImageText_ptr.asFunction<_dart_ImageText>();
 
-  /// Create an image from text (custom sprite font)
   Image ImageTextEx(
     Font font,
     ffi.Pointer<ffi.Int8> text,
@@ -3629,7 +3395,6 @@ class DartRaylib {
   late final _dart_ImageTextEx _ImageTextEx =
       _ImageTextEx_ptr.asFunction<_dart_ImageTextEx>();
 
-  /// Convert image data to desired format
   void ImageFormat(
     ffi.Pointer<Image> image,
     int newFormat,
@@ -3645,7 +3410,6 @@ class DartRaylib {
   late final _dart_ImageFormat _ImageFormat =
       _ImageFormat_ptr.asFunction<_dart_ImageFormat>();
 
-  /// Convert image to POT (power-of-two)
   void ImageToPOT(
     ffi.Pointer<Image> image,
     int fill,
@@ -3661,7 +3425,6 @@ class DartRaylib {
   late final _dart_ImageToPOT _ImageToPOT =
       _ImageToPOT_ptr.asFunction<_dart_ImageToPOT>();
 
-  /// Crop an image to a defined rectangle
   void ImageCrop(
     ffi.Pointer<Image> image,
     Rectangle crop,
@@ -3677,7 +3440,6 @@ class DartRaylib {
   late final _dart_ImageCrop _ImageCrop =
       _ImageCrop_ptr.asFunction<_dart_ImageCrop>();
 
-  /// Crop image depending on alpha value
   void ImageAlphaCrop(
     ffi.Pointer<Image> image,
     double threshold,
@@ -3693,7 +3455,6 @@ class DartRaylib {
   late final _dart_ImageAlphaCrop _ImageAlphaCrop =
       _ImageAlphaCrop_ptr.asFunction<_dart_ImageAlphaCrop>();
 
-  /// Clear alpha channel to desired color
   void ImageAlphaClear(
     ffi.Pointer<Image> image,
     int color,
@@ -3711,7 +3472,6 @@ class DartRaylib {
   late final _dart_ImageAlphaClear _ImageAlphaClear =
       _ImageAlphaClear_ptr.asFunction<_dart_ImageAlphaClear>();
 
-  /// Apply alpha mask to image
   void ImageAlphaMask(
     ffi.Pointer<Image> image,
     Image alphaMask,
@@ -3727,7 +3487,6 @@ class DartRaylib {
   late final _dart_ImageAlphaMask _ImageAlphaMask =
       _ImageAlphaMask_ptr.asFunction<_dart_ImageAlphaMask>();
 
-  /// Premultiply alpha channel
   void ImageAlphaPremultiply(
     ffi.Pointer<Image> image,
   ) {
@@ -3742,7 +3501,6 @@ class DartRaylib {
   late final _dart_ImageAlphaPremultiply _ImageAlphaPremultiply =
       _ImageAlphaPremultiply_ptr.asFunction<_dart_ImageAlphaPremultiply>();
 
-  /// Resize image (Bicubic scaling algorithm)
   void ImageResize(
     ffi.Pointer<Image> image,
     int newWidth,
@@ -3760,7 +3518,6 @@ class DartRaylib {
   late final _dart_ImageResize _ImageResize =
       _ImageResize_ptr.asFunction<_dart_ImageResize>();
 
-  /// Resize image (Nearest-Neighbor scaling algorithm)
   void ImageResizeNN(
     ffi.Pointer<Image> image,
     int newWidth,
@@ -3778,7 +3535,6 @@ class DartRaylib {
   late final _dart_ImageResizeNN _ImageResizeNN =
       _ImageResizeNN_ptr.asFunction<_dart_ImageResizeNN>();
 
-  /// Resize canvas and fill with color
   void ImageResizeCanvas(
     ffi.Pointer<Image> image,
     int newWidth,
@@ -3802,7 +3558,6 @@ class DartRaylib {
   late final _dart_ImageResizeCanvas _ImageResizeCanvas =
       _ImageResizeCanvas_ptr.asFunction<_dart_ImageResizeCanvas>();
 
-  /// Generate all mipmap levels for a provided image
   void ImageMipmaps(
     ffi.Pointer<Image> image,
   ) {
@@ -3816,7 +3571,6 @@ class DartRaylib {
   late final _dart_ImageMipmaps _ImageMipmaps =
       _ImageMipmaps_ptr.asFunction<_dart_ImageMipmaps>();
 
-  /// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
   void ImageDither(
     ffi.Pointer<Image> image,
     int rBpp,
@@ -3838,7 +3592,6 @@ class DartRaylib {
   late final _dart_ImageDither _ImageDither =
       _ImageDither_ptr.asFunction<_dart_ImageDither>();
 
-  /// Flip image vertically
   void ImageFlipVertical(
     ffi.Pointer<Image> image,
   ) {
@@ -3852,7 +3605,6 @@ class DartRaylib {
   late final _dart_ImageFlipVertical _ImageFlipVertical =
       _ImageFlipVertical_ptr.asFunction<_dart_ImageFlipVertical>();
 
-  /// Flip image horizontally
   void ImageFlipHorizontal(
     ffi.Pointer<Image> image,
   ) {
@@ -3867,7 +3619,6 @@ class DartRaylib {
   late final _dart_ImageFlipHorizontal _ImageFlipHorizontal =
       _ImageFlipHorizontal_ptr.asFunction<_dart_ImageFlipHorizontal>();
 
-  /// Rotate image clockwise 90deg
   void ImageRotateCW(
     ffi.Pointer<Image> image,
   ) {
@@ -3881,7 +3632,6 @@ class DartRaylib {
   late final _dart_ImageRotateCW _ImageRotateCW =
       _ImageRotateCW_ptr.asFunction<_dart_ImageRotateCW>();
 
-  /// Rotate image counter-clockwise 90deg
   void ImageRotateCCW(
     ffi.Pointer<Image> image,
   ) {
@@ -3895,7 +3645,6 @@ class DartRaylib {
   late final _dart_ImageRotateCCW _ImageRotateCCW =
       _ImageRotateCCW_ptr.asFunction<_dart_ImageRotateCCW>();
 
-  /// Modify image color: tint
   void ImageColorTint(
     ffi.Pointer<Image> image,
     int color,
@@ -3911,7 +3660,6 @@ class DartRaylib {
   late final _dart_ImageColorTint _ImageColorTint =
       _ImageColorTint_ptr.asFunction<_dart_ImageColorTint>();
 
-  /// Modify image color: invert
   void ImageColorInvert(
     ffi.Pointer<Image> image,
   ) {
@@ -3925,7 +3673,6 @@ class DartRaylib {
   late final _dart_ImageColorInvert _ImageColorInvert =
       _ImageColorInvert_ptr.asFunction<_dart_ImageColorInvert>();
 
-  /// Modify image color: grayscale
   void ImageColorGrayscale(
     ffi.Pointer<Image> image,
   ) {
@@ -3940,7 +3687,6 @@ class DartRaylib {
   late final _dart_ImageColorGrayscale _ImageColorGrayscale =
       _ImageColorGrayscale_ptr.asFunction<_dart_ImageColorGrayscale>();
 
-  /// Modify image color: contrast (-100 to 100)
   void ImageColorContrast(
     ffi.Pointer<Image> image,
     double contrast,
@@ -3956,7 +3702,6 @@ class DartRaylib {
   late final _dart_ImageColorContrast _ImageColorContrast =
       _ImageColorContrast_ptr.asFunction<_dart_ImageColorContrast>();
 
-  /// Modify image color: brightness (-255 to 255)
   void ImageColorBrightness(
     ffi.Pointer<Image> image,
     int brightness,
@@ -3973,7 +3718,6 @@ class DartRaylib {
   late final _dart_ImageColorBrightness _ImageColorBrightness =
       _ImageColorBrightness_ptr.asFunction<_dart_ImageColorBrightness>();
 
-  /// Modify image color: replace color
   void ImageColorReplace(
     ffi.Pointer<Image> image,
     int color,
@@ -3991,7 +3735,6 @@ class DartRaylib {
   late final _dart_ImageColorReplace _ImageColorReplace =
       _ImageColorReplace_ptr.asFunction<_dart_ImageColorReplace>();
 
-  /// Load color data from image as a Color array (RGBA - 32bit)
   ffi.Pointer<ffi.Uint32> LoadImageColors(
     Image image,
   ) {
@@ -4005,7 +3748,6 @@ class DartRaylib {
   late final _dart_LoadImageColors _LoadImageColors =
       _LoadImageColors_ptr.asFunction<_dart_LoadImageColors>();
 
-  /// Load colors palette from image as a Color array (RGBA - 32bit)
   ffi.Pointer<ffi.Uint32> LoadImagePalette(
     Image image,
     int maxPaletteSize,
@@ -4023,7 +3765,6 @@ class DartRaylib {
   late final _dart_LoadImagePalette _LoadImagePalette =
       _LoadImagePalette_ptr.asFunction<_dart_LoadImagePalette>();
 
-  /// Unload color data loaded with LoadImageColors()
   void UnloadImageColors(
     ffi.Pointer<ffi.Uint32> colors,
   ) {
@@ -4037,7 +3778,6 @@ class DartRaylib {
   late final _dart_UnloadImageColors _UnloadImageColors =
       _UnloadImageColors_ptr.asFunction<_dart_UnloadImageColors>();
 
-  /// Unload colors palette loaded with LoadImagePalette()
   void UnloadImagePalette(
     ffi.Pointer<ffi.Uint32> colors,
   ) {
@@ -4051,7 +3791,6 @@ class DartRaylib {
   late final _dart_UnloadImagePalette _UnloadImagePalette =
       _UnloadImagePalette_ptr.asFunction<_dart_UnloadImagePalette>();
 
-  /// Get image alpha border rectangle
   Rectangle GetImageAlphaBorder(
     Image image,
     double threshold,
@@ -4070,7 +3809,6 @@ class DartRaylib {
 
   /// Image drawing functions
   /// NOTE: Image software-rendering functions (CPU)
-  /// Clear image background with given color
   void ImageClearBackground(
     ffi.Pointer<Image> dst,
     int color,
@@ -4087,7 +3825,6 @@ class DartRaylib {
   late final _dart_ImageClearBackground _ImageClearBackground =
       _ImageClearBackground_ptr.asFunction<_dart_ImageClearBackground>();
 
-  /// Draw pixel within an image
   void ImageDrawPixel(
     ffi.Pointer<Image> dst,
     int posX,
@@ -4107,7 +3844,6 @@ class DartRaylib {
   late final _dart_ImageDrawPixel _ImageDrawPixel =
       _ImageDrawPixel_ptr.asFunction<_dart_ImageDrawPixel>();
 
-  /// Draw pixel within an image (Vector version)
   void ImageDrawPixelV(
     ffi.Pointer<Image> dst,
     Vector2 position,
@@ -4125,7 +3861,6 @@ class DartRaylib {
   late final _dart_ImageDrawPixelV _ImageDrawPixelV =
       _ImageDrawPixelV_ptr.asFunction<_dart_ImageDrawPixelV>();
 
-  /// Draw line within an image
   void ImageDrawLine(
     ffi.Pointer<Image> dst,
     int startPosX,
@@ -4149,7 +3884,6 @@ class DartRaylib {
   late final _dart_ImageDrawLine _ImageDrawLine =
       _ImageDrawLine_ptr.asFunction<_dart_ImageDrawLine>();
 
-  /// Draw line within an image (Vector version)
   void ImageDrawLineV(
     ffi.Pointer<Image> dst,
     Vector2 start,
@@ -4169,7 +3903,6 @@ class DartRaylib {
   late final _dart_ImageDrawLineV _ImageDrawLineV =
       _ImageDrawLineV_ptr.asFunction<_dart_ImageDrawLineV>();
 
-  /// Draw circle within an image
   void ImageDrawCircle(
     ffi.Pointer<Image> dst,
     int centerX,
@@ -4191,7 +3924,6 @@ class DartRaylib {
   late final _dart_ImageDrawCircle _ImageDrawCircle =
       _ImageDrawCircle_ptr.asFunction<_dart_ImageDrawCircle>();
 
-  /// Draw circle within an image (Vector version)
   void ImageDrawCircleV(
     ffi.Pointer<Image> dst,
     Vector2 center,
@@ -4211,7 +3943,6 @@ class DartRaylib {
   late final _dart_ImageDrawCircleV _ImageDrawCircleV =
       _ImageDrawCircleV_ptr.asFunction<_dart_ImageDrawCircleV>();
 
-  /// Draw rectangle within an image
   void ImageDrawRectangle(
     ffi.Pointer<Image> dst,
     int posX,
@@ -4235,7 +3966,6 @@ class DartRaylib {
   late final _dart_ImageDrawRectangle _ImageDrawRectangle =
       _ImageDrawRectangle_ptr.asFunction<_dart_ImageDrawRectangle>();
 
-  /// Draw rectangle within an image (Vector version)
   void ImageDrawRectangleV(
     ffi.Pointer<Image> dst,
     Vector2 position,
@@ -4256,7 +3986,6 @@ class DartRaylib {
   late final _dart_ImageDrawRectangleV _ImageDrawRectangleV =
       _ImageDrawRectangleV_ptr.asFunction<_dart_ImageDrawRectangleV>();
 
-  /// Draw rectangle within an image
   void ImageDrawRectangleRec(
     ffi.Pointer<Image> dst,
     Rectangle rec,
@@ -4275,7 +4004,6 @@ class DartRaylib {
   late final _dart_ImageDrawRectangleRec _ImageDrawRectangleRec =
       _ImageDrawRectangleRec_ptr.asFunction<_dart_ImageDrawRectangleRec>();
 
-  /// Draw rectangle lines within an image
   void ImageDrawRectangleLines(
     ffi.Pointer<Image> dst,
     Rectangle rec,
@@ -4296,7 +4024,6 @@ class DartRaylib {
   late final _dart_ImageDrawRectangleLines _ImageDrawRectangleLines =
       _ImageDrawRectangleLines_ptr.asFunction<_dart_ImageDrawRectangleLines>();
 
-  /// Draw a source image within a destination image (tint applied to source)
   void ImageDraw(
     ffi.Pointer<Image> dst,
     Image src,
@@ -4318,7 +4045,6 @@ class DartRaylib {
   late final _dart_ImageDraw _ImageDraw =
       _ImageDraw_ptr.asFunction<_dart_ImageDraw>();
 
-  /// Draw text (using default font) within an image (destination)
   void ImageDrawText(
     ffi.Pointer<Image> dst,
     ffi.Pointer<ffi.Int8> text,
@@ -4342,7 +4068,6 @@ class DartRaylib {
   late final _dart_ImageDrawText _ImageDrawText =
       _ImageDrawText_ptr.asFunction<_dart_ImageDrawText>();
 
-  /// Draw text (custom sprite font) within an image (destination)
   void ImageDrawTextEx(
     ffi.Pointer<Image> dst,
     Font font,
@@ -4370,7 +4095,6 @@ class DartRaylib {
 
   /// Texture loading functions
   /// NOTE: These functions require GPU access
-  /// Load texture from file into GPU memory (VRAM)
   Texture LoadTexture(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -4384,7 +4108,6 @@ class DartRaylib {
   late final _dart_LoadTexture _LoadTexture =
       _LoadTexture_ptr.asFunction<_dart_LoadTexture>();
 
-  /// Load texture from image data
   Texture LoadTextureFromImage(
     Image image,
   ) {
@@ -4399,7 +4122,6 @@ class DartRaylib {
   late final _dart_LoadTextureFromImage _LoadTextureFromImage =
       _LoadTextureFromImage_ptr.asFunction<_dart_LoadTextureFromImage>();
 
-  /// Load cubemap from image, multiple image cubemap layouts supported
   Texture LoadTextureCubemap(
     Image image,
     int layout,
@@ -4415,7 +4137,6 @@ class DartRaylib {
   late final _dart_LoadTextureCubemap _LoadTextureCubemap =
       _LoadTextureCubemap_ptr.asFunction<_dart_LoadTextureCubemap>();
 
-  /// Load texture for rendering (framebuffer)
   RenderTexture LoadRenderTexture(
     int width,
     int height,
@@ -4431,7 +4152,6 @@ class DartRaylib {
   late final _dart_LoadRenderTexture _LoadRenderTexture =
       _LoadRenderTexture_ptr.asFunction<_dart_LoadRenderTexture>();
 
-  /// Unload texture from GPU memory (VRAM)
   void UnloadTexture(
     Texture texture,
   ) {
@@ -4445,7 +4165,6 @@ class DartRaylib {
   late final _dart_UnloadTexture _UnloadTexture =
       _UnloadTexture_ptr.asFunction<_dart_UnloadTexture>();
 
-  /// Unload render texture from GPU memory (VRAM)
   void UnloadRenderTexture(
     RenderTexture target,
   ) {
@@ -4460,7 +4179,6 @@ class DartRaylib {
   late final _dart_UnloadRenderTexture _UnloadRenderTexture =
       _UnloadRenderTexture_ptr.asFunction<_dart_UnloadRenderTexture>();
 
-  /// Update GPU texture with new data
   void UpdateTexture(
     Texture texture,
     ffi.Pointer<ffi.Void> pixels,
@@ -4476,7 +4194,6 @@ class DartRaylib {
   late final _dart_UpdateTexture _UpdateTexture =
       _UpdateTexture_ptr.asFunction<_dart_UpdateTexture>();
 
-  /// Update GPU texture rectangle with new data
   void UpdateTextureRec(
     Texture texture,
     Rectangle rec,
@@ -4494,7 +4211,6 @@ class DartRaylib {
   late final _dart_UpdateTextureRec _UpdateTextureRec =
       _UpdateTextureRec_ptr.asFunction<_dart_UpdateTextureRec>();
 
-  /// Get pixel data from GPU texture and return an Image
   Image GetTextureData(
     Texture texture,
   ) {
@@ -4508,7 +4224,6 @@ class DartRaylib {
   late final _dart_GetTextureData _GetTextureData =
       _GetTextureData_ptr.asFunction<_dart_GetTextureData>();
 
-  /// Get pixel data from screen buffer and return an Image (screenshot)
   Image GetScreenData() {
     return _GetScreenData();
   }
@@ -4519,7 +4234,6 @@ class DartRaylib {
       _GetScreenData_ptr.asFunction<_dart_GetScreenData>();
 
   /// Texture configuration functions
-  /// Generate GPU mipmaps for a texture
   void GenTextureMipmaps(
     ffi.Pointer<Texture> texture,
   ) {
@@ -4533,7 +4247,6 @@ class DartRaylib {
   late final _dart_GenTextureMipmaps _GenTextureMipmaps =
       _GenTextureMipmaps_ptr.asFunction<_dart_GenTextureMipmaps>();
 
-  /// Set texture scaling filter mode
   void SetTextureFilter(
     Texture texture,
     int filter,
@@ -4549,7 +4262,6 @@ class DartRaylib {
   late final _dart_SetTextureFilter _SetTextureFilter =
       _SetTextureFilter_ptr.asFunction<_dart_SetTextureFilter>();
 
-  /// Set texture wrapping mode
   void SetTextureWrap(
     Texture texture,
     int wrap,
@@ -4566,7 +4278,6 @@ class DartRaylib {
       _SetTextureWrap_ptr.asFunction<_dart_SetTextureWrap>();
 
   /// Texture drawing functions
-  /// Draw a Texture2D
   void DrawTexture(
     Texture texture,
     int posX,
@@ -4586,7 +4297,6 @@ class DartRaylib {
   late final _dart_DrawTexture _DrawTexture =
       _DrawTexture_ptr.asFunction<_dart_DrawTexture>();
 
-  /// Draw a Texture2D with position defined as Vector2
   void DrawTextureV(
     Texture texture,
     Vector2 position,
@@ -4604,7 +4314,6 @@ class DartRaylib {
   late final _dart_DrawTextureV _DrawTextureV =
       _DrawTextureV_ptr.asFunction<_dart_DrawTextureV>();
 
-  /// Draw a Texture2D with extended parameters
   void DrawTextureEx(
     Texture texture,
     Vector2 position,
@@ -4626,7 +4335,6 @@ class DartRaylib {
   late final _dart_DrawTextureEx _DrawTextureEx =
       _DrawTextureEx_ptr.asFunction<_dart_DrawTextureEx>();
 
-  /// Draw a part of a texture defined by a rectangle
   void DrawTextureRec(
     Texture texture,
     Rectangle source,
@@ -4646,7 +4354,6 @@ class DartRaylib {
   late final _dart_DrawTextureRec _DrawTextureRec =
       _DrawTextureRec_ptr.asFunction<_dart_DrawTextureRec>();
 
-  /// Draw texture quad with tiling and offset parameters
   void DrawTextureQuad(
     Texture texture,
     Vector2 tiling,
@@ -4668,7 +4375,6 @@ class DartRaylib {
   late final _dart_DrawTextureQuad _DrawTextureQuad =
       _DrawTextureQuad_ptr.asFunction<_dart_DrawTextureQuad>();
 
-  /// Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest.
   void DrawTextureTiled(
     Texture texture,
     Rectangle source,
@@ -4694,7 +4400,6 @@ class DartRaylib {
   late final _dart_DrawTextureTiled _DrawTextureTiled =
       _DrawTextureTiled_ptr.asFunction<_dart_DrawTextureTiled>();
 
-  /// Draw a part of a texture defined by a rectangle with 'pro' parameters
   void DrawTexturePro(
     Texture texture,
     Rectangle source,
@@ -4718,7 +4423,6 @@ class DartRaylib {
   late final _dart_DrawTexturePro _DrawTexturePro =
       _DrawTexturePro_ptr.asFunction<_dart_DrawTexturePro>();
 
-  /// Draws a texture (or part of it) that stretches or shrinks nicely
   void DrawTextureNPatch(
     Texture texture,
     NPatchInfo nPatchInfo,
@@ -4742,7 +4446,6 @@ class DartRaylib {
   late final _dart_DrawTextureNPatch _DrawTextureNPatch =
       _DrawTextureNPatch_ptr.asFunction<_dart_DrawTextureNPatch>();
 
-  /// Draw a textured polygon
   void DrawTexturePoly(
     Texture texture,
     Vector2 center,
@@ -4767,7 +4470,6 @@ class DartRaylib {
       _DrawTexturePoly_ptr.asFunction<_dart_DrawTexturePoly>();
 
   /// Color/pixel related functions
-  /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f
   int Fade(
     int color,
     double alpha,
@@ -4781,7 +4483,6 @@ class DartRaylib {
   late final _Fade_ptr = _lookup<ffi.NativeFunction<_c_Fade>>('Fade');
   late final _dart_Fade _Fade = _Fade_ptr.asFunction<_dart_Fade>();
 
-  /// Returns hexadecimal value for a Color
   int ColorToInt(
     int color,
   ) {
@@ -4795,7 +4496,6 @@ class DartRaylib {
   late final _dart_ColorToInt _ColorToInt =
       _ColorToInt_ptr.asFunction<_dart_ColorToInt>();
 
-  /// Returns Color normalized as float [0..1]
   Vector4 ColorNormalize(
     int color,
   ) {
@@ -4809,7 +4509,6 @@ class DartRaylib {
   late final _dart_ColorNormalize _ColorNormalize =
       _ColorNormalize_ptr.asFunction<_dart_ColorNormalize>();
 
-  /// Returns Color from normalized values [0..1]
   int ColorFromNormalized(
     Vector4 normalized,
   ) {
@@ -4824,7 +4523,6 @@ class DartRaylib {
   late final _dart_ColorFromNormalized _ColorFromNormalized =
       _ColorFromNormalized_ptr.asFunction<_dart_ColorFromNormalized>();
 
-  /// Returns HSV values for a Color, hue [0..360], saturation/value [0..1]
   Vector3 ColorToHSV(
     int color,
   ) {
@@ -4838,7 +4536,6 @@ class DartRaylib {
   late final _dart_ColorToHSV _ColorToHSV =
       _ColorToHSV_ptr.asFunction<_dart_ColorToHSV>();
 
-  /// Returns a Color from HSV values, hue [0..360], saturation/value [0..1]
   int ColorFromHSV(
     double hue,
     double saturation,
@@ -4856,7 +4553,6 @@ class DartRaylib {
   late final _dart_ColorFromHSV _ColorFromHSV =
       _ColorFromHSV_ptr.asFunction<_dart_ColorFromHSV>();
 
-  /// Returns color with alpha applied, alpha goes from 0.0f to 1.0f
   int ColorAlpha(
     int color,
     double alpha,
@@ -4872,7 +4568,6 @@ class DartRaylib {
   late final _dart_ColorAlpha _ColorAlpha =
       _ColorAlpha_ptr.asFunction<_dart_ColorAlpha>();
 
-  /// Returns src alpha-blended into dst color with tint
   int ColorAlphaBlend(
     int dst,
     int src,
@@ -4890,7 +4585,6 @@ class DartRaylib {
   late final _dart_ColorAlphaBlend _ColorAlphaBlend =
       _ColorAlphaBlend_ptr.asFunction<_dart_ColorAlphaBlend>();
 
-  /// Get Color structure from hexadecimal value
   int GetColor(
     int hexValue,
   ) {
@@ -4904,7 +4598,6 @@ class DartRaylib {
   late final _dart_GetColor _GetColor =
       _GetColor_ptr.asFunction<_dart_GetColor>();
 
-  /// Get Color from a source pixel pointer of certain format
   int GetPixelColor(
     ffi.Pointer<ffi.Void> srcPtr,
     int format,
@@ -4920,7 +4613,6 @@ class DartRaylib {
   late final _dart_GetPixelColor _GetPixelColor =
       _GetPixelColor_ptr.asFunction<_dart_GetPixelColor>();
 
-  /// Set color formatted into destination pixel pointer
   void SetPixelColor(
     ffi.Pointer<ffi.Void> dstPtr,
     int color,
@@ -4938,7 +4630,6 @@ class DartRaylib {
   late final _dart_SetPixelColor _SetPixelColor =
       _SetPixelColor_ptr.asFunction<_dart_SetPixelColor>();
 
-  /// Get pixel data size in bytes for certain format
   int GetPixelDataSize(
     int width,
     int height,
@@ -4957,7 +4648,6 @@ class DartRaylib {
       _GetPixelDataSize_ptr.asFunction<_dart_GetPixelDataSize>();
 
   /// Font loading/unloading functions
-  /// Get the default Font
   Font GetFontDefault() {
     return _GetFontDefault();
   }
@@ -4967,7 +4657,6 @@ class DartRaylib {
   late final _dart_GetFontDefault _GetFontDefault =
       _GetFontDefault_ptr.asFunction<_dart_GetFontDefault>();
 
-  /// Load font from file into GPU memory (VRAM)
   Font LoadFont(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -4981,7 +4670,6 @@ class DartRaylib {
   late final _dart_LoadFont _LoadFont =
       _LoadFont_ptr.asFunction<_dart_LoadFont>();
 
-  /// Load font from file with extended parameters
   Font LoadFontEx(
     ffi.Pointer<ffi.Int8> fileName,
     int fontSize,
@@ -5001,7 +4689,6 @@ class DartRaylib {
   late final _dart_LoadFontEx _LoadFontEx =
       _LoadFontEx_ptr.asFunction<_dart_LoadFontEx>();
 
-  /// Load font from Image (XNA style)
   Font LoadFontFromImage(
     Image image,
     int key,
@@ -5019,7 +4706,6 @@ class DartRaylib {
   late final _dart_LoadFontFromImage _LoadFontFromImage =
       _LoadFontFromImage_ptr.asFunction<_dart_LoadFontFromImage>();
 
-  /// Load font from memory buffer, fileType refers to extension: i.e. ".ttf"
   Font LoadFontFromMemory(
     ffi.Pointer<ffi.Int8> fileType,
     ffi.Pointer<ffi.Uint8> fileData,
@@ -5043,7 +4729,6 @@ class DartRaylib {
   late final _dart_LoadFontFromMemory _LoadFontFromMemory =
       _LoadFontFromMemory_ptr.asFunction<_dart_LoadFontFromMemory>();
 
-  /// Load font data for further use
   ffi.Pointer<CharInfo> LoadFontData(
     ffi.Pointer<ffi.Uint8> fileData,
     int dataSize,
@@ -5067,7 +4752,6 @@ class DartRaylib {
   late final _dart_LoadFontData _LoadFontData =
       _LoadFontData_ptr.asFunction<_dart_LoadFontData>();
 
-  /// Generate image font atlas using chars info
   Image GenImageFontAtlas(
     ffi.Pointer<CharInfo> chars,
     ffi.Pointer<ffi.Pointer<Rectangle>> recs,
@@ -5091,7 +4775,6 @@ class DartRaylib {
   late final _dart_GenImageFontAtlas _GenImageFontAtlas =
       _GenImageFontAtlas_ptr.asFunction<_dart_GenImageFontAtlas>();
 
-  /// Unload font chars info data (RAM)
   void UnloadFontData(
     ffi.Pointer<CharInfo> chars,
     int charsCount,
@@ -5107,7 +4790,6 @@ class DartRaylib {
   late final _dart_UnloadFontData _UnloadFontData =
       _UnloadFontData_ptr.asFunction<_dart_UnloadFontData>();
 
-  /// Unload Font from GPU memory (VRAM)
   void UnloadFont(
     Font font,
   ) {
@@ -5122,7 +4804,6 @@ class DartRaylib {
       _UnloadFont_ptr.asFunction<_dart_UnloadFont>();
 
   /// Text drawing functions
-  /// Draw current FPS
   void DrawFPS(
     int posX,
     int posY,
@@ -5136,7 +4817,6 @@ class DartRaylib {
   late final _DrawFPS_ptr = _lookup<ffi.NativeFunction<_c_DrawFPS>>('DrawFPS');
   late final _dart_DrawFPS _DrawFPS = _DrawFPS_ptr.asFunction<_dart_DrawFPS>();
 
-  /// Draw text (using default font)
   void DrawText(
     ffi.Pointer<ffi.Int8> text,
     int posX,
@@ -5158,7 +4838,6 @@ class DartRaylib {
   late final _dart_DrawText _DrawText =
       _DrawText_ptr.asFunction<_dart_DrawText>();
 
-  /// Draw text using font and additional parameters
   void DrawTextEx(
     Font font,
     ffi.Pointer<ffi.Int8> text,
@@ -5182,7 +4861,6 @@ class DartRaylib {
   late final _dart_DrawTextEx _DrawTextEx =
       _DrawTextEx_ptr.asFunction<_dart_DrawTextEx>();
 
-  /// Draw text using font inside rectangle limits
   void DrawTextRec(
     Font font,
     ffi.Pointer<ffi.Int8> text,
@@ -5241,7 +4919,6 @@ class DartRaylib {
   late final _dart_DrawTextRecEx _DrawTextRecEx =
       _DrawTextRecEx_ptr.asFunction<_dart_DrawTextRecEx>();
 
-  /// Draw one character (codepoint)
   void DrawTextCodepoint(
     Font font,
     int codepoint,
@@ -5264,7 +4941,6 @@ class DartRaylib {
       _DrawTextCodepoint_ptr.asFunction<_dart_DrawTextCodepoint>();
 
   /// Text misc. functions
-  /// Measure string width for default font
   int MeasureText(
     ffi.Pointer<ffi.Int8> text,
     int fontSize,
@@ -5280,7 +4956,6 @@ class DartRaylib {
   late final _dart_MeasureText _MeasureText =
       _MeasureText_ptr.asFunction<_dart_MeasureText>();
 
-  /// Measure string size for Font
   Vector2 MeasureTextEx(
     Font font,
     ffi.Pointer<ffi.Int8> text,
@@ -5300,7 +4975,6 @@ class DartRaylib {
   late final _dart_MeasureTextEx _MeasureTextEx =
       _MeasureTextEx_ptr.asFunction<_dart_MeasureTextEx>();
 
-  /// Get index position for a unicode character on font
   int GetGlyphIndex(
     Font font,
     int codepoint,
@@ -5318,7 +4992,6 @@ class DartRaylib {
 
   /// Text strings management functions (no utf8 strings, only byte chars)
   /// NOTE: Some strings allocate memory internally for returned strings, just be careful!
-  /// Copy one string to another, returns bytes copied
   int TextCopy(
     ffi.Pointer<ffi.Int8> dst,
     ffi.Pointer<ffi.Int8> src,
@@ -5334,7 +5007,6 @@ class DartRaylib {
   late final _dart_TextCopy _TextCopy =
       _TextCopy_ptr.asFunction<_dart_TextCopy>();
 
-  /// Check if two text string are equal
   int TextIsEqual(
     ffi.Pointer<ffi.Int8> text1,
     ffi.Pointer<ffi.Int8> text2,
@@ -5350,7 +5022,6 @@ class DartRaylib {
   late final _dart_TextIsEqual _TextIsEqual =
       _TextIsEqual_ptr.asFunction<_dart_TextIsEqual>();
 
-  /// Get text length, checks for '\0' ending
   int TextLength(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -5364,7 +5035,6 @@ class DartRaylib {
   late final _dart_TextLength _TextLength =
       _TextLength_ptr.asFunction<_dart_TextLength>();
 
-  /// Text formatting with variables (sprintf style)
   ffi.Pointer<ffi.Int8> TextFormat(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -5378,7 +5048,6 @@ class DartRaylib {
   late final _dart_TextFormat _TextFormat =
       _TextFormat_ptr.asFunction<_dart_TextFormat>();
 
-  /// Get a piece of a text string
   ffi.Pointer<ffi.Int8> TextSubtext(
     ffi.Pointer<ffi.Int8> text,
     int position,
@@ -5396,7 +5065,6 @@ class DartRaylib {
   late final _dart_TextSubtext _TextSubtext =
       _TextSubtext_ptr.asFunction<_dart_TextSubtext>();
 
-  /// Replace text string (memory must be freed!)
   ffi.Pointer<ffi.Int8> TextReplace(
     ffi.Pointer<ffi.Int8> text,
     ffi.Pointer<ffi.Int8> replace,
@@ -5414,7 +5082,6 @@ class DartRaylib {
   late final _dart_TextReplace _TextReplace =
       _TextReplace_ptr.asFunction<_dart_TextReplace>();
 
-  /// Insert text in a position (memory must be freed!)
   ffi.Pointer<ffi.Int8> TextInsert(
     ffi.Pointer<ffi.Int8> text,
     ffi.Pointer<ffi.Int8> insert,
@@ -5432,7 +5099,6 @@ class DartRaylib {
   late final _dart_TextInsert _TextInsert =
       _TextInsert_ptr.asFunction<_dart_TextInsert>();
 
-  /// Join text strings with delimiter
   ffi.Pointer<ffi.Int8> TextJoin(
     ffi.Pointer<ffi.Pointer<ffi.Int8>> textList,
     int count,
@@ -5450,7 +5116,6 @@ class DartRaylib {
   late final _dart_TextJoin _TextJoin =
       _TextJoin_ptr.asFunction<_dart_TextJoin>();
 
-  /// Split text into multiple strings
   ffi.Pointer<ffi.Pointer<ffi.Int8>> TextSplit(
     ffi.Pointer<ffi.Int8> text,
     int delimiter,
@@ -5468,7 +5133,6 @@ class DartRaylib {
   late final _dart_TextSplit _TextSplit =
       _TextSplit_ptr.asFunction<_dart_TextSplit>();
 
-  /// Append text at specific position and move cursor!
   void TextAppend(
     ffi.Pointer<ffi.Int8> text,
     ffi.Pointer<ffi.Int8> append,
@@ -5486,7 +5150,6 @@ class DartRaylib {
   late final _dart_TextAppend _TextAppend =
       _TextAppend_ptr.asFunction<_dart_TextAppend>();
 
-  /// Find first text occurrence within a string
   int TextFindIndex(
     ffi.Pointer<ffi.Int8> text,
     ffi.Pointer<ffi.Int8> find,
@@ -5502,7 +5165,6 @@ class DartRaylib {
   late final _dart_TextFindIndex _TextFindIndex =
       _TextFindIndex_ptr.asFunction<_dart_TextFindIndex>();
 
-  /// Get upper case version of provided string
   ffi.Pointer<ffi.Int8> TextToUpper(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -5516,7 +5178,6 @@ class DartRaylib {
   late final _dart_TextToUpper _TextToUpper =
       _TextToUpper_ptr.asFunction<_dart_TextToUpper>();
 
-  /// Get lower case version of provided string
   ffi.Pointer<ffi.Int8> TextToLower(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -5530,7 +5191,6 @@ class DartRaylib {
   late final _dart_TextToLower _TextToLower =
       _TextToLower_ptr.asFunction<_dart_TextToLower>();
 
-  /// Get Pascal case notation version of provided string
   ffi.Pointer<ffi.Int8> TextToPascal(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -5544,7 +5204,6 @@ class DartRaylib {
   late final _dart_TextToPascal _TextToPascal =
       _TextToPascal_ptr.asFunction<_dart_TextToPascal>();
 
-  /// Get integer value from text (negative values not supported)
   int TextToInteger(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -5558,7 +5217,6 @@ class DartRaylib {
   late final _dart_TextToInteger _TextToInteger =
       _TextToInteger_ptr.asFunction<_dart_TextToInteger>();
 
-  /// Encode text codepoint into utf8 text (memory must be freed!)
   ffi.Pointer<ffi.Int8> TextToUtf8(
     ffi.Pointer<ffi.Int32> codepoints,
     int length,
@@ -5575,7 +5233,6 @@ class DartRaylib {
       _TextToUtf8_ptr.asFunction<_dart_TextToUtf8>();
 
   /// UTF8 text strings management functions
-  /// Get all codepoints in a string, codepoints count returned by parameters
   ffi.Pointer<ffi.Int32> GetCodepoints(
     ffi.Pointer<ffi.Int8> text,
     ffi.Pointer<ffi.Int32> count,
@@ -5591,7 +5248,6 @@ class DartRaylib {
   late final _dart_GetCodepoints _GetCodepoints =
       _GetCodepoints_ptr.asFunction<_dart_GetCodepoints>();
 
-  /// Get total number of characters (codepoints) in a UTF8 encoded string
   int GetCodepointsCount(
     ffi.Pointer<ffi.Int8> text,
   ) {
@@ -5605,7 +5261,6 @@ class DartRaylib {
   late final _dart_GetCodepointsCount _GetCodepointsCount =
       _GetCodepointsCount_ptr.asFunction<_dart_GetCodepointsCount>();
 
-  /// Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure
   int GetNextCodepoint(
     ffi.Pointer<ffi.Int8> text,
     ffi.Pointer<ffi.Int32> bytesProcessed,
@@ -5621,7 +5276,6 @@ class DartRaylib {
   late final _dart_GetNextCodepoint _GetNextCodepoint =
       _GetNextCodepoint_ptr.asFunction<_dart_GetNextCodepoint>();
 
-  /// Encode codepoint into utf8 text (char array length returned as parameter)
   ffi.Pointer<ffi.Int8> CodepointToUtf8(
     int codepoint,
     ffi.Pointer<ffi.Int32> byteLength,
@@ -5638,7 +5292,6 @@ class DartRaylib {
       _CodepointToUtf8_ptr.asFunction<_dart_CodepointToUtf8>();
 
   /// Basic geometric 3D shapes drawing functions
-  /// Draw a line in 3D world space
   void DrawLine3D(
     Vector3 startPos,
     Vector3 endPos,
@@ -5656,7 +5309,6 @@ class DartRaylib {
   late final _dart_DrawLine3D _DrawLine3D =
       _DrawLine3D_ptr.asFunction<_dart_DrawLine3D>();
 
-  /// Draw a point in 3D space, actually a small line
   void DrawPoint3D(
     Vector3 position,
     int color,
@@ -5672,7 +5324,6 @@ class DartRaylib {
   late final _dart_DrawPoint3D _DrawPoint3D =
       _DrawPoint3D_ptr.asFunction<_dart_DrawPoint3D>();
 
-  /// Draw a circle in 3D world space
   void DrawCircle3D(
     Vector3 center,
     double radius,
@@ -5694,7 +5345,6 @@ class DartRaylib {
   late final _dart_DrawCircle3D _DrawCircle3D =
       _DrawCircle3D_ptr.asFunction<_dart_DrawCircle3D>();
 
-  /// Draw a color-filled triangle (vertex in counter-clockwise order!)
   void DrawTriangle3D(
     Vector3 v1,
     Vector3 v2,
@@ -5714,7 +5364,6 @@ class DartRaylib {
   late final _dart_DrawTriangle3D _DrawTriangle3D =
       _DrawTriangle3D_ptr.asFunction<_dart_DrawTriangle3D>();
 
-  /// Draw a triangle strip defined by points
   void DrawTriangleStrip3D(
     ffi.Pointer<Vector3> points,
     int pointsCount,
@@ -5733,7 +5382,6 @@ class DartRaylib {
   late final _dart_DrawTriangleStrip3D _DrawTriangleStrip3D =
       _DrawTriangleStrip3D_ptr.asFunction<_dart_DrawTriangleStrip3D>();
 
-  /// Draw cube
   void DrawCube(
     Vector3 position,
     double width,
@@ -5755,7 +5403,6 @@ class DartRaylib {
   late final _dart_DrawCube _DrawCube =
       _DrawCube_ptr.asFunction<_dart_DrawCube>();
 
-  /// Draw cube (Vector version)
   void DrawCubeV(
     Vector3 position,
     Vector3 size,
@@ -5773,7 +5420,6 @@ class DartRaylib {
   late final _dart_DrawCubeV _DrawCubeV =
       _DrawCubeV_ptr.asFunction<_dart_DrawCubeV>();
 
-  /// Draw cube wires
   void DrawCubeWires(
     Vector3 position,
     double width,
@@ -5795,7 +5441,6 @@ class DartRaylib {
   late final _dart_DrawCubeWires _DrawCubeWires =
       _DrawCubeWires_ptr.asFunction<_dart_DrawCubeWires>();
 
-  /// Draw cube wires (Vector version)
   void DrawCubeWiresV(
     Vector3 position,
     Vector3 size,
@@ -5813,7 +5458,6 @@ class DartRaylib {
   late final _dart_DrawCubeWiresV _DrawCubeWiresV =
       _DrawCubeWiresV_ptr.asFunction<_dart_DrawCubeWiresV>();
 
-  /// Draw cube textured
   void DrawCubeTexture(
     Texture texture,
     Vector3 position,
@@ -5837,7 +5481,6 @@ class DartRaylib {
   late final _dart_DrawCubeTexture _DrawCubeTexture =
       _DrawCubeTexture_ptr.asFunction<_dart_DrawCubeTexture>();
 
-  /// Draw sphere
   void DrawSphere(
     Vector3 centerPos,
     double radius,
@@ -5855,7 +5498,6 @@ class DartRaylib {
   late final _dart_DrawSphere _DrawSphere =
       _DrawSphere_ptr.asFunction<_dart_DrawSphere>();
 
-  /// Draw sphere with extended parameters
   void DrawSphereEx(
     Vector3 centerPos,
     double radius,
@@ -5877,7 +5519,6 @@ class DartRaylib {
   late final _dart_DrawSphereEx _DrawSphereEx =
       _DrawSphereEx_ptr.asFunction<_dart_DrawSphereEx>();
 
-  /// Draw sphere wires
   void DrawSphereWires(
     Vector3 centerPos,
     double radius,
@@ -5899,7 +5540,6 @@ class DartRaylib {
   late final _dart_DrawSphereWires _DrawSphereWires =
       _DrawSphereWires_ptr.asFunction<_dart_DrawSphereWires>();
 
-  /// Draw a cylinder/cone
   void DrawCylinder(
     Vector3 position,
     double radiusTop,
@@ -5923,7 +5563,6 @@ class DartRaylib {
   late final _dart_DrawCylinder _DrawCylinder =
       _DrawCylinder_ptr.asFunction<_dart_DrawCylinder>();
 
-  /// Draw a cylinder/cone wires
   void DrawCylinderWires(
     Vector3 position,
     double radiusTop,
@@ -5947,7 +5586,6 @@ class DartRaylib {
   late final _dart_DrawCylinderWires _DrawCylinderWires =
       _DrawCylinderWires_ptr.asFunction<_dart_DrawCylinderWires>();
 
-  /// Draw a plane XZ
   void DrawPlane(
     Vector3 centerPos,
     Vector2 size,
@@ -5965,7 +5603,6 @@ class DartRaylib {
   late final _dart_DrawPlane _DrawPlane =
       _DrawPlane_ptr.asFunction<_dart_DrawPlane>();
 
-  /// Draw a ray line
   void DrawRay(
     Ray ray,
     int color,
@@ -5979,7 +5616,6 @@ class DartRaylib {
   late final _DrawRay_ptr = _lookup<ffi.NativeFunction<_c_DrawRay>>('DrawRay');
   late final _dart_DrawRay _DrawRay = _DrawRay_ptr.asFunction<_dart_DrawRay>();
 
-  /// Draw a grid (centered at (0, 0, 0))
   void DrawGrid(
     int slices,
     double spacing,
@@ -5996,7 +5632,6 @@ class DartRaylib {
       _DrawGrid_ptr.asFunction<_dart_DrawGrid>();
 
   /// Model loading/unloading functions
-  /// Load model from files (meshes and materials)
   Model LoadModel(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -6010,7 +5645,6 @@ class DartRaylib {
   late final _dart_LoadModel _LoadModel =
       _LoadModel_ptr.asFunction<_dart_LoadModel>();
 
-  /// Load model from generated mesh (default material)
   Model LoadModelFromMesh(
     Mesh mesh,
   ) {
@@ -6024,7 +5658,6 @@ class DartRaylib {
   late final _dart_LoadModelFromMesh _LoadModelFromMesh =
       _LoadModelFromMesh_ptr.asFunction<_dart_LoadModelFromMesh>();
 
-  /// Unload model (including meshes) from memory (RAM and/or VRAM)
   void UnloadModel(
     Model model,
   ) {
@@ -6038,7 +5671,6 @@ class DartRaylib {
   late final _dart_UnloadModel _UnloadModel =
       _UnloadModel_ptr.asFunction<_dart_UnloadModel>();
 
-  /// Unload model (but not meshes) from memory (RAM and/or VRAM)
   void UnloadModelKeepMeshes(
     Model model,
   ) {
@@ -6054,7 +5686,6 @@ class DartRaylib {
       _UnloadModelKeepMeshes_ptr.asFunction<_dart_UnloadModelKeepMeshes>();
 
   /// Mesh loading/unloading functions
-  /// Upload mesh vertex data in GPU and provide VAO/VBO ids
   void UploadMesh(
     ffi.Pointer<Mesh> mesh,
     int dynamic_1,
@@ -6070,7 +5701,6 @@ class DartRaylib {
   late final _dart_UploadMesh _UploadMesh =
       _UploadMesh_ptr.asFunction<_dart_UploadMesh>();
 
-  /// Update mesh vertex data in GPU for a specific buffer index
   void UpdateMeshBuffer(
     Mesh mesh,
     int index,
@@ -6092,7 +5722,6 @@ class DartRaylib {
   late final _dart_UpdateMeshBuffer _UpdateMeshBuffer =
       _UpdateMeshBuffer_ptr.asFunction<_dart_UpdateMeshBuffer>();
 
-  /// Draw a 3d mesh with material and transform
   void DrawMesh(
     Mesh mesh,
     Material material,
@@ -6110,7 +5739,6 @@ class DartRaylib {
   late final _dart_DrawMesh _DrawMesh =
       _DrawMesh_ptr.asFunction<_dart_DrawMesh>();
 
-  /// Draw multiple mesh instances with material and different transforms
   void DrawMeshInstanced(
     Mesh mesh,
     Material material,
@@ -6130,7 +5758,6 @@ class DartRaylib {
   late final _dart_DrawMeshInstanced _DrawMeshInstanced =
       _DrawMeshInstanced_ptr.asFunction<_dart_DrawMeshInstanced>();
 
-  /// Unload mesh data from CPU and GPU
   void UnloadMesh(
     Mesh mesh,
   ) {
@@ -6144,7 +5771,6 @@ class DartRaylib {
   late final _dart_UnloadMesh _UnloadMesh =
       _UnloadMesh_ptr.asFunction<_dart_UnloadMesh>();
 
-  /// Export mesh data to file, returns true on success
   int ExportMesh(
     Mesh mesh,
     ffi.Pointer<ffi.Int8> fileName,
@@ -6161,7 +5787,6 @@ class DartRaylib {
       _ExportMesh_ptr.asFunction<_dart_ExportMesh>();
 
   /// Material loading/unloading functions
-  /// Load materials from model file
   ffi.Pointer<Material> LoadMaterials(
     ffi.Pointer<ffi.Int8> fileName,
     ffi.Pointer<ffi.Int32> materialCount,
@@ -6177,7 +5802,6 @@ class DartRaylib {
   late final _dart_LoadMaterials _LoadMaterials =
       _LoadMaterials_ptr.asFunction<_dart_LoadMaterials>();
 
-  /// Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
   Material LoadMaterialDefault() {
     return _LoadMaterialDefault();
   }
@@ -6188,7 +5812,6 @@ class DartRaylib {
   late final _dart_LoadMaterialDefault _LoadMaterialDefault =
       _LoadMaterialDefault_ptr.asFunction<_dart_LoadMaterialDefault>();
 
-  /// Unload material from GPU memory (VRAM)
   void UnloadMaterial(
     Material material,
   ) {
@@ -6202,7 +5825,6 @@ class DartRaylib {
   late final _dart_UnloadMaterial _UnloadMaterial =
       _UnloadMaterial_ptr.asFunction<_dart_UnloadMaterial>();
 
-  /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
   void SetMaterialTexture(
     ffi.Pointer<Material> material,
     int mapType,
@@ -6220,7 +5842,6 @@ class DartRaylib {
   late final _dart_SetMaterialTexture _SetMaterialTexture =
       _SetMaterialTexture_ptr.asFunction<_dart_SetMaterialTexture>();
 
-  /// Set material for a mesh
   void SetModelMeshMaterial(
     ffi.Pointer<Model> model,
     int meshId,
@@ -6240,7 +5861,6 @@ class DartRaylib {
       _SetModelMeshMaterial_ptr.asFunction<_dart_SetModelMeshMaterial>();
 
   /// Model animations loading/unloading functions
-  /// Load model animations from file
   ffi.Pointer<ModelAnimation> LoadModelAnimations(
     ffi.Pointer<ffi.Int8> fileName,
     ffi.Pointer<ffi.Int32> animsCount,
@@ -6257,7 +5877,6 @@ class DartRaylib {
   late final _dart_LoadModelAnimations _LoadModelAnimations =
       _LoadModelAnimations_ptr.asFunction<_dart_LoadModelAnimations>();
 
-  /// Update model animation pose
   void UpdateModelAnimation(
     Model model,
     ModelAnimation anim,
@@ -6276,7 +5895,6 @@ class DartRaylib {
   late final _dart_UpdateModelAnimation _UpdateModelAnimation =
       _UpdateModelAnimation_ptr.asFunction<_dart_UpdateModelAnimation>();
 
-  /// Unload animation data
   void UnloadModelAnimation(
     ModelAnimation anim,
   ) {
@@ -6291,7 +5909,6 @@ class DartRaylib {
   late final _dart_UnloadModelAnimation _UnloadModelAnimation =
       _UnloadModelAnimation_ptr.asFunction<_dart_UnloadModelAnimation>();
 
-  /// Unload animation array data
   void UnloadModelAnimations(
     ffi.Pointer<ModelAnimation> animations,
     int count,
@@ -6308,7 +5925,6 @@ class DartRaylib {
   late final _dart_UnloadModelAnimations _UnloadModelAnimations =
       _UnloadModelAnimations_ptr.asFunction<_dart_UnloadModelAnimations>();
 
-  /// Check model animation skeleton match
   int IsModelAnimationValid(
     Model model,
     ModelAnimation anim,
@@ -6326,7 +5942,6 @@ class DartRaylib {
       _IsModelAnimationValid_ptr.asFunction<_dart_IsModelAnimationValid>();
 
   /// Mesh generation functions
-  /// Generate polygonal mesh
   Mesh GenMeshPoly(
     int sides,
     double radius,
@@ -6342,7 +5957,6 @@ class DartRaylib {
   late final _dart_GenMeshPoly _GenMeshPoly =
       _GenMeshPoly_ptr.asFunction<_dart_GenMeshPoly>();
 
-  /// Generate plane mesh (with subdivisions)
   Mesh GenMeshPlane(
     double width,
     double length,
@@ -6362,7 +5976,6 @@ class DartRaylib {
   late final _dart_GenMeshPlane _GenMeshPlane =
       _GenMeshPlane_ptr.asFunction<_dart_GenMeshPlane>();
 
-  /// Generate cuboid mesh
   Mesh GenMeshCube(
     double width,
     double height,
@@ -6380,7 +5993,6 @@ class DartRaylib {
   late final _dart_GenMeshCube _GenMeshCube =
       _GenMeshCube_ptr.asFunction<_dart_GenMeshCube>();
 
-  /// Generate sphere mesh (standard sphere)
   Mesh GenMeshSphere(
     double radius,
     int rings,
@@ -6398,7 +6010,6 @@ class DartRaylib {
   late final _dart_GenMeshSphere _GenMeshSphere =
       _GenMeshSphere_ptr.asFunction<_dart_GenMeshSphere>();
 
-  /// Generate half-sphere mesh (no bottom cap)
   Mesh GenMeshHemiSphere(
     double radius,
     int rings,
@@ -6416,7 +6027,6 @@ class DartRaylib {
   late final _dart_GenMeshHemiSphere _GenMeshHemiSphere =
       _GenMeshHemiSphere_ptr.asFunction<_dart_GenMeshHemiSphere>();
 
-  /// Generate cylinder mesh
   Mesh GenMeshCylinder(
     double radius,
     double height,
@@ -6434,7 +6044,6 @@ class DartRaylib {
   late final _dart_GenMeshCylinder _GenMeshCylinder =
       _GenMeshCylinder_ptr.asFunction<_dart_GenMeshCylinder>();
 
-  /// Generate torus mesh
   Mesh GenMeshTorus(
     double radius,
     double size,
@@ -6454,7 +6063,6 @@ class DartRaylib {
   late final _dart_GenMeshTorus _GenMeshTorus =
       _GenMeshTorus_ptr.asFunction<_dart_GenMeshTorus>();
 
-  /// Generate trefoil knot mesh
   Mesh GenMeshKnot(
     double radius,
     double size,
@@ -6474,7 +6082,6 @@ class DartRaylib {
   late final _dart_GenMeshKnot _GenMeshKnot =
       _GenMeshKnot_ptr.asFunction<_dart_GenMeshKnot>();
 
-  /// Generate heightmap mesh from image data
   Mesh GenMeshHeightmap(
     Image heightmap,
     Vector3 size,
@@ -6490,7 +6097,6 @@ class DartRaylib {
   late final _dart_GenMeshHeightmap _GenMeshHeightmap =
       _GenMeshHeightmap_ptr.asFunction<_dart_GenMeshHeightmap>();
 
-  /// Generate cubes-based map mesh from image data
   Mesh GenMeshCubicmap(
     Image cubicmap,
     Vector3 cubeSize,
@@ -6507,7 +6113,6 @@ class DartRaylib {
       _GenMeshCubicmap_ptr.asFunction<_dart_GenMeshCubicmap>();
 
   /// Mesh manipulation functions
-  /// Compute mesh bounding box limits
   BoundingBox MeshBoundingBox(
     Mesh mesh,
   ) {
@@ -6521,7 +6126,6 @@ class DartRaylib {
   late final _dart_MeshBoundingBox _MeshBoundingBox =
       _MeshBoundingBox_ptr.asFunction<_dart_MeshBoundingBox>();
 
-  /// Compute mesh tangents
   void MeshTangents(
     ffi.Pointer<Mesh> mesh,
   ) {
@@ -6535,7 +6139,6 @@ class DartRaylib {
   late final _dart_MeshTangents _MeshTangents =
       _MeshTangents_ptr.asFunction<_dart_MeshTangents>();
 
-  /// Compute mesh binormals
   void MeshBinormals(
     ffi.Pointer<Mesh> mesh,
   ) {
@@ -6550,7 +6153,6 @@ class DartRaylib {
       _MeshBinormals_ptr.asFunction<_dart_MeshBinormals>();
 
   /// Model drawing functions
-  /// Draw a model (with texture if set)
   void DrawModel(
     Model model,
     Vector3 position,
@@ -6570,7 +6172,6 @@ class DartRaylib {
   late final _dart_DrawModel _DrawModel =
       _DrawModel_ptr.asFunction<_dart_DrawModel>();
 
-  /// Draw a model with extended parameters
   void DrawModelEx(
     Model model,
     Vector3 position,
@@ -6594,7 +6195,6 @@ class DartRaylib {
   late final _dart_DrawModelEx _DrawModelEx =
       _DrawModelEx_ptr.asFunction<_dart_DrawModelEx>();
 
-  /// Draw a model wires (with texture if set)
   void DrawModelWires(
     Model model,
     Vector3 position,
@@ -6614,7 +6214,6 @@ class DartRaylib {
   late final _dart_DrawModelWires _DrawModelWires =
       _DrawModelWires_ptr.asFunction<_dart_DrawModelWires>();
 
-  /// Draw a model wires (with texture if set) with extended parameters
   void DrawModelWiresEx(
     Model model,
     Vector3 position,
@@ -6638,7 +6237,6 @@ class DartRaylib {
   late final _dart_DrawModelWiresEx _DrawModelWiresEx =
       _DrawModelWiresEx_ptr.asFunction<_dart_DrawModelWiresEx>();
 
-  /// Draw bounding box (wires)
   void DrawBoundingBox(
     BoundingBox box,
     int color,
@@ -6654,7 +6252,6 @@ class DartRaylib {
   late final _dart_DrawBoundingBox _DrawBoundingBox =
       _DrawBoundingBox_ptr.asFunction<_dart_DrawBoundingBox>();
 
-  /// Draw a billboard texture
   void DrawBillboard(
     Camera3D camera,
     Texture texture,
@@ -6676,7 +6273,6 @@ class DartRaylib {
   late final _dart_DrawBillboard _DrawBillboard =
       _DrawBillboard_ptr.asFunction<_dart_DrawBillboard>();
 
-  /// Draw a billboard texture defined by source
   void DrawBillboardRec(
     Camera3D camera,
     Texture texture,
@@ -6701,7 +6297,6 @@ class DartRaylib {
       _DrawBillboardRec_ptr.asFunction<_dart_DrawBillboardRec>();
 
   /// Collision detection functions
-  /// Detect collision between two spheres
   int CheckCollisionSpheres(
     Vector3 center1,
     double radius1,
@@ -6722,7 +6317,6 @@ class DartRaylib {
   late final _dart_CheckCollisionSpheres _CheckCollisionSpheres =
       _CheckCollisionSpheres_ptr.asFunction<_dart_CheckCollisionSpheres>();
 
-  /// Detect collision between two bounding boxes
   int CheckCollisionBoxes(
     BoundingBox box1,
     BoundingBox box2,
@@ -6739,7 +6333,6 @@ class DartRaylib {
   late final _dart_CheckCollisionBoxes _CheckCollisionBoxes =
       _CheckCollisionBoxes_ptr.asFunction<_dart_CheckCollisionBoxes>();
 
-  /// Detect collision between box and sphere
   int CheckCollisionBoxSphere(
     BoundingBox box,
     Vector3 center,
@@ -6758,7 +6351,6 @@ class DartRaylib {
   late final _dart_CheckCollisionBoxSphere _CheckCollisionBoxSphere =
       _CheckCollisionBoxSphere_ptr.asFunction<_dart_CheckCollisionBoxSphere>();
 
-  /// Detect collision between ray and sphere
   int CheckCollisionRaySphere(
     Ray ray,
     Vector3 center,
@@ -6777,7 +6369,6 @@ class DartRaylib {
   late final _dart_CheckCollisionRaySphere _CheckCollisionRaySphere =
       _CheckCollisionRaySphere_ptr.asFunction<_dart_CheckCollisionRaySphere>();
 
-  /// Detect collision between ray and sphere, returns collision point
   int CheckCollisionRaySphereEx(
     Ray ray,
     Vector3 center,
@@ -6799,7 +6390,6 @@ class DartRaylib {
       _CheckCollisionRaySphereEx_ptr.asFunction<
           _dart_CheckCollisionRaySphereEx>();
 
-  /// Detect collision between ray and box
   int CheckCollisionRayBox(
     Ray ray,
     BoundingBox box,
@@ -6816,7 +6406,6 @@ class DartRaylib {
   late final _dart_CheckCollisionRayBox _CheckCollisionRayBox =
       _CheckCollisionRayBox_ptr.asFunction<_dart_CheckCollisionRayBox>();
 
-  /// Get collision info between ray and mesh
   RayHitInfo GetCollisionRayMesh(
     Ray ray,
     Mesh mesh,
@@ -6835,7 +6424,6 @@ class DartRaylib {
   late final _dart_GetCollisionRayMesh _GetCollisionRayMesh =
       _GetCollisionRayMesh_ptr.asFunction<_dart_GetCollisionRayMesh>();
 
-  /// Get collision info between ray and model
   RayHitInfo GetCollisionRayModel(
     Ray ray,
     Model model,
@@ -6852,7 +6440,6 @@ class DartRaylib {
   late final _dart_GetCollisionRayModel _GetCollisionRayModel =
       _GetCollisionRayModel_ptr.asFunction<_dart_GetCollisionRayModel>();
 
-  /// Get collision info between ray and triangle
   RayHitInfo GetCollisionRayTriangle(
     Ray ray,
     Vector3 p1,
@@ -6873,7 +6460,6 @@ class DartRaylib {
   late final _dart_GetCollisionRayTriangle _GetCollisionRayTriangle =
       _GetCollisionRayTriangle_ptr.asFunction<_dart_GetCollisionRayTriangle>();
 
-  /// Get collision info between ray and ground plane (Y-normal plane)
   RayHitInfo GetCollisionRayGround(
     Ray ray,
     double groundHeight,
@@ -6891,7 +6477,6 @@ class DartRaylib {
       _GetCollisionRayGround_ptr.asFunction<_dart_GetCollisionRayGround>();
 
   /// Audio device management functions
-  /// Initialize audio device and context
   void InitAudioDevice() {
     return _InitAudioDevice();
   }
@@ -6901,7 +6486,6 @@ class DartRaylib {
   late final _dart_InitAudioDevice _InitAudioDevice =
       _InitAudioDevice_ptr.asFunction<_dart_InitAudioDevice>();
 
-  /// Close the audio device and context
   void CloseAudioDevice() {
     return _CloseAudioDevice();
   }
@@ -6911,7 +6495,6 @@ class DartRaylib {
   late final _dart_CloseAudioDevice _CloseAudioDevice =
       _CloseAudioDevice_ptr.asFunction<_dart_CloseAudioDevice>();
 
-  /// Check if audio device has been initialized successfully
   int IsAudioDeviceReady() {
     return _IsAudioDeviceReady();
   }
@@ -6921,7 +6504,6 @@ class DartRaylib {
   late final _dart_IsAudioDeviceReady _IsAudioDeviceReady =
       _IsAudioDeviceReady_ptr.asFunction<_dart_IsAudioDeviceReady>();
 
-  /// Set master volume (listener)
   void SetMasterVolume(
     double volume,
   ) {
@@ -6936,7 +6518,6 @@ class DartRaylib {
       _SetMasterVolume_ptr.asFunction<_dart_SetMasterVolume>();
 
   /// Wave/Sound loading/unloading functions
-  /// Load wave data from file
   Wave LoadWave(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -6950,7 +6531,6 @@ class DartRaylib {
   late final _dart_LoadWave _LoadWave =
       _LoadWave_ptr.asFunction<_dart_LoadWave>();
 
-  /// Load wave from memory buffer, fileType refers to extension: i.e. ".wav"
   Wave LoadWaveFromMemory(
     ffi.Pointer<ffi.Int8> fileType,
     ffi.Pointer<ffi.Uint8> fileData,
@@ -6968,7 +6548,6 @@ class DartRaylib {
   late final _dart_LoadWaveFromMemory _LoadWaveFromMemory =
       _LoadWaveFromMemory_ptr.asFunction<_dart_LoadWaveFromMemory>();
 
-  /// Load sound from file
   Sound LoadSound(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -6982,7 +6561,6 @@ class DartRaylib {
   late final _dart_LoadSound _LoadSound =
       _LoadSound_ptr.asFunction<_dart_LoadSound>();
 
-  /// Load sound from wave data
   Sound LoadSoundFromWave(
     Wave wave,
   ) {
@@ -6996,7 +6574,6 @@ class DartRaylib {
   late final _dart_LoadSoundFromWave _LoadSoundFromWave =
       _LoadSoundFromWave_ptr.asFunction<_dart_LoadSoundFromWave>();
 
-  /// Update sound buffer with new data
   void UpdateSound(
     Sound sound,
     ffi.Pointer<ffi.Void> data,
@@ -7014,7 +6591,6 @@ class DartRaylib {
   late final _dart_UpdateSound _UpdateSound =
       _UpdateSound_ptr.asFunction<_dart_UpdateSound>();
 
-  /// Unload wave data
   void UnloadWave(
     Wave wave,
   ) {
@@ -7028,7 +6604,6 @@ class DartRaylib {
   late final _dart_UnloadWave _UnloadWave =
       _UnloadWave_ptr.asFunction<_dart_UnloadWave>();
 
-  /// Unload sound
   void UnloadSound(
     Sound sound,
   ) {
@@ -7042,7 +6617,6 @@ class DartRaylib {
   late final _dart_UnloadSound _UnloadSound =
       _UnloadSound_ptr.asFunction<_dart_UnloadSound>();
 
-  /// Export wave data to file, returns true on success
   int ExportWave(
     Wave wave,
     ffi.Pointer<ffi.Int8> fileName,
@@ -7058,7 +6632,6 @@ class DartRaylib {
   late final _dart_ExportWave _ExportWave =
       _ExportWave_ptr.asFunction<_dart_ExportWave>();
 
-  /// Export wave sample data to code (.h), returns true on success
   int ExportWaveAsCode(
     Wave wave,
     ffi.Pointer<ffi.Int8> fileName,
@@ -7075,7 +6648,6 @@ class DartRaylib {
       _ExportWaveAsCode_ptr.asFunction<_dart_ExportWaveAsCode>();
 
   /// Wave/Sound management functions
-  /// Play a sound
   void PlaySound(
     Sound sound,
   ) {
@@ -7089,7 +6661,6 @@ class DartRaylib {
   late final _dart_PlaySound _PlaySound =
       _PlaySound_ptr.asFunction<_dart_PlaySound>();
 
-  /// Stop playing a sound
   void StopSound(
     Sound sound,
   ) {
@@ -7103,7 +6674,6 @@ class DartRaylib {
   late final _dart_StopSound _StopSound =
       _StopSound_ptr.asFunction<_dart_StopSound>();
 
-  /// Pause a sound
   void PauseSound(
     Sound sound,
   ) {
@@ -7117,7 +6687,6 @@ class DartRaylib {
   late final _dart_PauseSound _PauseSound =
       _PauseSound_ptr.asFunction<_dart_PauseSound>();
 
-  /// Resume a paused sound
   void ResumeSound(
     Sound sound,
   ) {
@@ -7131,7 +6700,6 @@ class DartRaylib {
   late final _dart_ResumeSound _ResumeSound =
       _ResumeSound_ptr.asFunction<_dart_ResumeSound>();
 
-  /// Play a sound (using multichannel buffer pool)
   void PlaySoundMulti(
     Sound sound,
   ) {
@@ -7145,7 +6713,6 @@ class DartRaylib {
   late final _dart_PlaySoundMulti _PlaySoundMulti =
       _PlaySoundMulti_ptr.asFunction<_dart_PlaySoundMulti>();
 
-  /// Stop any sound playing (using multichannel buffer pool)
   void StopSoundMulti() {
     return _StopSoundMulti();
   }
@@ -7155,7 +6722,6 @@ class DartRaylib {
   late final _dart_StopSoundMulti _StopSoundMulti =
       _StopSoundMulti_ptr.asFunction<_dart_StopSoundMulti>();
 
-  /// Get number of sounds playing in the multichannel
   int GetSoundsPlaying() {
     return _GetSoundsPlaying();
   }
@@ -7165,7 +6731,6 @@ class DartRaylib {
   late final _dart_GetSoundsPlaying _GetSoundsPlaying =
       _GetSoundsPlaying_ptr.asFunction<_dart_GetSoundsPlaying>();
 
-  /// Check if a sound is currently playing
   int IsSoundPlaying(
     Sound sound,
   ) {
@@ -7179,7 +6744,6 @@ class DartRaylib {
   late final _dart_IsSoundPlaying _IsSoundPlaying =
       _IsSoundPlaying_ptr.asFunction<_dart_IsSoundPlaying>();
 
-  /// Set volume for a sound (1.0 is max level)
   void SetSoundVolume(
     Sound sound,
     double volume,
@@ -7195,7 +6759,6 @@ class DartRaylib {
   late final _dart_SetSoundVolume _SetSoundVolume =
       _SetSoundVolume_ptr.asFunction<_dart_SetSoundVolume>();
 
-  /// Set pitch for a sound (1.0 is base level)
   void SetSoundPitch(
     Sound sound,
     double pitch,
@@ -7211,7 +6774,6 @@ class DartRaylib {
   late final _dart_SetSoundPitch _SetSoundPitch =
       _SetSoundPitch_ptr.asFunction<_dart_SetSoundPitch>();
 
-  /// Convert wave data to desired format
   void WaveFormat(
     ffi.Pointer<Wave> wave,
     int sampleRate,
@@ -7231,7 +6793,6 @@ class DartRaylib {
   late final _dart_WaveFormat _WaveFormat =
       _WaveFormat_ptr.asFunction<_dart_WaveFormat>();
 
-  /// Copy a wave to a new wave
   Wave WaveCopy(
     Wave wave,
   ) {
@@ -7245,7 +6806,6 @@ class DartRaylib {
   late final _dart_WaveCopy _WaveCopy =
       _WaveCopy_ptr.asFunction<_dart_WaveCopy>();
 
-  /// Crop a wave to defined samples range
   void WaveCrop(
     ffi.Pointer<Wave> wave,
     int initSample,
@@ -7263,7 +6823,6 @@ class DartRaylib {
   late final _dart_WaveCrop _WaveCrop =
       _WaveCrop_ptr.asFunction<_dart_WaveCrop>();
 
-  /// Load samples data from wave as a floats array
   ffi.Pointer<ffi.Float> LoadWaveSamples(
     Wave wave,
   ) {
@@ -7277,7 +6836,6 @@ class DartRaylib {
   late final _dart_LoadWaveSamples _LoadWaveSamples =
       _LoadWaveSamples_ptr.asFunction<_dart_LoadWaveSamples>();
 
-  /// Unload samples data loaded with LoadWaveSamples()
   void UnloadWaveSamples(
     ffi.Pointer<ffi.Float> samples,
   ) {
@@ -7292,7 +6850,6 @@ class DartRaylib {
       _UnloadWaveSamples_ptr.asFunction<_dart_UnloadWaveSamples>();
 
   /// Music management functions
-  /// Load music stream from file
   Music LoadMusicStream(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -7306,7 +6863,6 @@ class DartRaylib {
   late final _dart_LoadMusicStream _LoadMusicStream =
       _LoadMusicStream_ptr.asFunction<_dart_LoadMusicStream>();
 
-  /// Load music stream from data
   Music LoadMusicStreamFromMemory(
     ffi.Pointer<ffi.Int8> fileType,
     ffi.Pointer<ffi.Uint8> data,
@@ -7326,7 +6882,6 @@ class DartRaylib {
       _LoadMusicStreamFromMemory_ptr.asFunction<
           _dart_LoadMusicStreamFromMemory>();
 
-  /// Unload music stream
   void UnloadMusicStream(
     Music music,
   ) {
@@ -7340,7 +6895,6 @@ class DartRaylib {
   late final _dart_UnloadMusicStream _UnloadMusicStream =
       _UnloadMusicStream_ptr.asFunction<_dart_UnloadMusicStream>();
 
-  /// Start music playing
   void PlayMusicStream(
     Music music,
   ) {
@@ -7354,7 +6908,6 @@ class DartRaylib {
   late final _dart_PlayMusicStream _PlayMusicStream =
       _PlayMusicStream_ptr.asFunction<_dart_PlayMusicStream>();
 
-  /// Check if music is playing
   int IsMusicPlaying(
     Music music,
   ) {
@@ -7368,7 +6921,6 @@ class DartRaylib {
   late final _dart_IsMusicPlaying _IsMusicPlaying =
       _IsMusicPlaying_ptr.asFunction<_dart_IsMusicPlaying>();
 
-  /// Updates buffers for music streaming
   void UpdateMusicStream(
     Music music,
   ) {
@@ -7382,7 +6934,6 @@ class DartRaylib {
   late final _dart_UpdateMusicStream _UpdateMusicStream =
       _UpdateMusicStream_ptr.asFunction<_dart_UpdateMusicStream>();
 
-  /// Stop music playing
   void StopMusicStream(
     Music music,
   ) {
@@ -7396,7 +6947,6 @@ class DartRaylib {
   late final _dart_StopMusicStream _StopMusicStream =
       _StopMusicStream_ptr.asFunction<_dart_StopMusicStream>();
 
-  /// Pause music playing
   void PauseMusicStream(
     Music music,
   ) {
@@ -7410,7 +6960,6 @@ class DartRaylib {
   late final _dart_PauseMusicStream _PauseMusicStream =
       _PauseMusicStream_ptr.asFunction<_dart_PauseMusicStream>();
 
-  /// Resume playing paused music
   void ResumeMusicStream(
     Music music,
   ) {
@@ -7424,7 +6973,6 @@ class DartRaylib {
   late final _dart_ResumeMusicStream _ResumeMusicStream =
       _ResumeMusicStream_ptr.asFunction<_dart_ResumeMusicStream>();
 
-  /// Set volume for music (1.0 is max level)
   void SetMusicVolume(
     Music music,
     double volume,
@@ -7440,7 +6988,6 @@ class DartRaylib {
   late final _dart_SetMusicVolume _SetMusicVolume =
       _SetMusicVolume_ptr.asFunction<_dart_SetMusicVolume>();
 
-  /// Set pitch for a music (1.0 is base level)
   void SetMusicPitch(
     Music music,
     double pitch,
@@ -7456,7 +7003,6 @@ class DartRaylib {
   late final _dart_SetMusicPitch _SetMusicPitch =
       _SetMusicPitch_ptr.asFunction<_dart_SetMusicPitch>();
 
-  /// Get music time length (in seconds)
   double GetMusicTimeLength(
     Music music,
   ) {
@@ -7470,7 +7016,6 @@ class DartRaylib {
   late final _dart_GetMusicTimeLength _GetMusicTimeLength =
       _GetMusicTimeLength_ptr.asFunction<_dart_GetMusicTimeLength>();
 
-  /// Get current music time played (in seconds)
   double GetMusicTimePlayed(
     Music music,
   ) {
@@ -7485,7 +7030,6 @@ class DartRaylib {
       _GetMusicTimePlayed_ptr.asFunction<_dart_GetMusicTimePlayed>();
 
   /// AudioStream management functions
-  /// Init audio stream (to stream raw audio pcm data)
   AudioStream InitAudioStream(
     int sampleRate,
     int sampleSize,
@@ -7503,7 +7047,6 @@ class DartRaylib {
   late final _dart_InitAudioStream _InitAudioStream =
       _InitAudioStream_ptr.asFunction<_dart_InitAudioStream>();
 
-  /// Update audio stream buffers with data
   void UpdateAudioStream(
     AudioStream stream,
     ffi.Pointer<ffi.Void> data,
@@ -7521,7 +7064,6 @@ class DartRaylib {
   late final _dart_UpdateAudioStream _UpdateAudioStream =
       _UpdateAudioStream_ptr.asFunction<_dart_UpdateAudioStream>();
 
-  /// Close audio stream and free memory
   void CloseAudioStream(
     AudioStream stream,
   ) {
@@ -7535,7 +7077,6 @@ class DartRaylib {
   late final _dart_CloseAudioStream _CloseAudioStream =
       _CloseAudioStream_ptr.asFunction<_dart_CloseAudioStream>();
 
-  /// Check if any audio stream buffers requires refill
   int IsAudioStreamProcessed(
     AudioStream stream,
   ) {
@@ -7550,7 +7091,6 @@ class DartRaylib {
   late final _dart_IsAudioStreamProcessed _IsAudioStreamProcessed =
       _IsAudioStreamProcessed_ptr.asFunction<_dart_IsAudioStreamProcessed>();
 
-  /// Play audio stream
   void PlayAudioStream(
     AudioStream stream,
   ) {
@@ -7564,7 +7104,6 @@ class DartRaylib {
   late final _dart_PlayAudioStream _PlayAudioStream =
       _PlayAudioStream_ptr.asFunction<_dart_PlayAudioStream>();
 
-  /// Pause audio stream
   void PauseAudioStream(
     AudioStream stream,
   ) {
@@ -7578,7 +7117,6 @@ class DartRaylib {
   late final _dart_PauseAudioStream _PauseAudioStream =
       _PauseAudioStream_ptr.asFunction<_dart_PauseAudioStream>();
 
-  /// Resume audio stream
   void ResumeAudioStream(
     AudioStream stream,
   ) {
@@ -7592,7 +7130,6 @@ class DartRaylib {
   late final _dart_ResumeAudioStream _ResumeAudioStream =
       _ResumeAudioStream_ptr.asFunction<_dart_ResumeAudioStream>();
 
-  /// Check if audio stream is playing
   int IsAudioStreamPlaying(
     AudioStream stream,
   ) {
@@ -7607,7 +7144,6 @@ class DartRaylib {
   late final _dart_IsAudioStreamPlaying _IsAudioStreamPlaying =
       _IsAudioStreamPlaying_ptr.asFunction<_dart_IsAudioStreamPlaying>();
 
-  /// Stop audio stream
   void StopAudioStream(
     AudioStream stream,
   ) {
@@ -7621,7 +7157,6 @@ class DartRaylib {
   late final _dart_StopAudioStream _StopAudioStream =
       _StopAudioStream_ptr.asFunction<_dart_StopAudioStream>();
 
-  /// Set volume for audio stream (1.0 is max level)
   void SetAudioStreamVolume(
     AudioStream stream,
     double volume,
@@ -7638,7 +7173,6 @@ class DartRaylib {
   late final _dart_SetAudioStreamVolume _SetAudioStreamVolume =
       _SetAudioStreamVolume_ptr.asFunction<_dart_SetAudioStreamVolume>();
 
-  /// Set pitch for audio stream (1.0 is base level)
   void SetAudioStreamPitch(
     AudioStream stream,
     double pitch,
@@ -7655,7 +7189,6 @@ class DartRaylib {
   late final _dart_SetAudioStreamPitch _SetAudioStreamPitch =
       _SetAudioStreamPitch_ptr.asFunction<_dart_SetAudioStreamPitch>();
 
-  /// Default size for new audio streams
   void SetAudioStreamBufferSizeDefault(
     int size,
   ) {
@@ -7670,6 +7203,22 @@ class DartRaylib {
   late final _dart_SetAudioStreamBufferSizeDefault
       _SetAudioStreamBufferSizeDefault = _SetAudioStreamBufferSizeDefault_ptr
           .asFunction<_dart_SetAudioStreamBufferSizeDefault>();
+
+  /// Creates an object of Vector2
+  Vector2 CreateVector2(
+    double x,
+    double y,
+  ) {
+    return _CreateVector2(
+      x,
+      y,
+    );
+  }
+
+  late final _CreateVector2_ptr =
+      _lookup<ffi.NativeFunction<_c_CreateVector2>>('CreateVector2');
+  late final _dart_CreateVector2 _CreateVector2 =
+      _CreateVector2_ptr.asFunction<_dart_CreateVector2>();
 }
 
 abstract class bool {
@@ -8535,6 +8084,9 @@ abstract class GamepadButton {
   static const int GAMEPAD_BUTTON_LEFT_FACE_DOWN = 3;
   static const int GAMEPAD_BUTTON_LEFT_FACE_LEFT = 4;
 
+  /// This normally corresponds with PlayStation and Xbox controllers
+  /// XBOX: [Y,X,A,B]
+  /// PS3: [Triangle,Square,Cross,Circle]
   /// No support for 6 button controllers though..
   static const int GAMEPAD_BUTTON_RIGHT_FACE_UP = 5;
   static const int GAMEPAD_BUTTON_RIGHT_FACE_RIGHT = 6;
@@ -13589,4 +13141,14 @@ typedef _c_SetAudioStreamBufferSizeDefault = ffi.Void Function(
 
 typedef _dart_SetAudioStreamBufferSizeDefault = void Function(
   int size,
+);
+
+typedef _c_CreateVector2 = Vector2 Function(
+  ffi.Float x,
+  ffi.Float y,
+);
+
+typedef _dart_CreateVector2 = Vector2 Function(
+  double x,
+  double y,
 );

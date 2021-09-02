@@ -1,12 +1,17 @@
 import 'dart:ffi';
+import 'dart:io';
 
+import 'package:path/path.dart' as path;
 import 'package:raylib_dart/raylib_dart.dart';
 import 'package:raylib_dart/src/constants/colors.dart';
 
 import 'package:ffi/ffi.dart';
 
 void main() {
-  final raylib = Raylib();
+  final raylibPath = path.join(
+      Directory.current.path, 'vendors/raylib/build/raylib/Release/raylib.dll');
+
+  final raylib = Raylib(raylibPath);
   final core = raylib.core;
   const screenWidth = 1280 ~/ 2;
   const screenHeight = 720 ~/ 2;
