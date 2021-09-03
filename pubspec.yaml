@@ -28,8 +28,6 @@ ffigen:
   llvm-path:
     - C:/Program Files/LLVM
   dart-bool: true
-  typedef-map:
-    "Color": Uint32
   comments:
     style: any
   preamble: |

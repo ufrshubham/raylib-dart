@@ -2,3 +2,4 @@
 
 - Initial version.
 - Exposes some window, cursor, drawing and timing related APIs from raylib core module.
+- Added Vector2 and Color creators.

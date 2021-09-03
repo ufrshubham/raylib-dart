@@ -518,7 +518,7 @@ class DartRaylib {
 
   /// Drawing-related functions
   void ClearBackground(
-    int color,
+    Color color,
   ) {
     return _ClearBackground(
       color,
@@ -2216,7 +2216,7 @@ class DartRaylib {
   void DrawPixel(
     int posX,
     int posY,
-    int color,
+    Color color,
   ) {
     return _DrawPixel(
       posX,
@@ -2232,7 +2232,7 @@ class DartRaylib {
 
   void DrawPixelV(
     Vector2 position,
-    int color,
+    Color color,
   ) {
     return _DrawPixelV(
       position,
@@ -2250,7 +2250,7 @@ class DartRaylib {
     int startPosY,
     int endPosX,
     int endPosY,
-    int color,
+    Color color,
   ) {
     return _DrawLine(
       startPosX,
@@ -2269,7 +2269,7 @@ class DartRaylib {
   void DrawLineV(
     Vector2 startPos,
     Vector2 endPos,
-    int color,
+    Color color,
   ) {
     return _DrawLineV(
       startPos,
@@ -2287,7 +2287,7 @@ class DartRaylib {
     Vector2 startPos,
     Vector2 endPos,
     double thick,
-    int color,
+    Color color,
   ) {
     return _DrawLineEx(
       startPos,
@@ -2306,7 +2306,7 @@ class DartRaylib {
     Vector2 startPos,
     Vector2 endPos,
     double thick,
-    int color,
+    Color color,
   ) {
     return _DrawLineBezier(
       startPos,
@@ -2326,7 +2326,7 @@ class DartRaylib {
     Vector2 endPos,
     Vector2 controlPos,
     double thick,
-    int color,
+    Color color,
   ) {
     return _DrawLineBezierQuad(
       startPos,
@@ -2345,7 +2345,7 @@ class DartRaylib {
   void DrawLineStrip(
     ffi.Pointer<Vector2> points,
     int pointsCount,
-    int color,
+    Color color,
   ) {
     return _DrawLineStrip(
       points,
@@ -2363,7 +2363,7 @@ class DartRaylib {
     int centerX,
     int centerY,
     double radius,
-    int color,
+    Color color,
   ) {
     return _DrawCircle(
       centerX,
@@ -2384,7 +2384,7 @@ class DartRaylib {
     double startAngle,
     double endAngle,
     int segments,
-    int color,
+    Color color,
   ) {
     return _DrawCircleSector(
       center,
@@ -2407,7 +2407,7 @@ class DartRaylib {
     double startAngle,
     double endAngle,
     int segments,
-    int color,
+    Color color,
   ) {
     return _DrawCircleSectorLines(
       center,
@@ -2429,8 +2429,8 @@ class DartRaylib {
     int centerX,
     int centerY,
     double radius,
-    int color1,
-    int color2,
+    Color color1,
+    Color color2,
   ) {
     return _DrawCircleGradient(
       centerX,
@@ -2449,7 +2449,7 @@ class DartRaylib {
   void DrawCircleV(
     Vector2 center,
     double radius,
-    int color,
+    Color color,
   ) {
     return _DrawCircleV(
       center,
@@ -2467,7 +2467,7 @@ class DartRaylib {
     int centerX,
     int centerY,
     double radius,
-    int color,
+    Color color,
   ) {
     return _DrawCircleLines(
       centerX,
@@ -2487,7 +2487,7 @@ class DartRaylib {
     int centerY,
     double radiusH,
     double radiusV,
-    int color,
+    Color color,
   ) {
     return _DrawEllipse(
       centerX,
@@ -2508,7 +2508,7 @@ class DartRaylib {
     int centerY,
     double radiusH,
     double radiusV,
-    int color,
+    Color color,
   ) {
     return _DrawEllipseLines(
       centerX,
@@ -2531,7 +2531,7 @@ class DartRaylib {
     double startAngle,
     double endAngle,
     int segments,
-    int color,
+    Color color,
   ) {
     return _DrawRing(
       center,
@@ -2556,7 +2556,7 @@ class DartRaylib {
     double startAngle,
     double endAngle,
     int segments,
-    int color,
+    Color color,
   ) {
     return _DrawRingLines(
       center,
@@ -2579,7 +2579,7 @@ class DartRaylib {
     int posY,
     int width,
     int height,
-    int color,
+    Color color,
   ) {
     return _DrawRectangle(
       posX,
@@ -2598,7 +2598,7 @@ class DartRaylib {
   void DrawRectangleV(
     Vector2 position,
     Vector2 size,
-    int color,
+    Color color,
   ) {
     return _DrawRectangleV(
       position,
@@ -2614,7 +2614,7 @@ class DartRaylib {
 
   void DrawRectangleRec(
     Rectangle rec,
-    int color,
+    Color color,
   ) {
     return _DrawRectangleRec(
       rec,
@@ -2631,7 +2631,7 @@ class DartRaylib {
     Rectangle rec,
     Vector2 origin,
     double rotation,
-    int color,
+    Color color,
   ) {
     return _DrawRectanglePro(
       rec,
@@ -2651,8 +2651,8 @@ class DartRaylib {
     int posY,
     int width,
     int height,
-    int color1,
-    int color2,
+    Color color1,
+    Color color2,
   ) {
     return _DrawRectangleGradientV(
       posX,
@@ -2675,8 +2675,8 @@ class DartRaylib {
     int posY,
     int width,
     int height,
-    int color1,
-    int color2,
+    Color color1,
+    Color color2,
   ) {
     return _DrawRectangleGradientH(
       posX,
@@ -2696,10 +2696,10 @@ class DartRaylib {
 
   void DrawRectangleGradientEx(
     Rectangle rec,
-    int col1,
-    int col2,
-    int col3,
-    int col4,
+    Color col1,
+    Color col2,
+    Color col3,
+    Color col4,
   ) {
     return _DrawRectangleGradientEx(
       rec,
@@ -2721,7 +2721,7 @@ class DartRaylib {
     int posY,
     int width,
     int height,
-    int color,
+    Color color,
   ) {
     return _DrawRectangleLines(
       posX,
@@ -2740,7 +2740,7 @@ class DartRaylib {
   void DrawRectangleLinesEx(
     Rectangle rec,
     int lineThick,
-    int color,
+    Color color,
   ) {
     return _DrawRectangleLinesEx(
       rec,
@@ -2759,7 +2759,7 @@ class DartRaylib {
     Rectangle rec,
     double roundness,
     int segments,
-    int color,
+    Color color,
   ) {
     return _DrawRectangleRounded(
       rec,
@@ -2780,7 +2780,7 @@ class DartRaylib {
     double roundness,
     int segments,
     int lineThick,
-    int color,
+    Color color,
   ) {
     return _DrawRectangleRoundedLines(
       rec,
@@ -2802,7 +2802,7 @@ class DartRaylib {
     Vector2 v1,
     Vector2 v2,
     Vector2 v3,
-    int color,
+    Color color,
   ) {
     return _DrawTriangle(
       v1,
@@ -2821,7 +2821,7 @@ class DartRaylib {
     Vector2 v1,
     Vector2 v2,
     Vector2 v3,
-    int color,
+    Color color,
   ) {
     return _DrawTriangleLines(
       v1,
@@ -2839,7 +2839,7 @@ class DartRaylib {
   void DrawTriangleFan(
     ffi.Pointer<Vector2> points,
     int pointsCount,
-    int color,
+    Color color,
   ) {
     return _DrawTriangleFan(
       points,
@@ -2856,7 +2856,7 @@ class DartRaylib {
   void DrawTriangleStrip(
     ffi.Pointer<Vector2> points,
     int pointsCount,
-    int color,
+    Color color,
   ) {
     return _DrawTriangleStrip(
       points,
@@ -2875,7 +2875,7 @@ class DartRaylib {
     int sides,
     double radius,
     double rotation,
-    int color,
+    Color color,
   ) {
     return _DrawPoly(
       center,
@@ -2896,7 +2896,7 @@ class DartRaylib {
     int sides,
     double radius,
     double rotation,
-    int color,
+    Color color,
   ) {
     return _DrawPolyLines(
       center,
@@ -3175,7 +3175,7 @@ class DartRaylib {
   Image GenImageColor(
     int width,
     int height,
-    int color,
+    Color color,
   ) {
     return _GenImageColor(
       width,
@@ -3192,8 +3192,8 @@ class DartRaylib {
   Image GenImageGradientV(
     int width,
     int height,
-    int top,
-    int bottom,
+    Color top,
+    Color bottom,
   ) {
     return _GenImageGradientV(
       width,
@@ -3211,8 +3211,8 @@ class DartRaylib {
   Image GenImageGradientH(
     int width,
     int height,
-    int left,
-    int right,
+    Color left,
+    Color right,
   ) {
     return _GenImageGradientH(
       width,
@@ -3231,8 +3231,8 @@ class DartRaylib {
     int width,
     int height,
     double density,
-    int inner,
-    int outer,
+    Color inner,
+    Color outer,
   ) {
     return _GenImageGradientRadial(
       width,
@@ -3254,8 +3254,8 @@ class DartRaylib {
     int height,
     int checksX,
     int checksY,
-    int col1,
-    int col2,
+    Color col1,
+    Color col2,
   ) {
     return _GenImageChecked(
       width,
@@ -3360,7 +3360,7 @@ class DartRaylib {
   Image ImageText(
     ffi.Pointer<ffi.Int8> text,
     int fontSize,
-    int color,
+    Color color,
   ) {
     return _ImageText(
       text,
@@ -3379,7 +3379,7 @@ class DartRaylib {
     ffi.Pointer<ffi.Int8> text,
     double fontSize,
     double spacing,
-    int tint,
+    Color tint,
   ) {
     return _ImageTextEx(
       font,
@@ -3412,7 +3412,7 @@ class DartRaylib {
 
   void ImageToPOT(
     ffi.Pointer<Image> image,
-    int fill,
+    Color fill,
   ) {
     return _ImageToPOT(
       image,
@@ -3457,7 +3457,7 @@ class DartRaylib {
 
   void ImageAlphaClear(
     ffi.Pointer<Image> image,
-    int color,
+    Color color,
     double threshold,
   ) {
     return _ImageAlphaClear(
@@ -3541,7 +3541,7 @@ class DartRaylib {
     int newHeight,
     int offsetX,
     int offsetY,
-    int fill,
+    Color fill,
   ) {
     return _ImageResizeCanvas(
       image,
@@ -3647,7 +3647,7 @@ class DartRaylib {
 
   void ImageColorTint(
     ffi.Pointer<Image> image,
-    int color,
+    Color color,
   ) {
     return _ImageColorTint(
       image,
@@ -3720,8 +3720,8 @@ class DartRaylib {
 
   void ImageColorReplace(
     ffi.Pointer<Image> image,
-    int color,
-    int replace,
+    Color color,
+    Color replace,
   ) {
     return _ImageColorReplace(
       image,
@@ -3735,7 +3735,7 @@ class DartRaylib {
   late final _dart_ImageColorReplace _ImageColorReplace =
       _ImageColorReplace_ptr.asFunction<_dart_ImageColorReplace>();
 
-  ffi.Pointer<ffi.Uint32> LoadImageColors(
+  ffi.Pointer<Color> LoadImageColors(
     Image image,
   ) {
     return _LoadImageColors(
@@ -3748,7 +3748,7 @@ class DartRaylib {
   late final _dart_LoadImageColors _LoadImageColors =
       _LoadImageColors_ptr.asFunction<_dart_LoadImageColors>();
 
-  ffi.Pointer<ffi.Uint32> LoadImagePalette(
+  ffi.Pointer<Color> LoadImagePalette(
     Image image,
     int maxPaletteSize,
     ffi.Pointer<ffi.Int32> colorsCount,
@@ -3766,7 +3766,7 @@ class DartRaylib {
       _LoadImagePalette_ptr.asFunction<_dart_LoadImagePalette>();
 
   void UnloadImageColors(
-    ffi.Pointer<ffi.Uint32> colors,
+    ffi.Pointer<Color> colors,
   ) {
     return _UnloadImageColors(
       colors,
@@ -3779,7 +3779,7 @@ class DartRaylib {
       _UnloadImageColors_ptr.asFunction<_dart_UnloadImageColors>();
 
   void UnloadImagePalette(
-    ffi.Pointer<ffi.Uint32> colors,
+    ffi.Pointer<Color> colors,
   ) {
     return _UnloadImagePalette(
       colors,
@@ -3811,7 +3811,7 @@ class DartRaylib {
   /// NOTE: Image software-rendering functions (CPU)
   void ImageClearBackground(
     ffi.Pointer<Image> dst,
-    int color,
+    Color color,
   ) {
     return _ImageClearBackground(
       dst,
@@ -3829,7 +3829,7 @@ class DartRaylib {
     ffi.Pointer<Image> dst,
     int posX,
     int posY,
-    int color,
+    Color color,
   ) {
     return _ImageDrawPixel(
       dst,
@@ -3847,7 +3847,7 @@ class DartRaylib {
   void ImageDrawPixelV(
     ffi.Pointer<Image> dst,
     Vector2 position,
-    int color,
+    Color color,
   ) {
     return _ImageDrawPixelV(
       dst,
@@ -3867,7 +3867,7 @@ class DartRaylib {
     int startPosY,
     int endPosX,
     int endPosY,
-    int color,
+    Color color,
   ) {
     return _ImageDrawLine(
       dst,
@@ -3888,7 +3888,7 @@ class DartRaylib {
     ffi.Pointer<Image> dst,
     Vector2 start,
     Vector2 end,
-    int color,
+    Color color,
   ) {
     return _ImageDrawLineV(
       dst,
@@ -3908,7 +3908,7 @@ class DartRaylib {
     int centerX,
     int centerY,
     int radius,
-    int color,
+    Color color,
   ) {
     return _ImageDrawCircle(
       dst,
@@ -3928,7 +3928,7 @@ class DartRaylib {
     ffi.Pointer<Image> dst,
     Vector2 center,
     int radius,
-    int color,
+    Color color,
   ) {
     return _ImageDrawCircleV(
       dst,
@@ -3949,7 +3949,7 @@ class DartRaylib {
     int posY,
     int width,
     int height,
-    int color,
+    Color color,
   ) {
     return _ImageDrawRectangle(
       dst,
@@ -3970,7 +3970,7 @@ class DartRaylib {
     ffi.Pointer<Image> dst,
     Vector2 position,
     Vector2 size,
-    int color,
+    Color color,
   ) {
     return _ImageDrawRectangleV(
       dst,
@@ -3989,7 +3989,7 @@ class DartRaylib {
   void ImageDrawRectangleRec(
     ffi.Pointer<Image> dst,
     Rectangle rec,
-    int color,
+    Color color,
   ) {
     return _ImageDrawRectangleRec(
       dst,
@@ -4008,7 +4008,7 @@ class DartRaylib {
     ffi.Pointer<Image> dst,
     Rectangle rec,
     int thick,
-    int color,
+    Color color,
   ) {
     return _ImageDrawRectangleLines(
       dst,
@@ -4029,7 +4029,7 @@ class DartRaylib {
     Image src,
     Rectangle srcRec,
     Rectangle dstRec,
-    int tint,
+    Color tint,
   ) {
     return _ImageDraw(
       dst,
@@ -4051,7 +4051,7 @@ class DartRaylib {
     int posX,
     int posY,
     int fontSize,
-    int color,
+    Color color,
   ) {
     return _ImageDrawText(
       dst,
@@ -4075,7 +4075,7 @@ class DartRaylib {
     Vector2 position,
     double fontSize,
     double spacing,
-    int tint,
+    Color tint,
   ) {
     return _ImageDrawTextEx(
       dst,
@@ -4282,7 +4282,7 @@ class DartRaylib {
     Texture texture,
     int posX,
     int posY,
-    int tint,
+    Color tint,
   ) {
     return _DrawTexture(
       texture,
@@ -4300,7 +4300,7 @@ class DartRaylib {
   void DrawTextureV(
     Texture texture,
     Vector2 position,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextureV(
       texture,
@@ -4319,7 +4319,7 @@ class DartRaylib {
     Vector2 position,
     double rotation,
     double scale,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextureEx(
       texture,
@@ -4339,7 +4339,7 @@ class DartRaylib {
     Texture texture,
     Rectangle source,
     Vector2 position,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextureRec(
       texture,
@@ -4359,7 +4359,7 @@ class DartRaylib {
     Vector2 tiling,
     Vector2 offset,
     Rectangle quad,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextureQuad(
       texture,
@@ -4382,7 +4382,7 @@ class DartRaylib {
     Vector2 origin,
     double rotation,
     double scale,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextureTiled(
       texture,
@@ -4406,7 +4406,7 @@ class DartRaylib {
     Rectangle dest,
     Vector2 origin,
     double rotation,
-    int tint,
+    Color tint,
   ) {
     return _DrawTexturePro(
       texture,
@@ -4429,7 +4429,7 @@ class DartRaylib {
     Rectangle dest,
     Vector2 origin,
     double rotation,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextureNPatch(
       texture,
@@ -4452,7 +4452,7 @@ class DartRaylib {
     ffi.Pointer<Vector2> points,
     ffi.Pointer<Vector2> texcoords,
     int pointsCount,
-    int tint,
+    Color tint,
   ) {
     return _DrawTexturePoly(
       texture,
@@ -4470,8 +4470,8 @@ class DartRaylib {
       _DrawTexturePoly_ptr.asFunction<_dart_DrawTexturePoly>();
 
   /// Color/pixel related functions
-  int Fade(
-    int color,
+  Color Fade(
+    Color color,
     double alpha,
   ) {
     return _Fade(
@@ -4484,7 +4484,7 @@ class DartRaylib {
   late final _dart_Fade _Fade = _Fade_ptr.asFunction<_dart_Fade>();
 
   int ColorToInt(
-    int color,
+    Color color,
   ) {
     return _ColorToInt(
       color,
@@ -4497,7 +4497,7 @@ class DartRaylib {
       _ColorToInt_ptr.asFunction<_dart_ColorToInt>();
 
   Vector4 ColorNormalize(
-    int color,
+    Color color,
   ) {
     return _ColorNormalize(
       color,
@@ -4509,7 +4509,7 @@ class DartRaylib {
   late final _dart_ColorNormalize _ColorNormalize =
       _ColorNormalize_ptr.asFunction<_dart_ColorNormalize>();
 
-  int ColorFromNormalized(
+  Color ColorFromNormalized(
     Vector4 normalized,
   ) {
     return _ColorFromNormalized(
@@ -4524,7 +4524,7 @@ class DartRaylib {
       _ColorFromNormalized_ptr.asFunction<_dart_ColorFromNormalized>();
 
   Vector3 ColorToHSV(
-    int color,
+    Color color,
   ) {
     return _ColorToHSV(
       color,
@@ -4536,7 +4536,7 @@ class DartRaylib {
   late final _dart_ColorToHSV _ColorToHSV =
       _ColorToHSV_ptr.asFunction<_dart_ColorToHSV>();
 
-  int ColorFromHSV(
+  Color ColorFromHSV(
     double hue,
     double saturation,
     double value,
@@ -4553,8 +4553,8 @@ class DartRaylib {
   late final _dart_ColorFromHSV _ColorFromHSV =
       _ColorFromHSV_ptr.asFunction<_dart_ColorFromHSV>();
 
-  int ColorAlpha(
-    int color,
+  Color ColorAlpha(
+    Color color,
     double alpha,
   ) {
     return _ColorAlpha(
@@ -4568,10 +4568,10 @@ class DartRaylib {
   late final _dart_ColorAlpha _ColorAlpha =
       _ColorAlpha_ptr.asFunction<_dart_ColorAlpha>();
 
-  int ColorAlphaBlend(
-    int dst,
-    int src,
-    int tint,
+  Color ColorAlphaBlend(
+    Color dst,
+    Color src,
+    Color tint,
   ) {
     return _ColorAlphaBlend(
       dst,
@@ -4585,7 +4585,7 @@ class DartRaylib {
   late final _dart_ColorAlphaBlend _ColorAlphaBlend =
       _ColorAlphaBlend_ptr.asFunction<_dart_ColorAlphaBlend>();
 
-  int GetColor(
+  Color GetColor(
     int hexValue,
   ) {
     return _GetColor(
@@ -4598,7 +4598,7 @@ class DartRaylib {
   late final _dart_GetColor _GetColor =
       _GetColor_ptr.asFunction<_dart_GetColor>();
 
-  int GetPixelColor(
+  Color GetPixelColor(
     ffi.Pointer<ffi.Void> srcPtr,
     int format,
   ) {
@@ -4615,7 +4615,7 @@ class DartRaylib {
 
   void SetPixelColor(
     ffi.Pointer<ffi.Void> dstPtr,
-    int color,
+    Color color,
     int format,
   ) {
     return _SetPixelColor(
@@ -4691,7 +4691,7 @@ class DartRaylib {
 
   Font LoadFontFromImage(
     Image image,
-    int key,
+    Color key,
     int firstChar,
   ) {
     return _LoadFontFromImage(
@@ -4822,7 +4822,7 @@ class DartRaylib {
     int posX,
     int posY,
     int fontSize,
-    int color,
+    Color color,
   ) {
     return _DrawText(
       text,
@@ -4844,7 +4844,7 @@ class DartRaylib {
     Vector2 position,
     double fontSize,
     double spacing,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextEx(
       font,
@@ -4868,7 +4868,7 @@ class DartRaylib {
     double fontSize,
     double spacing,
     int wordWrap,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextRec(
       font,
@@ -4893,11 +4893,11 @@ class DartRaylib {
     double fontSize,
     double spacing,
     int wordWrap,
-    int tint,
+    Color tint,
     int selectStart,
     int selectLength,
-    int selectTint,
-    int selectBackTint,
+    Color selectTint,
+    Color selectBackTint,
   ) {
     return _DrawTextRecEx(
       font,
@@ -4924,7 +4924,7 @@ class DartRaylib {
     int codepoint,
     Vector2 position,
     double fontSize,
-    int tint,
+    Color tint,
   ) {
     return _DrawTextCodepoint(
       font,
@@ -5295,7 +5295,7 @@ class DartRaylib {
   void DrawLine3D(
     Vector3 startPos,
     Vector3 endPos,
-    int color,
+    Color color,
   ) {
     return _DrawLine3D(
       startPos,
@@ -5311,7 +5311,7 @@ class DartRaylib {
 
   void DrawPoint3D(
     Vector3 position,
-    int color,
+    Color color,
   ) {
     return _DrawPoint3D(
       position,
@@ -5329,7 +5329,7 @@ class DartRaylib {
     double radius,
     Vector3 rotationAxis,
     double rotationAngle,
-    int color,
+    Color color,
   ) {
     return _DrawCircle3D(
       center,
@@ -5349,7 +5349,7 @@ class DartRaylib {
     Vector3 v1,
     Vector3 v2,
     Vector3 v3,
-    int color,
+    Color color,
   ) {
     return _DrawTriangle3D(
       v1,
@@ -5367,7 +5367,7 @@ class DartRaylib {
   void DrawTriangleStrip3D(
     ffi.Pointer<Vector3> points,
     int pointsCount,
-    int color,
+    Color color,
   ) {
     return _DrawTriangleStrip3D(
       points,
@@ -5387,7 +5387,7 @@ class DartRaylib {
     double width,
     double height,
     double length,
-    int color,
+    Color color,
   ) {
     return _DrawCube(
       position,
@@ -5406,7 +5406,7 @@ class DartRaylib {
   void DrawCubeV(
     Vector3 position,
     Vector3 size,
-    int color,
+    Color color,
   ) {
     return _DrawCubeV(
       position,
@@ -5425,7 +5425,7 @@ class DartRaylib {
     double width,
     double height,
     double length,
-    int color,
+    Color color,
   ) {
     return _DrawCubeWires(
       position,
@@ -5444,7 +5444,7 @@ class DartRaylib {
   void DrawCubeWiresV(
     Vector3 position,
     Vector3 size,
-    int color,
+    Color color,
   ) {
     return _DrawCubeWiresV(
       position,
@@ -5464,7 +5464,7 @@ class DartRaylib {
     double width,
     double height,
     double length,
-    int color,
+    Color color,
   ) {
     return _DrawCubeTexture(
       texture,
@@ -5484,7 +5484,7 @@ class DartRaylib {
   void DrawSphere(
     Vector3 centerPos,
     double radius,
-    int color,
+    Color color,
   ) {
     return _DrawSphere(
       centerPos,
@@ -5503,7 +5503,7 @@ class DartRaylib {
     double radius,
     int rings,
     int slices,
-    int color,
+    Color color,
   ) {
     return _DrawSphereEx(
       centerPos,
@@ -5524,7 +5524,7 @@ class DartRaylib {
     double radius,
     int rings,
     int slices,
-    int color,
+    Color color,
   ) {
     return _DrawSphereWires(
       centerPos,
@@ -5546,7 +5546,7 @@ class DartRaylib {
     double radiusBottom,
     double height,
     int slices,
-    int color,
+    Color color,
   ) {
     return _DrawCylinder(
       position,
@@ -5569,7 +5569,7 @@ class DartRaylib {
     double radiusBottom,
     double height,
     int slices,
-    int color,
+    Color color,
   ) {
     return _DrawCylinderWires(
       position,
@@ -5589,7 +5589,7 @@ class DartRaylib {
   void DrawPlane(
     Vector3 centerPos,
     Vector2 size,
-    int color,
+    Color color,
   ) {
     return _DrawPlane(
       centerPos,
@@ -5605,7 +5605,7 @@ class DartRaylib {
 
   void DrawRay(
     Ray ray,
-    int color,
+    Color color,
   ) {
     return _DrawRay(
       ray,
@@ -6157,7 +6157,7 @@ class DartRaylib {
     Model model,
     Vector3 position,
     double scale,
-    int tint,
+    Color tint,
   ) {
     return _DrawModel(
       model,
@@ -6178,7 +6178,7 @@ class DartRaylib {
     Vector3 rotationAxis,
     double rotationAngle,
     Vector3 scale,
-    int tint,
+    Color tint,
   ) {
     return _DrawModelEx(
       model,
@@ -6199,7 +6199,7 @@ class DartRaylib {
     Model model,
     Vector3 position,
     double scale,
-    int tint,
+    Color tint,
   ) {
     return _DrawModelWires(
       model,
@@ -6220,7 +6220,7 @@ class DartRaylib {
     Vector3 rotationAxis,
     double rotationAngle,
     Vector3 scale,
-    int tint,
+    Color tint,
   ) {
     return _DrawModelWiresEx(
       model,
@@ -6239,7 +6239,7 @@ class DartRaylib {
 
   void DrawBoundingBox(
     BoundingBox box,
-    int color,
+    Color color,
   ) {
     return _DrawBoundingBox(
       box,
@@ -6257,7 +6257,7 @@ class DartRaylib {
     Texture texture,
     Vector3 center,
     double size,
-    int tint,
+    Color tint,
   ) {
     return _DrawBillboard(
       camera,
@@ -6279,7 +6279,7 @@ class DartRaylib {
     Rectangle source,
     Vector3 center,
     double size,
-    int tint,
+    Color tint,
   ) {
     return _DrawBillboardRec(
       camera,
@@ -7219,6 +7219,25 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_CreateVector2>>('CreateVector2');
   late final _dart_CreateVector2 _CreateVector2 =
       _CreateVector2_ptr.asFunction<_dart_CreateVector2>();
+
+  Color CreateColor(
+    int r,
+    int g,
+    int b,
+    int a,
+  ) {
+    return _CreateColor(
+      r,
+      g,
+      b,
+      a,
+    );
+  }
+
+  late final _CreateColor_ptr =
+      _lookup<ffi.NativeFunction<_c_CreateColor>>('CreateColor');
+  late final _dart_CreateColor _CreateColor =
+      _CreateColor_ptr.asFunction<_dart_CreateColor>();
 }
 
 abstract class bool {
@@ -7580,8 +7599,7 @@ class MaterialMap extends ffi.Struct {
   external Texture texture;
 
   /// Material map color
-  @ffi.Uint32()
-  external int color;
+  external Color color;
 
   /// Material map value
   @ffi.Float()
@@ -8686,11 +8704,11 @@ typedef _c_IsCursorOnScreen = ffi.Int32 Function();
 typedef _dart_IsCursorOnScreen = int Function();
 
 typedef _c_ClearBackground = ffi.Void Function(
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ClearBackground = void Function(
-  int color,
+  Color color,
 );
 
 typedef _c_BeginDrawing = ffi.Void Function();
@@ -9720,23 +9738,23 @@ typedef _dart_SetShapesTexture = void Function(
 typedef _c_DrawPixel = ffi.Void Function(
   ffi.Int32 posX,
   ffi.Int32 posY,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawPixel = void Function(
   int posX,
   int posY,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawPixelV = ffi.Void Function(
   Vector2 position,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawPixelV = void Function(
   Vector2 position,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawLine = ffi.Void Function(
@@ -9744,7 +9762,7 @@ typedef _c_DrawLine = ffi.Void Function(
   ffi.Int32 startPosY,
   ffi.Int32 endPosX,
   ffi.Int32 endPosY,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawLine = void Function(
@@ -9752,47 +9770,47 @@ typedef _dart_DrawLine = void Function(
   int startPosY,
   int endPosX,
   int endPosY,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawLineV = ffi.Void Function(
   Vector2 startPos,
   Vector2 endPos,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawLineV = void Function(
   Vector2 startPos,
   Vector2 endPos,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawLineEx = ffi.Void Function(
   Vector2 startPos,
   Vector2 endPos,
   ffi.Float thick,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawLineEx = void Function(
   Vector2 startPos,
   Vector2 endPos,
   double thick,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawLineBezier = ffi.Void Function(
   Vector2 startPos,
   Vector2 endPos,
   ffi.Float thick,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawLineBezier = void Function(
   Vector2 startPos,
   Vector2 endPos,
   double thick,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawLineBezierQuad = ffi.Void Function(
@@ -9800,7 +9818,7 @@ typedef _c_DrawLineBezierQuad = ffi.Void Function(
   Vector2 endPos,
   Vector2 controlPos,
   ffi.Float thick,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawLineBezierQuad = void Function(
@@ -9808,33 +9826,33 @@ typedef _dart_DrawLineBezierQuad = void Function(
   Vector2 endPos,
   Vector2 controlPos,
   double thick,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawLineStrip = ffi.Void Function(
   ffi.Pointer<Vector2> points,
   ffi.Int32 pointsCount,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawLineStrip = void Function(
   ffi.Pointer<Vector2> points,
   int pointsCount,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCircle = ffi.Void Function(
   ffi.Int32 centerX,
   ffi.Int32 centerY,
   ffi.Float radius,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCircle = void Function(
   int centerX,
   int centerY,
   double radius,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCircleSector = ffi.Void Function(
@@ -9843,7 +9861,7 @@ typedef _c_DrawCircleSector = ffi.Void Function(
   ffi.Float startAngle,
   ffi.Float endAngle,
   ffi.Int32 segments,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCircleSector = void Function(
@@ -9852,7 +9870,7 @@ typedef _dart_DrawCircleSector = void Function(
   double startAngle,
   double endAngle,
   int segments,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCircleSectorLines = ffi.Void Function(
@@ -9861,7 +9879,7 @@ typedef _c_DrawCircleSectorLines = ffi.Void Function(
   ffi.Float startAngle,
   ffi.Float endAngle,
   ffi.Int32 segments,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCircleSectorLines = void Function(
@@ -9870,49 +9888,49 @@ typedef _dart_DrawCircleSectorLines = void Function(
   double startAngle,
   double endAngle,
   int segments,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCircleGradient = ffi.Void Function(
   ffi.Int32 centerX,
   ffi.Int32 centerY,
   ffi.Float radius,
-  ffi.Uint32 color1,
-  ffi.Uint32 color2,
+  Color color1,
+  Color color2,
 );
 
 typedef _dart_DrawCircleGradient = void Function(
   int centerX,
   int centerY,
   double radius,
-  int color1,
-  int color2,
+  Color color1,
+  Color color2,
 );
 
 typedef _c_DrawCircleV = ffi.Void Function(
   Vector2 center,
   ffi.Float radius,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCircleV = void Function(
   Vector2 center,
   double radius,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCircleLines = ffi.Void Function(
   ffi.Int32 centerX,
   ffi.Int32 centerY,
   ffi.Float radius,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCircleLines = void Function(
   int centerX,
   int centerY,
   double radius,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawEllipse = ffi.Void Function(
@@ -9920,7 +9938,7 @@ typedef _c_DrawEllipse = ffi.Void Function(
   ffi.Int32 centerY,
   ffi.Float radiusH,
   ffi.Float radiusV,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawEllipse = void Function(
@@ -9928,7 +9946,7 @@ typedef _dart_DrawEllipse = void Function(
   int centerY,
   double radiusH,
   double radiusV,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawEllipseLines = ffi.Void Function(
@@ -9936,7 +9954,7 @@ typedef _c_DrawEllipseLines = ffi.Void Function(
   ffi.Int32 centerY,
   ffi.Float radiusH,
   ffi.Float radiusV,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawEllipseLines = void Function(
@@ -9944,7 +9962,7 @@ typedef _dart_DrawEllipseLines = void Function(
   int centerY,
   double radiusH,
   double radiusV,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRing = ffi.Void Function(
@@ -9954,7 +9972,7 @@ typedef _c_DrawRing = ffi.Void Function(
   ffi.Float startAngle,
   ffi.Float endAngle,
   ffi.Int32 segments,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRing = void Function(
@@ -9964,7 +9982,7 @@ typedef _dart_DrawRing = void Function(
   double startAngle,
   double endAngle,
   int segments,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRingLines = ffi.Void Function(
@@ -9974,7 +9992,7 @@ typedef _c_DrawRingLines = ffi.Void Function(
   ffi.Float startAngle,
   ffi.Float endAngle,
   ffi.Int32 segments,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRingLines = void Function(
@@ -9984,7 +10002,7 @@ typedef _dart_DrawRingLines = void Function(
   double startAngle,
   double endAngle,
   int segments,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectangle = ffi.Void Function(
@@ -9992,7 +10010,7 @@ typedef _c_DrawRectangle = ffi.Void Function(
   ffi.Int32 posY,
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectangle = void Function(
@@ -10000,43 +10018,43 @@ typedef _dart_DrawRectangle = void Function(
   int posY,
   int width,
   int height,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectangleV = ffi.Void Function(
   Vector2 position,
   Vector2 size,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectangleV = void Function(
   Vector2 position,
   Vector2 size,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectangleRec = ffi.Void Function(
   Rectangle rec,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectangleRec = void Function(
   Rectangle rec,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectanglePro = ffi.Void Function(
   Rectangle rec,
   Vector2 origin,
   ffi.Float rotation,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectanglePro = void Function(
   Rectangle rec,
   Vector2 origin,
   double rotation,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectangleGradientV = ffi.Void Function(
@@ -10044,8 +10062,8 @@ typedef _c_DrawRectangleGradientV = ffi.Void Function(
   ffi.Int32 posY,
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 color1,
-  ffi.Uint32 color2,
+  Color color1,
+  Color color2,
 );
 
 typedef _dart_DrawRectangleGradientV = void Function(
@@ -10053,8 +10071,8 @@ typedef _dart_DrawRectangleGradientV = void Function(
   int posY,
   int width,
   int height,
-  int color1,
-  int color2,
+  Color color1,
+  Color color2,
 );
 
 typedef _c_DrawRectangleGradientH = ffi.Void Function(
@@ -10062,8 +10080,8 @@ typedef _c_DrawRectangleGradientH = ffi.Void Function(
   ffi.Int32 posY,
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 color1,
-  ffi.Uint32 color2,
+  Color color1,
+  Color color2,
 );
 
 typedef _dart_DrawRectangleGradientH = void Function(
@@ -10071,24 +10089,24 @@ typedef _dart_DrawRectangleGradientH = void Function(
   int posY,
   int width,
   int height,
-  int color1,
-  int color2,
+  Color color1,
+  Color color2,
 );
 
 typedef _c_DrawRectangleGradientEx = ffi.Void Function(
   Rectangle rec,
-  ffi.Uint32 col1,
-  ffi.Uint32 col2,
-  ffi.Uint32 col3,
-  ffi.Uint32 col4,
+  Color col1,
+  Color col2,
+  Color col3,
+  Color col4,
 );
 
 typedef _dart_DrawRectangleGradientEx = void Function(
   Rectangle rec,
-  int col1,
-  int col2,
-  int col3,
-  int col4,
+  Color col1,
+  Color col2,
+  Color col3,
+  Color col4,
 );
 
 typedef _c_DrawRectangleLines = ffi.Void Function(
@@ -10096,7 +10114,7 @@ typedef _c_DrawRectangleLines = ffi.Void Function(
   ffi.Int32 posY,
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectangleLines = void Function(
@@ -10104,33 +10122,33 @@ typedef _dart_DrawRectangleLines = void Function(
   int posY,
   int width,
   int height,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectangleLinesEx = ffi.Void Function(
   Rectangle rec,
   ffi.Int32 lineThick,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectangleLinesEx = void Function(
   Rectangle rec,
   int lineThick,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectangleRounded = ffi.Void Function(
   Rectangle rec,
   ffi.Float roundness,
   ffi.Int32 segments,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectangleRounded = void Function(
   Rectangle rec,
   double roundness,
   int segments,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRectangleRoundedLines = ffi.Void Function(
@@ -10138,7 +10156,7 @@ typedef _c_DrawRectangleRoundedLines = ffi.Void Function(
   ffi.Float roundness,
   ffi.Int32 segments,
   ffi.Int32 lineThick,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRectangleRoundedLines = void Function(
@@ -10146,59 +10164,59 @@ typedef _dart_DrawRectangleRoundedLines = void Function(
   double roundness,
   int segments,
   int lineThick,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawTriangle = ffi.Void Function(
   Vector2 v1,
   Vector2 v2,
   Vector2 v3,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawTriangle = void Function(
   Vector2 v1,
   Vector2 v2,
   Vector2 v3,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawTriangleLines = ffi.Void Function(
   Vector2 v1,
   Vector2 v2,
   Vector2 v3,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawTriangleLines = void Function(
   Vector2 v1,
   Vector2 v2,
   Vector2 v3,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawTriangleFan = ffi.Void Function(
   ffi.Pointer<Vector2> points,
   ffi.Int32 pointsCount,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawTriangleFan = void Function(
   ffi.Pointer<Vector2> points,
   int pointsCount,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawTriangleStrip = ffi.Void Function(
   ffi.Pointer<Vector2> points,
   ffi.Int32 pointsCount,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawTriangleStrip = void Function(
   ffi.Pointer<Vector2> points,
   int pointsCount,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawPoly = ffi.Void Function(
@@ -10206,7 +10224,7 @@ typedef _c_DrawPoly = ffi.Void Function(
   ffi.Int32 sides,
   ffi.Float radius,
   ffi.Float rotation,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawPoly = void Function(
@@ -10214,7 +10232,7 @@ typedef _dart_DrawPoly = void Function(
   int sides,
   double radius,
   double rotation,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawPolyLines = ffi.Void Function(
@@ -10222,7 +10240,7 @@ typedef _c_DrawPolyLines = ffi.Void Function(
   ffi.Int32 sides,
   ffi.Float radius,
   ffi.Float rotation,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawPolyLines = void Function(
@@ -10230,7 +10248,7 @@ typedef _dart_DrawPolyLines = void Function(
   int sides,
   double radius,
   double rotation,
-  int color,
+  Color color,
 );
 
 typedef _c_CheckCollisionRecs = ffi.Int32 Function(
@@ -10408,57 +10426,57 @@ typedef _dart_ExportImageAsCode = int Function(
 typedef _c_GenImageColor = Image Function(
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_GenImageColor = Image Function(
   int width,
   int height,
-  int color,
+  Color color,
 );
 
 typedef _c_GenImageGradientV = Image Function(
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 top,
-  ffi.Uint32 bottom,
+  Color top,
+  Color bottom,
 );
 
 typedef _dart_GenImageGradientV = Image Function(
   int width,
   int height,
-  int top,
-  int bottom,
+  Color top,
+  Color bottom,
 );
 
 typedef _c_GenImageGradientH = Image Function(
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 left,
-  ffi.Uint32 right,
+  Color left,
+  Color right,
 );
 
 typedef _dart_GenImageGradientH = Image Function(
   int width,
   int height,
-  int left,
-  int right,
+  Color left,
+  Color right,
 );
 
 typedef _c_GenImageGradientRadial = Image Function(
   ffi.Int32 width,
   ffi.Int32 height,
   ffi.Float density,
-  ffi.Uint32 inner,
-  ffi.Uint32 outer,
+  Color inner,
+  Color outer,
 );
 
 typedef _dart_GenImageGradientRadial = Image Function(
   int width,
   int height,
   double density,
-  int inner,
-  int outer,
+  Color inner,
+  Color outer,
 );
 
 typedef _c_GenImageChecked = Image Function(
@@ -10466,8 +10484,8 @@ typedef _c_GenImageChecked = Image Function(
   ffi.Int32 height,
   ffi.Int32 checksX,
   ffi.Int32 checksY,
-  ffi.Uint32 col1,
-  ffi.Uint32 col2,
+  Color col1,
+  Color col2,
 );
 
 typedef _dart_GenImageChecked = Image Function(
@@ -10475,8 +10493,8 @@ typedef _dart_GenImageChecked = Image Function(
   int height,
   int checksX,
   int checksY,
-  int col1,
-  int col2,
+  Color col1,
+  Color col2,
 );
 
 typedef _c_GenImageWhiteNoise = Image Function(
@@ -10540,13 +10558,13 @@ typedef _dart_ImageFromImage = Image Function(
 typedef _c_ImageText = Image Function(
   ffi.Pointer<ffi.Int8> text,
   ffi.Int32 fontSize,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageText = Image Function(
   ffi.Pointer<ffi.Int8> text,
   int fontSize,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageTextEx = Image Function(
@@ -10554,7 +10572,7 @@ typedef _c_ImageTextEx = Image Function(
   ffi.Pointer<ffi.Int8> text,
   ffi.Float fontSize,
   ffi.Float spacing,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_ImageTextEx = Image Function(
@@ -10562,7 +10580,7 @@ typedef _dart_ImageTextEx = Image Function(
   ffi.Pointer<ffi.Int8> text,
   double fontSize,
   double spacing,
-  int tint,
+  Color tint,
 );
 
 typedef _c_ImageFormat = ffi.Void Function(
@@ -10577,12 +10595,12 @@ typedef _dart_ImageFormat = void Function(
 
 typedef _c_ImageToPOT = ffi.Void Function(
   ffi.Pointer<Image> image,
-  ffi.Uint32 fill,
+  Color fill,
 );
 
 typedef _dart_ImageToPOT = void Function(
   ffi.Pointer<Image> image,
-  int fill,
+  Color fill,
 );
 
 typedef _c_ImageCrop = ffi.Void Function(
@@ -10607,13 +10625,13 @@ typedef _dart_ImageAlphaCrop = void Function(
 
 typedef _c_ImageAlphaClear = ffi.Void Function(
   ffi.Pointer<Image> image,
-  ffi.Uint32 color,
+  Color color,
   ffi.Float threshold,
 );
 
 typedef _dart_ImageAlphaClear = void Function(
   ffi.Pointer<Image> image,
-  int color,
+  Color color,
   double threshold,
 );
 
@@ -10665,7 +10683,7 @@ typedef _c_ImageResizeCanvas = ffi.Void Function(
   ffi.Int32 newHeight,
   ffi.Int32 offsetX,
   ffi.Int32 offsetY,
-  ffi.Uint32 fill,
+  Color fill,
 );
 
 typedef _dart_ImageResizeCanvas = void Function(
@@ -10674,7 +10692,7 @@ typedef _dart_ImageResizeCanvas = void Function(
   int newHeight,
   int offsetX,
   int offsetY,
-  int fill,
+  Color fill,
 );
 
 typedef _c_ImageMipmaps = ffi.Void Function(
@@ -10735,12 +10753,12 @@ typedef _dart_ImageRotateCCW = void Function(
 
 typedef _c_ImageColorTint = ffi.Void Function(
   ffi.Pointer<Image> image,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageColorTint = void Function(
   ffi.Pointer<Image> image,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageColorInvert = ffi.Void Function(
@@ -10781,50 +10799,50 @@ typedef _dart_ImageColorBrightness = void Function(
 
 typedef _c_ImageColorReplace = ffi.Void Function(
   ffi.Pointer<Image> image,
-  ffi.Uint32 color,
-  ffi.Uint32 replace,
+  Color color,
+  Color replace,
 );
 
 typedef _dart_ImageColorReplace = void Function(
   ffi.Pointer<Image> image,
-  int color,
-  int replace,
+  Color color,
+  Color replace,
 );
 
-typedef _c_LoadImageColors = ffi.Pointer<ffi.Uint32> Function(
+typedef _c_LoadImageColors = ffi.Pointer<Color> Function(
   Image image,
 );
 
-typedef _dart_LoadImageColors = ffi.Pointer<ffi.Uint32> Function(
+typedef _dart_LoadImageColors = ffi.Pointer<Color> Function(
   Image image,
 );
 
-typedef _c_LoadImagePalette = ffi.Pointer<ffi.Uint32> Function(
+typedef _c_LoadImagePalette = ffi.Pointer<Color> Function(
   Image image,
   ffi.Int32 maxPaletteSize,
   ffi.Pointer<ffi.Int32> colorsCount,
 );
 
-typedef _dart_LoadImagePalette = ffi.Pointer<ffi.Uint32> Function(
+typedef _dart_LoadImagePalette = ffi.Pointer<Color> Function(
   Image image,
   int maxPaletteSize,
   ffi.Pointer<ffi.Int32> colorsCount,
 );
 
 typedef _c_UnloadImageColors = ffi.Void Function(
-  ffi.Pointer<ffi.Uint32> colors,
+  ffi.Pointer<Color> colors,
 );
 
 typedef _dart_UnloadImageColors = void Function(
-  ffi.Pointer<ffi.Uint32> colors,
+  ffi.Pointer<Color> colors,
 );
 
 typedef _c_UnloadImagePalette = ffi.Void Function(
-  ffi.Pointer<ffi.Uint32> colors,
+  ffi.Pointer<Color> colors,
 );
 
 typedef _dart_UnloadImagePalette = void Function(
-  ffi.Pointer<ffi.Uint32> colors,
+  ffi.Pointer<Color> colors,
 );
 
 typedef _c_GetImageAlphaBorder = Rectangle Function(
@@ -10839,38 +10857,38 @@ typedef _dart_GetImageAlphaBorder = Rectangle Function(
 
 typedef _c_ImageClearBackground = ffi.Void Function(
   ffi.Pointer<Image> dst,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageClearBackground = void Function(
   ffi.Pointer<Image> dst,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawPixel = ffi.Void Function(
   ffi.Pointer<Image> dst,
   ffi.Int32 posX,
   ffi.Int32 posY,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawPixel = void Function(
   ffi.Pointer<Image> dst,
   int posX,
   int posY,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawPixelV = ffi.Void Function(
   ffi.Pointer<Image> dst,
   Vector2 position,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawPixelV = void Function(
   ffi.Pointer<Image> dst,
   Vector2 position,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawLine = ffi.Void Function(
@@ -10879,7 +10897,7 @@ typedef _c_ImageDrawLine = ffi.Void Function(
   ffi.Int32 startPosY,
   ffi.Int32 endPosX,
   ffi.Int32 endPosY,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawLine = void Function(
@@ -10888,21 +10906,21 @@ typedef _dart_ImageDrawLine = void Function(
   int startPosY,
   int endPosX,
   int endPosY,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawLineV = ffi.Void Function(
   ffi.Pointer<Image> dst,
   Vector2 start,
   Vector2 end,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawLineV = void Function(
   ffi.Pointer<Image> dst,
   Vector2 start,
   Vector2 end,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawCircle = ffi.Void Function(
@@ -10910,7 +10928,7 @@ typedef _c_ImageDrawCircle = ffi.Void Function(
   ffi.Int32 centerX,
   ffi.Int32 centerY,
   ffi.Int32 radius,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawCircle = void Function(
@@ -10918,21 +10936,21 @@ typedef _dart_ImageDrawCircle = void Function(
   int centerX,
   int centerY,
   int radius,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawCircleV = ffi.Void Function(
   ffi.Pointer<Image> dst,
   Vector2 center,
   ffi.Int32 radius,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawCircleV = void Function(
   ffi.Pointer<Image> dst,
   Vector2 center,
   int radius,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawRectangle = ffi.Void Function(
@@ -10941,7 +10959,7 @@ typedef _c_ImageDrawRectangle = ffi.Void Function(
   ffi.Int32 posY,
   ffi.Int32 width,
   ffi.Int32 height,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawRectangle = void Function(
@@ -10950,47 +10968,47 @@ typedef _dart_ImageDrawRectangle = void Function(
   int posY,
   int width,
   int height,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawRectangleV = ffi.Void Function(
   ffi.Pointer<Image> dst,
   Vector2 position,
   Vector2 size,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawRectangleV = void Function(
   ffi.Pointer<Image> dst,
   Vector2 position,
   Vector2 size,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawRectangleRec = ffi.Void Function(
   ffi.Pointer<Image> dst,
   Rectangle rec,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawRectangleRec = void Function(
   ffi.Pointer<Image> dst,
   Rectangle rec,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawRectangleLines = ffi.Void Function(
   ffi.Pointer<Image> dst,
   Rectangle rec,
   ffi.Int32 thick,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawRectangleLines = void Function(
   ffi.Pointer<Image> dst,
   Rectangle rec,
   int thick,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDraw = ffi.Void Function(
@@ -10998,7 +11016,7 @@ typedef _c_ImageDraw = ffi.Void Function(
   Image src,
   Rectangle srcRec,
   Rectangle dstRec,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_ImageDraw = void Function(
@@ -11006,7 +11024,7 @@ typedef _dart_ImageDraw = void Function(
   Image src,
   Rectangle srcRec,
   Rectangle dstRec,
-  int tint,
+  Color tint,
 );
 
 typedef _c_ImageDrawText = ffi.Void Function(
@@ -11015,7 +11033,7 @@ typedef _c_ImageDrawText = ffi.Void Function(
   ffi.Int32 posX,
   ffi.Int32 posY,
   ffi.Int32 fontSize,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ImageDrawText = void Function(
@@ -11024,7 +11042,7 @@ typedef _dart_ImageDrawText = void Function(
   int posX,
   int posY,
   int fontSize,
-  int color,
+  Color color,
 );
 
 typedef _c_ImageDrawTextEx = ffi.Void Function(
@@ -11034,7 +11052,7 @@ typedef _c_ImageDrawTextEx = ffi.Void Function(
   Vector2 position,
   ffi.Float fontSize,
   ffi.Float spacing,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_ImageDrawTextEx = void Function(
@@ -11044,7 +11062,7 @@ typedef _dart_ImageDrawTextEx = void Function(
   Vector2 position,
   double fontSize,
   double spacing,
-  int tint,
+  Color tint,
 );
 
 typedef _c_LoadTexture = Texture Function(
@@ -11165,26 +11183,26 @@ typedef _c_DrawTexture = ffi.Void Function(
   Texture texture,
   ffi.Int32 posX,
   ffi.Int32 posY,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTexture = void Function(
   Texture texture,
   int posX,
   int posY,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextureV = ffi.Void Function(
   Texture texture,
   Vector2 position,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextureV = void Function(
   Texture texture,
   Vector2 position,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextureEx = ffi.Void Function(
@@ -11192,7 +11210,7 @@ typedef _c_DrawTextureEx = ffi.Void Function(
   Vector2 position,
   ffi.Float rotation,
   ffi.Float scale,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextureEx = void Function(
@@ -11200,21 +11218,21 @@ typedef _dart_DrawTextureEx = void Function(
   Vector2 position,
   double rotation,
   double scale,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextureRec = ffi.Void Function(
   Texture texture,
   Rectangle source,
   Vector2 position,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextureRec = void Function(
   Texture texture,
   Rectangle source,
   Vector2 position,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextureQuad = ffi.Void Function(
@@ -11222,7 +11240,7 @@ typedef _c_DrawTextureQuad = ffi.Void Function(
   Vector2 tiling,
   Vector2 offset,
   Rectangle quad,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextureQuad = void Function(
@@ -11230,7 +11248,7 @@ typedef _dart_DrawTextureQuad = void Function(
   Vector2 tiling,
   Vector2 offset,
   Rectangle quad,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextureTiled = ffi.Void Function(
@@ -11240,7 +11258,7 @@ typedef _c_DrawTextureTiled = ffi.Void Function(
   Vector2 origin,
   ffi.Float rotation,
   ffi.Float scale,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextureTiled = void Function(
@@ -11250,7 +11268,7 @@ typedef _dart_DrawTextureTiled = void Function(
   Vector2 origin,
   double rotation,
   double scale,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTexturePro = ffi.Void Function(
@@ -11259,7 +11277,7 @@ typedef _c_DrawTexturePro = ffi.Void Function(
   Rectangle dest,
   Vector2 origin,
   ffi.Float rotation,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTexturePro = void Function(
@@ -11268,7 +11286,7 @@ typedef _dart_DrawTexturePro = void Function(
   Rectangle dest,
   Vector2 origin,
   double rotation,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextureNPatch = ffi.Void Function(
@@ -11277,7 +11295,7 @@ typedef _c_DrawTextureNPatch = ffi.Void Function(
   Rectangle dest,
   Vector2 origin,
   ffi.Float rotation,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextureNPatch = void Function(
@@ -11286,7 +11304,7 @@ typedef _dart_DrawTextureNPatch = void Function(
   Rectangle dest,
   Vector2 origin,
   double rotation,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTexturePoly = ffi.Void Function(
@@ -11295,7 +11313,7 @@ typedef _c_DrawTexturePoly = ffi.Void Function(
   ffi.Pointer<Vector2> points,
   ffi.Pointer<Vector2> texcoords,
   ffi.Int32 pointsCount,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTexturePoly = void Function(
@@ -11304,112 +11322,112 @@ typedef _dart_DrawTexturePoly = void Function(
   ffi.Pointer<Vector2> points,
   ffi.Pointer<Vector2> texcoords,
   int pointsCount,
-  int tint,
+  Color tint,
 );
 
-typedef _c_Fade = ffi.Uint32 Function(
-  ffi.Uint32 color,
+typedef _c_Fade = Color Function(
+  Color color,
   ffi.Float alpha,
 );
 
-typedef _dart_Fade = int Function(
-  int color,
+typedef _dart_Fade = Color Function(
+  Color color,
   double alpha,
 );
 
 typedef _c_ColorToInt = ffi.Int32 Function(
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ColorToInt = int Function(
-  int color,
+  Color color,
 );
 
 typedef _c_ColorNormalize = Vector4 Function(
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ColorNormalize = Vector4 Function(
-  int color,
+  Color color,
 );
 
-typedef _c_ColorFromNormalized = ffi.Uint32 Function(
+typedef _c_ColorFromNormalized = Color Function(
   Vector4 normalized,
 );
 
-typedef _dart_ColorFromNormalized = int Function(
+typedef _dart_ColorFromNormalized = Color Function(
   Vector4 normalized,
 );
 
 typedef _c_ColorToHSV = Vector3 Function(
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_ColorToHSV = Vector3 Function(
-  int color,
+  Color color,
 );
 
-typedef _c_ColorFromHSV = ffi.Uint32 Function(
+typedef _c_ColorFromHSV = Color Function(
   ffi.Float hue,
   ffi.Float saturation,
   ffi.Float value,
 );
 
-typedef _dart_ColorFromHSV = int Function(
+typedef _dart_ColorFromHSV = Color Function(
   double hue,
   double saturation,
   double value,
 );
 
-typedef _c_ColorAlpha = ffi.Uint32 Function(
-  ffi.Uint32 color,
+typedef _c_ColorAlpha = Color Function(
+  Color color,
   ffi.Float alpha,
 );
 
-typedef _dart_ColorAlpha = int Function(
-  int color,
+typedef _dart_ColorAlpha = Color Function(
+  Color color,
   double alpha,
 );
 
-typedef _c_ColorAlphaBlend = ffi.Uint32 Function(
-  ffi.Uint32 dst,
-  ffi.Uint32 src,
-  ffi.Uint32 tint,
+typedef _c_ColorAlphaBlend = Color Function(
+  Color dst,
+  Color src,
+  Color tint,
 );
 
-typedef _dart_ColorAlphaBlend = int Function(
-  int dst,
-  int src,
-  int tint,
+typedef _dart_ColorAlphaBlend = Color Function(
+  Color dst,
+  Color src,
+  Color tint,
 );
 
-typedef _c_GetColor = ffi.Uint32 Function(
+typedef _c_GetColor = Color Function(
   ffi.Int32 hexValue,
 );
 
-typedef _dart_GetColor = int Function(
+typedef _dart_GetColor = Color Function(
   int hexValue,
 );
 
-typedef _c_GetPixelColor = ffi.Uint32 Function(
+typedef _c_GetPixelColor = Color Function(
   ffi.Pointer<ffi.Void> srcPtr,
   ffi.Int32 format,
 );
 
-typedef _dart_GetPixelColor = int Function(
+typedef _dart_GetPixelColor = Color Function(
   ffi.Pointer<ffi.Void> srcPtr,
   int format,
 );
 
 typedef _c_SetPixelColor = ffi.Void Function(
   ffi.Pointer<ffi.Void> dstPtr,
-  ffi.Uint32 color,
+  Color color,
   ffi.Int32 format,
 );
 
 typedef _dart_SetPixelColor = void Function(
   ffi.Pointer<ffi.Void> dstPtr,
-  int color,
+  Color color,
   int format,
 );
 
@@ -11453,13 +11471,13 @@ typedef _dart_LoadFontEx = Font Function(
 
 typedef _c_LoadFontFromImage = Font Function(
   Image image,
-  ffi.Uint32 key,
+  Color key,
   ffi.Int32 firstChar,
 );
 
 typedef _dart_LoadFontFromImage = Font Function(
   Image image,
-  int key,
+  Color key,
   int firstChar,
 );
 
@@ -11550,7 +11568,7 @@ typedef _c_DrawText = ffi.Void Function(
   ffi.Int32 posX,
   ffi.Int32 posY,
   ffi.Int32 fontSize,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawText = void Function(
@@ -11558,7 +11576,7 @@ typedef _dart_DrawText = void Function(
   int posX,
   int posY,
   int fontSize,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawTextEx = ffi.Void Function(
@@ -11567,7 +11585,7 @@ typedef _c_DrawTextEx = ffi.Void Function(
   Vector2 position,
   ffi.Float fontSize,
   ffi.Float spacing,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextEx = void Function(
@@ -11576,7 +11594,7 @@ typedef _dart_DrawTextEx = void Function(
   Vector2 position,
   double fontSize,
   double spacing,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextRec = ffi.Void Function(
@@ -11586,7 +11604,7 @@ typedef _c_DrawTextRec = ffi.Void Function(
   ffi.Float fontSize,
   ffi.Float spacing,
   ffi.Int32 wordWrap,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextRec = void Function(
@@ -11596,7 +11614,7 @@ typedef _dart_DrawTextRec = void Function(
   double fontSize,
   double spacing,
   int wordWrap,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawTextRecEx = ffi.Void Function(
@@ -11606,11 +11624,11 @@ typedef _c_DrawTextRecEx = ffi.Void Function(
   ffi.Float fontSize,
   ffi.Float spacing,
   ffi.Int32 wordWrap,
-  ffi.Uint32 tint,
+  Color tint,
   ffi.Int32 selectStart,
   ffi.Int32 selectLength,
-  ffi.Uint32 selectTint,
-  ffi.Uint32 selectBackTint,
+  Color selectTint,
+  Color selectBackTint,
 );
 
 typedef _dart_DrawTextRecEx = void Function(
@@ -11620,11 +11638,11 @@ typedef _dart_DrawTextRecEx = void Function(
   double fontSize,
   double spacing,
   int wordWrap,
-  int tint,
+  Color tint,
   int selectStart,
   int selectLength,
-  int selectTint,
-  int selectBackTint,
+  Color selectTint,
+  Color selectBackTint,
 );
 
 typedef _c_DrawTextCodepoint = ffi.Void Function(
@@ -11632,7 +11650,7 @@ typedef _c_DrawTextCodepoint = ffi.Void Function(
   ffi.Int32 codepoint,
   Vector2 position,
   ffi.Float fontSize,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawTextCodepoint = void Function(
@@ -11640,7 +11658,7 @@ typedef _dart_DrawTextCodepoint = void Function(
   int codepoint,
   Vector2 position,
   double fontSize,
-  int tint,
+  Color tint,
 );
 
 typedef _c_MeasureText = ffi.Int32 Function(
@@ -11878,23 +11896,23 @@ typedef _dart_CodepointToUtf8 = ffi.Pointer<ffi.Int8> Function(
 typedef _c_DrawLine3D = ffi.Void Function(
   Vector3 startPos,
   Vector3 endPos,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawLine3D = void Function(
   Vector3 startPos,
   Vector3 endPos,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawPoint3D = ffi.Void Function(
   Vector3 position,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawPoint3D = void Function(
   Vector3 position,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCircle3D = ffi.Void Function(
@@ -11902,7 +11920,7 @@ typedef _c_DrawCircle3D = ffi.Void Function(
   ffi.Float radius,
   Vector3 rotationAxis,
   ffi.Float rotationAngle,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCircle3D = void Function(
@@ -11910,33 +11928,33 @@ typedef _dart_DrawCircle3D = void Function(
   double radius,
   Vector3 rotationAxis,
   double rotationAngle,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawTriangle3D = ffi.Void Function(
   Vector3 v1,
   Vector3 v2,
   Vector3 v3,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawTriangle3D = void Function(
   Vector3 v1,
   Vector3 v2,
   Vector3 v3,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawTriangleStrip3D = ffi.Void Function(
   ffi.Pointer<Vector3> points,
   ffi.Int32 pointsCount,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawTriangleStrip3D = void Function(
   ffi.Pointer<Vector3> points,
   int pointsCount,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCube = ffi.Void Function(
@@ -11944,7 +11962,7 @@ typedef _c_DrawCube = ffi.Void Function(
   ffi.Float width,
   ffi.Float height,
   ffi.Float length,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCube = void Function(
@@ -11952,19 +11970,19 @@ typedef _dart_DrawCube = void Function(
   double width,
   double height,
   double length,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCubeV = ffi.Void Function(
   Vector3 position,
   Vector3 size,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCubeV = void Function(
   Vector3 position,
   Vector3 size,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCubeWires = ffi.Void Function(
@@ -11972,7 +11990,7 @@ typedef _c_DrawCubeWires = ffi.Void Function(
   ffi.Float width,
   ffi.Float height,
   ffi.Float length,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCubeWires = void Function(
@@ -11980,19 +11998,19 @@ typedef _dart_DrawCubeWires = void Function(
   double width,
   double height,
   double length,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCubeWiresV = ffi.Void Function(
   Vector3 position,
   Vector3 size,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCubeWiresV = void Function(
   Vector3 position,
   Vector3 size,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCubeTexture = ffi.Void Function(
@@ -12001,7 +12019,7 @@ typedef _c_DrawCubeTexture = ffi.Void Function(
   ffi.Float width,
   ffi.Float height,
   ffi.Float length,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCubeTexture = void Function(
@@ -12010,19 +12028,19 @@ typedef _dart_DrawCubeTexture = void Function(
   double width,
   double height,
   double length,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawSphere = ffi.Void Function(
   Vector3 centerPos,
   ffi.Float radius,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawSphere = void Function(
   Vector3 centerPos,
   double radius,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawSphereEx = ffi.Void Function(
@@ -12030,7 +12048,7 @@ typedef _c_DrawSphereEx = ffi.Void Function(
   ffi.Float radius,
   ffi.Int32 rings,
   ffi.Int32 slices,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawSphereEx = void Function(
@@ -12038,7 +12056,7 @@ typedef _dart_DrawSphereEx = void Function(
   double radius,
   int rings,
   int slices,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawSphereWires = ffi.Void Function(
@@ -12046,7 +12064,7 @@ typedef _c_DrawSphereWires = ffi.Void Function(
   ffi.Float radius,
   ffi.Int32 rings,
   ffi.Int32 slices,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawSphereWires = void Function(
@@ -12054,7 +12072,7 @@ typedef _dart_DrawSphereWires = void Function(
   double radius,
   int rings,
   int slices,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCylinder = ffi.Void Function(
@@ -12063,7 +12081,7 @@ typedef _c_DrawCylinder = ffi.Void Function(
   ffi.Float radiusBottom,
   ffi.Float height,
   ffi.Int32 slices,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCylinder = void Function(
@@ -12072,7 +12090,7 @@ typedef _dart_DrawCylinder = void Function(
   double radiusBottom,
   double height,
   int slices,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawCylinderWires = ffi.Void Function(
@@ -12081,7 +12099,7 @@ typedef _c_DrawCylinderWires = ffi.Void Function(
   ffi.Float radiusBottom,
   ffi.Float height,
   ffi.Int32 slices,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawCylinderWires = void Function(
@@ -12090,29 +12108,29 @@ typedef _dart_DrawCylinderWires = void Function(
   double radiusBottom,
   double height,
   int slices,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawPlane = ffi.Void Function(
   Vector3 centerPos,
   Vector2 size,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawPlane = void Function(
   Vector3 centerPos,
   Vector2 size,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawRay = ffi.Void Function(
   Ray ray,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawRay = void Function(
   Ray ray,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawGrid = ffi.Void Function(
@@ -12471,14 +12489,14 @@ typedef _c_DrawModel = ffi.Void Function(
   Model model,
   Vector3 position,
   ffi.Float scale,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawModel = void Function(
   Model model,
   Vector3 position,
   double scale,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawModelEx = ffi.Void Function(
@@ -12487,7 +12505,7 @@ typedef _c_DrawModelEx = ffi.Void Function(
   Vector3 rotationAxis,
   ffi.Float rotationAngle,
   Vector3 scale,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawModelEx = void Function(
@@ -12496,21 +12514,21 @@ typedef _dart_DrawModelEx = void Function(
   Vector3 rotationAxis,
   double rotationAngle,
   Vector3 scale,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawModelWires = ffi.Void Function(
   Model model,
   Vector3 position,
   ffi.Float scale,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawModelWires = void Function(
   Model model,
   Vector3 position,
   double scale,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawModelWiresEx = ffi.Void Function(
@@ -12519,7 +12537,7 @@ typedef _c_DrawModelWiresEx = ffi.Void Function(
   Vector3 rotationAxis,
   ffi.Float rotationAngle,
   Vector3 scale,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawModelWiresEx = void Function(
@@ -12528,17 +12546,17 @@ typedef _dart_DrawModelWiresEx = void Function(
   Vector3 rotationAxis,
   double rotationAngle,
   Vector3 scale,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawBoundingBox = ffi.Void Function(
   BoundingBox box,
-  ffi.Uint32 color,
+  Color color,
 );
 
 typedef _dart_DrawBoundingBox = void Function(
   BoundingBox box,
-  int color,
+  Color color,
 );
 
 typedef _c_DrawBillboard = ffi.Void Function(
@@ -12546,7 +12564,7 @@ typedef _c_DrawBillboard = ffi.Void Function(
   Texture texture,
   Vector3 center,
   ffi.Float size,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawBillboard = void Function(
@@ -12554,7 +12572,7 @@ typedef _dart_DrawBillboard = void Function(
   Texture texture,
   Vector3 center,
   double size,
-  int tint,
+  Color tint,
 );
 
 typedef _c_DrawBillboardRec = ffi.Void Function(
@@ -12563,7 +12581,7 @@ typedef _c_DrawBillboardRec = ffi.Void Function(
   Rectangle source,
   Vector3 center,
   ffi.Float size,
-  ffi.Uint32 tint,
+  Color tint,
 );
 
 typedef _dart_DrawBillboardRec = void Function(
@@ -12572,7 +12590,7 @@ typedef _dart_DrawBillboardRec = void Function(
   Rectangle source,
   Vector3 center,
   double size,
-  int tint,
+  Color tint,
 );
 
 typedef _c_CheckCollisionSpheres = ffi.Int32 Function(
@@ -13151,4 +13169,18 @@ typedef _c_CreateVector2 = Vector2 Function(
 typedef _dart_CreateVector2 = Vector2 Function(
   double x,
   double y,
+);
+
+typedef _c_CreateColor = Color Function(
+  ffi.Uint8 r,
+  ffi.Uint8 g,
+  ffi.Uint8 b,
+  ffi.Uint8 a,
+);
+
+typedef _dart_CreateColor = Color Function(
+  int r,
+  int g,
+  int b,
+  int a,
 );

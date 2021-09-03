@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:path/path.dart' as path;
 import 'package:raylib_dart/raylib_dart.dart';
-import 'package:raylib_dart/src/constants/colors.dart';
 
 import 'package:ffi/ffi.dart';
 
@@ -44,7 +43,7 @@ void main() {
     }
 
     core.beginDrawing();
-    core.clearBackground(RaylibColor.black);
+    core.clearBackground(core.colors.black);
 
     raylib.raylib.DrawFPS(32, 32);
     raylib.raylib.DrawText(
@@ -52,7 +51,7 @@ void main() {
       (screenWidth - raylib.raylib.MeasureText(int8Text, fontSize)) ~/ 2,
       screenHeight ~/ 2,
       fontSize,
-      RaylibColor.white.toInt32(),
+      core.colors.brown,
     );
 
     core.endDrawing();
