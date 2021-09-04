@@ -7,6 +7,8 @@ import 'module.dart';
 import '../constants/config_flags.dart';
 import '../modules/generated_bindings.dart' as raylib_bind;
 
+part 'raylib_colors.dart';
+
 class Core extends RaylibModule {
   // Constructs the core module.
   Core(raylib_bind.DartRaylib raylib) : super(raylib) {
@@ -141,8 +143,10 @@ class Core extends RaylibModule {
     raylib.RestoreWindow();
   }
 
-  // // Set icon for window (only PLATFORM_DESKTOP)
-  // void SetWindowIcon(Image image);
+  // Set icon for window (only PLATFORM_DESKTOP)
+  void setWindowIcon(raylib_bind.Image image) {
+    raylib.SetWindowIcon(image);
+  }
 
   // Set title for window (only PLATFORM_DESKTOP)
   set windowTitle(String title) {
@@ -377,6 +381,54 @@ class Core extends RaylibModule {
     raylib.EndVrStereoMode();
   }
 
+  // **************** VR stereo config functions for VR simulator. ****************
+
+  // Load VR stereo config for VR simulator device parameters
+  raylib_bind.VrStereoConfig loadVrStereoConfig(
+      raylib_bind.VrDeviceInfo device) {
+    return raylib.LoadVrStereoConfig(device);
+  }
+
+  // Unload VR stereo config
+  void unloadVrStereoConfig(raylib_bind.VrStereoConfig config) {
+    raylib.UnloadVrStereoConfig(config);
+  }
+
+  // **************** Screen-space-related functions. ****************
+
+  // Returns a ray trace from mouse position
+  raylib_bind.Ray getMouseRay(
+          raylib_bind.Vector2 mousePosition, raylib_bind.Camera3D camera) =>
+      raylib.GetMouseRay(mousePosition, camera);
+
+  // Returns camera transform matrix (view matrix)
+  raylib_bind.Matrix getCameraMatrix(raylib_bind.Camera3D camera) =>
+      raylib.GetCameraMatrix(camera);
+
+  // Returns camera 2d transform matrix
+  raylib_bind.Matrix getCameraMatrix2D(raylib_bind.Camera2D camera) =>
+      raylib.GetCameraMatrix2D(camera);
+
+  // Returns the screen space position for a 3d world space position
+  raylib_bind.Vector2 getWorldToScreen(
+          raylib_bind.Vector3 position, raylib_bind.Camera3D camera) =>
+      raylib.GetWorldToScreen(position, camera);
+
+  // Returns size position for a 3d world space position
+  raylib_bind.Vector2 getWorldToScreenEx(raylib_bind.Vector3 position,
+          raylib_bind.Camera3D camera, int width, int height) =>
+      raylib.GetWorldToScreenEx(position, camera, width, height);
+
+  // Returns the screen space position for a 2d camera world space position
+  raylib_bind.Vector2 getWorldToScreen2D(
+          raylib_bind.Vector2 position, raylib_bind.Camera2D camera) =>
+      raylib.GetWorldToScreen2D(position, camera);
+
+  // Returns the world space position for a 2d camera screen space position
+  raylib_bind.Vector2 getScreenToWorld2D(
+          raylib_bind.Vector2 position, raylib_bind.Camera2D camera) =>
+      raylib.GetScreenToWorld2D(position, camera);
+
   // **************** Timing related APIs. ****************
 
   // Set target FPS (maximum)
@@ -393,21 +445,8 @@ class Core extends RaylibModule {
   // Returns elapsed time in seconds since InitWindow()
   double get time => raylib.GetTime();
 
-  // **************** VR stereo config functions for VR simulator. ****************
-
-  // Load VR stereo config for VR simulator device parameters
-  raylib_bind.VrStereoConfig loadVrStereoConfig(
-      raylib_bind.VrDeviceInfo device) {
-    return raylib.LoadVrStereoConfig(device);
-  }
-
-  // Unload VR stereo config
-  void unloadVrStereoConfig(raylib_bind.VrStereoConfig config) {
-    raylib.UnloadVrStereoConfig(config);
-  }
-
   // **************** Struct constructors. ****************
-  // Creates an object of Vector2
+  // Creates an object of Vector2.
   raylib_bind.Vector2 createVector2(double x, double y) =>
       raylib.CreateVector2(x, y);
 
@@ -415,71 +454,9 @@ class Core extends RaylibModule {
   // Each channel showing be between 0-255.
   raylib_bind.Color createColor(int r, int g, int b, int a) =>
       raylib.CreateColor(r, g, b, a);
-}
 
-// Wrapper over raylib colors.
-class _RaylibColor {
-  late final raylib_bind.DartRaylib _raylib;
-
-  _RaylibColor(raylib_bind.DartRaylib raylib) {
-    _raylib = raylib;
-  }
-
-  // Creates an object of Color with given RGBA values.
-  // Each channel showing be between 0-255.
-  raylib_bind.Color fromRGBA(int r, int g, int b, int a) =>
-      _raylib.CreateColor(r, g, b, a);
-
-  // Light Gray
-  raylib_bind.Color get lightGray => _raylib.CreateColor(200, 200, 200, 255);
-  // Gray
-  raylib_bind.Color get gray => _raylib.CreateColor(130, 130, 130, 255);
-  // Dark Gray
-  raylib_bind.Color get darkGray => _raylib.CreateColor(80, 80, 80, 255);
-  // Yellow
-  raylib_bind.Color get yellow => _raylib.CreateColor(253, 249, 0, 255);
-  // Gold
-  raylib_bind.Color get gold => _raylib.CreateColor(255, 203, 0, 255);
-  // Orange
-  raylib_bind.Color get orange => _raylib.CreateColor(255, 161, 0, 255);
-  // Pink
-  raylib_bind.Color get pink => _raylib.CreateColor(255, 109, 194, 255);
-  // Red
-  raylib_bind.Color get red => _raylib.CreateColor(230, 41, 55, 255);
-  // Maroon
-  raylib_bind.Color get maroon => _raylib.CreateColor(190, 33, 55, 255);
-  // Green
-  raylib_bind.Color get green => _raylib.CreateColor(0, 228, 48, 255);
-  // Lime
-  raylib_bind.Color get lime => _raylib.CreateColor(0, 158, 47, 255);
-  // Dark Green
-  raylib_bind.Color get darkGreen => _raylib.CreateColor(0, 117, 44, 255);
-  // Sky Blue
-  raylib_bind.Color get skyBlue => _raylib.CreateColor(102, 191, 255, 255);
-  // Blue
-  raylib_bind.Color get blue => _raylib.CreateColor(0, 121, 241, 255);
-  // Dark Blue
-  raylib_bind.Color get darkBlue => _raylib.CreateColor(0, 82, 172, 255);
-  // Purple
-  raylib_bind.Color get purple => _raylib.CreateColor(200, 122, 255, 255);
-  // Violet
-  raylib_bind.Color get violet => _raylib.CreateColor(135, 60, 190, 255);
-  // Dark Purple
-  raylib_bind.Color get darkPurple => _raylib.CreateColor(112, 31, 126, 255);
-  // Beige
-  raylib_bind.Color get beige => _raylib.CreateColor(211, 176, 131, 255);
-  // Brown
-  raylib_bind.Color get brown => _raylib.CreateColor(127, 106, 79, 255);
-  // Dark Brown
-  raylib_bind.Color get darkBrown => _raylib.CreateColor(76, 63, 47, 255);
-  // White
-  raylib_bind.Color get white => _raylib.CreateColor(255, 255, 255, 255);
-  // Black
-  raylib_bind.Color get black => _raylib.CreateColor(0, 0, 0, 255);
-  // Blank (Transparent)
-  raylib_bind.Color get blank => _raylib.CreateColor(0, 0, 0, 0);
-  // Magenta
-  raylib_bind.Color get magenta => _raylib.CreateColor(255, 0, 255, 255);
-  // My own White (raylib logo)
-  raylib_bind.Color get rayWhite => _raylib.CreateColor(245, 245, 245, 255);
+  // Creates an object of Image.
+  raylib_bind.Image createImage(ffi.Pointer<ffi.Void> data, int width,
+          int height, int mipmaps, int format) =>
+      raylib.CreateImage(data, width, height, mipmaps, format);
 }

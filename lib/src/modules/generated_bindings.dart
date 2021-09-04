@@ -7220,6 +7220,7 @@ class DartRaylib {
   late final _dart_CreateVector2 _CreateVector2 =
       _CreateVector2_ptr.asFunction<_dart_CreateVector2>();
 
+  /// Create an object of Color
   Color CreateColor(
     int r,
     int g,
@@ -7238,6 +7239,28 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_CreateColor>>('CreateColor');
   late final _dart_CreateColor _CreateColor =
       _CreateColor_ptr.asFunction<_dart_CreateColor>();
+
+  /// Create an object of Image
+  Image CreateImage(
+    ffi.Pointer<ffi.Void> data,
+    int width,
+    int height,
+    int mipmaps,
+    int format,
+  ) {
+    return _CreateImage(
+      data,
+      width,
+      height,
+      mipmaps,
+      format,
+    );
+  }
+
+  late final _CreateImage_ptr =
+      _lookup<ffi.NativeFunction<_c_CreateImage>>('CreateImage');
+  late final _dart_CreateImage _CreateImage =
+      _CreateImage_ptr.asFunction<_dart_CreateImage>();
 }
 
 abstract class bool {
@@ -13183,4 +13206,20 @@ typedef _dart_CreateColor = Color Function(
   int g,
   int b,
   int a,
+);
+
+typedef _c_CreateImage = Image Function(
+  ffi.Pointer<ffi.Void> data,
+  ffi.Int32 width,
+  ffi.Int32 height,
+  ffi.Int32 mipmaps,
+  ffi.Int32 format,
+);
+
+typedef _dart_CreateImage = Image Function(
+  ffi.Pointer<ffi.Void> data,
+  int width,
+  int height,
+  int mipmaps,
+  int format,
 );
