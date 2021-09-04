@@ -5,7 +5,8 @@ Dart bindings for raylib 3.7.0, a simple and easy-to-use library to learn videog
 ## Note
 
 - This project is still work in progress and a lot of APIs from raylib are not yet exposed correctly
-- Right now it only supports Windows
+- Right now it only supports Windows and Linux
+- This package uses a custom fork of [raylib](https://github.com/ufrshubham/raylib) added as submodule under vendors. So stock raylib binaries might not work.
 
 ## Usage
 
@@ -44,6 +45,10 @@ int main() {
 - [ ] Figure out best way to distribute platform specific raylib binaries with this package. See [sqflite](https://github.com/tekartik/sqflite/tree/master/sqflite_common_ffi) for reference.
 
 - [ ] Get all the examples from raylib working with this package.
+
+- [ ] Add build instructions for the forked version of raylib.
+
+- [ ] Add instructions for development and contribution to this project.
 
 ## For discussions
 

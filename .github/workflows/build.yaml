@@ -11,7 +11,9 @@ env:
 
 jobs:
   build:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       # Checkout with submodules.
@@ -22,6 +24,10 @@ jobs:
 
       - name: Create build environment
         run: cmake -E make_directory ${{github.workspace}}/vendors/raylib/build
+
+      - name: Get dependencies
+        run: sudo apt update && sudo apt install -y libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libopengl-dev mesa-common-dev
+        if: matrix.os == 'ubuntu-latest'
 
       - name: Configure CMake
         shell: bash
