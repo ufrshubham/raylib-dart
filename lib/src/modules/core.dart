@@ -4,10 +4,14 @@ import 'package:ffi/ffi.dart';
 
 import 'module.dart';
 
+import '../constants/key_codes.dart';
+import '../constants/mouse_cursor.dart';
 import '../constants/config_flags.dart';
 import '../modules/generated_bindings.dart' as raylib_bind;
 
 part 'raylib_colors.dart';
+part '../maps/key_bindings.dart';
+part '../maps/mouse_cursors.dart';
 
 class Core extends RaylibModule {
   // Constructs the core module.
@@ -240,33 +244,6 @@ class Core extends RaylibModule {
   String get clipboardText =>
       raylib.GetClipboardText().cast<Utf8>().toDartString();
 
-  /// Maps user facing [WindowConfigFlag] to native [ConfigFlags]
-  static const Map<WindowConfigFlag, int> _configFlags = {
-    WindowConfigFlag.vsyncHint: raylib_bind.ConfigFlags.FLAG_VSYNC_HINT,
-    WindowConfigFlag.fullScreenMode:
-        raylib_bind.ConfigFlags.FLAG_FULLSCREEN_MODE,
-    WindowConfigFlag.windowResizable:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_RESIZABLE,
-    WindowConfigFlag.windowUndecorated:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_UNDECORATED,
-    WindowConfigFlag.windowHidden: raylib_bind.ConfigFlags.FLAG_WINDOW_HIDDEN,
-    WindowConfigFlag.windowMinimized:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_MINIMIZED,
-    WindowConfigFlag.windowMaximized:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_MAXIMIZED,
-    WindowConfigFlag.windowUnfocused:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_UNFOCUSED,
-    WindowConfigFlag.windowTopmost: raylib_bind.ConfigFlags.FLAG_WINDOW_TOPMOST,
-    WindowConfigFlag.windowAlwaysRun:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_ALWAYS_RUN,
-    WindowConfigFlag.windowTransparent:
-        raylib_bind.ConfigFlags.FLAG_WINDOW_TRANSPARENT,
-    WindowConfigFlag.windowHighdpi: raylib_bind.ConfigFlags.FLAG_WINDOW_HIGHDPI,
-    WindowConfigFlag.msaa_4XHint: raylib_bind.ConfigFlags.FLAG_MSAA_4X_HINT,
-    WindowConfigFlag.interlacedHint:
-        raylib_bind.ConfigFlags.FLAG_INTERLACED_HINT,
-  };
-
   // **************** Cursor related APIs. ****************
 
   void showCursor() {
@@ -451,8 +428,11 @@ class Core extends RaylibModule {
   int getRandomValue(int min, int max) => raylib.GetRandomValue(min, max);
 
   // Takes a screenshot of current screen (filename extension defines format)
-  void takeScreenshot(String fileName) =>
-      raylib.TakeScreenshot(_toUtf8(fileName).cast<ffi.Int8>());
+  void takeScreenshot(String fileName) {
+    final nativeString = _toUtf8(fileName);
+    raylib.TakeScreenshot(nativeString.cast<ffi.Int8>());
+    malloc.free(nativeString);
+  }
 
   // Setup init configuration flags (view FLAGS)
   void setConfigFlags(List<WindowConfigFlag> flags) {
@@ -492,6 +472,148 @@ class Core extends RaylibModule {
 
     return filenames;
   }
+
+  // **************** Input-related functions: keyboard. ****************
+
+  // Detect if a key has been pressed once
+  bool isKeyPressed(KeyboardKeyCode key) =>
+      (raylib.IsKeyPressed(_keyboardKeys[key]!) == raylib_bind.bool.true_1);
+
+  // Detect if a key is being pressed
+  bool isKeyDown(KeyboardKeyCode key) =>
+      (raylib.IsKeyDown(_keyboardKeys[key]!) == raylib_bind.bool.true_1);
+
+  // Detect if a key has been released once
+  bool isKeyReleased(KeyboardKeyCode key) =>
+      (raylib.IsKeyReleased(_keyboardKeys[key]!) == raylib_bind.bool.true_1);
+
+  // Detect if a key is NOT being pressed
+  bool isKeyUp(KeyboardKeyCode key) =>
+      (raylib.IsKeyUp(_keyboardKeys[key]!) == raylib_bind.bool.true_1);
+
+  // Set a custom key to exit program (default is ESC)
+  set exitKey(KeyboardKeyCode key) => raylib.SetExitKey(_keyboardKeys[key]!);
+
+  // Get key pressed (keycode), call it multiple times for keys queued
+  KeyboardKeyCode getKeyPressed() {
+    final nativeKey = raylib.GetKeyPressed();
+    // Do a reverse lookup.
+    final index = _keyboardKeys.values.toList().indexOf(nativeKey);
+    return _keyboardKeys.keys.elementAt(index);
+  }
+
+  // Get char pressed (unicode), call it multiple times for chars queued
+  int getCharPressed() => raylib.GetCharPressed();
+
+  // **************** Input-related functions: gamepads. ****************
+
+  // Detect if a gamepad is available
+  bool isGamepadAvailable(int gamepad) =>
+      (raylib.IsGamepadAvailable(gamepad) == raylib_bind.bool.true_1);
+
+  // Check gamepad name (if available)
+  bool isGamepadName(int gamepad, String name) {
+    final nativeString = _toUtf8(name);
+    bool flag = (raylib.IsGamepadName(gamepad, nativeString.cast<ffi.Int8>()) ==
+        raylib_bind.bool.true_1);
+    malloc.free(nativeString);
+    return flag;
+  }
+
+  // Return gamepad internal name id
+  String getGamepadName(int gamepad) =>
+      raylib.GetGamepadName(gamepad).cast<Utf8>().toDartString();
+
+  // Detect if a gamepad button has been pressed once
+  bool isGamepadButtonPressed(int gamepad, GamepadButtonCode button) =>
+      (raylib.IsGamepadButtonPressed(gamepad, _gamepadButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Detect if a gamepad button is being pressed
+  bool isGamepadButtonDown(int gamepad, GamepadButtonCode button) =>
+      (raylib.IsGamepadButtonDown(gamepad, _gamepadButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Detect if a gamepad button has been released once
+  bool isGamepadButtonReleased(int gamepad, GamepadButtonCode button) =>
+      (raylib.IsGamepadButtonReleased(gamepad, _gamepadButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Detect if a gamepad button is NOT being pressed
+  bool isGamepadButtonUp(int gamepad, int button) =>
+      (raylib.IsGamepadButtonUp(gamepad, _gamepadButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Get the last gamepad button pressed
+  GamepadButtonCode getGamepadButtonPressed() {
+    final nativeKey = raylib.GetGamepadButtonPressed();
+    final index = _gamepadButtons.values.toList().indexOf(nativeKey);
+    return _gamepadButtons.keys.elementAt(index);
+  }
+
+  // Return gamepad axis count for a gamepad
+  int getGamepadAxisCount(int gamepad) => raylib.GetGamepadAxisCount(gamepad);
+
+  // Return axis movement value for a gamepad axis
+  double getGamepadAxisMovement(int gamepad, GamepadAxisCode axis) =>
+      raylib.GetGamepadAxisMovement(gamepad, _gamepadAxis[axis]!);
+
+  // Set internal gamepad mappings (SDL_GameControllerDB)
+  int setGamepadMappings(String mappings) {
+    final nativeString = _toUtf8(mappings);
+    final result = raylib.SetGamepadMappings(nativeString.cast<ffi.Int8>());
+    malloc.free(nativeString);
+    return result;
+  }
+
+  // **************** Input-related functions: mouse. ****************
+
+  // Detect if a mouse button has been pressed once
+  bool isMouseButtonPressed(MouseButtonCode button) =>
+      (raylib.IsMouseButtonPressed(_mouseButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Detect if a mouse button is being pressed
+  bool isMouseButtonDown(MouseButtonCode button) =>
+      (raylib.IsMouseButtonDown(_mouseButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Detect if a mouse button has been released once
+  bool isMouseButtonReleased(MouseButtonCode button) =>
+      (raylib.IsMouseButtonReleased(_mouseButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Detect if a mouse button is NOT being pressed
+  bool isMouseButtonUp(MouseButtonCode button) =>
+      (raylib.IsMouseButtonUp(_mouseButtons[button]!) ==
+          raylib_bind.bool.true_1);
+
+  // Returns mouse position X
+  int get mouseX => raylib.GetMouseX();
+
+  // Returns mouse position Y
+  int get mouseY => raylib.GetMouseY();
+
+  // Returns mouse position XY
+  raylib_bind.Vector2 get mousePosition => raylib.GetMousePosition();
+
+  // Set mouse position XY
+  void setMousePosition(int x, int y) => raylib.SetMousePosition(x, y);
+
+  // Set mouse offset
+  void setMouseOffset(int offsetX, int offsetY) =>
+      raylib.SetMouseOffset(offsetX, offsetY);
+
+  // Set mouse scaling
+  void setMouseScale(double scaleX, double scaleY) =>
+      raylib.SetMouseScale(scaleX, scaleY);
+
+  // Returns mouse wheel movement Y
+  double get mouseWheelMove => raylib.GetMouseWheelMove();
+
+  // Set mouse cursor
+  set mouseCursor(MouseCursor cursor) =>
+      raylib.SetMouseCursor(_mouseCursor[cursor]!);
 
   // **************** Struct constructors. ****************
   // Creates an object of Vector2.
