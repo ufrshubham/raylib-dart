@@ -34,7 +34,7 @@ class Core extends RaylibModule {
 
   // Converts given strings to native utf-8 strings
   // and exposes it as a int8 pointer.
-  ffi.Pointer<Utf8> _toInt8(String string) {
+  ffi.Pointer<Utf8> _toUtf8(String string) {
     return string.toNativeUtf8();
   }
 
@@ -43,7 +43,7 @@ class Core extends RaylibModule {
   // Initialize window and OpenGL context
   void initWindow(int width, int height, String title) {
     malloc.free(_windowTitle);
-    _windowTitle = _toInt8(title);
+    _windowTitle = _toUtf8(title);
     raylib.InitWindow(width, height, _windowTitle.cast<ffi.Int8>());
   }
 
@@ -151,7 +151,7 @@ class Core extends RaylibModule {
   // Set title for window (only PLATFORM_DESKTOP)
   set windowTitle(String title) {
     malloc.free(_windowTitle);
-    _windowTitle = _toInt8(title);
+    _windowTitle = _toUtf8(title);
     raylib.SetWindowTitle(_windowTitle.cast<ffi.Int8>());
   }
 
@@ -232,7 +232,7 @@ class Core extends RaylibModule {
   // Set clipboard text content
   set clipboardText(String text) {
     malloc.free(_clipboardContent);
-    _clipboardContent = _toInt8(text);
+    _clipboardContent = _toUtf8(text);
     raylib.SetClipboardText(_clipboardContent.cast<ffi.Int8>());
   }
 
@@ -444,6 +444,54 @@ class Core extends RaylibModule {
 
   // Returns elapsed time in seconds since InitWindow()
   double get time => raylib.GetTime();
+
+  // **************** Misc. functions. ****************
+
+  // Returns a random value between min and max (both included)
+  int getRandomValue(int min, int max) => raylib.GetRandomValue(min, max);
+
+  // Takes a screenshot of current screen (filename extension defines format)
+  void takeScreenshot(String fileName) =>
+      raylib.TakeScreenshot(_toUtf8(fileName).cast<ffi.Int8>());
+
+  // Setup init configuration flags (view FLAGS)
+  void setConfigFlags(List<WindowConfigFlag> flags) {
+    var bitMaskedFlag = 0;
+
+    for (final flag in flags) {
+      if (_configFlags[flag] != null) {
+        bitMaskedFlag |= _configFlags[flag]!;
+      } else {
+        throw ArgumentError.value(
+            flag,
+            'flags.elementAt(${flags.indexOf(flag)})',
+            'Does not map to any native window config flag.');
+      }
+    }
+    raylib.SetConfigFlags(bitMaskedFlag);
+  }
+
+  // **************** Files management functions. ****************
+
+  // Check if a file has been dropped into window
+  bool get isFileDropped => (raylib.IsFileDropped() == raylib_bind.bool.true_1);
+
+  // Get dropped files names
+  List<String> getDroppedFiles() {
+    List<String> filenames = [];
+
+    ffi.Pointer<ffi.Int32> nativeCount = calloc.allocate<ffi.Int32>(1);
+    final nativeStrings = raylib.GetDroppedFiles(nativeCount);
+
+    for (var i = 0; i < nativeCount.value; ++i) {
+      filenames
+          .add(nativeStrings.elementAt(i).value.cast<Utf8>().toDartString());
+    }
+    // Cleans the native memory.
+    raylib.ClearDroppedFiles();
+
+    return filenames;
+  }
 
   // **************** Struct constructors. ****************
   // Creates an object of Vector2.

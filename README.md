@@ -5,8 +5,16 @@ Dart bindings for raylib 3.7.0, a simple and easy-to-use library to learn videog
 ## Note
 
 - This project is still work in progress and a lot of APIs from raylib are not yet exposed correctly
+
 - Right now it only supports Windows and Linux
+
 - This package uses a custom fork of [raylib](https://github.com/ufrshubham/raylib) added as submodule under vendors. So stock raylib binaries might not work.
+
+- Some APIs from raylib are not exposed because I feel that dart already has native libraries to handle such things. For example:
+
+  - Logging
+  - File management (expect dropped file APIs)
+  - MemAlloc and MemFree
 
 ## Usage
 
