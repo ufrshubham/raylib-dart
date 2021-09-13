@@ -7220,7 +7220,7 @@ class DartRaylib {
   late final _dart_CreateVector2 _CreateVector2 =
       _CreateVector2_ptr.asFunction<_dart_CreateVector2>();
 
-  /// Create an object of Color
+  /// Creates an object of Color
   Color CreateColor(
     int r,
     int g,
@@ -7240,7 +7240,7 @@ class DartRaylib {
   late final _dart_CreateColor _CreateColor =
       _CreateColor_ptr.asFunction<_dart_CreateColor>();
 
-  /// Create an object of Image
+  /// Creates an object of Image
   Image CreateImage(
     ffi.Pointer<ffi.Void> data,
     int width,
@@ -7261,6 +7261,26 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_CreateImage>>('CreateImage');
   late final _dart_CreateImage _CreateImage =
       _CreateImage_ptr.asFunction<_dart_CreateImage>();
+
+  /// Creates an object of Camera2D
+  Camera2D CreateCamera2D(
+    Vector2 offset,
+    Vector2 target,
+    double rotation,
+    double zoom,
+  ) {
+    return _CreateCamera2D(
+      offset,
+      target,
+      rotation,
+      zoom,
+    );
+  }
+
+  late final _CreateCamera2D_ptr =
+      _lookup<ffi.NativeFunction<_c_CreateCamera2D>>('CreateCamera2D');
+  late final _dart_CreateCamera2D _CreateCamera2D =
+      _CreateCamera2D_ptr.asFunction<_dart_CreateCamera2D>();
 }
 
 abstract class bool {
@@ -13222,4 +13242,18 @@ typedef _dart_CreateImage = Image Function(
   int height,
   int mipmaps,
   int format,
+);
+
+typedef _c_CreateCamera2D = Camera2D Function(
+  Vector2 offset,
+  Vector2 target,
+  ffi.Double rotation,
+  ffi.Double zoom,
+);
+
+typedef _dart_CreateCamera2D = Camera2D Function(
+  Vector2 offset,
+  Vector2 target,
+  double rotation,
+  double zoom,
 );

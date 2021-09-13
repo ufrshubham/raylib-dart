@@ -4,12 +4,17 @@ import 'package:ffi/ffi.dart';
 
 import 'module.dart';
 
+import '../constants/camera.dart';
+import '../constants/gestures.dart';
 import '../constants/key_codes.dart';
 import '../constants/mouse_cursor.dart';
 import '../constants/config_flags.dart';
 import '../modules/generated_bindings.dart' as raylib_bind;
 
 part 'raylib_colors.dart';
+
+part '../maps/camera.dart';
+part '../maps/gestures.dart';
 part '../maps/key_bindings.dart';
 part '../maps/mouse_cursors.dart';
 
@@ -409,9 +414,7 @@ class Core extends RaylibModule {
   // **************** Timing related APIs. ****************
 
   // Set target FPS (maximum)
-  set targetFPS(int fps) {
-    raylib.SetTargetFPS(fps);
-  }
+  set targetFPS(int fps) => raylib.SetTargetFPS(fps);
 
   // Returns current FPS
   int get fps => raylib.GetFPS();
@@ -615,6 +618,177 @@ class Core extends RaylibModule {
   set mouseCursor(MouseCursor cursor) =>
       raylib.SetMouseCursor(_mouseCursor[cursor]!);
 
+  // **************** Input-related functions: touch. ****************
+
+  // Returns touch position X for touch point 0 (relative to screen size)
+  int get touchX => raylib.GetMouseX();
+
+  // Returns touch position Y for touch point 0 (relative to screen size)
+  int get touchY => raylib.GetMouseY();
+
+  // Returns touch position XY for a touch point index (relative to screen size)
+  raylib_bind.Vector2 getTouchPosition(int index) =>
+      raylib.GetTouchPosition(index);
+
+  // **************** Gestures and Touch Handling Functions. ****************
+
+  // Enable a set of gestures using flags
+  void setGesturesEnabled(List<Gesture> flags) {
+    var bitMaskedFlag = 0;
+
+    for (final flag in flags) {
+      if (_gestures[flag] != null) {
+        bitMaskedFlag |= _gestures[flag]!;
+      } else {
+        throw ArgumentError.value(
+            flag,
+            'flags.elementAt(${flags.indexOf(flag)})',
+            'Does not map to any native gesture flag.');
+      }
+    }
+    raylib.SetGesturesEnabled(bitMaskedFlag);
+  }
+
+  // Check if a gesture have been detected
+  bool isGestureDetected(Gesture gesture) {
+    bool flag = false;
+    if (_gestures[gesture] != null) {
+      flag = (raylib.IsGestureDetected(_gestures[gesture]!) == _true);
+    } else {
+      throw ArgumentError.value(
+          gesture, '$gesture', 'Does not map to any native gesture flag.');
+    }
+    return flag;
+  }
+
+  // Get latest detected gesture
+  Gesture get gestureDetected {
+    final nativeGesture = raylib.GetGestureDetected();
+    final index = _gestures.values.toList().indexOf(nativeGesture);
+    return _gestures.keys.elementAt(index);
+  }
+
+  // Get touch points count
+  int get touchPointsCount => raylib.GetTouchPointsCount();
+
+  // Get gesture hold time in milliseconds
+  double get gestureHoldDuration => raylib.GetGestureHoldDuration();
+
+  // Get gesture drag vector
+  raylib_bind.Vector2 get gestureDragVector => raylib.GetGestureDragVector();
+
+  // Get gesture drag angle
+  double get gestureDragAngle => raylib.GetGestureDragAngle();
+
+  // Get gesture pinch delta
+  raylib_bind.Vector2 get gesturePinchVector => raylib.GetGesturePinchVector();
+
+  // Get gesture pinch angle
+  double get gesturePinchAngle => raylib.GetGesturePinchAngle();
+
+  // **************** Camera System Functions. ****************
+
+  // Set camera mode (multiple camera modes available)
+  void setCameraMode(raylib_bind.Camera3D camera, CameraMode mode) {
+    if (_cameraModes[mode] != null) {
+      raylib.SetCameraMode(camera, _cameraModes[mode]!);
+    } else {
+      throw ArgumentError.value(
+          mode, '$mode', 'Does not map to any native camera modes.');
+    }
+  }
+
+  // Update camera position for selected mode
+  void updateCamera(ffi.Pointer<raylib_bind.Camera3D> camera) {
+    raylib.UpdateCamera(camera);
+  }
+
+  // Set camera pan key to combine with mouse movement (free camera)
+  set cameraPanControl(MouseButtonCode keyPan) {
+    if (_mouseButtons[keyPan] != null) {
+      raylib.SetCameraPanControl(_mouseButtons[keyPan]!);
+    } else {
+      throw ArgumentError.value(
+          keyPan, '$keyPan', 'Does not map to any native mouse keys.');
+    }
+  }
+
+  // Set camera alt key to combine with mouse movement (free camera)
+  set cameraAltControl(KeyboardKeyCode keyAlt) {
+    if (_keyboardKeys[keyAlt] != null) {
+      raylib.SetCameraAltControl(_keyboardKeys[keyAlt]!);
+    } else {
+      throw ArgumentError.value(
+          keyAlt, '$keyAlt', 'Does not map to any native keyboard keys.');
+    }
+  }
+
+  // Set camera smooth zoom key to combine with mouse (free camera)
+  set cameraSmoothZoomControl(KeyboardKeyCode keySmoothZoom) {
+    if (_keyboardKeys[keySmoothZoom] != null) {
+      raylib.SetCameraSmoothZoomControl(_keyboardKeys[keySmoothZoom]!);
+    } else {
+      throw ArgumentError.value(keySmoothZoom, '$keySmoothZoom',
+          'Does not map to any native keyboard keys.');
+    }
+  }
+
+  // Set camera move controls (1st person and 3rd person cameras)
+  void setCameraMoveControls(
+      KeyboardKeyCode keyFront,
+      KeyboardKeyCode keyBack,
+      KeyboardKeyCode keyRight,
+      KeyboardKeyCode keyLeft,
+      KeyboardKeyCode keyUp,
+      KeyboardKeyCode keyDown) {
+    int _keyFront;
+    int _keyBack;
+    int _keyRight;
+    int _keyLeft;
+    int _keyUp;
+    int _keyDown;
+
+    if (_keyboardKeys[keyFront] != null) {
+      _keyFront = _keyboardKeys[keyFront]!;
+    } else {
+      throw ArgumentError.value(
+          keyFront, '$keyFront', 'Does not map to any native keyboard keys.');
+    }
+    if (_keyboardKeys[keyBack] != null) {
+      _keyBack = _keyboardKeys[keyBack]!;
+    } else {
+      throw ArgumentError.value(
+          keyBack, '$keyBack', 'Does not map to any native keyboard keys.');
+    }
+    if (_keyboardKeys[keyRight] != null) {
+      _keyRight = _keyboardKeys[keyRight]!;
+    } else {
+      throw ArgumentError.value(
+          keyRight, '$keyRight', 'Does not map to any native keyboard keys.');
+    }
+    if (_keyboardKeys[keyLeft] != null) {
+      _keyLeft = _keyboardKeys[keyLeft]!;
+    } else {
+      throw ArgumentError.value(
+          keyLeft, '$keyLeft', 'Does not map to any native keyboard keys.');
+    }
+    if (_keyboardKeys[keyUp] != null) {
+      _keyUp = _keyboardKeys[keyUp]!;
+    } else {
+      throw ArgumentError.value(
+          keyUp, '$keyUp', 'Does not map to any native keyboard keys.');
+    }
+    if (_keyboardKeys[keyDown] != null) {
+      _keyDown = _keyboardKeys[keyDown]!;
+    } else {
+      throw ArgumentError.value(
+          keyDown, '$keyDown', 'Does not map to any native keyboard keys.');
+    }
+
+    raylib.SetCameraMoveControls(
+        _keyFront, _keyBack, _keyRight, _keyLeft, _keyUp, _keyDown);
+  }
+
   // **************** Struct constructors. ****************
   // Creates an object of Vector2.
   raylib_bind.Vector2 createVector2(double x, double y) =>
@@ -629,4 +803,35 @@ class Core extends RaylibModule {
   raylib_bind.Image createImage(ffi.Pointer<ffi.Void> data, int width,
           int height, int mipmaps, int format) =>
       raylib.CreateImage(data, width, height, mipmaps, format);
+
+  raylib_bind.Camera2D createCamera2D(raylib_bind.Vector2 offset,
+      raylib_bind.Vector2 target, double rotation, double zoom) {
+    return raylib.CreateCamera2D(offset, target, rotation, zoom);
+  }
+
+  // Needs to be freed.
+  ffi.Pointer<raylib_bind.Camera3D> createCamera3D(
+      raylib_bind.Vector3 position,
+      raylib_bind.Vector3 target,
+      raylib_bind.Vector3 up,
+      double fovy,
+      CameraProjection projection) {
+    ffi.Pointer<raylib_bind.Camera3D> camera = ffi.nullptr;
+
+    if (_cameraProjections[projection] != null) {
+      camera = raylib.MemAlloc(ffi.sizeOf<raylib_bind.Camera3D>())
+          .cast<raylib_bind.Camera3D>();
+
+      camera.ref.position = position;
+      camera.ref.target = target;
+      camera.ref.up = up;
+      camera.ref.fovy = fovy;
+      camera.ref.projection = _cameraProjections[projection]!;
+    } else {
+      throw ArgumentError.value(projection, '$projection',
+          'Does not map to any native projection types.');
+    }
+
+    return camera;
+  }
 }

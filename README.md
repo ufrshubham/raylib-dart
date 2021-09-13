@@ -6,7 +6,7 @@ Dart bindings for raylib 3.7.0, a simple and easy-to-use library to learn videog
 
 - This project is still work in progress and a lot of APIs from raylib are not yet exposed correctly
 
-- Right now it only supports Windows and Linux
+- Right now it only supports Windows and Linux (in theory Mac should also work perfectly fine).
 
 - This package uses a custom fork of [raylib](https://github.com/ufrshubham/raylib) added as submodule under vendors. So stock raylib binaries might not work.
 

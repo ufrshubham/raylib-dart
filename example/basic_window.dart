@@ -5,6 +5,7 @@ import 'package:path/path.dart' as path;
 import 'package:raylib_dart/raylib_dart.dart';
 
 import 'package:ffi/ffi.dart';
+import 'package:raylib_dart/src/constants/key_codes.dart';
 
 void main() {
   String raylibPath = getRaylibPath();
@@ -28,6 +29,12 @@ void main() {
   var reverse = false;
   var time = 0.0;
 
+  final camera = core.createCamera2D(
+      core.createVector2(screenWidth / 2, screenHeight / 2),
+      core.createVector2(screenWidth / 2, screenHeight / 2),
+      0,
+      1);
+
   while (!core.shouldWindowClose) {
     if (fontSize > maxFontSize) {
       reverse = true;
@@ -41,10 +48,21 @@ void main() {
       time -= 0.06;
     }
 
+    if (core.isKeyDown(KeyboardKeyCode.up)) {
+      camera.zoom += 0.1;
+    } else if (core.isKeyDown(KeyboardKeyCode.down)) {
+      camera.zoom -= 0.1;
+    }
+
+    camera.zoom = camera.zoom.clamp(0.5, 2.5);
+
     core.beginDrawing();
     core.clearBackground(core.colors.black);
 
     raylib.raylib.DrawFPS(32, 32);
+
+    core.beginMode2D(camera);
+
     raylib.raylib.DrawText(
       int8Text,
       (screenWidth - raylib.raylib.MeasureText(int8Text, fontSize)) ~/ 2,
@@ -52,6 +70,8 @@ void main() {
       fontSize,
       core.colors.brown,
     );
+
+    core.endMode2D();
 
     core.endDrawing();
   }
