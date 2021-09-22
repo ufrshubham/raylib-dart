@@ -1,11 +1,10 @@
 import 'dart:ffi';
-import 'dart:io';
-
-import 'package:path/path.dart' as path;
-import 'package:raylib_dart/raylib_dart.dart';
 
 import 'package:ffi/ffi.dart';
+import 'package:raylib_dart/raylib_dart.dart';
 import 'package:raylib_dart/src/constants/key_codes.dart';
+
+import 'common.dart';
 
 void main() {
   String raylibPath = getRaylibPath();
@@ -79,18 +78,4 @@ void main() {
   // Because we are no longer in managed-memory relm.
   malloc.free(utf8Text);
   core.closeWindow();
-}
-
-String getRaylibPath() {
-  var raylibPath =
-      path.join(Directory.current.path, 'vendors/raylib/build/raylib');
-
-  // To be more specific, this path is platform + compiler dependent.
-  // But in most cases, clients will just have to change extension (.dll, .so).
-  if (Platform.isWindows) {
-    raylibPath = path.join(raylibPath, 'Release/raylib.dll');
-  } else if (Platform.isLinux) {
-    raylibPath = path.join(raylibPath, 'libraylib.so');
-  }
-  return raylibPath;
 }
