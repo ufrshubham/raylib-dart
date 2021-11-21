@@ -1,6 +1,6 @@
 # Raylib-Dart
 
-Dart bindings for raylib 3.7.0, a simple and easy-to-use library to learn videogames programming [www.raylib.com](www.raylib.com)
+Dart bindings for raylib 4.0.0, a simple and easy-to-use library to learn videogames programming [www.raylib.com](www.raylib.com)
 
 ## Note
 
