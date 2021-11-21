@@ -140,10 +140,15 @@ const Map<KeyboardKeyCode, int> _keyboardKeys = {
 
 /// Maps user facing [MouseButtonCode] to native [raylib_bind.MouseButton>]
 const Map<MouseButtonCode, int> _mouseButtons = {
-  MouseButtonCode.mouseLeftButton: raylib_bind.MouseButton.MOUSE_LEFT_BUTTON,
-  MouseButtonCode.mouseRightButton: raylib_bind.MouseButton.MOUSE_RIGHT_BUTTON,
+  MouseButtonCode.mouseLeftButton: raylib_bind.MouseButton.MOUSE_BUTTON_LEFT,
+  MouseButtonCode.mouseRightButton: raylib_bind.MouseButton.MOUSE_BUTTON_RIGHT,
   MouseButtonCode.mouseMiddleButton:
-      raylib_bind.MouseButton.MOUSE_MIDDLE_BUTTON,
+      raylib_bind.MouseButton.MOUSE_BUTTON_MIDDLE,
+  MouseButtonCode.mouseSideButton: raylib_bind.MouseButton.MOUSE_BUTTON_SIDE,
+  MouseButtonCode.mouseExtraButton: raylib_bind.MouseButton.MOUSE_BUTTON_EXTRA,
+  MouseButtonCode.mouseForwardButton:
+      raylib_bind.MouseButton.MOUSE_BUTTON_FORWARD,
+  MouseButtonCode.mouseBackButton: raylib_bind.MouseButton.MOUSE_BUTTON_BACK,
 };
 
 /// Maps user facing [GamepadButtonCode] to native [raylib_bind.GamepadButton]

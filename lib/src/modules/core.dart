@@ -514,14 +514,14 @@ class Core extends RaylibModule {
   bool isGamepadAvailable(int gamepad) =>
       (raylib.IsGamepadAvailable(gamepad) == raylib_bind.bool.true_1);
 
-  // Check gamepad name (if available)
-  bool isGamepadName(int gamepad, String name) {
-    final nativeString = _toUtf8(name);
-    bool flag = (raylib.IsGamepadName(gamepad, nativeString.cast<ffi.Int8>()) ==
-        raylib_bind.bool.true_1);
-    malloc.free(nativeString);
-    return flag;
-  }
+  // // Check gamepad name (if available)
+  // bool isGamepadName(int gamepad, String name) {
+  //   final nativeString = _toUtf8(name);
+  //   bool flag = (raylib.IsGamepadAvailable(gamepad, nativeString.cast<ffi.Int8>()) ==
+  //       raylib_bind.bool.true_1);
+  //   malloc.free(nativeString);
+  //   return flag;
+  // }
 
   // Return gamepad internal name id
   String getGamepadName(int gamepad) =>
@@ -669,7 +669,7 @@ class Core extends RaylibModule {
   }
 
   // Get touch points count
-  int get touchPointsCount => raylib.GetTouchPointsCount();
+  int get touchPointsCount => raylib.GetTouchPointCount();
 
   // Get gesture hold time in milliseconds
   double get gestureHoldDuration => raylib.GetGestureHoldDuration();

@@ -461,6 +461,41 @@ class DartRaylib {
   late final _dart_GetClipboardText _GetClipboardText =
       _GetClipboardText_ptr.asFunction<_dart_GetClipboardText>();
 
+  /// Custom frame control functions
+  /// NOTE: Those functions are intended for advance users that want full control over the frame processing
+  /// By default EndDrawing() does this job: draws everything + SwapScreenBuffer() + manage frame timming + PollInputEvents()
+  /// To avoid that behaviour and control frame processes manually, enable in config.h: SUPPORT_CUSTOM_FRAME_CONTROL
+  void SwapScreenBuffer() {
+    return _SwapScreenBuffer();
+  }
+
+  late final _SwapScreenBuffer_ptr =
+      _lookup<ffi.NativeFunction<_c_SwapScreenBuffer>>('SwapScreenBuffer');
+  late final _dart_SwapScreenBuffer _SwapScreenBuffer =
+      _SwapScreenBuffer_ptr.asFunction<_dart_SwapScreenBuffer>();
+
+  void PollInputEvents() {
+    return _PollInputEvents();
+  }
+
+  late final _PollInputEvents_ptr =
+      _lookup<ffi.NativeFunction<_c_PollInputEvents>>('PollInputEvents');
+  late final _dart_PollInputEvents _PollInputEvents =
+      _PollInputEvents_ptr.asFunction<_dart_PollInputEvents>();
+
+  void WaitTime(
+    double ms,
+  ) {
+    return _WaitTime(
+      ms,
+    );
+  }
+
+  late final _WaitTime_ptr =
+      _lookup<ffi.NativeFunction<_c_WaitTime>>('WaitTime');
+  late final _dart_WaitTime _WaitTime =
+      _WaitTime_ptr.asFunction<_dart_WaitTime>();
+
   /// Cursor-related functions
   void ShowCursor() {
     return _ShowCursor();
@@ -1048,6 +1083,19 @@ class DartRaylib {
   late final _dart_GetRandomValue _GetRandomValue =
       _GetRandomValue_ptr.asFunction<_dart_GetRandomValue>();
 
+  void SetRandomSeed(
+    int seed,
+  ) {
+    return _SetRandomSeed(
+      seed,
+    );
+  }
+
+  late final _SetRandomSeed_ptr =
+      _lookup<ffi.NativeFunction<_c_SetRandomSeed>>('SetRandomSeed');
+  late final _dart_SetRandomSeed _SetRandomSeed =
+      _SetRandomSeed_ptr.asFunction<_dart_SetRandomSeed>();
+
   void TakeScreenshot(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -1273,7 +1321,7 @@ class DartRaylib {
       _LoadFileText_ptr.asFunction<_dart_LoadFileText>();
 
   void UnloadFileText(
-    ffi.Pointer<ffi.Uint8> text,
+    ffi.Pointer<ffi.Int8> text,
   ) {
     return _UnloadFileText(
       text,
@@ -1500,6 +1548,7 @@ class DartRaylib {
   late final _dart_GetFileModTime _GetFileModTime =
       _GetFileModTime_ptr.asFunction<_dart_GetFileModTime>();
 
+  /// Compression/Encoding functionality
   ffi.Pointer<ffi.Uint8> CompressData(
     ffi.Pointer<ffi.Uint8> data,
     int dataLength,
@@ -1533,6 +1582,38 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_DecompressData>>('DecompressData');
   late final _dart_DecompressData _DecompressData =
       _DecompressData_ptr.asFunction<_dart_DecompressData>();
+
+  ffi.Pointer<ffi.Int8> EncodeDataBase64(
+    ffi.Pointer<ffi.Uint8> data,
+    int dataLength,
+    ffi.Pointer<ffi.Int32> outputLength,
+  ) {
+    return _EncodeDataBase64(
+      data,
+      dataLength,
+      outputLength,
+    );
+  }
+
+  late final _EncodeDataBase64_ptr =
+      _lookup<ffi.NativeFunction<_c_EncodeDataBase64>>('EncodeDataBase64');
+  late final _dart_EncodeDataBase64 _EncodeDataBase64 =
+      _EncodeDataBase64_ptr.asFunction<_dart_EncodeDataBase64>();
+
+  ffi.Pointer<ffi.Uint8> DecodeDataBase64(
+    ffi.Pointer<ffi.Uint8> data,
+    ffi.Pointer<ffi.Int32> outputLength,
+  ) {
+    return _DecodeDataBase64(
+      data,
+      outputLength,
+    );
+  }
+
+  late final _DecodeDataBase64_ptr =
+      _lookup<ffi.NativeFunction<_c_DecodeDataBase64>>('DecodeDataBase64');
+  late final _dart_DecodeDataBase64 _DecodeDataBase64 =
+      _DecodeDataBase64_ptr.asFunction<_dart_DecodeDataBase64>();
 
   /// Persistent storage management
   int SaveStorageValue(
@@ -1669,21 +1750,6 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_IsGamepadAvailable>>('IsGamepadAvailable');
   late final _dart_IsGamepadAvailable _IsGamepadAvailable =
       _IsGamepadAvailable_ptr.asFunction<_dart_IsGamepadAvailable>();
-
-  int IsGamepadName(
-    int gamepad,
-    ffi.Pointer<ffi.Int8> name,
-  ) {
-    return _IsGamepadName(
-      gamepad,
-      name,
-    );
-  }
-
-  late final _IsGamepadName_ptr =
-      _lookup<ffi.NativeFunction<_c_IsGamepadName>>('IsGamepadName');
-  late final _dart_IsGamepadName _IsGamepadName =
-      _IsGamepadName_ptr.asFunction<_dart_IsGamepadName>();
 
   ffi.Pointer<ffi.Int8> GetGamepadName(
     int gamepad,
@@ -1896,6 +1962,15 @@ class DartRaylib {
   late final _dart_GetMousePosition _GetMousePosition =
       _GetMousePosition_ptr.asFunction<_dart_GetMousePosition>();
 
+  Vector2 GetMouseDelta() {
+    return _GetMouseDelta();
+  }
+
+  late final _GetMouseDelta_ptr =
+      _lookup<ffi.NativeFunction<_c_GetMouseDelta>>('GetMouseDelta');
+  late final _dart_GetMouseDelta _GetMouseDelta =
+      _GetMouseDelta_ptr.asFunction<_dart_GetMouseDelta>();
+
   void SetMousePosition(
     int x,
     int y,
@@ -1995,8 +2070,30 @@ class DartRaylib {
   late final _dart_GetTouchPosition _GetTouchPosition =
       _GetTouchPosition_ptr.asFunction<_dart_GetTouchPosition>();
 
+  int GetTouchPointId(
+    int index,
+  ) {
+    return _GetTouchPointId(
+      index,
+    );
+  }
+
+  late final _GetTouchPointId_ptr =
+      _lookup<ffi.NativeFunction<_c_GetTouchPointId>>('GetTouchPointId');
+  late final _dart_GetTouchPointId _GetTouchPointId =
+      _GetTouchPointId_ptr.asFunction<_dart_GetTouchPointId>();
+
+  int GetTouchPointCount() {
+    return _GetTouchPointCount();
+  }
+
+  late final _GetTouchPointCount_ptr =
+      _lookup<ffi.NativeFunction<_c_GetTouchPointCount>>('GetTouchPointCount');
+  late final _dart_GetTouchPointCount _GetTouchPointCount =
+      _GetTouchPointCount_ptr.asFunction<_dart_GetTouchPointCount>();
+
   /// ------------------------------------------------------------------------------------
-  /// Gestures and Touch Handling Functions (Module: gestures)
+  /// Gestures and Touch Handling Functions (Module: rgestures)
   /// ------------------------------------------------------------------------------------
   void SetGesturesEnabled(
     int flags,
@@ -2032,16 +2129,6 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_GetGestureDetected>>('GetGestureDetected');
   late final _dart_GetGestureDetected _GetGestureDetected =
       _GetGestureDetected_ptr.asFunction<_dart_GetGestureDetected>();
-
-  int GetTouchPointsCount() {
-    return _GetTouchPointsCount();
-  }
-
-  late final _GetTouchPointsCount_ptr =
-      _lookup<ffi.NativeFunction<_c_GetTouchPointsCount>>(
-          'GetTouchPointsCount');
-  late final _dart_GetTouchPointsCount _GetTouchPointsCount =
-      _GetTouchPointsCount_ptr.asFunction<_dart_GetTouchPointsCount>();
 
   double GetGestureHoldDuration() {
     return _GetGestureHoldDuration();
@@ -2094,7 +2181,7 @@ class DartRaylib {
       _GetGesturePinchAngle_ptr.asFunction<_dart_GetGesturePinchAngle>();
 
   /// ------------------------------------------------------------------------------------
-  /// Camera System Functions (Module: camera)
+  /// Camera System Functions (Module: rcamera)
   /// ------------------------------------------------------------------------------------
   void SetCameraMode(
     Camera3D camera,
@@ -2342,14 +2429,38 @@ class DartRaylib {
   late final _dart_DrawLineBezierQuad _DrawLineBezierQuad =
       _DrawLineBezierQuad_ptr.asFunction<_dart_DrawLineBezierQuad>();
 
+  void DrawLineBezierCubic(
+    Vector2 startPos,
+    Vector2 endPos,
+    Vector2 startControlPos,
+    Vector2 endControlPos,
+    double thick,
+    Color color,
+  ) {
+    return _DrawLineBezierCubic(
+      startPos,
+      endPos,
+      startControlPos,
+      endControlPos,
+      thick,
+      color,
+    );
+  }
+
+  late final _DrawLineBezierCubic_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawLineBezierCubic>>(
+          'DrawLineBezierCubic');
+  late final _dart_DrawLineBezierCubic _DrawLineBezierCubic =
+      _DrawLineBezierCubic_ptr.asFunction<_dart_DrawLineBezierCubic>();
+
   void DrawLineStrip(
     ffi.Pointer<Vector2> points,
-    int pointsCount,
+    int pointCount,
     Color color,
   ) {
     return _DrawLineStrip(
       points,
-      pointsCount,
+      pointCount,
       color,
     );
   }
@@ -2739,7 +2850,7 @@ class DartRaylib {
 
   void DrawRectangleLinesEx(
     Rectangle rec,
-    int lineThick,
+    double lineThick,
     Color color,
   ) {
     return _DrawRectangleLinesEx(
@@ -2779,7 +2890,7 @@ class DartRaylib {
     Rectangle rec,
     double roundness,
     int segments,
-    int lineThick,
+    double lineThick,
     Color color,
   ) {
     return _DrawRectangleRoundedLines(
@@ -2838,12 +2949,12 @@ class DartRaylib {
 
   void DrawTriangleFan(
     ffi.Pointer<Vector2> points,
-    int pointsCount,
+    int pointCount,
     Color color,
   ) {
     return _DrawTriangleFan(
       points,
-      pointsCount,
+      pointCount,
       color,
     );
   }
@@ -2855,12 +2966,12 @@ class DartRaylib {
 
   void DrawTriangleStrip(
     ffi.Pointer<Vector2> points,
-    int pointsCount,
+    int pointCount,
     Color color,
   ) {
     return _DrawTriangleStrip(
       points,
-      pointsCount,
+      pointCount,
       color,
     );
   }
@@ -2911,6 +3022,29 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_DrawPolyLines>>('DrawPolyLines');
   late final _dart_DrawPolyLines _DrawPolyLines =
       _DrawPolyLines_ptr.asFunction<_dart_DrawPolyLines>();
+
+  void DrawPolyLinesEx(
+    Vector2 center,
+    int sides,
+    double radius,
+    double rotation,
+    double lineThick,
+    Color color,
+  ) {
+    return _DrawPolyLinesEx(
+      center,
+      sides,
+      radius,
+      rotation,
+      lineThick,
+      color,
+    );
+  }
+
+  late final _DrawPolyLinesEx_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawPolyLinesEx>>('DrawPolyLinesEx');
+  late final _dart_DrawPolyLinesEx _DrawPolyLinesEx =
+      _DrawPolyLinesEx_ptr.asFunction<_dart_DrawPolyLinesEx>();
 
   /// Basic shapes collision detection functions
   int CheckCollisionRecs(
@@ -3044,6 +3178,26 @@ class DartRaylib {
   late final _dart_CheckCollisionLines _CheckCollisionLines =
       _CheckCollisionLines_ptr.asFunction<_dart_CheckCollisionLines>();
 
+  int CheckCollisionPointLine(
+    Vector2 point,
+    Vector2 p1,
+    Vector2 p2,
+    int threshold,
+  ) {
+    return _CheckCollisionPointLine(
+      point,
+      p1,
+      p2,
+      threshold,
+    );
+  }
+
+  late final _CheckCollisionPointLine_ptr =
+      _lookup<ffi.NativeFunction<_c_CheckCollisionPointLine>>(
+          'CheckCollisionPointLine');
+  late final _dart_CheckCollisionPointLine _CheckCollisionPointLine =
+      _CheckCollisionPointLine_ptr.asFunction<_dart_CheckCollisionPointLine>();
+
   Rectangle GetCollisionRec(
     Rectangle rec1,
     Rectangle rec2,
@@ -3127,6 +3281,30 @@ class DartRaylib {
           'LoadImageFromMemory');
   late final _dart_LoadImageFromMemory _LoadImageFromMemory =
       _LoadImageFromMemory_ptr.asFunction<_dart_LoadImageFromMemory>();
+
+  Image LoadImageFromTexture(
+    Texture texture,
+  ) {
+    return _LoadImageFromTexture(
+      texture,
+    );
+  }
+
+  late final _LoadImageFromTexture_ptr =
+      _lookup<ffi.NativeFunction<_c_LoadImageFromTexture>>(
+          'LoadImageFromTexture');
+  late final _dart_LoadImageFromTexture _LoadImageFromTexture =
+      _LoadImageFromTexture_ptr.asFunction<_dart_LoadImageFromTexture>();
+
+  Image LoadImageFromScreen() {
+    return _LoadImageFromScreen();
+  }
+
+  late final _LoadImageFromScreen_ptr =
+      _lookup<ffi.NativeFunction<_c_LoadImageFromScreen>>(
+          'LoadImageFromScreen');
+  late final _dart_LoadImageFromScreen _LoadImageFromScreen =
+      _LoadImageFromScreen_ptr.asFunction<_dart_LoadImageFromScreen>();
 
   void UnloadImage(
     Image image,
@@ -3288,28 +3466,6 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_GenImageWhiteNoise>>('GenImageWhiteNoise');
   late final _dart_GenImageWhiteNoise _GenImageWhiteNoise =
       _GenImageWhiteNoise_ptr.asFunction<_dart_GenImageWhiteNoise>();
-
-  Image GenImagePerlinNoise(
-    int width,
-    int height,
-    int offsetX,
-    int offsetY,
-    double scale,
-  ) {
-    return _GenImagePerlinNoise(
-      width,
-      height,
-      offsetX,
-      offsetY,
-      scale,
-    );
-  }
-
-  late final _GenImagePerlinNoise_ptr =
-      _lookup<ffi.NativeFunction<_c_GenImagePerlinNoise>>(
-          'GenImagePerlinNoise');
-  late final _dart_GenImagePerlinNoise _GenImagePerlinNoise =
-      _GenImagePerlinNoise_ptr.asFunction<_dart_GenImagePerlinNoise>();
 
   Image GenImageCellular(
     int width,
@@ -3751,12 +3907,12 @@ class DartRaylib {
   ffi.Pointer<Color> LoadImagePalette(
     Image image,
     int maxPaletteSize,
-    ffi.Pointer<ffi.Int32> colorsCount,
+    ffi.Pointer<ffi.Int32> colorCount,
   ) {
     return _LoadImagePalette(
       image,
       maxPaletteSize,
-      colorsCount,
+      colorCount,
     );
   }
 
@@ -3806,6 +3962,23 @@ class DartRaylib {
           'GetImageAlphaBorder');
   late final _dart_GetImageAlphaBorder _GetImageAlphaBorder =
       _GetImageAlphaBorder_ptr.asFunction<_dart_GetImageAlphaBorder>();
+
+  Color GetImageColor(
+    Image image,
+    int x,
+    int y,
+  ) {
+    return _GetImageColor(
+      image,
+      x,
+      y,
+    );
+  }
+
+  late final _GetImageColor_ptr =
+      _lookup<ffi.NativeFunction<_c_GetImageColor>>('GetImageColor');
+  late final _dart_GetImageColor _GetImageColor =
+      _GetImageColor_ptr.asFunction<_dart_GetImageColor>();
 
   /// Image drawing functions
   /// NOTE: Image software-rendering functions (CPU)
@@ -4211,28 +4384,6 @@ class DartRaylib {
   late final _dart_UpdateTextureRec _UpdateTextureRec =
       _UpdateTextureRec_ptr.asFunction<_dart_UpdateTextureRec>();
 
-  Image GetTextureData(
-    Texture texture,
-  ) {
-    return _GetTextureData(
-      texture,
-    );
-  }
-
-  late final _GetTextureData_ptr =
-      _lookup<ffi.NativeFunction<_c_GetTextureData>>('GetTextureData');
-  late final _dart_GetTextureData _GetTextureData =
-      _GetTextureData_ptr.asFunction<_dart_GetTextureData>();
-
-  Image GetScreenData() {
-    return _GetScreenData();
-  }
-
-  late final _GetScreenData_ptr =
-      _lookup<ffi.NativeFunction<_c_GetScreenData>>('GetScreenData');
-  late final _dart_GetScreenData _GetScreenData =
-      _GetScreenData_ptr.asFunction<_dart_GetScreenData>();
-
   /// Texture configuration functions
   void GenTextureMipmaps(
     ffi.Pointer<Texture> texture,
@@ -4451,7 +4602,7 @@ class DartRaylib {
     Vector2 center,
     ffi.Pointer<Vector2> points,
     ffi.Pointer<Vector2> texcoords,
-    int pointsCount,
+    int pointCount,
     Color tint,
   ) {
     return _DrawTexturePoly(
@@ -4459,7 +4610,7 @@ class DartRaylib {
       center,
       points,
       texcoords,
-      pointsCount,
+      pointCount,
       tint,
     );
   }
@@ -4674,13 +4825,13 @@ class DartRaylib {
     ffi.Pointer<ffi.Int8> fileName,
     int fontSize,
     ffi.Pointer<ffi.Int32> fontChars,
-    int charsCount,
+    int glyphCount,
   ) {
     return _LoadFontEx(
       fileName,
       fontSize,
       fontChars,
-      charsCount,
+      glyphCount,
     );
   }
 
@@ -4712,7 +4863,7 @@ class DartRaylib {
     int dataSize,
     int fontSize,
     ffi.Pointer<ffi.Int32> fontChars,
-    int charsCount,
+    int glyphCount,
   ) {
     return _LoadFontFromMemory(
       fileType,
@@ -4720,7 +4871,7 @@ class DartRaylib {
       dataSize,
       fontSize,
       fontChars,
-      charsCount,
+      glyphCount,
     );
   }
 
@@ -4729,12 +4880,12 @@ class DartRaylib {
   late final _dart_LoadFontFromMemory _LoadFontFromMemory =
       _LoadFontFromMemory_ptr.asFunction<_dart_LoadFontFromMemory>();
 
-  ffi.Pointer<CharInfo> LoadFontData(
+  ffi.Pointer<GlyphInfo> LoadFontData(
     ffi.Pointer<ffi.Uint8> fileData,
     int dataSize,
     int fontSize,
     ffi.Pointer<ffi.Int32> fontChars,
-    int charsCount,
+    int glyphCount,
     int type,
   ) {
     return _LoadFontData(
@@ -4742,7 +4893,7 @@ class DartRaylib {
       dataSize,
       fontSize,
       fontChars,
-      charsCount,
+      glyphCount,
       type,
     );
   }
@@ -4753,9 +4904,9 @@ class DartRaylib {
       _LoadFontData_ptr.asFunction<_dart_LoadFontData>();
 
   Image GenImageFontAtlas(
-    ffi.Pointer<CharInfo> chars,
+    ffi.Pointer<GlyphInfo> chars,
     ffi.Pointer<ffi.Pointer<Rectangle>> recs,
-    int charsCount,
+    int glyphCount,
     int fontSize,
     int padding,
     int packMethod,
@@ -4763,7 +4914,7 @@ class DartRaylib {
     return _GenImageFontAtlas(
       chars,
       recs,
-      charsCount,
+      glyphCount,
       fontSize,
       padding,
       packMethod,
@@ -4776,12 +4927,12 @@ class DartRaylib {
       _GenImageFontAtlas_ptr.asFunction<_dart_GenImageFontAtlas>();
 
   void UnloadFontData(
-    ffi.Pointer<CharInfo> chars,
-    int charsCount,
+    ffi.Pointer<GlyphInfo> chars,
+    int glyphCount,
   ) {
     return _UnloadFontData(
       chars,
-      charsCount,
+      glyphCount,
     );
   }
 
@@ -4861,63 +5012,32 @@ class DartRaylib {
   late final _dart_DrawTextEx _DrawTextEx =
       _DrawTextEx_ptr.asFunction<_dart_DrawTextEx>();
 
-  void DrawTextRec(
+  void DrawTextPro(
     Font font,
     ffi.Pointer<ffi.Int8> text,
-    Rectangle rec,
+    Vector2 position,
+    Vector2 origin,
+    double rotation,
     double fontSize,
     double spacing,
-    int wordWrap,
     Color tint,
   ) {
-    return _DrawTextRec(
+    return _DrawTextPro(
       font,
       text,
-      rec,
+      position,
+      origin,
+      rotation,
       fontSize,
       spacing,
-      wordWrap,
       tint,
     );
   }
 
-  late final _DrawTextRec_ptr =
-      _lookup<ffi.NativeFunction<_c_DrawTextRec>>('DrawTextRec');
-  late final _dart_DrawTextRec _DrawTextRec =
-      _DrawTextRec_ptr.asFunction<_dart_DrawTextRec>();
-
-  void DrawTextRecEx(
-    Font font,
-    ffi.Pointer<ffi.Int8> text,
-    Rectangle rec,
-    double fontSize,
-    double spacing,
-    int wordWrap,
-    Color tint,
-    int selectStart,
-    int selectLength,
-    Color selectTint,
-    Color selectBackTint,
-  ) {
-    return _DrawTextRecEx(
-      font,
-      text,
-      rec,
-      fontSize,
-      spacing,
-      wordWrap,
-      tint,
-      selectStart,
-      selectLength,
-      selectTint,
-      selectBackTint,
-    );
-  }
-
-  late final _DrawTextRecEx_ptr =
-      _lookup<ffi.NativeFunction<_c_DrawTextRecEx>>('DrawTextRecEx');
-  late final _dart_DrawTextRecEx _DrawTextRecEx =
-      _DrawTextRecEx_ptr.asFunction<_dart_DrawTextRecEx>();
+  late final _DrawTextPro_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawTextPro>>('DrawTextPro');
+  late final _dart_DrawTextPro _DrawTextPro =
+      _DrawTextPro_ptr.asFunction<_dart_DrawTextPro>();
 
   void DrawTextCodepoint(
     Font font,
@@ -4940,7 +5060,7 @@ class DartRaylib {
   late final _dart_DrawTextCodepoint _DrawTextCodepoint =
       _DrawTextCodepoint_ptr.asFunction<_dart_DrawTextCodepoint>();
 
-  /// Text misc. functions
+  /// Text font info functions
   int MeasureText(
     ffi.Pointer<ffi.Int8> text,
     int fontSize,
@@ -4990,7 +5110,125 @@ class DartRaylib {
   late final _dart_GetGlyphIndex _GetGlyphIndex =
       _GetGlyphIndex_ptr.asFunction<_dart_GetGlyphIndex>();
 
-  /// Text strings management functions (no utf8 strings, only byte chars)
+  GlyphInfo GetGlyphInfo(
+    Font font,
+    int codepoint,
+  ) {
+    return _GetGlyphInfo(
+      font,
+      codepoint,
+    );
+  }
+
+  late final _GetGlyphInfo_ptr =
+      _lookup<ffi.NativeFunction<_c_GetGlyphInfo>>('GetGlyphInfo');
+  late final _dart_GetGlyphInfo _GetGlyphInfo =
+      _GetGlyphInfo_ptr.asFunction<_dart_GetGlyphInfo>();
+
+  Rectangle GetGlyphAtlasRec(
+    Font font,
+    int codepoint,
+  ) {
+    return _GetGlyphAtlasRec(
+      font,
+      codepoint,
+    );
+  }
+
+  late final _GetGlyphAtlasRec_ptr =
+      _lookup<ffi.NativeFunction<_c_GetGlyphAtlasRec>>('GetGlyphAtlasRec');
+  late final _dart_GetGlyphAtlasRec _GetGlyphAtlasRec =
+      _GetGlyphAtlasRec_ptr.asFunction<_dart_GetGlyphAtlasRec>();
+
+  /// Text codepoints management functions (unicode characters)
+  ffi.Pointer<ffi.Int32> LoadCodepoints(
+    ffi.Pointer<ffi.Int8> text,
+    ffi.Pointer<ffi.Int32> count,
+  ) {
+    return _LoadCodepoints(
+      text,
+      count,
+    );
+  }
+
+  late final _LoadCodepoints_ptr =
+      _lookup<ffi.NativeFunction<_c_LoadCodepoints>>('LoadCodepoints');
+  late final _dart_LoadCodepoints _LoadCodepoints =
+      _LoadCodepoints_ptr.asFunction<_dart_LoadCodepoints>();
+
+  void UnloadCodepoints(
+    ffi.Pointer<ffi.Int32> codepoints,
+  ) {
+    return _UnloadCodepoints(
+      codepoints,
+    );
+  }
+
+  late final _UnloadCodepoints_ptr =
+      _lookup<ffi.NativeFunction<_c_UnloadCodepoints>>('UnloadCodepoints');
+  late final _dart_UnloadCodepoints _UnloadCodepoints =
+      _UnloadCodepoints_ptr.asFunction<_dart_UnloadCodepoints>();
+
+  int GetCodepointCount(
+    ffi.Pointer<ffi.Int8> text,
+  ) {
+    return _GetCodepointCount(
+      text,
+    );
+  }
+
+  late final _GetCodepointCount_ptr =
+      _lookup<ffi.NativeFunction<_c_GetCodepointCount>>('GetCodepointCount');
+  late final _dart_GetCodepointCount _GetCodepointCount =
+      _GetCodepointCount_ptr.asFunction<_dart_GetCodepointCount>();
+
+  int GetCodepoint(
+    ffi.Pointer<ffi.Int8> text,
+    ffi.Pointer<ffi.Int32> bytesProcessed,
+  ) {
+    return _GetCodepoint(
+      text,
+      bytesProcessed,
+    );
+  }
+
+  late final _GetCodepoint_ptr =
+      _lookup<ffi.NativeFunction<_c_GetCodepoint>>('GetCodepoint');
+  late final _dart_GetCodepoint _GetCodepoint =
+      _GetCodepoint_ptr.asFunction<_dart_GetCodepoint>();
+
+  ffi.Pointer<ffi.Int8> CodepointToUTF8(
+    int codepoint,
+    ffi.Pointer<ffi.Int32> byteSize,
+  ) {
+    return _CodepointToUTF8(
+      codepoint,
+      byteSize,
+    );
+  }
+
+  late final _CodepointToUTF8_ptr =
+      _lookup<ffi.NativeFunction<_c_CodepointToUTF8>>('CodepointToUTF8');
+  late final _dart_CodepointToUTF8 _CodepointToUTF8 =
+      _CodepointToUTF8_ptr.asFunction<_dart_CodepointToUTF8>();
+
+  ffi.Pointer<ffi.Int8> TextCodepointsToUTF8(
+    ffi.Pointer<ffi.Int32> codepoints,
+    int length,
+  ) {
+    return _TextCodepointsToUTF8(
+      codepoints,
+      length,
+    );
+  }
+
+  late final _TextCodepointsToUTF8_ptr =
+      _lookup<ffi.NativeFunction<_c_TextCodepointsToUTF8>>(
+          'TextCodepointsToUTF8');
+  late final _dart_TextCodepointsToUTF8 _TextCodepointsToUTF8 =
+      _TextCodepointsToUTF8_ptr.asFunction<_dart_TextCodepointsToUTF8>();
+
+  /// Text strings management functions (no UTF-8 strings, only byte chars)
   /// NOTE: Some strings allocate memory internally for returned strings, just be careful!
   int TextCopy(
     ffi.Pointer<ffi.Int8> dst,
@@ -5217,80 +5455,6 @@ class DartRaylib {
   late final _dart_TextToInteger _TextToInteger =
       _TextToInteger_ptr.asFunction<_dart_TextToInteger>();
 
-  ffi.Pointer<ffi.Int8> TextToUtf8(
-    ffi.Pointer<ffi.Int32> codepoints,
-    int length,
-  ) {
-    return _TextToUtf8(
-      codepoints,
-      length,
-    );
-  }
-
-  late final _TextToUtf8_ptr =
-      _lookup<ffi.NativeFunction<_c_TextToUtf8>>('TextToUtf8');
-  late final _dart_TextToUtf8 _TextToUtf8 =
-      _TextToUtf8_ptr.asFunction<_dart_TextToUtf8>();
-
-  /// UTF8 text strings management functions
-  ffi.Pointer<ffi.Int32> GetCodepoints(
-    ffi.Pointer<ffi.Int8> text,
-    ffi.Pointer<ffi.Int32> count,
-  ) {
-    return _GetCodepoints(
-      text,
-      count,
-    );
-  }
-
-  late final _GetCodepoints_ptr =
-      _lookup<ffi.NativeFunction<_c_GetCodepoints>>('GetCodepoints');
-  late final _dart_GetCodepoints _GetCodepoints =
-      _GetCodepoints_ptr.asFunction<_dart_GetCodepoints>();
-
-  int GetCodepointsCount(
-    ffi.Pointer<ffi.Int8> text,
-  ) {
-    return _GetCodepointsCount(
-      text,
-    );
-  }
-
-  late final _GetCodepointsCount_ptr =
-      _lookup<ffi.NativeFunction<_c_GetCodepointsCount>>('GetCodepointsCount');
-  late final _dart_GetCodepointsCount _GetCodepointsCount =
-      _GetCodepointsCount_ptr.asFunction<_dart_GetCodepointsCount>();
-
-  int GetNextCodepoint(
-    ffi.Pointer<ffi.Int8> text,
-    ffi.Pointer<ffi.Int32> bytesProcessed,
-  ) {
-    return _GetNextCodepoint(
-      text,
-      bytesProcessed,
-    );
-  }
-
-  late final _GetNextCodepoint_ptr =
-      _lookup<ffi.NativeFunction<_c_GetNextCodepoint>>('GetNextCodepoint');
-  late final _dart_GetNextCodepoint _GetNextCodepoint =
-      _GetNextCodepoint_ptr.asFunction<_dart_GetNextCodepoint>();
-
-  ffi.Pointer<ffi.Int8> CodepointToUtf8(
-    int codepoint,
-    ffi.Pointer<ffi.Int32> byteLength,
-  ) {
-    return _CodepointToUtf8(
-      codepoint,
-      byteLength,
-    );
-  }
-
-  late final _CodepointToUtf8_ptr =
-      _lookup<ffi.NativeFunction<_c_CodepointToUtf8>>('CodepointToUtf8');
-  late final _dart_CodepointToUtf8 _CodepointToUtf8 =
-      _CodepointToUtf8_ptr.asFunction<_dart_CodepointToUtf8>();
-
   /// Basic geometric 3D shapes drawing functions
   void DrawLine3D(
     Vector3 startPos,
@@ -5366,12 +5530,12 @@ class DartRaylib {
 
   void DrawTriangleStrip3D(
     ffi.Pointer<Vector3> points,
-    int pointsCount,
+    int pointCount,
     Color color,
   ) {
     return _DrawTriangleStrip3D(
       points,
-      pointsCount,
+      pointCount,
       color,
     );
   }
@@ -5481,6 +5645,31 @@ class DartRaylib {
   late final _dart_DrawCubeTexture _DrawCubeTexture =
       _DrawCubeTexture_ptr.asFunction<_dart_DrawCubeTexture>();
 
+  void DrawCubeTextureRec(
+    Texture texture,
+    Rectangle source,
+    Vector3 position,
+    double width,
+    double height,
+    double length,
+    Color color,
+  ) {
+    return _DrawCubeTextureRec(
+      texture,
+      source,
+      position,
+      width,
+      height,
+      length,
+      color,
+    );
+  }
+
+  late final _DrawCubeTextureRec_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawCubeTextureRec>>('DrawCubeTextureRec');
+  late final _dart_DrawCubeTextureRec _DrawCubeTextureRec =
+      _DrawCubeTextureRec_ptr.asFunction<_dart_DrawCubeTextureRec>();
+
   void DrawSphere(
     Vector3 centerPos,
     double radius,
@@ -5563,6 +5752,29 @@ class DartRaylib {
   late final _dart_DrawCylinder _DrawCylinder =
       _DrawCylinder_ptr.asFunction<_dart_DrawCylinder>();
 
+  void DrawCylinderEx(
+    Vector3 startPos,
+    Vector3 endPos,
+    double startRadius,
+    double endRadius,
+    int sides,
+    Color color,
+  ) {
+    return _DrawCylinderEx(
+      startPos,
+      endPos,
+      startRadius,
+      endRadius,
+      sides,
+      color,
+    );
+  }
+
+  late final _DrawCylinderEx_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawCylinderEx>>('DrawCylinderEx');
+  late final _dart_DrawCylinderEx _DrawCylinderEx =
+      _DrawCylinderEx_ptr.asFunction<_dart_DrawCylinderEx>();
+
   void DrawCylinderWires(
     Vector3 position,
     double radiusTop,
@@ -5585,6 +5797,30 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_DrawCylinderWires>>('DrawCylinderWires');
   late final _dart_DrawCylinderWires _DrawCylinderWires =
       _DrawCylinderWires_ptr.asFunction<_dart_DrawCylinderWires>();
+
+  void DrawCylinderWiresEx(
+    Vector3 startPos,
+    Vector3 endPos,
+    double startRadius,
+    double endRadius,
+    int sides,
+    Color color,
+  ) {
+    return _DrawCylinderWiresEx(
+      startPos,
+      endPos,
+      startRadius,
+      endRadius,
+      sides,
+      color,
+    );
+  }
+
+  late final _DrawCylinderWiresEx_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawCylinderWiresEx>>(
+          'DrawCylinderWiresEx');
+  late final _dart_DrawCylinderWiresEx _DrawCylinderWiresEx =
+      _DrawCylinderWiresEx_ptr.asFunction<_dart_DrawCylinderWiresEx>();
 
   void DrawPlane(
     Vector3 centerPos,
@@ -5631,7 +5867,7 @@ class DartRaylib {
   late final _dart_DrawGrid _DrawGrid =
       _DrawGrid_ptr.asFunction<_dart_DrawGrid>();
 
-  /// Model loading/unloading functions
+  /// Model management functions
   Model LoadModel(
     ffi.Pointer<ffi.Int8> fileName,
   ) {
@@ -5685,472 +5921,19 @@ class DartRaylib {
   late final _dart_UnloadModelKeepMeshes _UnloadModelKeepMeshes =
       _UnloadModelKeepMeshes_ptr.asFunction<_dart_UnloadModelKeepMeshes>();
 
-  /// Mesh loading/unloading functions
-  void UploadMesh(
-    ffi.Pointer<Mesh> mesh,
-    int dynamic_1,
-  ) {
-    return _UploadMesh(
-      mesh,
-      dynamic_1,
-    );
-  }
-
-  late final _UploadMesh_ptr =
-      _lookup<ffi.NativeFunction<_c_UploadMesh>>('UploadMesh');
-  late final _dart_UploadMesh _UploadMesh =
-      _UploadMesh_ptr.asFunction<_dart_UploadMesh>();
-
-  void UpdateMeshBuffer(
-    Mesh mesh,
-    int index,
-    ffi.Pointer<ffi.Void> data,
-    int dataSize,
-    int offset,
-  ) {
-    return _UpdateMeshBuffer(
-      mesh,
-      index,
-      data,
-      dataSize,
-      offset,
-    );
-  }
-
-  late final _UpdateMeshBuffer_ptr =
-      _lookup<ffi.NativeFunction<_c_UpdateMeshBuffer>>('UpdateMeshBuffer');
-  late final _dart_UpdateMeshBuffer _UpdateMeshBuffer =
-      _UpdateMeshBuffer_ptr.asFunction<_dart_UpdateMeshBuffer>();
-
-  void DrawMesh(
-    Mesh mesh,
-    Material material,
-    Matrix transform,
-  ) {
-    return _DrawMesh(
-      mesh,
-      material,
-      transform,
-    );
-  }
-
-  late final _DrawMesh_ptr =
-      _lookup<ffi.NativeFunction<_c_DrawMesh>>('DrawMesh');
-  late final _dart_DrawMesh _DrawMesh =
-      _DrawMesh_ptr.asFunction<_dart_DrawMesh>();
-
-  void DrawMeshInstanced(
-    Mesh mesh,
-    Material material,
-    ffi.Pointer<Matrix> transforms,
-    int instances,
-  ) {
-    return _DrawMeshInstanced(
-      mesh,
-      material,
-      transforms,
-      instances,
-    );
-  }
-
-  late final _DrawMeshInstanced_ptr =
-      _lookup<ffi.NativeFunction<_c_DrawMeshInstanced>>('DrawMeshInstanced');
-  late final _dart_DrawMeshInstanced _DrawMeshInstanced =
-      _DrawMeshInstanced_ptr.asFunction<_dart_DrawMeshInstanced>();
-
-  void UnloadMesh(
-    Mesh mesh,
-  ) {
-    return _UnloadMesh(
-      mesh,
-    );
-  }
-
-  late final _UnloadMesh_ptr =
-      _lookup<ffi.NativeFunction<_c_UnloadMesh>>('UnloadMesh');
-  late final _dart_UnloadMesh _UnloadMesh =
-      _UnloadMesh_ptr.asFunction<_dart_UnloadMesh>();
-
-  int ExportMesh(
-    Mesh mesh,
-    ffi.Pointer<ffi.Int8> fileName,
-  ) {
-    return _ExportMesh(
-      mesh,
-      fileName,
-    );
-  }
-
-  late final _ExportMesh_ptr =
-      _lookup<ffi.NativeFunction<_c_ExportMesh>>('ExportMesh');
-  late final _dart_ExportMesh _ExportMesh =
-      _ExportMesh_ptr.asFunction<_dart_ExportMesh>();
-
-  /// Material loading/unloading functions
-  ffi.Pointer<Material> LoadMaterials(
-    ffi.Pointer<ffi.Int8> fileName,
-    ffi.Pointer<ffi.Int32> materialCount,
-  ) {
-    return _LoadMaterials(
-      fileName,
-      materialCount,
-    );
-  }
-
-  late final _LoadMaterials_ptr =
-      _lookup<ffi.NativeFunction<_c_LoadMaterials>>('LoadMaterials');
-  late final _dart_LoadMaterials _LoadMaterials =
-      _LoadMaterials_ptr.asFunction<_dart_LoadMaterials>();
-
-  Material LoadMaterialDefault() {
-    return _LoadMaterialDefault();
-  }
-
-  late final _LoadMaterialDefault_ptr =
-      _lookup<ffi.NativeFunction<_c_LoadMaterialDefault>>(
-          'LoadMaterialDefault');
-  late final _dart_LoadMaterialDefault _LoadMaterialDefault =
-      _LoadMaterialDefault_ptr.asFunction<_dart_LoadMaterialDefault>();
-
-  void UnloadMaterial(
-    Material material,
-  ) {
-    return _UnloadMaterial(
-      material,
-    );
-  }
-
-  late final _UnloadMaterial_ptr =
-      _lookup<ffi.NativeFunction<_c_UnloadMaterial>>('UnloadMaterial');
-  late final _dart_UnloadMaterial _UnloadMaterial =
-      _UnloadMaterial_ptr.asFunction<_dart_UnloadMaterial>();
-
-  void SetMaterialTexture(
-    ffi.Pointer<Material> material,
-    int mapType,
-    Texture texture,
-  ) {
-    return _SetMaterialTexture(
-      material,
-      mapType,
-      texture,
-    );
-  }
-
-  late final _SetMaterialTexture_ptr =
-      _lookup<ffi.NativeFunction<_c_SetMaterialTexture>>('SetMaterialTexture');
-  late final _dart_SetMaterialTexture _SetMaterialTexture =
-      _SetMaterialTexture_ptr.asFunction<_dart_SetMaterialTexture>();
-
-  void SetModelMeshMaterial(
-    ffi.Pointer<Model> model,
-    int meshId,
-    int materialId,
-  ) {
-    return _SetModelMeshMaterial(
-      model,
-      meshId,
-      materialId,
-    );
-  }
-
-  late final _SetModelMeshMaterial_ptr =
-      _lookup<ffi.NativeFunction<_c_SetModelMeshMaterial>>(
-          'SetModelMeshMaterial');
-  late final _dart_SetModelMeshMaterial _SetModelMeshMaterial =
-      _SetModelMeshMaterial_ptr.asFunction<_dart_SetModelMeshMaterial>();
-
-  /// Model animations loading/unloading functions
-  ffi.Pointer<ModelAnimation> LoadModelAnimations(
-    ffi.Pointer<ffi.Int8> fileName,
-    ffi.Pointer<ffi.Int32> animsCount,
-  ) {
-    return _LoadModelAnimations(
-      fileName,
-      animsCount,
-    );
-  }
-
-  late final _LoadModelAnimations_ptr =
-      _lookup<ffi.NativeFunction<_c_LoadModelAnimations>>(
-          'LoadModelAnimations');
-  late final _dart_LoadModelAnimations _LoadModelAnimations =
-      _LoadModelAnimations_ptr.asFunction<_dart_LoadModelAnimations>();
-
-  void UpdateModelAnimation(
+  BoundingBox GetModelBoundingBox(
     Model model,
-    ModelAnimation anim,
-    int frame,
   ) {
-    return _UpdateModelAnimation(
+    return _GetModelBoundingBox(
       model,
-      anim,
-      frame,
     );
   }
 
-  late final _UpdateModelAnimation_ptr =
-      _lookup<ffi.NativeFunction<_c_UpdateModelAnimation>>(
-          'UpdateModelAnimation');
-  late final _dart_UpdateModelAnimation _UpdateModelAnimation =
-      _UpdateModelAnimation_ptr.asFunction<_dart_UpdateModelAnimation>();
-
-  void UnloadModelAnimation(
-    ModelAnimation anim,
-  ) {
-    return _UnloadModelAnimation(
-      anim,
-    );
-  }
-
-  late final _UnloadModelAnimation_ptr =
-      _lookup<ffi.NativeFunction<_c_UnloadModelAnimation>>(
-          'UnloadModelAnimation');
-  late final _dart_UnloadModelAnimation _UnloadModelAnimation =
-      _UnloadModelAnimation_ptr.asFunction<_dart_UnloadModelAnimation>();
-
-  void UnloadModelAnimations(
-    ffi.Pointer<ModelAnimation> animations,
-    int count,
-  ) {
-    return _UnloadModelAnimations(
-      animations,
-      count,
-    );
-  }
-
-  late final _UnloadModelAnimations_ptr =
-      _lookup<ffi.NativeFunction<_c_UnloadModelAnimations>>(
-          'UnloadModelAnimations');
-  late final _dart_UnloadModelAnimations _UnloadModelAnimations =
-      _UnloadModelAnimations_ptr.asFunction<_dart_UnloadModelAnimations>();
-
-  int IsModelAnimationValid(
-    Model model,
-    ModelAnimation anim,
-  ) {
-    return _IsModelAnimationValid(
-      model,
-      anim,
-    );
-  }
-
-  late final _IsModelAnimationValid_ptr =
-      _lookup<ffi.NativeFunction<_c_IsModelAnimationValid>>(
-          'IsModelAnimationValid');
-  late final _dart_IsModelAnimationValid _IsModelAnimationValid =
-      _IsModelAnimationValid_ptr.asFunction<_dart_IsModelAnimationValid>();
-
-  /// Mesh generation functions
-  Mesh GenMeshPoly(
-    int sides,
-    double radius,
-  ) {
-    return _GenMeshPoly(
-      sides,
-      radius,
-    );
-  }
-
-  late final _GenMeshPoly_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshPoly>>('GenMeshPoly');
-  late final _dart_GenMeshPoly _GenMeshPoly =
-      _GenMeshPoly_ptr.asFunction<_dart_GenMeshPoly>();
-
-  Mesh GenMeshPlane(
-    double width,
-    double length,
-    int resX,
-    int resZ,
-  ) {
-    return _GenMeshPlane(
-      width,
-      length,
-      resX,
-      resZ,
-    );
-  }
-
-  late final _GenMeshPlane_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshPlane>>('GenMeshPlane');
-  late final _dart_GenMeshPlane _GenMeshPlane =
-      _GenMeshPlane_ptr.asFunction<_dart_GenMeshPlane>();
-
-  Mesh GenMeshCube(
-    double width,
-    double height,
-    double length,
-  ) {
-    return _GenMeshCube(
-      width,
-      height,
-      length,
-    );
-  }
-
-  late final _GenMeshCube_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshCube>>('GenMeshCube');
-  late final _dart_GenMeshCube _GenMeshCube =
-      _GenMeshCube_ptr.asFunction<_dart_GenMeshCube>();
-
-  Mesh GenMeshSphere(
-    double radius,
-    int rings,
-    int slices,
-  ) {
-    return _GenMeshSphere(
-      radius,
-      rings,
-      slices,
-    );
-  }
-
-  late final _GenMeshSphere_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshSphere>>('GenMeshSphere');
-  late final _dart_GenMeshSphere _GenMeshSphere =
-      _GenMeshSphere_ptr.asFunction<_dart_GenMeshSphere>();
-
-  Mesh GenMeshHemiSphere(
-    double radius,
-    int rings,
-    int slices,
-  ) {
-    return _GenMeshHemiSphere(
-      radius,
-      rings,
-      slices,
-    );
-  }
-
-  late final _GenMeshHemiSphere_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshHemiSphere>>('GenMeshHemiSphere');
-  late final _dart_GenMeshHemiSphere _GenMeshHemiSphere =
-      _GenMeshHemiSphere_ptr.asFunction<_dart_GenMeshHemiSphere>();
-
-  Mesh GenMeshCylinder(
-    double radius,
-    double height,
-    int slices,
-  ) {
-    return _GenMeshCylinder(
-      radius,
-      height,
-      slices,
-    );
-  }
-
-  late final _GenMeshCylinder_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshCylinder>>('GenMeshCylinder');
-  late final _dart_GenMeshCylinder _GenMeshCylinder =
-      _GenMeshCylinder_ptr.asFunction<_dart_GenMeshCylinder>();
-
-  Mesh GenMeshTorus(
-    double radius,
-    double size,
-    int radSeg,
-    int sides,
-  ) {
-    return _GenMeshTorus(
-      radius,
-      size,
-      radSeg,
-      sides,
-    );
-  }
-
-  late final _GenMeshTorus_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshTorus>>('GenMeshTorus');
-  late final _dart_GenMeshTorus _GenMeshTorus =
-      _GenMeshTorus_ptr.asFunction<_dart_GenMeshTorus>();
-
-  Mesh GenMeshKnot(
-    double radius,
-    double size,
-    int radSeg,
-    int sides,
-  ) {
-    return _GenMeshKnot(
-      radius,
-      size,
-      radSeg,
-      sides,
-    );
-  }
-
-  late final _GenMeshKnot_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshKnot>>('GenMeshKnot');
-  late final _dart_GenMeshKnot _GenMeshKnot =
-      _GenMeshKnot_ptr.asFunction<_dart_GenMeshKnot>();
-
-  Mesh GenMeshHeightmap(
-    Image heightmap,
-    Vector3 size,
-  ) {
-    return _GenMeshHeightmap(
-      heightmap,
-      size,
-    );
-  }
-
-  late final _GenMeshHeightmap_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshHeightmap>>('GenMeshHeightmap');
-  late final _dart_GenMeshHeightmap _GenMeshHeightmap =
-      _GenMeshHeightmap_ptr.asFunction<_dart_GenMeshHeightmap>();
-
-  Mesh GenMeshCubicmap(
-    Image cubicmap,
-    Vector3 cubeSize,
-  ) {
-    return _GenMeshCubicmap(
-      cubicmap,
-      cubeSize,
-    );
-  }
-
-  late final _GenMeshCubicmap_ptr =
-      _lookup<ffi.NativeFunction<_c_GenMeshCubicmap>>('GenMeshCubicmap');
-  late final _dart_GenMeshCubicmap _GenMeshCubicmap =
-      _GenMeshCubicmap_ptr.asFunction<_dart_GenMeshCubicmap>();
-
-  /// Mesh manipulation functions
-  BoundingBox MeshBoundingBox(
-    Mesh mesh,
-  ) {
-    return _MeshBoundingBox(
-      mesh,
-    );
-  }
-
-  late final _MeshBoundingBox_ptr =
-      _lookup<ffi.NativeFunction<_c_MeshBoundingBox>>('MeshBoundingBox');
-  late final _dart_MeshBoundingBox _MeshBoundingBox =
-      _MeshBoundingBox_ptr.asFunction<_dart_MeshBoundingBox>();
-
-  void MeshTangents(
-    ffi.Pointer<Mesh> mesh,
-  ) {
-    return _MeshTangents(
-      mesh,
-    );
-  }
-
-  late final _MeshTangents_ptr =
-      _lookup<ffi.NativeFunction<_c_MeshTangents>>('MeshTangents');
-  late final _dart_MeshTangents _MeshTangents =
-      _MeshTangents_ptr.asFunction<_dart_MeshTangents>();
-
-  void MeshBinormals(
-    ffi.Pointer<Mesh> mesh,
-  ) {
-    return _MeshBinormals(
-      mesh,
-    );
-  }
-
-  late final _MeshBinormals_ptr =
-      _lookup<ffi.NativeFunction<_c_MeshBinormals>>('MeshBinormals');
-  late final _dart_MeshBinormals _MeshBinormals =
-      _MeshBinormals_ptr.asFunction<_dart_MeshBinormals>();
+  late final _GetModelBoundingBox_ptr =
+      _lookup<ffi.NativeFunction<_c_GetModelBoundingBox>>(
+          'GetModelBoundingBox');
+  late final _dart_GetModelBoundingBox _GetModelBoundingBox =
+      _GetModelBoundingBox_ptr.asFunction<_dart_GetModelBoundingBox>();
 
   /// Model drawing functions
   void DrawModel(
@@ -6255,14 +6038,14 @@ class DartRaylib {
   void DrawBillboard(
     Camera3D camera,
     Texture texture,
-    Vector3 center,
+    Vector3 position,
     double size,
     Color tint,
   ) {
     return _DrawBillboard(
       camera,
       texture,
-      center,
+      position,
       size,
       tint,
     );
@@ -6277,15 +6060,15 @@ class DartRaylib {
     Camera3D camera,
     Texture texture,
     Rectangle source,
-    Vector3 center,
-    double size,
+    Vector3 position,
+    Vector2 size,
     Color tint,
   ) {
     return _DrawBillboardRec(
       camera,
       texture,
       source,
-      center,
+      position,
       size,
       tint,
     );
@@ -6295,6 +6078,518 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_DrawBillboardRec>>('DrawBillboardRec');
   late final _dart_DrawBillboardRec _DrawBillboardRec =
       _DrawBillboardRec_ptr.asFunction<_dart_DrawBillboardRec>();
+
+  void DrawBillboardPro(
+    Camera3D camera,
+    Texture texture,
+    Rectangle source,
+    Vector3 position,
+    Vector3 up,
+    Vector2 size,
+    Vector2 origin,
+    double rotation,
+    Color tint,
+  ) {
+    return _DrawBillboardPro(
+      camera,
+      texture,
+      source,
+      position,
+      up,
+      size,
+      origin,
+      rotation,
+      tint,
+    );
+  }
+
+  late final _DrawBillboardPro_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawBillboardPro>>('DrawBillboardPro');
+  late final _dart_DrawBillboardPro _DrawBillboardPro =
+      _DrawBillboardPro_ptr.asFunction<_dart_DrawBillboardPro>();
+
+  /// Mesh management functions
+  void UploadMesh(
+    ffi.Pointer<Mesh> mesh,
+    int dynamic_1,
+  ) {
+    return _UploadMesh(
+      mesh,
+      dynamic_1,
+    );
+  }
+
+  late final _UploadMesh_ptr =
+      _lookup<ffi.NativeFunction<_c_UploadMesh>>('UploadMesh');
+  late final _dart_UploadMesh _UploadMesh =
+      _UploadMesh_ptr.asFunction<_dart_UploadMesh>();
+
+  void UpdateMeshBuffer(
+    Mesh mesh,
+    int index,
+    ffi.Pointer<ffi.Void> data,
+    int dataSize,
+    int offset,
+  ) {
+    return _UpdateMeshBuffer(
+      mesh,
+      index,
+      data,
+      dataSize,
+      offset,
+    );
+  }
+
+  late final _UpdateMeshBuffer_ptr =
+      _lookup<ffi.NativeFunction<_c_UpdateMeshBuffer>>('UpdateMeshBuffer');
+  late final _dart_UpdateMeshBuffer _UpdateMeshBuffer =
+      _UpdateMeshBuffer_ptr.asFunction<_dart_UpdateMeshBuffer>();
+
+  void UnloadMesh(
+    Mesh mesh,
+  ) {
+    return _UnloadMesh(
+      mesh,
+    );
+  }
+
+  late final _UnloadMesh_ptr =
+      _lookup<ffi.NativeFunction<_c_UnloadMesh>>('UnloadMesh');
+  late final _dart_UnloadMesh _UnloadMesh =
+      _UnloadMesh_ptr.asFunction<_dart_UnloadMesh>();
+
+  void DrawMesh(
+    Mesh mesh,
+    Material material,
+    Matrix transform,
+  ) {
+    return _DrawMesh(
+      mesh,
+      material,
+      transform,
+    );
+  }
+
+  late final _DrawMesh_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawMesh>>('DrawMesh');
+  late final _dart_DrawMesh _DrawMesh =
+      _DrawMesh_ptr.asFunction<_dart_DrawMesh>();
+
+  void DrawMeshInstanced(
+    Mesh mesh,
+    Material material,
+    ffi.Pointer<Matrix> transforms,
+    int instances,
+  ) {
+    return _DrawMeshInstanced(
+      mesh,
+      material,
+      transforms,
+      instances,
+    );
+  }
+
+  late final _DrawMeshInstanced_ptr =
+      _lookup<ffi.NativeFunction<_c_DrawMeshInstanced>>('DrawMeshInstanced');
+  late final _dart_DrawMeshInstanced _DrawMeshInstanced =
+      _DrawMeshInstanced_ptr.asFunction<_dart_DrawMeshInstanced>();
+
+  int ExportMesh(
+    Mesh mesh,
+    ffi.Pointer<ffi.Int8> fileName,
+  ) {
+    return _ExportMesh(
+      mesh,
+      fileName,
+    );
+  }
+
+  late final _ExportMesh_ptr =
+      _lookup<ffi.NativeFunction<_c_ExportMesh>>('ExportMesh');
+  late final _dart_ExportMesh _ExportMesh =
+      _ExportMesh_ptr.asFunction<_dart_ExportMesh>();
+
+  BoundingBox GetMeshBoundingBox(
+    Mesh mesh,
+  ) {
+    return _GetMeshBoundingBox(
+      mesh,
+    );
+  }
+
+  late final _GetMeshBoundingBox_ptr =
+      _lookup<ffi.NativeFunction<_c_GetMeshBoundingBox>>('GetMeshBoundingBox');
+  late final _dart_GetMeshBoundingBox _GetMeshBoundingBox =
+      _GetMeshBoundingBox_ptr.asFunction<_dart_GetMeshBoundingBox>();
+
+  void GenMeshTangents(
+    ffi.Pointer<Mesh> mesh,
+  ) {
+    return _GenMeshTangents(
+      mesh,
+    );
+  }
+
+  late final _GenMeshTangents_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshTangents>>('GenMeshTangents');
+  late final _dart_GenMeshTangents _GenMeshTangents =
+      _GenMeshTangents_ptr.asFunction<_dart_GenMeshTangents>();
+
+  void GenMeshBinormals(
+    ffi.Pointer<Mesh> mesh,
+  ) {
+    return _GenMeshBinormals(
+      mesh,
+    );
+  }
+
+  late final _GenMeshBinormals_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshBinormals>>('GenMeshBinormals');
+  late final _dart_GenMeshBinormals _GenMeshBinormals =
+      _GenMeshBinormals_ptr.asFunction<_dart_GenMeshBinormals>();
+
+  /// Mesh generation functions
+  Mesh GenMeshPoly(
+    int sides,
+    double radius,
+  ) {
+    return _GenMeshPoly(
+      sides,
+      radius,
+    );
+  }
+
+  late final _GenMeshPoly_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshPoly>>('GenMeshPoly');
+  late final _dart_GenMeshPoly _GenMeshPoly =
+      _GenMeshPoly_ptr.asFunction<_dart_GenMeshPoly>();
+
+  Mesh GenMeshPlane(
+    double width,
+    double length,
+    int resX,
+    int resZ,
+  ) {
+    return _GenMeshPlane(
+      width,
+      length,
+      resX,
+      resZ,
+    );
+  }
+
+  late final _GenMeshPlane_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshPlane>>('GenMeshPlane');
+  late final _dart_GenMeshPlane _GenMeshPlane =
+      _GenMeshPlane_ptr.asFunction<_dart_GenMeshPlane>();
+
+  Mesh GenMeshCube(
+    double width,
+    double height,
+    double length,
+  ) {
+    return _GenMeshCube(
+      width,
+      height,
+      length,
+    );
+  }
+
+  late final _GenMeshCube_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshCube>>('GenMeshCube');
+  late final _dart_GenMeshCube _GenMeshCube =
+      _GenMeshCube_ptr.asFunction<_dart_GenMeshCube>();
+
+  Mesh GenMeshSphere(
+    double radius,
+    int rings,
+    int slices,
+  ) {
+    return _GenMeshSphere(
+      radius,
+      rings,
+      slices,
+    );
+  }
+
+  late final _GenMeshSphere_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshSphere>>('GenMeshSphere');
+  late final _dart_GenMeshSphere _GenMeshSphere =
+      _GenMeshSphere_ptr.asFunction<_dart_GenMeshSphere>();
+
+  Mesh GenMeshHemiSphere(
+    double radius,
+    int rings,
+    int slices,
+  ) {
+    return _GenMeshHemiSphere(
+      radius,
+      rings,
+      slices,
+    );
+  }
+
+  late final _GenMeshHemiSphere_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshHemiSphere>>('GenMeshHemiSphere');
+  late final _dart_GenMeshHemiSphere _GenMeshHemiSphere =
+      _GenMeshHemiSphere_ptr.asFunction<_dart_GenMeshHemiSphere>();
+
+  Mesh GenMeshCylinder(
+    double radius,
+    double height,
+    int slices,
+  ) {
+    return _GenMeshCylinder(
+      radius,
+      height,
+      slices,
+    );
+  }
+
+  late final _GenMeshCylinder_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshCylinder>>('GenMeshCylinder');
+  late final _dart_GenMeshCylinder _GenMeshCylinder =
+      _GenMeshCylinder_ptr.asFunction<_dart_GenMeshCylinder>();
+
+  Mesh GenMeshCone(
+    double radius,
+    double height,
+    int slices,
+  ) {
+    return _GenMeshCone(
+      radius,
+      height,
+      slices,
+    );
+  }
+
+  late final _GenMeshCone_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshCone>>('GenMeshCone');
+  late final _dart_GenMeshCone _GenMeshCone =
+      _GenMeshCone_ptr.asFunction<_dart_GenMeshCone>();
+
+  Mesh GenMeshTorus(
+    double radius,
+    double size,
+    int radSeg,
+    int sides,
+  ) {
+    return _GenMeshTorus(
+      radius,
+      size,
+      radSeg,
+      sides,
+    );
+  }
+
+  late final _GenMeshTorus_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshTorus>>('GenMeshTorus');
+  late final _dart_GenMeshTorus _GenMeshTorus =
+      _GenMeshTorus_ptr.asFunction<_dart_GenMeshTorus>();
+
+  Mesh GenMeshKnot(
+    double radius,
+    double size,
+    int radSeg,
+    int sides,
+  ) {
+    return _GenMeshKnot(
+      radius,
+      size,
+      radSeg,
+      sides,
+    );
+  }
+
+  late final _GenMeshKnot_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshKnot>>('GenMeshKnot');
+  late final _dart_GenMeshKnot _GenMeshKnot =
+      _GenMeshKnot_ptr.asFunction<_dart_GenMeshKnot>();
+
+  Mesh GenMeshHeightmap(
+    Image heightmap,
+    Vector3 size,
+  ) {
+    return _GenMeshHeightmap(
+      heightmap,
+      size,
+    );
+  }
+
+  late final _GenMeshHeightmap_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshHeightmap>>('GenMeshHeightmap');
+  late final _dart_GenMeshHeightmap _GenMeshHeightmap =
+      _GenMeshHeightmap_ptr.asFunction<_dart_GenMeshHeightmap>();
+
+  Mesh GenMeshCubicmap(
+    Image cubicmap,
+    Vector3 cubeSize,
+  ) {
+    return _GenMeshCubicmap(
+      cubicmap,
+      cubeSize,
+    );
+  }
+
+  late final _GenMeshCubicmap_ptr =
+      _lookup<ffi.NativeFunction<_c_GenMeshCubicmap>>('GenMeshCubicmap');
+  late final _dart_GenMeshCubicmap _GenMeshCubicmap =
+      _GenMeshCubicmap_ptr.asFunction<_dart_GenMeshCubicmap>();
+
+  /// Material loading/unloading functions
+  ffi.Pointer<Material> LoadMaterials(
+    ffi.Pointer<ffi.Int8> fileName,
+    ffi.Pointer<ffi.Int32> materialCount,
+  ) {
+    return _LoadMaterials(
+      fileName,
+      materialCount,
+    );
+  }
+
+  late final _LoadMaterials_ptr =
+      _lookup<ffi.NativeFunction<_c_LoadMaterials>>('LoadMaterials');
+  late final _dart_LoadMaterials _LoadMaterials =
+      _LoadMaterials_ptr.asFunction<_dart_LoadMaterials>();
+
+  Material LoadMaterialDefault() {
+    return _LoadMaterialDefault();
+  }
+
+  late final _LoadMaterialDefault_ptr =
+      _lookup<ffi.NativeFunction<_c_LoadMaterialDefault>>(
+          'LoadMaterialDefault');
+  late final _dart_LoadMaterialDefault _LoadMaterialDefault =
+      _LoadMaterialDefault_ptr.asFunction<_dart_LoadMaterialDefault>();
+
+  void UnloadMaterial(
+    Material material,
+  ) {
+    return _UnloadMaterial(
+      material,
+    );
+  }
+
+  late final _UnloadMaterial_ptr =
+      _lookup<ffi.NativeFunction<_c_UnloadMaterial>>('UnloadMaterial');
+  late final _dart_UnloadMaterial _UnloadMaterial =
+      _UnloadMaterial_ptr.asFunction<_dart_UnloadMaterial>();
+
+  void SetMaterialTexture(
+    ffi.Pointer<Material> material,
+    int mapType,
+    Texture texture,
+  ) {
+    return _SetMaterialTexture(
+      material,
+      mapType,
+      texture,
+    );
+  }
+
+  late final _SetMaterialTexture_ptr =
+      _lookup<ffi.NativeFunction<_c_SetMaterialTexture>>('SetMaterialTexture');
+  late final _dart_SetMaterialTexture _SetMaterialTexture =
+      _SetMaterialTexture_ptr.asFunction<_dart_SetMaterialTexture>();
+
+  void SetModelMeshMaterial(
+    ffi.Pointer<Model> model,
+    int meshId,
+    int materialId,
+  ) {
+    return _SetModelMeshMaterial(
+      model,
+      meshId,
+      materialId,
+    );
+  }
+
+  late final _SetModelMeshMaterial_ptr =
+      _lookup<ffi.NativeFunction<_c_SetModelMeshMaterial>>(
+          'SetModelMeshMaterial');
+  late final _dart_SetModelMeshMaterial _SetModelMeshMaterial =
+      _SetModelMeshMaterial_ptr.asFunction<_dart_SetModelMeshMaterial>();
+
+  /// Model animations loading/unloading functions
+  ffi.Pointer<ModelAnimation> LoadModelAnimations(
+    ffi.Pointer<ffi.Int8> fileName,
+    ffi.Pointer<ffi.Uint32> animCount,
+  ) {
+    return _LoadModelAnimations(
+      fileName,
+      animCount,
+    );
+  }
+
+  late final _LoadModelAnimations_ptr =
+      _lookup<ffi.NativeFunction<_c_LoadModelAnimations>>(
+          'LoadModelAnimations');
+  late final _dart_LoadModelAnimations _LoadModelAnimations =
+      _LoadModelAnimations_ptr.asFunction<_dart_LoadModelAnimations>();
+
+  void UpdateModelAnimation(
+    Model model,
+    ModelAnimation anim,
+    int frame,
+  ) {
+    return _UpdateModelAnimation(
+      model,
+      anim,
+      frame,
+    );
+  }
+
+  late final _UpdateModelAnimation_ptr =
+      _lookup<ffi.NativeFunction<_c_UpdateModelAnimation>>(
+          'UpdateModelAnimation');
+  late final _dart_UpdateModelAnimation _UpdateModelAnimation =
+      _UpdateModelAnimation_ptr.asFunction<_dart_UpdateModelAnimation>();
+
+  void UnloadModelAnimation(
+    ModelAnimation anim,
+  ) {
+    return _UnloadModelAnimation(
+      anim,
+    );
+  }
+
+  late final _UnloadModelAnimation_ptr =
+      _lookup<ffi.NativeFunction<_c_UnloadModelAnimation>>(
+          'UnloadModelAnimation');
+  late final _dart_UnloadModelAnimation _UnloadModelAnimation =
+      _UnloadModelAnimation_ptr.asFunction<_dart_UnloadModelAnimation>();
+
+  void UnloadModelAnimations(
+    ffi.Pointer<ModelAnimation> animations,
+    int count,
+  ) {
+    return _UnloadModelAnimations(
+      animations,
+      count,
+    );
+  }
+
+  late final _UnloadModelAnimations_ptr =
+      _lookup<ffi.NativeFunction<_c_UnloadModelAnimations>>(
+          'UnloadModelAnimations');
+  late final _dart_UnloadModelAnimations _UnloadModelAnimations =
+      _UnloadModelAnimations_ptr.asFunction<_dart_UnloadModelAnimations>();
+
+  int IsModelAnimationValid(
+    Model model,
+    ModelAnimation anim,
+  ) {
+    return _IsModelAnimationValid(
+      model,
+      anim,
+    );
+  }
+
+  late final _IsModelAnimationValid_ptr =
+      _lookup<ffi.NativeFunction<_c_IsModelAnimationValid>>(
+          'IsModelAnimationValid');
+  late final _dart_IsModelAnimationValid _IsModelAnimationValid =
+      _IsModelAnimationValid_ptr.asFunction<_dart_IsModelAnimationValid>();
 
   /// Collision detection functions
   int CheckCollisionSpheres(
@@ -6351,102 +6646,80 @@ class DartRaylib {
   late final _dart_CheckCollisionBoxSphere _CheckCollisionBoxSphere =
       _CheckCollisionBoxSphere_ptr.asFunction<_dart_CheckCollisionBoxSphere>();
 
-  int CheckCollisionRaySphere(
+  RayCollision GetRayCollisionSphere(
     Ray ray,
     Vector3 center,
     double radius,
   ) {
-    return _CheckCollisionRaySphere(
+    return _GetRayCollisionSphere(
       ray,
       center,
       radius,
     );
   }
 
-  late final _CheckCollisionRaySphere_ptr =
-      _lookup<ffi.NativeFunction<_c_CheckCollisionRaySphere>>(
-          'CheckCollisionRaySphere');
-  late final _dart_CheckCollisionRaySphere _CheckCollisionRaySphere =
-      _CheckCollisionRaySphere_ptr.asFunction<_dart_CheckCollisionRaySphere>();
+  late final _GetRayCollisionSphere_ptr =
+      _lookup<ffi.NativeFunction<_c_GetRayCollisionSphere>>(
+          'GetRayCollisionSphere');
+  late final _dart_GetRayCollisionSphere _GetRayCollisionSphere =
+      _GetRayCollisionSphere_ptr.asFunction<_dart_GetRayCollisionSphere>();
 
-  int CheckCollisionRaySphereEx(
-    Ray ray,
-    Vector3 center,
-    double radius,
-    ffi.Pointer<Vector3> collisionPoint,
-  ) {
-    return _CheckCollisionRaySphereEx(
-      ray,
-      center,
-      radius,
-      collisionPoint,
-    );
-  }
-
-  late final _CheckCollisionRaySphereEx_ptr =
-      _lookup<ffi.NativeFunction<_c_CheckCollisionRaySphereEx>>(
-          'CheckCollisionRaySphereEx');
-  late final _dart_CheckCollisionRaySphereEx _CheckCollisionRaySphereEx =
-      _CheckCollisionRaySphereEx_ptr.asFunction<
-          _dart_CheckCollisionRaySphereEx>();
-
-  int CheckCollisionRayBox(
+  RayCollision GetRayCollisionBox(
     Ray ray,
     BoundingBox box,
   ) {
-    return _CheckCollisionRayBox(
+    return _GetRayCollisionBox(
       ray,
       box,
     );
   }
 
-  late final _CheckCollisionRayBox_ptr =
-      _lookup<ffi.NativeFunction<_c_CheckCollisionRayBox>>(
-          'CheckCollisionRayBox');
-  late final _dart_CheckCollisionRayBox _CheckCollisionRayBox =
-      _CheckCollisionRayBox_ptr.asFunction<_dart_CheckCollisionRayBox>();
+  late final _GetRayCollisionBox_ptr =
+      _lookup<ffi.NativeFunction<_c_GetRayCollisionBox>>('GetRayCollisionBox');
+  late final _dart_GetRayCollisionBox _GetRayCollisionBox =
+      _GetRayCollisionBox_ptr.asFunction<_dart_GetRayCollisionBox>();
 
-  RayHitInfo GetCollisionRayMesh(
+  RayCollision GetRayCollisionModel(
+    Ray ray,
+    Model model,
+  ) {
+    return _GetRayCollisionModel(
+      ray,
+      model,
+    );
+  }
+
+  late final _GetRayCollisionModel_ptr =
+      _lookup<ffi.NativeFunction<_c_GetRayCollisionModel>>(
+          'GetRayCollisionModel');
+  late final _dart_GetRayCollisionModel _GetRayCollisionModel =
+      _GetRayCollisionModel_ptr.asFunction<_dart_GetRayCollisionModel>();
+
+  RayCollision GetRayCollisionMesh(
     Ray ray,
     Mesh mesh,
     Matrix transform,
   ) {
-    return _GetCollisionRayMesh(
+    return _GetRayCollisionMesh(
       ray,
       mesh,
       transform,
     );
   }
 
-  late final _GetCollisionRayMesh_ptr =
-      _lookup<ffi.NativeFunction<_c_GetCollisionRayMesh>>(
-          'GetCollisionRayMesh');
-  late final _dart_GetCollisionRayMesh _GetCollisionRayMesh =
-      _GetCollisionRayMesh_ptr.asFunction<_dart_GetCollisionRayMesh>();
+  late final _GetRayCollisionMesh_ptr =
+      _lookup<ffi.NativeFunction<_c_GetRayCollisionMesh>>(
+          'GetRayCollisionMesh');
+  late final _dart_GetRayCollisionMesh _GetRayCollisionMesh =
+      _GetRayCollisionMesh_ptr.asFunction<_dart_GetRayCollisionMesh>();
 
-  RayHitInfo GetCollisionRayModel(
-    Ray ray,
-    Model model,
-  ) {
-    return _GetCollisionRayModel(
-      ray,
-      model,
-    );
-  }
-
-  late final _GetCollisionRayModel_ptr =
-      _lookup<ffi.NativeFunction<_c_GetCollisionRayModel>>(
-          'GetCollisionRayModel');
-  late final _dart_GetCollisionRayModel _GetCollisionRayModel =
-      _GetCollisionRayModel_ptr.asFunction<_dart_GetCollisionRayModel>();
-
-  RayHitInfo GetCollisionRayTriangle(
+  RayCollision GetRayCollisionTriangle(
     Ray ray,
     Vector3 p1,
     Vector3 p2,
     Vector3 p3,
   ) {
-    return _GetCollisionRayTriangle(
+    return _GetRayCollisionTriangle(
       ray,
       p1,
       p2,
@@ -6454,27 +6727,33 @@ class DartRaylib {
     );
   }
 
-  late final _GetCollisionRayTriangle_ptr =
-      _lookup<ffi.NativeFunction<_c_GetCollisionRayTriangle>>(
-          'GetCollisionRayTriangle');
-  late final _dart_GetCollisionRayTriangle _GetCollisionRayTriangle =
-      _GetCollisionRayTriangle_ptr.asFunction<_dart_GetCollisionRayTriangle>();
+  late final _GetRayCollisionTriangle_ptr =
+      _lookup<ffi.NativeFunction<_c_GetRayCollisionTriangle>>(
+          'GetRayCollisionTriangle');
+  late final _dart_GetRayCollisionTriangle _GetRayCollisionTriangle =
+      _GetRayCollisionTriangle_ptr.asFunction<_dart_GetRayCollisionTriangle>();
 
-  RayHitInfo GetCollisionRayGround(
+  RayCollision GetRayCollisionQuad(
     Ray ray,
-    double groundHeight,
+    Vector3 p1,
+    Vector3 p2,
+    Vector3 p3,
+    Vector3 p4,
   ) {
-    return _GetCollisionRayGround(
+    return _GetRayCollisionQuad(
       ray,
-      groundHeight,
+      p1,
+      p2,
+      p3,
+      p4,
     );
   }
 
-  late final _GetCollisionRayGround_ptr =
-      _lookup<ffi.NativeFunction<_c_GetCollisionRayGround>>(
-          'GetCollisionRayGround');
-  late final _dart_GetCollisionRayGround _GetCollisionRayGround =
-      _GetCollisionRayGround_ptr.asFunction<_dart_GetCollisionRayGround>();
+  late final _GetRayCollisionQuad_ptr =
+      _lookup<ffi.NativeFunction<_c_GetRayCollisionQuad>>(
+          'GetRayCollisionQuad');
+  late final _dart_GetRayCollisionQuad _GetRayCollisionQuad =
+      _GetRayCollisionQuad_ptr.asFunction<_dart_GetRayCollisionQuad>();
 
   /// Audio device management functions
   void InitAudioDevice() {
@@ -6577,12 +6856,12 @@ class DartRaylib {
   void UpdateSound(
     Sound sound,
     ffi.Pointer<ffi.Void> data,
-    int samplesCount,
+    int sampleCount,
   ) {
     return _UpdateSound(
       sound,
       data,
-      samplesCount,
+      sampleCount,
     );
   }
 
@@ -6908,18 +7187,19 @@ class DartRaylib {
   late final _dart_PlayMusicStream _PlayMusicStream =
       _PlayMusicStream_ptr.asFunction<_dart_PlayMusicStream>();
 
-  int IsMusicPlaying(
+  int IsMusicStreamPlaying(
     Music music,
   ) {
-    return _IsMusicPlaying(
+    return _IsMusicStreamPlaying(
       music,
     );
   }
 
-  late final _IsMusicPlaying_ptr =
-      _lookup<ffi.NativeFunction<_c_IsMusicPlaying>>('IsMusicPlaying');
-  late final _dart_IsMusicPlaying _IsMusicPlaying =
-      _IsMusicPlaying_ptr.asFunction<_dart_IsMusicPlaying>();
+  late final _IsMusicStreamPlaying_ptr =
+      _lookup<ffi.NativeFunction<_c_IsMusicStreamPlaying>>(
+          'IsMusicStreamPlaying');
+  late final _dart_IsMusicStreamPlaying _IsMusicStreamPlaying =
+      _IsMusicStreamPlaying_ptr.asFunction<_dart_IsMusicStreamPlaying>();
 
   void UpdateMusicStream(
     Music music,
@@ -6972,6 +7252,21 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_ResumeMusicStream>>('ResumeMusicStream');
   late final _dart_ResumeMusicStream _ResumeMusicStream =
       _ResumeMusicStream_ptr.asFunction<_dart_ResumeMusicStream>();
+
+  void SeekMusicStream(
+    Music music,
+    double position,
+  ) {
+    return _SeekMusicStream(
+      music,
+      position,
+    );
+  }
+
+  late final _SeekMusicStream_ptr =
+      _lookup<ffi.NativeFunction<_c_SeekMusicStream>>('SeekMusicStream');
+  late final _dart_SeekMusicStream _SeekMusicStream =
+      _SeekMusicStream_ptr.asFunction<_dart_SeekMusicStream>();
 
   void SetMusicVolume(
     Music music,
@@ -7030,32 +7325,45 @@ class DartRaylib {
       _GetMusicTimePlayed_ptr.asFunction<_dart_GetMusicTimePlayed>();
 
   /// AudioStream management functions
-  AudioStream InitAudioStream(
+  AudioStream LoadAudioStream(
     int sampleRate,
     int sampleSize,
     int channels,
   ) {
-    return _InitAudioStream(
+    return _LoadAudioStream(
       sampleRate,
       sampleSize,
       channels,
     );
   }
 
-  late final _InitAudioStream_ptr =
-      _lookup<ffi.NativeFunction<_c_InitAudioStream>>('InitAudioStream');
-  late final _dart_InitAudioStream _InitAudioStream =
-      _InitAudioStream_ptr.asFunction<_dart_InitAudioStream>();
+  late final _LoadAudioStream_ptr =
+      _lookup<ffi.NativeFunction<_c_LoadAudioStream>>('LoadAudioStream');
+  late final _dart_LoadAudioStream _LoadAudioStream =
+      _LoadAudioStream_ptr.asFunction<_dart_LoadAudioStream>();
+
+  void UnloadAudioStream(
+    AudioStream stream,
+  ) {
+    return _UnloadAudioStream(
+      stream,
+    );
+  }
+
+  late final _UnloadAudioStream_ptr =
+      _lookup<ffi.NativeFunction<_c_UnloadAudioStream>>('UnloadAudioStream');
+  late final _dart_UnloadAudioStream _UnloadAudioStream =
+      _UnloadAudioStream_ptr.asFunction<_dart_UnloadAudioStream>();
 
   void UpdateAudioStream(
     AudioStream stream,
     ffi.Pointer<ffi.Void> data,
-    int samplesCount,
+    int frameCount,
   ) {
     return _UpdateAudioStream(
       stream,
       data,
-      samplesCount,
+      frameCount,
     );
   }
 
@@ -7063,19 +7371,6 @@ class DartRaylib {
       _lookup<ffi.NativeFunction<_c_UpdateAudioStream>>('UpdateAudioStream');
   late final _dart_UpdateAudioStream _UpdateAudioStream =
       _UpdateAudioStream_ptr.asFunction<_dart_UpdateAudioStream>();
-
-  void CloseAudioStream(
-    AudioStream stream,
-  ) {
-    return _CloseAudioStream(
-      stream,
-    );
-  }
-
-  late final _CloseAudioStream_ptr =
-      _lookup<ffi.NativeFunction<_c_CloseAudioStream>>('CloseAudioStream');
-  late final _dart_CloseAudioStream _CloseAudioStream =
-      _CloseAudioStream_ptr.asFunction<_dart_CloseAudioStream>();
 
   int IsAudioStreamProcessed(
     AudioStream stream,
@@ -7288,44 +7583,54 @@ abstract class bool {
   static const int true_1 = 1;
 }
 
-/// Vector2 type
+/// Vector2, 2 components
 class Vector2 extends ffi.Struct {
+  /// Vector x component
   @ffi.Float()
   external double x;
 
+  /// Vector y component
   @ffi.Float()
   external double y;
 }
 
-/// Vector3 type
+/// Vector3, 3 components
 class Vector3 extends ffi.Struct {
+  /// Vector x component
   @ffi.Float()
   external double x;
 
+  /// Vector y component
   @ffi.Float()
   external double y;
 
+  /// Vector z component
   @ffi.Float()
   external double z;
 }
 
-/// Vector4 type
+/// Vector4, 4 components
 class Vector4 extends ffi.Struct {
+  /// Vector x component
   @ffi.Float()
   external double x;
 
+  /// Vector y component
   @ffi.Float()
   external double y;
 
+  /// Vector z component
   @ffi.Float()
   external double z;
 
+  /// Vector w component
   @ffi.Float()
   external double w;
 }
 
-/// Matrix type (OpenGL style 4x4 - right handed, column major)
+/// Matrix, 4x4 components, column major, OpenGL style, right handed
 class Matrix extends ffi.Struct {
+  /// Matrix first row (4 components)
   @ffi.Float()
   external double m0;
 
@@ -7338,6 +7643,7 @@ class Matrix extends ffi.Struct {
   @ffi.Float()
   external double m12;
 
+  /// Matrix second row (4 components)
   @ffi.Float()
   external double m1;
 
@@ -7350,6 +7656,7 @@ class Matrix extends ffi.Struct {
   @ffi.Float()
   external double m13;
 
+  /// Matrix third row (4 components)
   @ffi.Float()
   external double m2;
 
@@ -7362,6 +7669,7 @@ class Matrix extends ffi.Struct {
   @ffi.Float()
   external double m14;
 
+  /// Matrix fourth row (4 components)
   @ffi.Float()
   external double m3;
 
@@ -7375,38 +7683,45 @@ class Matrix extends ffi.Struct {
   external double m15;
 }
 
-/// Color type, RGBA (32bit)
+/// Color, 4 components, R8G8B8A8 (32bit)
 class Color extends ffi.Struct {
+  /// Color red value
   @ffi.Uint8()
   external int r;
 
+  /// Color green value
   @ffi.Uint8()
   external int g;
 
+  /// Color blue value
   @ffi.Uint8()
   external int b;
 
+  /// Color alpha value
   @ffi.Uint8()
   external int a;
 }
 
-/// Rectangle type
+/// Rectangle, 4 components
 class Rectangle extends ffi.Struct {
+  /// Rectangle top-left corner position x
   @ffi.Float()
   external double x;
 
+  /// Rectangle top-left corner position y
   @ffi.Float()
   external double y;
 
+  /// Rectangle width
   @ffi.Float()
   external double width;
 
+  /// Rectangle height
   @ffi.Float()
   external double height;
 }
 
-/// Image type, bpp always RGBA (32bit)
-/// NOTE: Data stored in CPU memory (RAM)
+/// Image, pixel data stored in CPU memory (RAM)
 class Image extends ffi.Struct {
   /// Image raw data
   external ffi.Pointer<ffi.Void> data;
@@ -7428,8 +7743,7 @@ class Image extends ffi.Struct {
   external int format;
 }
 
-/// Texture type
-/// NOTE: Data stored in GPU memory
+/// Texture, tex data stored in GPU memory (VRAM)
 class Texture extends ffi.Struct {
   /// OpenGL texture id
   @ffi.Uint32()
@@ -7452,7 +7766,7 @@ class Texture extends ffi.Struct {
   external int format;
 }
 
-/// RenderTexture type, for texture rendering
+/// RenderTexture, fbo for texture rendering
 class RenderTexture extends ffi.Struct {
   /// OpenGL framebuffer object id
   @ffi.Uint32()
@@ -7465,7 +7779,7 @@ class RenderTexture extends ffi.Struct {
   external Texture depth;
 }
 
-/// N-Patch layout info
+/// NPatchInfo, n-patch layout info
 class NPatchInfo extends ffi.Struct {
   /// Texture source rectangle
   external Rectangle source;
@@ -7491,8 +7805,8 @@ class NPatchInfo extends ffi.Struct {
   external int layout;
 }
 
-/// Font character info
-class CharInfo extends ffi.Struct {
+/// GlyphInfo, font characters glyphs info
+class GlyphInfo extends ffi.Struct {
   /// Character value (Unicode)
   @ffi.Int32()
   external int value;
@@ -7513,31 +7827,31 @@ class CharInfo extends ffi.Struct {
   external Image image;
 }
 
-/// Font type, includes texture and charSet array data
+/// Font, font texture and GlyphInfo array data
 class Font extends ffi.Struct {
   /// Base size (default chars height)
   @ffi.Int32()
   external int baseSize;
 
-  /// Number of characters
+  /// Number of glyph characters
   @ffi.Int32()
-  external int charsCount;
+  external int glyphCount;
 
-  /// Padding around the chars
+  /// Padding around the glyph characters
   @ffi.Int32()
-  external int charsPadding;
+  external int glyphPadding;
 
-  /// Characters texture atlas
+  /// Texture atlas containing the glyphs
   external Texture texture;
 
-  /// Characters rectangles in texture
+  /// Rectangles in texture for the glyphs
   external ffi.Pointer<Rectangle> recs;
 
-  /// Characters info data
-  external ffi.Pointer<CharInfo> chars;
+  /// Glyphs info data
+  external ffi.Pointer<GlyphInfo> glyphs;
 }
 
-/// Camera type, defines a camera position/orientation in 3d space
+/// Camera, defines position/orientation in 3d space
 class Camera3D extends ffi.Struct {
   /// Camera position
   external Vector3 position;
@@ -7557,7 +7871,7 @@ class Camera3D extends ffi.Struct {
   external int projection;
 }
 
-/// Camera2D type, defines a 2d camera
+/// Camera2D, defines position/orientation in 2d space
 class Camera2D extends ffi.Struct {
   /// Camera offset (displacement from target)
   external Vector2 offset;
@@ -7574,8 +7888,7 @@ class Camera2D extends ffi.Struct {
   external double zoom;
 }
 
-/// Vertex data definning a mesh
-/// NOTE: Data stored in CPU memory (and GPU)
+/// Mesh, vertex data and vao/vbo
 class Mesh extends ffi.Struct {
   /// Number of vertices stored in arrays
   @ffi.Int32()
@@ -7612,8 +7925,8 @@ class Mesh extends ffi.Struct {
   /// Animated normals (after bones transformations)
   external ffi.Pointer<ffi.Float> animNormals;
 
-  /// Vertex bone ids, up to 4 bones influence by vertex (skinning)
-  external ffi.Pointer<ffi.Int32> boneIds;
+  /// Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning)
+  external ffi.Pointer<ffi.Uint8> boneIds;
 
   /// Vertex bone weight, up to 4 bones influence by vertex (skinning)
   external ffi.Pointer<ffi.Float> boneWeights;
@@ -7626,17 +7939,17 @@ class Mesh extends ffi.Struct {
   external ffi.Pointer<ffi.Uint32> vboId;
 }
 
-/// Shader type (generic)
+/// Shader
 class Shader extends ffi.Struct {
   /// Shader program id
   @ffi.Uint32()
   external int id;
 
-  /// Shader locations array (MAX_SHADER_LOCATIONS)
+  /// Shader locations array (RL_MAX_SHADER_LOCATIONS)
   external ffi.Pointer<ffi.Int32> locs;
 }
 
-/// Material texture map
+/// MaterialMap
 class MaterialMap extends ffi.Struct {
   /// Material map texture
   external Texture texture;
@@ -7649,7 +7962,7 @@ class MaterialMap extends ffi.Struct {
   external double value;
 }
 
-/// Material type (generic)
+/// Material, includes shader and maps
 class Material extends ffi.Struct {
   /// Material shader
   external Shader shader;
@@ -7661,7 +7974,7 @@ class Material extends ffi.Struct {
   external ffi.Array<ffi.Float> params;
 }
 
-/// Transformation properties
+/// Transform, vectex transformation data
 class Transform extends ffi.Struct {
   /// Translation
   external Vector3 translation;
@@ -7673,7 +7986,7 @@ class Transform extends ffi.Struct {
   external Vector3 scale;
 }
 
-/// Bone information
+/// Bone, skeletal animation bone
 class BoneInfo extends ffi.Struct {
   @ffi.Array.multi([32])
   external ffi.Array<ffi.Int8> name;
@@ -7683,7 +7996,7 @@ class BoneInfo extends ffi.Struct {
   external int parent;
 }
 
-/// Model type
+/// Model, meshes, materials and animation data
 class Model extends ffi.Struct {
   /// Local transform matrix
   external Matrix transform;
@@ -7716,7 +8029,7 @@ class Model extends ffi.Struct {
   external ffi.Pointer<Transform> bindPose;
 }
 
-/// Model animation
+/// ModelAnimation
 class ModelAnimation extends ffi.Struct {
   /// Number of bones
   @ffi.Int32()
@@ -7733,7 +8046,7 @@ class ModelAnimation extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<Transform>> framePoses;
 }
 
-/// Ray type (useful for raycast)
+/// Ray, ray for raycasting
 class Ray extends ffi.Struct {
   /// Ray position (origin)
   external Vector3 position;
@@ -7742,8 +8055,8 @@ class Ray extends ffi.Struct {
   external Vector3 direction;
 }
 
-/// Raycast hit information
-class RayHitInfo extends ffi.Struct {
+/// RayCollision, ray hit information
+class RayCollision extends ffi.Struct {
   /// Did the ray hit something?
   @ffi.Int32()
   external int hit;
@@ -7752,14 +8065,14 @@ class RayHitInfo extends ffi.Struct {
   @ffi.Float()
   external double distance;
 
-  /// Position of nearest hit
-  external Vector3 position;
+  /// Point of nearest hit
+  external Vector3 point;
 
   /// Surface normal of hit
   external Vector3 normal;
 }
 
-/// Bounding box type
+/// BoundingBox
 class BoundingBox extends ffi.Struct {
   /// Minimum vertex box-corner
   external Vector3 min;
@@ -7768,11 +8081,11 @@ class BoundingBox extends ffi.Struct {
   external Vector3 max;
 }
 
-/// Wave type, defines audio wave data
+/// Wave, audio wave data
 class Wave extends ffi.Struct {
-  /// Total number of samples
+  /// Total number of frames (considering channels)
   @ffi.Uint32()
-  external int sampleCount;
+  external int frameCount;
 
   /// Frequency (samples per second)
   @ffi.Uint32()
@@ -7782,7 +8095,7 @@ class Wave extends ffi.Struct {
   @ffi.Uint32()
   external int sampleSize;
 
-  /// Number of channels (1-mono, 2-stereo)
+  /// Number of channels (1-mono, 2-stereo, ...)
   @ffi.Uint32()
   external int channels;
 
@@ -7792,8 +8105,7 @@ class Wave extends ffi.Struct {
 
 class rAudioBuffer extends ffi.Opaque {}
 
-/// Audio stream type
-/// NOTE: Useful to create custom audio streams not bound to a specific file
+/// AudioStream, custom audio stream
 class AudioStream extends ffi.Struct {
   /// Pointer to internal data used by the audio system
   external ffi.Pointer<rAudioBuffer> buffer;
@@ -7806,30 +8118,29 @@ class AudioStream extends ffi.Struct {
   @ffi.Uint32()
   external int sampleSize;
 
-  /// Number of channels (1-mono, 2-stereo)
+  /// Number of channels (1-mono, 2-stereo, ...)
   @ffi.Uint32()
   external int channels;
 }
 
-/// Sound source type
+/// Sound
 class Sound extends ffi.Struct {
   /// Audio stream
   external AudioStream stream;
 
-  /// Total number of samples
+  /// Total number of frames (considering channels)
   @ffi.Uint32()
-  external int sampleCount;
+  external int frameCount;
 }
 
-/// Music stream type (audio file streaming from memory)
-/// NOTE: Anything longer than ~10 seconds should be streamed
+/// Music, audio stream, anything longer than ~10 seconds should be streamed
 class Music extends ffi.Struct {
   /// Audio stream
   external AudioStream stream;
 
-  /// Total number of samples
+  /// Total number of frames (considering channels)
   @ffi.Uint32()
-  external int sampleCount;
+  external int frameCount;
 
   /// Music looping enable
   @ffi.Int32()
@@ -7843,7 +8154,7 @@ class Music extends ffi.Struct {
   external ffi.Pointer<ffi.Void> ctxData;
 }
 
-/// Head-Mounted-Display device parameters
+/// VrDeviceInfo, Head-Mounted-Display device parameters
 class VrDeviceInfo extends ffi.Struct {
   /// Horizontal resolution in pixels
   @ffi.Int32()
@@ -7884,7 +8195,7 @@ class VrDeviceInfo extends ffi.Struct {
   external ffi.Array<ffi.Float> chromaAbCorrection;
 }
 
-/// VR Stereo rendering configuration for simulator
+/// VrStereoConfig, VR stereo rendering configuration for simulator
 class VrStereoConfig extends ffi.Struct {
   @ffi.Array.multi([2])
   external ffi.Array<Matrix> projection;
@@ -7962,14 +8273,27 @@ abstract class ConfigFlags {
 }
 
 /// Trace log level
+/// NOTE: Organized by priority level
 abstract class TraceLogLevel {
   /// Display all logs
   static const int LOG_ALL = 0;
+
+  /// Trace logging, intended for internal use only
   static const int LOG_TRACE = 1;
+
+  /// Debug logging, used for internal debugging, it should be disabled on release builds
   static const int LOG_DEBUG = 2;
+
+  /// Info logging, used for program execution info
   static const int LOG_INFO = 3;
+
+  /// Warning logging, used on recoverable failures
   static const int LOG_WARNING = 4;
+
+  /// Error logging, used on unrecoverable failures
   static const int LOG_ERROR = 5;
+
+  /// Fatal logging, used to abort program: exit(EXIT_FAILURE)
   static const int LOG_FATAL = 6;
 
   /// Disable logging
@@ -7980,148 +8304,385 @@ abstract class TraceLogLevel {
 /// NOTE: Use GetKeyPressed() to allow redefining
 /// required keys for alternative layouts
 abstract class KeyboardKey {
+  /// Key: NULL, used for no key pressed
   static const int KEY_NULL = 0;
 
-  /// Alphanumeric keys
+  /// Key: '
   static const int KEY_APOSTROPHE = 39;
+
+  /// Key: ,
   static const int KEY_COMMA = 44;
+
+  /// Key: -
   static const int KEY_MINUS = 45;
+
+  /// Key: .
   static const int KEY_PERIOD = 46;
+
+  /// Key: /
   static const int KEY_SLASH = 47;
+
+  /// Key: 0
   static const int KEY_ZERO = 48;
+
+  /// Key: 1
   static const int KEY_ONE = 49;
+
+  /// Key: 2
   static const int KEY_TWO = 50;
+
+  /// Key: 3
   static const int KEY_THREE = 51;
+
+  /// Key: 4
   static const int KEY_FOUR = 52;
+
+  /// Key: 5
   static const int KEY_FIVE = 53;
+
+  /// Key: 6
   static const int KEY_SIX = 54;
+
+  /// Key: 7
   static const int KEY_SEVEN = 55;
+
+  /// Key: 8
   static const int KEY_EIGHT = 56;
+
+  /// Key: 9
   static const int KEY_NINE = 57;
+
+  /// Key: ;
   static const int KEY_SEMICOLON = 59;
+
+  /// Key: =
   static const int KEY_EQUAL = 61;
+
+  /// Key: A | a
   static const int KEY_A = 65;
+
+  /// Key: B | b
   static const int KEY_B = 66;
+
+  /// Key: C | c
   static const int KEY_C = 67;
+
+  /// Key: D | d
   static const int KEY_D = 68;
+
+  /// Key: E | e
   static const int KEY_E = 69;
+
+  /// Key: F | f
   static const int KEY_F = 70;
+
+  /// Key: G | g
   static const int KEY_G = 71;
+
+  /// Key: H | h
   static const int KEY_H = 72;
+
+  /// Key: I | i
   static const int KEY_I = 73;
+
+  /// Key: J | j
   static const int KEY_J = 74;
+
+  /// Key: K | k
   static const int KEY_K = 75;
+
+  /// Key: L | l
   static const int KEY_L = 76;
+
+  /// Key: M | m
   static const int KEY_M = 77;
+
+  /// Key: N | n
   static const int KEY_N = 78;
+
+  /// Key: O | o
   static const int KEY_O = 79;
+
+  /// Key: P | p
   static const int KEY_P = 80;
+
+  /// Key: Q | q
   static const int KEY_Q = 81;
+
+  /// Key: R | r
   static const int KEY_R = 82;
+
+  /// Key: S | s
   static const int KEY_S = 83;
+
+  /// Key: T | t
   static const int KEY_T = 84;
+
+  /// Key: U | u
   static const int KEY_U = 85;
+
+  /// Key: V | v
   static const int KEY_V = 86;
+
+  /// Key: W | w
   static const int KEY_W = 87;
+
+  /// Key: X | x
   static const int KEY_X = 88;
+
+  /// Key: Y | y
   static const int KEY_Y = 89;
+
+  /// Key: Z | z
   static const int KEY_Z = 90;
 
-  /// Function keys
-  static const int KEY_SPACE = 32;
-  static const int KEY_ESCAPE = 256;
-  static const int KEY_ENTER = 257;
-  static const int KEY_TAB = 258;
-  static const int KEY_BACKSPACE = 259;
-  static const int KEY_INSERT = 260;
-  static const int KEY_DELETE = 261;
-  static const int KEY_RIGHT = 262;
-  static const int KEY_LEFT = 263;
-  static const int KEY_DOWN = 264;
-  static const int KEY_UP = 265;
-  static const int KEY_PAGE_UP = 266;
-  static const int KEY_PAGE_DOWN = 267;
-  static const int KEY_HOME = 268;
-  static const int KEY_END = 269;
-  static const int KEY_CAPS_LOCK = 280;
-  static const int KEY_SCROLL_LOCK = 281;
-  static const int KEY_NUM_LOCK = 282;
-  static const int KEY_PRINT_SCREEN = 283;
-  static const int KEY_PAUSE = 284;
-  static const int KEY_F1 = 290;
-  static const int KEY_F2 = 291;
-  static const int KEY_F3 = 292;
-  static const int KEY_F4 = 293;
-  static const int KEY_F5 = 294;
-  static const int KEY_F6 = 295;
-  static const int KEY_F7 = 296;
-  static const int KEY_F8 = 297;
-  static const int KEY_F9 = 298;
-  static const int KEY_F10 = 299;
-  static const int KEY_F11 = 300;
-  static const int KEY_F12 = 301;
-  static const int KEY_LEFT_SHIFT = 340;
-  static const int KEY_LEFT_CONTROL = 341;
-  static const int KEY_LEFT_ALT = 342;
-  static const int KEY_LEFT_SUPER = 343;
-  static const int KEY_RIGHT_SHIFT = 344;
-  static const int KEY_RIGHT_CONTROL = 345;
-  static const int KEY_RIGHT_ALT = 346;
-  static const int KEY_RIGHT_SUPER = 347;
-  static const int KEY_KB_MENU = 348;
+  /// Key: [
   static const int KEY_LEFT_BRACKET = 91;
+
+  /// Key: '\'
   static const int KEY_BACKSLASH = 92;
+
+  /// Key: ]
   static const int KEY_RIGHT_BRACKET = 93;
+
+  /// Key: `
   static const int KEY_GRAVE = 96;
 
-  /// Keypad keys
+  /// Key: Space
+  static const int KEY_SPACE = 32;
+
+  /// Key: Esc
+  static const int KEY_ESCAPE = 256;
+
+  /// Key: Enter
+  static const int KEY_ENTER = 257;
+
+  /// Key: Tab
+  static const int KEY_TAB = 258;
+
+  /// Key: Backspace
+  static const int KEY_BACKSPACE = 259;
+
+  /// Key: Ins
+  static const int KEY_INSERT = 260;
+
+  /// Key: Del
+  static const int KEY_DELETE = 261;
+
+  /// Key: Cursor right
+  static const int KEY_RIGHT = 262;
+
+  /// Key: Cursor left
+  static const int KEY_LEFT = 263;
+
+  /// Key: Cursor down
+  static const int KEY_DOWN = 264;
+
+  /// Key: Cursor up
+  static const int KEY_UP = 265;
+
+  /// Key: Page up
+  static const int KEY_PAGE_UP = 266;
+
+  /// Key: Page down
+  static const int KEY_PAGE_DOWN = 267;
+
+  /// Key: Home
+  static const int KEY_HOME = 268;
+
+  /// Key: End
+  static const int KEY_END = 269;
+
+  /// Key: Caps lock
+  static const int KEY_CAPS_LOCK = 280;
+
+  /// Key: Scroll down
+  static const int KEY_SCROLL_LOCK = 281;
+
+  /// Key: Num lock
+  static const int KEY_NUM_LOCK = 282;
+
+  /// Key: Print screen
+  static const int KEY_PRINT_SCREEN = 283;
+
+  /// Key: Pause
+  static const int KEY_PAUSE = 284;
+
+  /// Key: F1
+  static const int KEY_F1 = 290;
+
+  /// Key: F2
+  static const int KEY_F2 = 291;
+
+  /// Key: F3
+  static const int KEY_F3 = 292;
+
+  /// Key: F4
+  static const int KEY_F4 = 293;
+
+  /// Key: F5
+  static const int KEY_F5 = 294;
+
+  /// Key: F6
+  static const int KEY_F6 = 295;
+
+  /// Key: F7
+  static const int KEY_F7 = 296;
+
+  /// Key: F8
+  static const int KEY_F8 = 297;
+
+  /// Key: F9
+  static const int KEY_F9 = 298;
+
+  /// Key: F10
+  static const int KEY_F10 = 299;
+
+  /// Key: F11
+  static const int KEY_F11 = 300;
+
+  /// Key: F12
+  static const int KEY_F12 = 301;
+
+  /// Key: Shift left
+  static const int KEY_LEFT_SHIFT = 340;
+
+  /// Key: Control left
+  static const int KEY_LEFT_CONTROL = 341;
+
+  /// Key: Alt left
+  static const int KEY_LEFT_ALT = 342;
+
+  /// Key: Super left
+  static const int KEY_LEFT_SUPER = 343;
+
+  /// Key: Shift right
+  static const int KEY_RIGHT_SHIFT = 344;
+
+  /// Key: Control right
+  static const int KEY_RIGHT_CONTROL = 345;
+
+  /// Key: Alt right
+  static const int KEY_RIGHT_ALT = 346;
+
+  /// Key: Super right
+  static const int KEY_RIGHT_SUPER = 347;
+
+  /// Key: KB menu
+  static const int KEY_KB_MENU = 348;
+
+  /// Key: Keypad 0
   static const int KEY_KP_0 = 320;
+
+  /// Key: Keypad 1
   static const int KEY_KP_1 = 321;
+
+  /// Key: Keypad 2
   static const int KEY_KP_2 = 322;
+
+  /// Key: Keypad 3
   static const int KEY_KP_3 = 323;
+
+  /// Key: Keypad 4
   static const int KEY_KP_4 = 324;
+
+  /// Key: Keypad 5
   static const int KEY_KP_5 = 325;
+
+  /// Key: Keypad 6
   static const int KEY_KP_6 = 326;
+
+  /// Key: Keypad 7
   static const int KEY_KP_7 = 327;
+
+  /// Key: Keypad 8
   static const int KEY_KP_8 = 328;
+
+  /// Key: Keypad 9
   static const int KEY_KP_9 = 329;
+
+  /// Key: Keypad .
   static const int KEY_KP_DECIMAL = 330;
+
+  /// Key: Keypad /
   static const int KEY_KP_DIVIDE = 331;
+
+  /// Key: Keypad *
   static const int KEY_KP_MULTIPLY = 332;
+
+  /// Key: Keypad -
   static const int KEY_KP_SUBTRACT = 333;
+
+  /// Key: Keypad +
   static const int KEY_KP_ADD = 334;
+
+  /// Key: Keypad Enter
   static const int KEY_KP_ENTER = 335;
+
+  /// Key: Keypad =
   static const int KEY_KP_EQUAL = 336;
 
-  /// Android key buttons
+  /// Key: Android back button
   static const int KEY_BACK = 4;
+
+  /// Key: Android menu button
   static const int KEY_MENU = 82;
+
+  /// Key: Android volume up button
   static const int KEY_VOLUME_UP = 24;
+
+  /// Key: Android volume down button
   static const int KEY_VOLUME_DOWN = 25;
 }
 
 /// Mouse buttons
 abstract class MouseButton {
-  static const int MOUSE_LEFT_BUTTON = 0;
-  static const int MOUSE_RIGHT_BUTTON = 1;
-  static const int MOUSE_MIDDLE_BUTTON = 2;
+  /// Mouse button left
+  static const int MOUSE_BUTTON_LEFT = 0;
+
+  /// Mouse button right
+  static const int MOUSE_BUTTON_RIGHT = 1;
+
+  /// Mouse button middle (pressed wheel)
+  static const int MOUSE_BUTTON_MIDDLE = 2;
+
+  /// Mouse button side (advanced mouse device)
+  static const int MOUSE_BUTTON_SIDE = 3;
+
+  /// Mouse button extra (advanced mouse device)
+  static const int MOUSE_BUTTON_EXTRA = 4;
+
+  /// Mouse button fordward (advanced mouse device)
+  static const int MOUSE_BUTTON_FORWARD = 5;
+
+  /// Mouse button back (advanced mouse device)
+  static const int MOUSE_BUTTON_BACK = 6;
 }
 
 /// Mouse cursor
 abstract class MouseCursor {
+  /// Default pointer shape
   static const int MOUSE_CURSOR_DEFAULT = 0;
+
+  /// Arrow shape
   static const int MOUSE_CURSOR_ARROW = 1;
+
+  /// Text writing cursor shape
   static const int MOUSE_CURSOR_IBEAM = 2;
+
+  /// Cross shape
   static const int MOUSE_CURSOR_CROSSHAIR = 3;
+
+  /// Pointing hand cursor
   static const int MOUSE_CURSOR_POINTING_HAND = 4;
 
-  /// The horizontal resize/move arrow shape
+  /// Horizontal resize/move arrow shape
   static const int MOUSE_CURSOR_RESIZE_EW = 5;
 
-  /// The vertical resize/move arrow shape
+  /// Vertical resize/move arrow shape
   static const int MOUSE_CURSOR_RESIZE_NS = 6;
 
-  /// The top-left to bottom-right diagonal resize/move arrow shape
+  /// Top-left to bottom-right diagonal resize/move arrow shape
   static const int MOUSE_CURSOR_RESIZE_NWSE = 7;
 
   /// The top-right to bottom-left diagonal resize/move arrow shape
@@ -8136,130 +8697,242 @@ abstract class MouseCursor {
 
 /// Gamepad buttons
 abstract class GamepadButton {
-  /// This is here just for error checking
+  /// Unknown button, just for error checking
   static const int GAMEPAD_BUTTON_UNKNOWN = 0;
 
-  /// This is normally a DPAD
+  /// Gamepad left DPAD up button
   static const int GAMEPAD_BUTTON_LEFT_FACE_UP = 1;
+
+  /// Gamepad left DPAD right button
   static const int GAMEPAD_BUTTON_LEFT_FACE_RIGHT = 2;
+
+  /// Gamepad left DPAD down button
   static const int GAMEPAD_BUTTON_LEFT_FACE_DOWN = 3;
+
+  /// Gamepad left DPAD left button
   static const int GAMEPAD_BUTTON_LEFT_FACE_LEFT = 4;
 
-  /// This normally corresponds with PlayStation and Xbox controllers
-  /// XBOX: [Y,X,A,B]
-  /// PS3: [Triangle,Square,Cross,Circle]
-  /// No support for 6 button controllers though..
+  /// Gamepad right button up (i.e. PS3: Triangle, Xbox: Y)
   static const int GAMEPAD_BUTTON_RIGHT_FACE_UP = 5;
+
+  /// Gamepad right button right (i.e. PS3: Square, Xbox: X)
   static const int GAMEPAD_BUTTON_RIGHT_FACE_RIGHT = 6;
+
+  /// Gamepad right button down (i.e. PS3: Cross, Xbox: A)
   static const int GAMEPAD_BUTTON_RIGHT_FACE_DOWN = 7;
+
+  /// Gamepad right button left (i.e. PS3: Circle, Xbox: B)
   static const int GAMEPAD_BUTTON_RIGHT_FACE_LEFT = 8;
 
-  /// Triggers
+  /// Gamepad top/back trigger left (first), it could be a trailing button
   static const int GAMEPAD_BUTTON_LEFT_TRIGGER_1 = 9;
+
+  /// Gamepad top/back trigger left (second), it could be a trailing button
   static const int GAMEPAD_BUTTON_LEFT_TRIGGER_2 = 10;
+
+  /// Gamepad top/back trigger right (one), it could be a trailing button
   static const int GAMEPAD_BUTTON_RIGHT_TRIGGER_1 = 11;
+
+  /// Gamepad top/back trigger right (second), it could be a trailing button
   static const int GAMEPAD_BUTTON_RIGHT_TRIGGER_2 = 12;
 
-  /// PS3 Select
+  /// Gamepad center buttons, left one (i.e. PS3: Select)
   static const int GAMEPAD_BUTTON_MIDDLE_LEFT = 13;
 
-  /// PS Button/XBOX Button
+  /// Gamepad center buttons, middle one (i.e. PS3: PS, Xbox: XBOX)
   static const int GAMEPAD_BUTTON_MIDDLE = 14;
 
-  /// PS3 Start
+  /// Gamepad center buttons, right one (i.e. PS3: Start)
   static const int GAMEPAD_BUTTON_MIDDLE_RIGHT = 15;
 
-  /// These are the joystick press in buttons
+  /// Gamepad joystick pressed button left
   static const int GAMEPAD_BUTTON_LEFT_THUMB = 16;
+
+  /// Gamepad joystick pressed button right
   static const int GAMEPAD_BUTTON_RIGHT_THUMB = 17;
 }
 
 /// Gamepad axis
 abstract class GamepadAxis {
-  /// Left stick
+  /// Gamepad left stick X axis
   static const int GAMEPAD_AXIS_LEFT_X = 0;
+
+  /// Gamepad left stick Y axis
   static const int GAMEPAD_AXIS_LEFT_Y = 1;
 
-  /// Right stick
+  /// Gamepad right stick X axis
   static const int GAMEPAD_AXIS_RIGHT_X = 2;
+
+  /// Gamepad right stick Y axis
   static const int GAMEPAD_AXIS_RIGHT_Y = 3;
 
-  /// [1..-1] (pressure-level)
+  /// Gamepad back trigger left, pressure level: [1..-1]
   static const int GAMEPAD_AXIS_LEFT_TRIGGER = 4;
 
-  /// [1..-1] (pressure-level)
+  /// Gamepad back trigger right, pressure level: [1..-1]
   static const int GAMEPAD_AXIS_RIGHT_TRIGGER = 5;
 }
 
 /// Material map index
 abstract class MaterialMapIndex {
-  /// MATERIAL_MAP_DIFFUSE
+  /// Albedo material (same as: MATERIAL_MAP_DIFFUSE)
   static const int MATERIAL_MAP_ALBEDO = 0;
 
-  /// MATERIAL_MAP_SPECULAR
+  /// Metalness material (same as: MATERIAL_MAP_SPECULAR)
   static const int MATERIAL_MAP_METALNESS = 1;
+
+  /// Normal material
   static const int MATERIAL_MAP_NORMAL = 2;
+
+  /// Roughness material
   static const int MATERIAL_MAP_ROUGHNESS = 3;
+
+  /// Ambient occlusion material
   static const int MATERIAL_MAP_OCCLUSION = 4;
+
+  /// Emission material
   static const int MATERIAL_MAP_EMISSION = 5;
+
+  /// Heightmap material
   static const int MATERIAL_MAP_HEIGHT = 6;
-  static const int MATERIAL_MAP_BRDG = 7;
 
-  /// NOTE: Uses GL_TEXTURE_CUBE_MAP
-  static const int MATERIAL_MAP_CUBEMAP = 8;
+  /// Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+  static const int MATERIAL_MAP_CUBEMAP = 7;
 
-  /// NOTE: Uses GL_TEXTURE_CUBE_MAP
-  static const int MATERIAL_MAP_IRRADIANCE = 9;
+  /// Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+  static const int MATERIAL_MAP_IRRADIANCE = 8;
 
-  /// NOTE: Uses GL_TEXTURE_CUBE_MAP
-  static const int MATERIAL_MAP_PREFILTER = 10;
+  /// Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+  static const int MATERIAL_MAP_PREFILTER = 9;
+
+  /// Brdf material
+  static const int MATERIAL_MAP_BRDF = 10;
 }
 
 /// Shader location index
 abstract class ShaderLocationIndex {
+  /// Shader location: vertex attribute: position
   static const int SHADER_LOC_VERTEX_POSITION = 0;
+
+  /// Shader location: vertex attribute: texcoord01
   static const int SHADER_LOC_VERTEX_TEXCOORD01 = 1;
+
+  /// Shader location: vertex attribute: texcoord02
   static const int SHADER_LOC_VERTEX_TEXCOORD02 = 2;
+
+  /// Shader location: vertex attribute: normal
   static const int SHADER_LOC_VERTEX_NORMAL = 3;
+
+  /// Shader location: vertex attribute: tangent
   static const int SHADER_LOC_VERTEX_TANGENT = 4;
+
+  /// Shader location: vertex attribute: color
   static const int SHADER_LOC_VERTEX_COLOR = 5;
+
+  /// Shader location: matrix uniform: model-view-projection
   static const int SHADER_LOC_MATRIX_MVP = 6;
+
+  /// Shader location: matrix uniform: view (camera transform)
   static const int SHADER_LOC_MATRIX_VIEW = 7;
+
+  /// Shader location: matrix uniform: projection
   static const int SHADER_LOC_MATRIX_PROJECTION = 8;
+
+  /// Shader location: matrix uniform: model (transform)
   static const int SHADER_LOC_MATRIX_MODEL = 9;
+
+  /// Shader location: matrix uniform: normal
   static const int SHADER_LOC_MATRIX_NORMAL = 10;
+
+  /// Shader location: vector uniform: view
   static const int SHADER_LOC_VECTOR_VIEW = 11;
+
+  /// Shader location: vector uniform: diffuse color
   static const int SHADER_LOC_COLOR_DIFFUSE = 12;
+
+  /// Shader location: vector uniform: specular color
   static const int SHADER_LOC_COLOR_SPECULAR = 13;
+
+  /// Shader location: vector uniform: ambient color
   static const int SHADER_LOC_COLOR_AMBIENT = 14;
 
-  /// SHADER_LOC_MAP_DIFFUSE
+  /// Shader location: sampler2d texture: albedo (same as: SHADER_LOC_MAP_DIFFUSE)
   static const int SHADER_LOC_MAP_ALBEDO = 15;
 
-  /// SHADER_LOC_MAP_SPECULAR
+  /// Shader location: sampler2d texture: metalness (same as: SHADER_LOC_MAP_SPECULAR)
   static const int SHADER_LOC_MAP_METALNESS = 16;
+
+  /// Shader location: sampler2d texture: normal
   static const int SHADER_LOC_MAP_NORMAL = 17;
+
+  /// Shader location: sampler2d texture: roughness
   static const int SHADER_LOC_MAP_ROUGHNESS = 18;
+
+  /// Shader location: sampler2d texture: occlusion
   static const int SHADER_LOC_MAP_OCCLUSION = 19;
+
+  /// Shader location: sampler2d texture: emission
   static const int SHADER_LOC_MAP_EMISSION = 20;
+
+  /// Shader location: sampler2d texture: height
   static const int SHADER_LOC_MAP_HEIGHT = 21;
+
+  /// Shader location: samplerCube texture: cubemap
   static const int SHADER_LOC_MAP_CUBEMAP = 22;
+
+  /// Shader location: samplerCube texture: irradiance
   static const int SHADER_LOC_MAP_IRRADIANCE = 23;
+
+  /// Shader location: samplerCube texture: prefilter
   static const int SHADER_LOC_MAP_PREFILTER = 24;
+
+  /// Shader location: sampler2d texture: brdf
   static const int SHADER_LOC_MAP_BRDF = 25;
 }
 
 /// Shader uniform data type
 abstract class ShaderUniformDataType {
+  /// Shader uniform type: float
   static const int SHADER_UNIFORM_FLOAT = 0;
+
+  /// Shader uniform type: vec2 (2 float)
   static const int SHADER_UNIFORM_VEC2 = 1;
+
+  /// Shader uniform type: vec3 (3 float)
   static const int SHADER_UNIFORM_VEC3 = 2;
+
+  /// Shader uniform type: vec4 (4 float)
   static const int SHADER_UNIFORM_VEC4 = 3;
+
+  /// Shader uniform type: int
   static const int SHADER_UNIFORM_INT = 4;
+
+  /// Shader uniform type: ivec2 (2 int)
   static const int SHADER_UNIFORM_IVEC2 = 5;
+
+  /// Shader uniform type: ivec3 (3 int)
   static const int SHADER_UNIFORM_IVEC3 = 6;
+
+  /// Shader uniform type: ivec4 (4 int)
   static const int SHADER_UNIFORM_IVEC4 = 7;
+
+  /// Shader uniform type: sampler2d
   static const int SHADER_UNIFORM_SAMPLER2D = 8;
+}
+
+/// Shader attribute data types
+abstract class ShaderAttributeDataType {
+  /// Shader attribute type: float
+  static const int SHADER_ATTRIB_FLOAT = 0;
+
+  /// Shader attribute type: vec2 (2 float)
+  static const int SHADER_ATTRIB_VEC2 = 1;
+
+  /// Shader attribute type: vec3 (3 float)
+  static const int SHADER_ATTRIB_VEC3 = 2;
+
+  /// Shader attribute type: vec4 (4 float)
+  static const int SHADER_ATTRIB_VEC4 = 3;
 }
 
 /// Pixel formats
@@ -8282,7 +8955,9 @@ abstract class PixelFormat {
 
   /// 16 bpp (4 bit alpha)
   static const int PIXELFORMAT_UNCOMPRESSED_R4G4B4A4 = 6;
-  static const int PIXELFORMAT_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 = 7;
+
+  /// 32 bpp
+  static const int PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 = 7;
 
   /// 32 bpp (1 channel - float)
   static const int PIXELFORMAT_UNCOMPRESSED_R32 = 8;
@@ -8419,34 +9094,67 @@ abstract class BlendMode {
   static const int BLEND_CUSTOM = 5;
 }
 
-/// Gestures
+/// Gesture
 /// NOTE: It could be used as flags to enable only some gestures
-abstract class Gestures {
+abstract class Gesture {
+  /// No gesture
   static const int GESTURE_NONE = 0;
+
+  /// Tap gesture
   static const int GESTURE_TAP = 1;
+
+  /// Double tap gesture
   static const int GESTURE_DOUBLETAP = 2;
+
+  /// Hold gesture
   static const int GESTURE_HOLD = 4;
+
+  /// Drag gesture
   static const int GESTURE_DRAG = 8;
+
+  /// Swipe right gesture
   static const int GESTURE_SWIPE_RIGHT = 16;
+
+  /// Swipe left gesture
   static const int GESTURE_SWIPE_LEFT = 32;
+
+  /// Swipe up gesture
   static const int GESTURE_SWIPE_UP = 64;
+
+  /// Swipe down gesture
   static const int GESTURE_SWIPE_DOWN = 128;
+
+  /// Pinch in gesture
   static const int GESTURE_PINCH_IN = 256;
+
+  /// Pinch out gesture
   static const int GESTURE_PINCH_OUT = 512;
 }
 
 /// Camera system modes
 abstract class CameraMode {
+  /// Custom camera
   static const int CAMERA_CUSTOM = 0;
+
+  /// Free camera
   static const int CAMERA_FREE = 1;
+
+  /// Orbital camera
   static const int CAMERA_ORBITAL = 2;
+
+  /// First person camera
   static const int CAMERA_FIRST_PERSON = 3;
+
+  /// Third person camera
   static const int CAMERA_THIRD_PERSON = 4;
 }
 
 /// Camera projection
 abstract class CameraProjection {
+  /// Perspective projection
   static const int CAMERA_PERSPECTIVE = 0;
+
+  /// Orthographic projection
   static const int CAMERA_ORTHOGRAPHIC = 1;
 }
 
@@ -8462,19 +9170,19 @@ abstract class NPatchLayout {
   static const int NPATCH_THREE_PATCH_HORIZONTAL = 2;
 }
 
+const String RAYLIB_VERSION = '4.0';
+
 const double PI = 3.1415927410125732;
 
 const double DEG2RAD = 0.01745329238474369;
 
 const double RAD2DEG = 57.2957763671875;
 
-const int FILTER_POINT = 0;
+const int MOUSE_LEFT_BUTTON = 0;
 
-const int FILTER_BILINEAR = 1;
+const int MOUSE_RIGHT_BUTTON = 1;
 
-const int MAP_DIFFUSE = 0;
-
-const int PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 = 7;
+const int MOUSE_MIDDLE_BUTTON = 2;
 
 const int MATERIAL_MAP_DIFFUSE = 0;
 
@@ -8721,6 +9429,22 @@ typedef _dart_SetClipboardText = void Function(
 typedef _c_GetClipboardText = ffi.Pointer<ffi.Int8> Function();
 
 typedef _dart_GetClipboardText = ffi.Pointer<ffi.Int8> Function();
+
+typedef _c_SwapScreenBuffer = ffi.Void Function();
+
+typedef _dart_SwapScreenBuffer = void Function();
+
+typedef _c_PollInputEvents = ffi.Void Function();
+
+typedef _dart_PollInputEvents = void Function();
+
+typedef _c_WaitTime = ffi.Void Function(
+  ffi.Float ms,
+);
+
+typedef _dart_WaitTime = void Function(
+  double ms,
+);
 
 typedef _c_ShowCursor = ffi.Void Function();
 
@@ -9070,6 +9794,14 @@ typedef _dart_GetRandomValue = int Function(
   int max,
 );
 
+typedef _c_SetRandomSeed = ffi.Void Function(
+  ffi.Uint32 seed,
+);
+
+typedef _dart_SetRandomSeed = void Function(
+  int seed,
+);
+
 typedef _c_TakeScreenshot = ffi.Void Function(
   ffi.Pointer<ffi.Int8> fileName,
 );
@@ -9235,11 +9967,11 @@ typedef _dart_LoadFileText = ffi.Pointer<ffi.Int8> Function(
 );
 
 typedef _c_UnloadFileText = ffi.Void Function(
-  ffi.Pointer<ffi.Uint8> text,
+  ffi.Pointer<ffi.Int8> text,
 );
 
 typedef _dart_UnloadFileText = void Function(
-  ffi.Pointer<ffi.Uint8> text,
+  ffi.Pointer<ffi.Int8> text,
 );
 
 typedef _c_SaveFileText = ffi.Int32 Function(
@@ -9392,6 +10124,28 @@ typedef _dart_DecompressData = ffi.Pointer<ffi.Uint8> Function(
   ffi.Pointer<ffi.Int32> dataLength,
 );
 
+typedef _c_EncodeDataBase64 = ffi.Pointer<ffi.Int8> Function(
+  ffi.Pointer<ffi.Uint8> data,
+  ffi.Int32 dataLength,
+  ffi.Pointer<ffi.Int32> outputLength,
+);
+
+typedef _dart_EncodeDataBase64 = ffi.Pointer<ffi.Int8> Function(
+  ffi.Pointer<ffi.Uint8> data,
+  int dataLength,
+  ffi.Pointer<ffi.Int32> outputLength,
+);
+
+typedef _c_DecodeDataBase64 = ffi.Pointer<ffi.Uint8> Function(
+  ffi.Pointer<ffi.Uint8> data,
+  ffi.Pointer<ffi.Int32> outputLength,
+);
+
+typedef _dart_DecodeDataBase64 = ffi.Pointer<ffi.Uint8> Function(
+  ffi.Pointer<ffi.Uint8> data,
+  ffi.Pointer<ffi.Int32> outputLength,
+);
+
 typedef _c_SaveStorageValue = ffi.Int32 Function(
   ffi.Uint32 position,
   ffi.Int32 value,
@@ -9472,16 +10226,6 @@ typedef _c_IsGamepadAvailable = ffi.Int32 Function(
 
 typedef _dart_IsGamepadAvailable = int Function(
   int gamepad,
-);
-
-typedef _c_IsGamepadName = ffi.Int32 Function(
-  ffi.Int32 gamepad,
-  ffi.Pointer<ffi.Int8> name,
-);
-
-typedef _dart_IsGamepadName = int Function(
-  int gamepad,
-  ffi.Pointer<ffi.Int8> name,
 );
 
 typedef _c_GetGamepadName = ffi.Pointer<ffi.Int8> Function(
@@ -9606,6 +10350,10 @@ typedef _c_GetMousePosition = Vector2 Function();
 
 typedef _dart_GetMousePosition = Vector2 Function();
 
+typedef _c_GetMouseDelta = Vector2 Function();
+
+typedef _dart_GetMouseDelta = Vector2 Function();
+
 typedef _c_SetMousePosition = ffi.Void Function(
   ffi.Int32 x,
   ffi.Int32 y,
@@ -9664,6 +10412,18 @@ typedef _dart_GetTouchPosition = Vector2 Function(
   int index,
 );
 
+typedef _c_GetTouchPointId = ffi.Int32 Function(
+  ffi.Int32 index,
+);
+
+typedef _dart_GetTouchPointId = int Function(
+  int index,
+);
+
+typedef _c_GetTouchPointCount = ffi.Int32 Function();
+
+typedef _dart_GetTouchPointCount = int Function();
+
 typedef _c_SetGesturesEnabled = ffi.Void Function(
   ffi.Uint32 flags,
 );
@@ -9683,10 +10443,6 @@ typedef _dart_IsGestureDetected = int Function(
 typedef _c_GetGestureDetected = ffi.Int32 Function();
 
 typedef _dart_GetGestureDetected = int Function();
-
-typedef _c_GetTouchPointsCount = ffi.Int32 Function();
-
-typedef _dart_GetTouchPointsCount = int Function();
 
 typedef _c_GetGestureHoldDuration = ffi.Float Function();
 
@@ -9872,15 +10628,33 @@ typedef _dart_DrawLineBezierQuad = void Function(
   Color color,
 );
 
+typedef _c_DrawLineBezierCubic = ffi.Void Function(
+  Vector2 startPos,
+  Vector2 endPos,
+  Vector2 startControlPos,
+  Vector2 endControlPos,
+  ffi.Float thick,
+  Color color,
+);
+
+typedef _dart_DrawLineBezierCubic = void Function(
+  Vector2 startPos,
+  Vector2 endPos,
+  Vector2 startControlPos,
+  Vector2 endControlPos,
+  double thick,
+  Color color,
+);
+
 typedef _c_DrawLineStrip = ffi.Void Function(
   ffi.Pointer<Vector2> points,
-  ffi.Int32 pointsCount,
+  ffi.Int32 pointCount,
   Color color,
 );
 
 typedef _dart_DrawLineStrip = void Function(
   ffi.Pointer<Vector2> points,
-  int pointsCount,
+  int pointCount,
   Color color,
 );
 
@@ -10170,13 +10944,13 @@ typedef _dart_DrawRectangleLines = void Function(
 
 typedef _c_DrawRectangleLinesEx = ffi.Void Function(
   Rectangle rec,
-  ffi.Int32 lineThick,
+  ffi.Float lineThick,
   Color color,
 );
 
 typedef _dart_DrawRectangleLinesEx = void Function(
   Rectangle rec,
-  int lineThick,
+  double lineThick,
   Color color,
 );
 
@@ -10198,7 +10972,7 @@ typedef _c_DrawRectangleRoundedLines = ffi.Void Function(
   Rectangle rec,
   ffi.Float roundness,
   ffi.Int32 segments,
-  ffi.Int32 lineThick,
+  ffi.Float lineThick,
   Color color,
 );
 
@@ -10206,7 +10980,7 @@ typedef _dart_DrawRectangleRoundedLines = void Function(
   Rectangle rec,
   double roundness,
   int segments,
-  int lineThick,
+  double lineThick,
   Color color,
 );
 
@@ -10240,25 +11014,25 @@ typedef _dart_DrawTriangleLines = void Function(
 
 typedef _c_DrawTriangleFan = ffi.Void Function(
   ffi.Pointer<Vector2> points,
-  ffi.Int32 pointsCount,
+  ffi.Int32 pointCount,
   Color color,
 );
 
 typedef _dart_DrawTriangleFan = void Function(
   ffi.Pointer<Vector2> points,
-  int pointsCount,
+  int pointCount,
   Color color,
 );
 
 typedef _c_DrawTriangleStrip = ffi.Void Function(
   ffi.Pointer<Vector2> points,
-  ffi.Int32 pointsCount,
+  ffi.Int32 pointCount,
   Color color,
 );
 
 typedef _dart_DrawTriangleStrip = void Function(
   ffi.Pointer<Vector2> points,
-  int pointsCount,
+  int pointCount,
   Color color,
 );
 
@@ -10291,6 +11065,24 @@ typedef _dart_DrawPolyLines = void Function(
   int sides,
   double radius,
   double rotation,
+  Color color,
+);
+
+typedef _c_DrawPolyLinesEx = ffi.Void Function(
+  Vector2 center,
+  ffi.Int32 sides,
+  ffi.Float radius,
+  ffi.Float rotation,
+  ffi.Float lineThick,
+  Color color,
+);
+
+typedef _dart_DrawPolyLinesEx = void Function(
+  Vector2 center,
+  int sides,
+  double radius,
+  double rotation,
+  double lineThick,
   Color color,
 );
 
@@ -10382,6 +11174,20 @@ typedef _dart_CheckCollisionLines = int Function(
   ffi.Pointer<Vector2> collisionPoint,
 );
 
+typedef _c_CheckCollisionPointLine = ffi.Int32 Function(
+  Vector2 point,
+  Vector2 p1,
+  Vector2 p2,
+  ffi.Int32 threshold,
+);
+
+typedef _dart_CheckCollisionPointLine = int Function(
+  Vector2 point,
+  Vector2 p1,
+  Vector2 p2,
+  int threshold,
+);
+
 typedef _c_GetCollisionRec = Rectangle Function(
   Rectangle rec1,
   Rectangle rec2,
@@ -10437,6 +11243,18 @@ typedef _dart_LoadImageFromMemory = Image Function(
   ffi.Pointer<ffi.Uint8> fileData,
   int dataSize,
 );
+
+typedef _c_LoadImageFromTexture = Image Function(
+  Texture texture,
+);
+
+typedef _dart_LoadImageFromTexture = Image Function(
+  Texture texture,
+);
+
+typedef _c_LoadImageFromScreen = Image Function();
+
+typedef _dart_LoadImageFromScreen = Image Function();
 
 typedef _c_UnloadImage = ffi.Void Function(
   Image image,
@@ -10550,22 +11368,6 @@ typedef _dart_GenImageWhiteNoise = Image Function(
   int width,
   int height,
   double factor,
-);
-
-typedef _c_GenImagePerlinNoise = Image Function(
-  ffi.Int32 width,
-  ffi.Int32 height,
-  ffi.Int32 offsetX,
-  ffi.Int32 offsetY,
-  ffi.Float scale,
-);
-
-typedef _dart_GenImagePerlinNoise = Image Function(
-  int width,
-  int height,
-  int offsetX,
-  int offsetY,
-  double scale,
 );
 
 typedef _c_GenImageCellular = Image Function(
@@ -10863,13 +11665,13 @@ typedef _dart_LoadImageColors = ffi.Pointer<Color> Function(
 typedef _c_LoadImagePalette = ffi.Pointer<Color> Function(
   Image image,
   ffi.Int32 maxPaletteSize,
-  ffi.Pointer<ffi.Int32> colorsCount,
+  ffi.Pointer<ffi.Int32> colorCount,
 );
 
 typedef _dart_LoadImagePalette = ffi.Pointer<Color> Function(
   Image image,
   int maxPaletteSize,
-  ffi.Pointer<ffi.Int32> colorsCount,
+  ffi.Pointer<ffi.Int32> colorCount,
 );
 
 typedef _c_UnloadImageColors = ffi.Void Function(
@@ -10896,6 +11698,18 @@ typedef _c_GetImageAlphaBorder = Rectangle Function(
 typedef _dart_GetImageAlphaBorder = Rectangle Function(
   Image image,
   double threshold,
+);
+
+typedef _c_GetImageColor = Color Function(
+  Image image,
+  ffi.Int32 x,
+  ffi.Int32 y,
+);
+
+typedef _dart_GetImageColor = Color Function(
+  Image image,
+  int x,
+  int y,
 );
 
 typedef _c_ImageClearBackground = ffi.Void Function(
@@ -11182,18 +11996,6 @@ typedef _dart_UpdateTextureRec = void Function(
   ffi.Pointer<ffi.Void> pixels,
 );
 
-typedef _c_GetTextureData = Image Function(
-  Texture texture,
-);
-
-typedef _dart_GetTextureData = Image Function(
-  Texture texture,
-);
-
-typedef _c_GetScreenData = Image Function();
-
-typedef _dart_GetScreenData = Image Function();
-
 typedef _c_GenTextureMipmaps = ffi.Void Function(
   ffi.Pointer<Texture> texture,
 );
@@ -11355,7 +12157,7 @@ typedef _c_DrawTexturePoly = ffi.Void Function(
   Vector2 center,
   ffi.Pointer<Vector2> points,
   ffi.Pointer<Vector2> texcoords,
-  ffi.Int32 pointsCount,
+  ffi.Int32 pointCount,
   Color tint,
 );
 
@@ -11364,7 +12166,7 @@ typedef _dart_DrawTexturePoly = void Function(
   Vector2 center,
   ffi.Pointer<Vector2> points,
   ffi.Pointer<Vector2> texcoords,
-  int pointsCount,
+  int pointCount,
   Color tint,
 );
 
@@ -11445,7 +12247,7 @@ typedef _dart_ColorAlphaBlend = Color Function(
 );
 
 typedef _c_GetColor = Color Function(
-  ffi.Int32 hexValue,
+  ffi.Uint32 hexValue,
 );
 
 typedef _dart_GetColor = Color Function(
@@ -11502,14 +12304,14 @@ typedef _c_LoadFontEx = Font Function(
   ffi.Pointer<ffi.Int8> fileName,
   ffi.Int32 fontSize,
   ffi.Pointer<ffi.Int32> fontChars,
-  ffi.Int32 charsCount,
+  ffi.Int32 glyphCount,
 );
 
 typedef _dart_LoadFontEx = Font Function(
   ffi.Pointer<ffi.Int8> fileName,
   int fontSize,
   ffi.Pointer<ffi.Int32> fontChars,
-  int charsCount,
+  int glyphCount,
 );
 
 typedef _c_LoadFontFromImage = Font Function(
@@ -11530,7 +12332,7 @@ typedef _c_LoadFontFromMemory = Font Function(
   ffi.Int32 dataSize,
   ffi.Int32 fontSize,
   ffi.Pointer<ffi.Int32> fontChars,
-  ffi.Int32 charsCount,
+  ffi.Int32 glyphCount,
 );
 
 typedef _dart_LoadFontFromMemory = Font Function(
@@ -11539,53 +12341,53 @@ typedef _dart_LoadFontFromMemory = Font Function(
   int dataSize,
   int fontSize,
   ffi.Pointer<ffi.Int32> fontChars,
-  int charsCount,
+  int glyphCount,
 );
 
-typedef _c_LoadFontData = ffi.Pointer<CharInfo> Function(
+typedef _c_LoadFontData = ffi.Pointer<GlyphInfo> Function(
   ffi.Pointer<ffi.Uint8> fileData,
   ffi.Int32 dataSize,
   ffi.Int32 fontSize,
   ffi.Pointer<ffi.Int32> fontChars,
-  ffi.Int32 charsCount,
+  ffi.Int32 glyphCount,
   ffi.Int32 type,
 );
 
-typedef _dart_LoadFontData = ffi.Pointer<CharInfo> Function(
+typedef _dart_LoadFontData = ffi.Pointer<GlyphInfo> Function(
   ffi.Pointer<ffi.Uint8> fileData,
   int dataSize,
   int fontSize,
   ffi.Pointer<ffi.Int32> fontChars,
-  int charsCount,
+  int glyphCount,
   int type,
 );
 
 typedef _c_GenImageFontAtlas = Image Function(
-  ffi.Pointer<CharInfo> chars,
+  ffi.Pointer<GlyphInfo> chars,
   ffi.Pointer<ffi.Pointer<Rectangle>> recs,
-  ffi.Int32 charsCount,
+  ffi.Int32 glyphCount,
   ffi.Int32 fontSize,
   ffi.Int32 padding,
   ffi.Int32 packMethod,
 );
 
 typedef _dart_GenImageFontAtlas = Image Function(
-  ffi.Pointer<CharInfo> chars,
+  ffi.Pointer<GlyphInfo> chars,
   ffi.Pointer<ffi.Pointer<Rectangle>> recs,
-  int charsCount,
+  int glyphCount,
   int fontSize,
   int padding,
   int packMethod,
 );
 
 typedef _c_UnloadFontData = ffi.Void Function(
-  ffi.Pointer<CharInfo> chars,
-  ffi.Int32 charsCount,
+  ffi.Pointer<GlyphInfo> chars,
+  ffi.Int32 glyphCount,
 );
 
 typedef _dart_UnloadFontData = void Function(
-  ffi.Pointer<CharInfo> chars,
-  int charsCount,
+  ffi.Pointer<GlyphInfo> chars,
+  int glyphCount,
 );
 
 typedef _c_UnloadFont = ffi.Void Function(
@@ -11640,52 +12442,26 @@ typedef _dart_DrawTextEx = void Function(
   Color tint,
 );
 
-typedef _c_DrawTextRec = ffi.Void Function(
+typedef _c_DrawTextPro = ffi.Void Function(
   Font font,
   ffi.Pointer<ffi.Int8> text,
-  Rectangle rec,
+  Vector2 position,
+  Vector2 origin,
+  ffi.Float rotation,
   ffi.Float fontSize,
   ffi.Float spacing,
-  ffi.Int32 wordWrap,
   Color tint,
 );
 
-typedef _dart_DrawTextRec = void Function(
+typedef _dart_DrawTextPro = void Function(
   Font font,
   ffi.Pointer<ffi.Int8> text,
-  Rectangle rec,
+  Vector2 position,
+  Vector2 origin,
+  double rotation,
   double fontSize,
   double spacing,
-  int wordWrap,
   Color tint,
-);
-
-typedef _c_DrawTextRecEx = ffi.Void Function(
-  Font font,
-  ffi.Pointer<ffi.Int8> text,
-  Rectangle rec,
-  ffi.Float fontSize,
-  ffi.Float spacing,
-  ffi.Int32 wordWrap,
-  Color tint,
-  ffi.Int32 selectStart,
-  ffi.Int32 selectLength,
-  Color selectTint,
-  Color selectBackTint,
-);
-
-typedef _dart_DrawTextRecEx = void Function(
-  Font font,
-  ffi.Pointer<ffi.Int8> text,
-  Rectangle rec,
-  double fontSize,
-  double spacing,
-  int wordWrap,
-  Color tint,
-  int selectStart,
-  int selectLength,
-  Color selectTint,
-  Color selectBackTint,
 );
 
 typedef _c_DrawTextCodepoint = ffi.Void Function(
@@ -11736,6 +12512,82 @@ typedef _c_GetGlyphIndex = ffi.Int32 Function(
 typedef _dart_GetGlyphIndex = int Function(
   Font font,
   int codepoint,
+);
+
+typedef _c_GetGlyphInfo = GlyphInfo Function(
+  Font font,
+  ffi.Int32 codepoint,
+);
+
+typedef _dart_GetGlyphInfo = GlyphInfo Function(
+  Font font,
+  int codepoint,
+);
+
+typedef _c_GetGlyphAtlasRec = Rectangle Function(
+  Font font,
+  ffi.Int32 codepoint,
+);
+
+typedef _dart_GetGlyphAtlasRec = Rectangle Function(
+  Font font,
+  int codepoint,
+);
+
+typedef _c_LoadCodepoints = ffi.Pointer<ffi.Int32> Function(
+  ffi.Pointer<ffi.Int8> text,
+  ffi.Pointer<ffi.Int32> count,
+);
+
+typedef _dart_LoadCodepoints = ffi.Pointer<ffi.Int32> Function(
+  ffi.Pointer<ffi.Int8> text,
+  ffi.Pointer<ffi.Int32> count,
+);
+
+typedef _c_UnloadCodepoints = ffi.Void Function(
+  ffi.Pointer<ffi.Int32> codepoints,
+);
+
+typedef _dart_UnloadCodepoints = void Function(
+  ffi.Pointer<ffi.Int32> codepoints,
+);
+
+typedef _c_GetCodepointCount = ffi.Int32 Function(
+  ffi.Pointer<ffi.Int8> text,
+);
+
+typedef _dart_GetCodepointCount = int Function(
+  ffi.Pointer<ffi.Int8> text,
+);
+
+typedef _c_GetCodepoint = ffi.Int32 Function(
+  ffi.Pointer<ffi.Int8> text,
+  ffi.Pointer<ffi.Int32> bytesProcessed,
+);
+
+typedef _dart_GetCodepoint = int Function(
+  ffi.Pointer<ffi.Int8> text,
+  ffi.Pointer<ffi.Int32> bytesProcessed,
+);
+
+typedef _c_CodepointToUTF8 = ffi.Pointer<ffi.Int8> Function(
+  ffi.Int32 codepoint,
+  ffi.Pointer<ffi.Int32> byteSize,
+);
+
+typedef _dart_CodepointToUTF8 = ffi.Pointer<ffi.Int8> Function(
+  int codepoint,
+  ffi.Pointer<ffi.Int32> byteSize,
+);
+
+typedef _c_TextCodepointsToUTF8 = ffi.Pointer<ffi.Int8> Function(
+  ffi.Pointer<ffi.Int32> codepoints,
+  ffi.Int32 length,
+);
+
+typedef _dart_TextCodepointsToUTF8 = ffi.Pointer<ffi.Int8> Function(
+  ffi.Pointer<ffi.Int32> codepoints,
+  int length,
 );
 
 typedef _c_TextCopy = ffi.Int32 Function(
@@ -11888,54 +12740,6 @@ typedef _dart_TextToInteger = int Function(
   ffi.Pointer<ffi.Int8> text,
 );
 
-typedef _c_TextToUtf8 = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<ffi.Int32> codepoints,
-  ffi.Int32 length,
-);
-
-typedef _dart_TextToUtf8 = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<ffi.Int32> codepoints,
-  int length,
-);
-
-typedef _c_GetCodepoints = ffi.Pointer<ffi.Int32> Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> count,
-);
-
-typedef _dart_GetCodepoints = ffi.Pointer<ffi.Int32> Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> count,
-);
-
-typedef _c_GetCodepointsCount = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> text,
-);
-
-typedef _dart_GetCodepointsCount = int Function(
-  ffi.Pointer<ffi.Int8> text,
-);
-
-typedef _c_GetNextCodepoint = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> bytesProcessed,
-);
-
-typedef _dart_GetNextCodepoint = int Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> bytesProcessed,
-);
-
-typedef _c_CodepointToUtf8 = ffi.Pointer<ffi.Int8> Function(
-  ffi.Int32 codepoint,
-  ffi.Pointer<ffi.Int32> byteLength,
-);
-
-typedef _dart_CodepointToUtf8 = ffi.Pointer<ffi.Int8> Function(
-  int codepoint,
-  ffi.Pointer<ffi.Int32> byteLength,
-);
-
 typedef _c_DrawLine3D = ffi.Void Function(
   Vector3 startPos,
   Vector3 endPos,
@@ -11990,13 +12794,13 @@ typedef _dart_DrawTriangle3D = void Function(
 
 typedef _c_DrawTriangleStrip3D = ffi.Void Function(
   ffi.Pointer<Vector3> points,
-  ffi.Int32 pointsCount,
+  ffi.Int32 pointCount,
   Color color,
 );
 
 typedef _dart_DrawTriangleStrip3D = void Function(
   ffi.Pointer<Vector3> points,
-  int pointsCount,
+  int pointCount,
   Color color,
 );
 
@@ -12074,6 +12878,26 @@ typedef _dart_DrawCubeTexture = void Function(
   Color color,
 );
 
+typedef _c_DrawCubeTextureRec = ffi.Void Function(
+  Texture texture,
+  Rectangle source,
+  Vector3 position,
+  ffi.Float width,
+  ffi.Float height,
+  ffi.Float length,
+  Color color,
+);
+
+typedef _dart_DrawCubeTextureRec = void Function(
+  Texture texture,
+  Rectangle source,
+  Vector3 position,
+  double width,
+  double height,
+  double length,
+  Color color,
+);
+
 typedef _c_DrawSphere = ffi.Void Function(
   Vector3 centerPos,
   ffi.Float radius,
@@ -12136,6 +12960,24 @@ typedef _dart_DrawCylinder = void Function(
   Color color,
 );
 
+typedef _c_DrawCylinderEx = ffi.Void Function(
+  Vector3 startPos,
+  Vector3 endPos,
+  ffi.Float startRadius,
+  ffi.Float endRadius,
+  ffi.Int32 sides,
+  Color color,
+);
+
+typedef _dart_DrawCylinderEx = void Function(
+  Vector3 startPos,
+  Vector3 endPos,
+  double startRadius,
+  double endRadius,
+  int sides,
+  Color color,
+);
+
 typedef _c_DrawCylinderWires = ffi.Void Function(
   Vector3 position,
   ffi.Float radiusTop,
@@ -12151,6 +12993,24 @@ typedef _dart_DrawCylinderWires = void Function(
   double radiusBottom,
   double height,
   int slices,
+  Color color,
+);
+
+typedef _c_DrawCylinderWiresEx = ffi.Void Function(
+  Vector3 startPos,
+  Vector3 endPos,
+  ffi.Float startRadius,
+  ffi.Float endRadius,
+  ffi.Int32 sides,
+  Color color,
+);
+
+typedef _dart_DrawCylinderWiresEx = void Function(
+  Vector3 startPos,
+  Vector3 endPos,
+  double startRadius,
+  double endRadius,
+  int sides,
   Color color,
 );
 
@@ -12218,314 +13078,12 @@ typedef _dart_UnloadModelKeepMeshes = void Function(
   Model model,
 );
 
-typedef _c_UploadMesh = ffi.Void Function(
-  ffi.Pointer<Mesh> mesh,
-  ffi.Int32 dynamic_1,
-);
-
-typedef _dart_UploadMesh = void Function(
-  ffi.Pointer<Mesh> mesh,
-  int dynamic_1,
-);
-
-typedef _c_UpdateMeshBuffer = ffi.Void Function(
-  Mesh mesh,
-  ffi.Int32 index,
-  ffi.Pointer<ffi.Void> data,
-  ffi.Int32 dataSize,
-  ffi.Int32 offset,
-);
-
-typedef _dart_UpdateMeshBuffer = void Function(
-  Mesh mesh,
-  int index,
-  ffi.Pointer<ffi.Void> data,
-  int dataSize,
-  int offset,
-);
-
-typedef _c_DrawMesh = ffi.Void Function(
-  Mesh mesh,
-  Material material,
-  Matrix transform,
-);
-
-typedef _dart_DrawMesh = void Function(
-  Mesh mesh,
-  Material material,
-  Matrix transform,
-);
-
-typedef _c_DrawMeshInstanced = ffi.Void Function(
-  Mesh mesh,
-  Material material,
-  ffi.Pointer<Matrix> transforms,
-  ffi.Int32 instances,
-);
-
-typedef _dart_DrawMeshInstanced = void Function(
-  Mesh mesh,
-  Material material,
-  ffi.Pointer<Matrix> transforms,
-  int instances,
-);
-
-typedef _c_UnloadMesh = ffi.Void Function(
-  Mesh mesh,
-);
-
-typedef _dart_UnloadMesh = void Function(
-  Mesh mesh,
-);
-
-typedef _c_ExportMesh = ffi.Int32 Function(
-  Mesh mesh,
-  ffi.Pointer<ffi.Int8> fileName,
-);
-
-typedef _dart_ExportMesh = int Function(
-  Mesh mesh,
-  ffi.Pointer<ffi.Int8> fileName,
-);
-
-typedef _c_LoadMaterials = ffi.Pointer<Material> Function(
-  ffi.Pointer<ffi.Int8> fileName,
-  ffi.Pointer<ffi.Int32> materialCount,
-);
-
-typedef _dart_LoadMaterials = ffi.Pointer<Material> Function(
-  ffi.Pointer<ffi.Int8> fileName,
-  ffi.Pointer<ffi.Int32> materialCount,
-);
-
-typedef _c_LoadMaterialDefault = Material Function();
-
-typedef _dart_LoadMaterialDefault = Material Function();
-
-typedef _c_UnloadMaterial = ffi.Void Function(
-  Material material,
-);
-
-typedef _dart_UnloadMaterial = void Function(
-  Material material,
-);
-
-typedef _c_SetMaterialTexture = ffi.Void Function(
-  ffi.Pointer<Material> material,
-  ffi.Int32 mapType,
-  Texture texture,
-);
-
-typedef _dart_SetMaterialTexture = void Function(
-  ffi.Pointer<Material> material,
-  int mapType,
-  Texture texture,
-);
-
-typedef _c_SetModelMeshMaterial = ffi.Void Function(
-  ffi.Pointer<Model> model,
-  ffi.Int32 meshId,
-  ffi.Int32 materialId,
-);
-
-typedef _dart_SetModelMeshMaterial = void Function(
-  ffi.Pointer<Model> model,
-  int meshId,
-  int materialId,
-);
-
-typedef _c_LoadModelAnimations = ffi.Pointer<ModelAnimation> Function(
-  ffi.Pointer<ffi.Int8> fileName,
-  ffi.Pointer<ffi.Int32> animsCount,
-);
-
-typedef _dart_LoadModelAnimations = ffi.Pointer<ModelAnimation> Function(
-  ffi.Pointer<ffi.Int8> fileName,
-  ffi.Pointer<ffi.Int32> animsCount,
-);
-
-typedef _c_UpdateModelAnimation = ffi.Void Function(
+typedef _c_GetModelBoundingBox = BoundingBox Function(
   Model model,
-  ModelAnimation anim,
-  ffi.Int32 frame,
 );
 
-typedef _dart_UpdateModelAnimation = void Function(
+typedef _dart_GetModelBoundingBox = BoundingBox Function(
   Model model,
-  ModelAnimation anim,
-  int frame,
-);
-
-typedef _c_UnloadModelAnimation = ffi.Void Function(
-  ModelAnimation anim,
-);
-
-typedef _dart_UnloadModelAnimation = void Function(
-  ModelAnimation anim,
-);
-
-typedef _c_UnloadModelAnimations = ffi.Void Function(
-  ffi.Pointer<ModelAnimation> animations,
-  ffi.Uint32 count,
-);
-
-typedef _dart_UnloadModelAnimations = void Function(
-  ffi.Pointer<ModelAnimation> animations,
-  int count,
-);
-
-typedef _c_IsModelAnimationValid = ffi.Int32 Function(
-  Model model,
-  ModelAnimation anim,
-);
-
-typedef _dart_IsModelAnimationValid = int Function(
-  Model model,
-  ModelAnimation anim,
-);
-
-typedef _c_GenMeshPoly = Mesh Function(
-  ffi.Int32 sides,
-  ffi.Float radius,
-);
-
-typedef _dart_GenMeshPoly = Mesh Function(
-  int sides,
-  double radius,
-);
-
-typedef _c_GenMeshPlane = Mesh Function(
-  ffi.Float width,
-  ffi.Float length,
-  ffi.Int32 resX,
-  ffi.Int32 resZ,
-);
-
-typedef _dart_GenMeshPlane = Mesh Function(
-  double width,
-  double length,
-  int resX,
-  int resZ,
-);
-
-typedef _c_GenMeshCube = Mesh Function(
-  ffi.Float width,
-  ffi.Float height,
-  ffi.Float length,
-);
-
-typedef _dart_GenMeshCube = Mesh Function(
-  double width,
-  double height,
-  double length,
-);
-
-typedef _c_GenMeshSphere = Mesh Function(
-  ffi.Float radius,
-  ffi.Int32 rings,
-  ffi.Int32 slices,
-);
-
-typedef _dart_GenMeshSphere = Mesh Function(
-  double radius,
-  int rings,
-  int slices,
-);
-
-typedef _c_GenMeshHemiSphere = Mesh Function(
-  ffi.Float radius,
-  ffi.Int32 rings,
-  ffi.Int32 slices,
-);
-
-typedef _dart_GenMeshHemiSphere = Mesh Function(
-  double radius,
-  int rings,
-  int slices,
-);
-
-typedef _c_GenMeshCylinder = Mesh Function(
-  ffi.Float radius,
-  ffi.Float height,
-  ffi.Int32 slices,
-);
-
-typedef _dart_GenMeshCylinder = Mesh Function(
-  double radius,
-  double height,
-  int slices,
-);
-
-typedef _c_GenMeshTorus = Mesh Function(
-  ffi.Float radius,
-  ffi.Float size,
-  ffi.Int32 radSeg,
-  ffi.Int32 sides,
-);
-
-typedef _dart_GenMeshTorus = Mesh Function(
-  double radius,
-  double size,
-  int radSeg,
-  int sides,
-);
-
-typedef _c_GenMeshKnot = Mesh Function(
-  ffi.Float radius,
-  ffi.Float size,
-  ffi.Int32 radSeg,
-  ffi.Int32 sides,
-);
-
-typedef _dart_GenMeshKnot = Mesh Function(
-  double radius,
-  double size,
-  int radSeg,
-  int sides,
-);
-
-typedef _c_GenMeshHeightmap = Mesh Function(
-  Image heightmap,
-  Vector3 size,
-);
-
-typedef _dart_GenMeshHeightmap = Mesh Function(
-  Image heightmap,
-  Vector3 size,
-);
-
-typedef _c_GenMeshCubicmap = Mesh Function(
-  Image cubicmap,
-  Vector3 cubeSize,
-);
-
-typedef _dart_GenMeshCubicmap = Mesh Function(
-  Image cubicmap,
-  Vector3 cubeSize,
-);
-
-typedef _c_MeshBoundingBox = BoundingBox Function(
-  Mesh mesh,
-);
-
-typedef _dart_MeshBoundingBox = BoundingBox Function(
-  Mesh mesh,
-);
-
-typedef _c_MeshTangents = ffi.Void Function(
-  ffi.Pointer<Mesh> mesh,
-);
-
-typedef _dart_MeshTangents = void Function(
-  ffi.Pointer<Mesh> mesh,
-);
-
-typedef _c_MeshBinormals = ffi.Void Function(
-  ffi.Pointer<Mesh> mesh,
-);
-
-typedef _dart_MeshBinormals = void Function(
-  ffi.Pointer<Mesh> mesh,
 );
 
 typedef _c_DrawModel = ffi.Void Function(
@@ -12605,7 +13163,7 @@ typedef _dart_DrawBoundingBox = void Function(
 typedef _c_DrawBillboard = ffi.Void Function(
   Camera3D camera,
   Texture texture,
-  Vector3 center,
+  Vector3 position,
   ffi.Float size,
   Color tint,
 );
@@ -12613,7 +13171,7 @@ typedef _c_DrawBillboard = ffi.Void Function(
 typedef _dart_DrawBillboard = void Function(
   Camera3D camera,
   Texture texture,
-  Vector3 center,
+  Vector3 position,
   double size,
   Color tint,
 );
@@ -12622,8 +13180,8 @@ typedef _c_DrawBillboardRec = ffi.Void Function(
   Camera3D camera,
   Texture texture,
   Rectangle source,
-  Vector3 center,
-  ffi.Float size,
+  Vector3 position,
+  Vector2 size,
   Color tint,
 );
 
@@ -12631,9 +13189,355 @@ typedef _dart_DrawBillboardRec = void Function(
   Camera3D camera,
   Texture texture,
   Rectangle source,
-  Vector3 center,
-  double size,
+  Vector3 position,
+  Vector2 size,
   Color tint,
+);
+
+typedef _c_DrawBillboardPro = ffi.Void Function(
+  Camera3D camera,
+  Texture texture,
+  Rectangle source,
+  Vector3 position,
+  Vector3 up,
+  Vector2 size,
+  Vector2 origin,
+  ffi.Float rotation,
+  Color tint,
+);
+
+typedef _dart_DrawBillboardPro = void Function(
+  Camera3D camera,
+  Texture texture,
+  Rectangle source,
+  Vector3 position,
+  Vector3 up,
+  Vector2 size,
+  Vector2 origin,
+  double rotation,
+  Color tint,
+);
+
+typedef _c_UploadMesh = ffi.Void Function(
+  ffi.Pointer<Mesh> mesh,
+  ffi.Int32 dynamic_1,
+);
+
+typedef _dart_UploadMesh = void Function(
+  ffi.Pointer<Mesh> mesh,
+  int dynamic_1,
+);
+
+typedef _c_UpdateMeshBuffer = ffi.Void Function(
+  Mesh mesh,
+  ffi.Int32 index,
+  ffi.Pointer<ffi.Void> data,
+  ffi.Int32 dataSize,
+  ffi.Int32 offset,
+);
+
+typedef _dart_UpdateMeshBuffer = void Function(
+  Mesh mesh,
+  int index,
+  ffi.Pointer<ffi.Void> data,
+  int dataSize,
+  int offset,
+);
+
+typedef _c_UnloadMesh = ffi.Void Function(
+  Mesh mesh,
+);
+
+typedef _dart_UnloadMesh = void Function(
+  Mesh mesh,
+);
+
+typedef _c_DrawMesh = ffi.Void Function(
+  Mesh mesh,
+  Material material,
+  Matrix transform,
+);
+
+typedef _dart_DrawMesh = void Function(
+  Mesh mesh,
+  Material material,
+  Matrix transform,
+);
+
+typedef _c_DrawMeshInstanced = ffi.Void Function(
+  Mesh mesh,
+  Material material,
+  ffi.Pointer<Matrix> transforms,
+  ffi.Int32 instances,
+);
+
+typedef _dart_DrawMeshInstanced = void Function(
+  Mesh mesh,
+  Material material,
+  ffi.Pointer<Matrix> transforms,
+  int instances,
+);
+
+typedef _c_ExportMesh = ffi.Int32 Function(
+  Mesh mesh,
+  ffi.Pointer<ffi.Int8> fileName,
+);
+
+typedef _dart_ExportMesh = int Function(
+  Mesh mesh,
+  ffi.Pointer<ffi.Int8> fileName,
+);
+
+typedef _c_GetMeshBoundingBox = BoundingBox Function(
+  Mesh mesh,
+);
+
+typedef _dart_GetMeshBoundingBox = BoundingBox Function(
+  Mesh mesh,
+);
+
+typedef _c_GenMeshTangents = ffi.Void Function(
+  ffi.Pointer<Mesh> mesh,
+);
+
+typedef _dart_GenMeshTangents = void Function(
+  ffi.Pointer<Mesh> mesh,
+);
+
+typedef _c_GenMeshBinormals = ffi.Void Function(
+  ffi.Pointer<Mesh> mesh,
+);
+
+typedef _dart_GenMeshBinormals = void Function(
+  ffi.Pointer<Mesh> mesh,
+);
+
+typedef _c_GenMeshPoly = Mesh Function(
+  ffi.Int32 sides,
+  ffi.Float radius,
+);
+
+typedef _dart_GenMeshPoly = Mesh Function(
+  int sides,
+  double radius,
+);
+
+typedef _c_GenMeshPlane = Mesh Function(
+  ffi.Float width,
+  ffi.Float length,
+  ffi.Int32 resX,
+  ffi.Int32 resZ,
+);
+
+typedef _dart_GenMeshPlane = Mesh Function(
+  double width,
+  double length,
+  int resX,
+  int resZ,
+);
+
+typedef _c_GenMeshCube = Mesh Function(
+  ffi.Float width,
+  ffi.Float height,
+  ffi.Float length,
+);
+
+typedef _dart_GenMeshCube = Mesh Function(
+  double width,
+  double height,
+  double length,
+);
+
+typedef _c_GenMeshSphere = Mesh Function(
+  ffi.Float radius,
+  ffi.Int32 rings,
+  ffi.Int32 slices,
+);
+
+typedef _dart_GenMeshSphere = Mesh Function(
+  double radius,
+  int rings,
+  int slices,
+);
+
+typedef _c_GenMeshHemiSphere = Mesh Function(
+  ffi.Float radius,
+  ffi.Int32 rings,
+  ffi.Int32 slices,
+);
+
+typedef _dart_GenMeshHemiSphere = Mesh Function(
+  double radius,
+  int rings,
+  int slices,
+);
+
+typedef _c_GenMeshCylinder = Mesh Function(
+  ffi.Float radius,
+  ffi.Float height,
+  ffi.Int32 slices,
+);
+
+typedef _dart_GenMeshCylinder = Mesh Function(
+  double radius,
+  double height,
+  int slices,
+);
+
+typedef _c_GenMeshCone = Mesh Function(
+  ffi.Float radius,
+  ffi.Float height,
+  ffi.Int32 slices,
+);
+
+typedef _dart_GenMeshCone = Mesh Function(
+  double radius,
+  double height,
+  int slices,
+);
+
+typedef _c_GenMeshTorus = Mesh Function(
+  ffi.Float radius,
+  ffi.Float size,
+  ffi.Int32 radSeg,
+  ffi.Int32 sides,
+);
+
+typedef _dart_GenMeshTorus = Mesh Function(
+  double radius,
+  double size,
+  int radSeg,
+  int sides,
+);
+
+typedef _c_GenMeshKnot = Mesh Function(
+  ffi.Float radius,
+  ffi.Float size,
+  ffi.Int32 radSeg,
+  ffi.Int32 sides,
+);
+
+typedef _dart_GenMeshKnot = Mesh Function(
+  double radius,
+  double size,
+  int radSeg,
+  int sides,
+);
+
+typedef _c_GenMeshHeightmap = Mesh Function(
+  Image heightmap,
+  Vector3 size,
+);
+
+typedef _dart_GenMeshHeightmap = Mesh Function(
+  Image heightmap,
+  Vector3 size,
+);
+
+typedef _c_GenMeshCubicmap = Mesh Function(
+  Image cubicmap,
+  Vector3 cubeSize,
+);
+
+typedef _dart_GenMeshCubicmap = Mesh Function(
+  Image cubicmap,
+  Vector3 cubeSize,
+);
+
+typedef _c_LoadMaterials = ffi.Pointer<Material> Function(
+  ffi.Pointer<ffi.Int8> fileName,
+  ffi.Pointer<ffi.Int32> materialCount,
+);
+
+typedef _dart_LoadMaterials = ffi.Pointer<Material> Function(
+  ffi.Pointer<ffi.Int8> fileName,
+  ffi.Pointer<ffi.Int32> materialCount,
+);
+
+typedef _c_LoadMaterialDefault = Material Function();
+
+typedef _dart_LoadMaterialDefault = Material Function();
+
+typedef _c_UnloadMaterial = ffi.Void Function(
+  Material material,
+);
+
+typedef _dart_UnloadMaterial = void Function(
+  Material material,
+);
+
+typedef _c_SetMaterialTexture = ffi.Void Function(
+  ffi.Pointer<Material> material,
+  ffi.Int32 mapType,
+  Texture texture,
+);
+
+typedef _dart_SetMaterialTexture = void Function(
+  ffi.Pointer<Material> material,
+  int mapType,
+  Texture texture,
+);
+
+typedef _c_SetModelMeshMaterial = ffi.Void Function(
+  ffi.Pointer<Model> model,
+  ffi.Int32 meshId,
+  ffi.Int32 materialId,
+);
+
+typedef _dart_SetModelMeshMaterial = void Function(
+  ffi.Pointer<Model> model,
+  int meshId,
+  int materialId,
+);
+
+typedef _c_LoadModelAnimations = ffi.Pointer<ModelAnimation> Function(
+  ffi.Pointer<ffi.Int8> fileName,
+  ffi.Pointer<ffi.Uint32> animCount,
+);
+
+typedef _dart_LoadModelAnimations = ffi.Pointer<ModelAnimation> Function(
+  ffi.Pointer<ffi.Int8> fileName,
+  ffi.Pointer<ffi.Uint32> animCount,
+);
+
+typedef _c_UpdateModelAnimation = ffi.Void Function(
+  Model model,
+  ModelAnimation anim,
+  ffi.Int32 frame,
+);
+
+typedef _dart_UpdateModelAnimation = void Function(
+  Model model,
+  ModelAnimation anim,
+  int frame,
+);
+
+typedef _c_UnloadModelAnimation = ffi.Void Function(
+  ModelAnimation anim,
+);
+
+typedef _dart_UnloadModelAnimation = void Function(
+  ModelAnimation anim,
+);
+
+typedef _c_UnloadModelAnimations = ffi.Void Function(
+  ffi.Pointer<ModelAnimation> animations,
+  ffi.Uint32 count,
+);
+
+typedef _dart_UnloadModelAnimations = void Function(
+  ffi.Pointer<ModelAnimation> animations,
+  int count,
+);
+
+typedef _c_IsModelAnimationValid = ffi.Int32 Function(
+  Model model,
+  ModelAnimation anim,
+);
+
+typedef _dart_IsModelAnimationValid = int Function(
+  Model model,
+  ModelAnimation anim,
 );
 
 typedef _c_CheckCollisionSpheres = ffi.Int32 Function(
@@ -12672,86 +13576,78 @@ typedef _dart_CheckCollisionBoxSphere = int Function(
   double radius,
 );
 
-typedef _c_CheckCollisionRaySphere = ffi.Int32 Function(
+typedef _c_GetRayCollisionSphere = RayCollision Function(
   Ray ray,
   Vector3 center,
   ffi.Float radius,
 );
 
-typedef _dart_CheckCollisionRaySphere = int Function(
+typedef _dart_GetRayCollisionSphere = RayCollision Function(
   Ray ray,
   Vector3 center,
   double radius,
 );
 
-typedef _c_CheckCollisionRaySphereEx = ffi.Int32 Function(
-  Ray ray,
-  Vector3 center,
-  ffi.Float radius,
-  ffi.Pointer<Vector3> collisionPoint,
-);
-
-typedef _dart_CheckCollisionRaySphereEx = int Function(
-  Ray ray,
-  Vector3 center,
-  double radius,
-  ffi.Pointer<Vector3> collisionPoint,
-);
-
-typedef _c_CheckCollisionRayBox = ffi.Int32 Function(
+typedef _c_GetRayCollisionBox = RayCollision Function(
   Ray ray,
   BoundingBox box,
 );
 
-typedef _dart_CheckCollisionRayBox = int Function(
+typedef _dart_GetRayCollisionBox = RayCollision Function(
   Ray ray,
   BoundingBox box,
 );
 
-typedef _c_GetCollisionRayMesh = RayHitInfo Function(
+typedef _c_GetRayCollisionModel = RayCollision Function(
+  Ray ray,
+  Model model,
+);
+
+typedef _dart_GetRayCollisionModel = RayCollision Function(
+  Ray ray,
+  Model model,
+);
+
+typedef _c_GetRayCollisionMesh = RayCollision Function(
   Ray ray,
   Mesh mesh,
   Matrix transform,
 );
 
-typedef _dart_GetCollisionRayMesh = RayHitInfo Function(
+typedef _dart_GetRayCollisionMesh = RayCollision Function(
   Ray ray,
   Mesh mesh,
   Matrix transform,
 );
 
-typedef _c_GetCollisionRayModel = RayHitInfo Function(
-  Ray ray,
-  Model model,
-);
-
-typedef _dart_GetCollisionRayModel = RayHitInfo Function(
-  Ray ray,
-  Model model,
-);
-
-typedef _c_GetCollisionRayTriangle = RayHitInfo Function(
+typedef _c_GetRayCollisionTriangle = RayCollision Function(
   Ray ray,
   Vector3 p1,
   Vector3 p2,
   Vector3 p3,
 );
 
-typedef _dart_GetCollisionRayTriangle = RayHitInfo Function(
+typedef _dart_GetRayCollisionTriangle = RayCollision Function(
   Ray ray,
   Vector3 p1,
   Vector3 p2,
   Vector3 p3,
 );
 
-typedef _c_GetCollisionRayGround = RayHitInfo Function(
+typedef _c_GetRayCollisionQuad = RayCollision Function(
   Ray ray,
-  ffi.Float groundHeight,
+  Vector3 p1,
+  Vector3 p2,
+  Vector3 p3,
+  Vector3 p4,
 );
 
-typedef _dart_GetCollisionRayGround = RayHitInfo Function(
+typedef _dart_GetRayCollisionQuad = RayCollision Function(
   Ray ray,
-  double groundHeight,
+  Vector3 p1,
+  Vector3 p2,
+  Vector3 p3,
+  Vector3 p4,
 );
 
 typedef _c_InitAudioDevice = ffi.Void Function();
@@ -12813,13 +13709,13 @@ typedef _dart_LoadSoundFromWave = Sound Function(
 typedef _c_UpdateSound = ffi.Void Function(
   Sound sound,
   ffi.Pointer<ffi.Void> data,
-  ffi.Int32 samplesCount,
+  ffi.Int32 sampleCount,
 );
 
 typedef _dart_UpdateSound = void Function(
   Sound sound,
   ffi.Pointer<ffi.Void> data,
-  int samplesCount,
+  int sampleCount,
 );
 
 typedef _c_UnloadWave = ffi.Void Function(
@@ -13020,11 +13916,11 @@ typedef _dart_PlayMusicStream = void Function(
   Music music,
 );
 
-typedef _c_IsMusicPlaying = ffi.Int32 Function(
+typedef _c_IsMusicStreamPlaying = ffi.Int32 Function(
   Music music,
 );
 
-typedef _dart_IsMusicPlaying = int Function(
+typedef _dart_IsMusicStreamPlaying = int Function(
   Music music,
 );
 
@@ -13058,6 +13954,16 @@ typedef _c_ResumeMusicStream = ffi.Void Function(
 
 typedef _dart_ResumeMusicStream = void Function(
   Music music,
+);
+
+typedef _c_SeekMusicStream = ffi.Void Function(
+  Music music,
+  ffi.Float position,
+);
+
+typedef _dart_SeekMusicStream = void Function(
+  Music music,
+  double position,
 );
 
 typedef _c_SetMusicVolume = ffi.Void Function(
@@ -13096,36 +14002,36 @@ typedef _dart_GetMusicTimePlayed = double Function(
   Music music,
 );
 
-typedef _c_InitAudioStream = AudioStream Function(
+typedef _c_LoadAudioStream = AudioStream Function(
   ffi.Uint32 sampleRate,
   ffi.Uint32 sampleSize,
   ffi.Uint32 channels,
 );
 
-typedef _dart_InitAudioStream = AudioStream Function(
+typedef _dart_LoadAudioStream = AudioStream Function(
   int sampleRate,
   int sampleSize,
   int channels,
 );
 
+typedef _c_UnloadAudioStream = ffi.Void Function(
+  AudioStream stream,
+);
+
+typedef _dart_UnloadAudioStream = void Function(
+  AudioStream stream,
+);
+
 typedef _c_UpdateAudioStream = ffi.Void Function(
   AudioStream stream,
   ffi.Pointer<ffi.Void> data,
-  ffi.Int32 samplesCount,
+  ffi.Int32 frameCount,
 );
 
 typedef _dart_UpdateAudioStream = void Function(
   AudioStream stream,
   ffi.Pointer<ffi.Void> data,
-  int samplesCount,
-);
-
-typedef _c_CloseAudioStream = ffi.Void Function(
-  AudioStream stream,
-);
-
-typedef _dart_CloseAudioStream = void Function(
-  AudioStream stream,
+  int frameCount,
 );
 
 typedef _c_IsAudioStreamProcessed = ffi.Int32 Function(

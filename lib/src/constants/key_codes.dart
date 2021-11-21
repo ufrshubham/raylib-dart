@@ -121,6 +121,10 @@ enum MouseButtonCode {
   mouseLeftButton,
   mouseRightButton,
   mouseMiddleButton,
+  mouseSideButton,
+  mouseExtraButton,
+  mouseForwardButton,
+  mouseBackButton,
 }
 
 enum GamepadButtonCode {
